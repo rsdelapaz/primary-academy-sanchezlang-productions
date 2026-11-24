@@ -1,0 +1,45 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://primary-academy.invalid/schemas/manifest.schema.json",
+  "title": "Primary Academy content manifest",
+  "type": "object",
+  "additionalProperties": false,
+  "required": ["schemaVersion", "contentVersion", "subjects"],
+  "properties": {
+    "schemaVersion": { "const": "1.0.0" },
+    "contentVersion": { "$ref": "#/$defs/version" },
+    "subjects": {
+      "type": "array",
+      "items": {
+        "type": "object",
+        "additionalProperties": false,
+        "required": ["id", "title", "topics"],
+        "properties": {
+          "id": { "$ref": "#/$defs/id" },
+          "title": { "type": "string", "minLength": 1 },
+          "topics": {
+            "type": "array",
+            "items": {
+              "type": "object",
+              "additionalProperties": false,
+              "required": ["id", "title", "packagePath", "contentVersion"],
+              "properties": {
+                "id": { "$ref": "#/$defs/id" },
+                "title": { "type": "string", "minLength": 1 },
+                "packagePath": {
+                  "type": "string",
+                  "pattern": "^content/packages/[a-z0-9/-]+\\.json$"
+                },
+                "contentVersion": { "$ref": "#/$defs/version" }
+              }
+            }
+          }
+        }
+      }
+    }
+  },
+  "$defs": {
+    "id": { "type": "string", "pattern": "^[a-z][a-z0-9-]{1,63}$" },
+    "version": { "type": "string", "pattern": "^[0-9]+\\.[0-9]+\\.[0-9]+$" }
+  }
+}

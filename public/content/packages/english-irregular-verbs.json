@@ -1,0 +1,35 @@
+{
+  "schemaVersion": "1.0.0",
+  "contentVersion": "0.1.0",
+  "subjectId": "english",
+  "topicId": "irregular-verbs",
+  "concepts": [{ "id": "past-tense", "label": "Pasado simple", "description": "Fixture técnico, no aprobado como material pedagógico." }],
+  "learningObjectives": [{ "id": "identify-past-form", "label": "Identificar una forma verbal en pasado." }],
+  "exercises": [
+    {
+      "id": "eng-go-001", "type": "single_choice", "conceptId": "past-tense", "learningObjectiveIds": ["identify-past-form"], "difficulty": "beginner", "tags": ["fixture"], "instructionLanguage": "es", "exerciseLanguage": "en", "explanationLanguage": "es",
+      "prompt": "Yesterday, we ___ to the park.", "context": "Selecciona la forma en pasado.", "explanation": "“Went” es la forma de pasado de “go”.",
+      "options": [{ "id": "eng-go-a", "text": "go" }, { "id": "eng-go-b", "text": "went" }, { "id": "eng-go-c", "text": "goed" }, { "id": "eng-go-d", "text": "gone" }], "correctOptionId": "eng-go-b"
+    },
+    {
+      "id": "eng-eat-001", "type": "single_choice", "conceptId": "past-tense", "learningObjectiveIds": ["identify-past-form"], "difficulty": "beginner", "tags": ["fixture"], "instructionLanguage": "es", "exerciseLanguage": "en", "explanationLanguage": "es",
+      "prompt": "She ___ an apple this morning.", "context": "Selecciona la forma en pasado.", "explanation": "“Ate” es la forma de pasado de “eat”.",
+      "options": [{ "id": "eng-eat-a", "text": "eat" }, { "id": "eng-eat-b", "text": "eated" }, { "id": "eng-eat-c", "text": "ate" }, { "id": "eng-eat-d", "text": "eaten" }], "correctOptionId": "eng-eat-c"
+    },
+    {
+      "id": "eng-see-001", "type": "single_choice", "conceptId": "past-tense", "learningObjectiveIds": ["identify-past-form"], "difficulty": "beginner", "tags": ["fixture"], "instructionLanguage": "es", "exerciseLanguage": "en", "explanationLanguage": "es",
+      "prompt": "I ___ a rainbow yesterday.", "context": "Selecciona la forma en pasado.", "explanation": "“Saw” es la forma de pasado de “see”.",
+      "options": [{ "id": "eng-see-a", "text": "see" }, { "id": "eng-see-b", "text": "saw" }, { "id": "eng-see-c", "text": "seen" }, { "id": "eng-see-d", "text": "seed" }], "correctOptionId": "eng-see-b"
+    },
+    {
+      "id": "eng-have-001", "type": "single_choice", "conceptId": "past-tense", "learningObjectiveIds": ["identify-past-form"], "difficulty": "beginner", "tags": ["fixture"], "instructionLanguage": "es", "exerciseLanguage": "en", "explanationLanguage": "es",
+      "prompt": "They ___ a great time at the museum.", "context": "Selecciona la forma en pasado.", "explanation": "“Had” es la forma de pasado de “have”.",
+      "options": [{ "id": "eng-have-a", "text": "have" }, { "id": "eng-have-b", "text": "has" }, { "id": "eng-have-c", "text": "had" }, { "id": "eng-have-d", "text": "haved" }], "correctOptionId": "eng-have-c"
+    },
+    {
+      "id": "eng-write-001", "type": "single_choice", "conceptId": "past-tense", "learningObjectiveIds": ["identify-past-form"], "difficulty": "beginner", "tags": ["fixture"], "instructionLanguage": "es", "exerciseLanguage": "en", "explanationLanguage": "es",
+      "prompt": "Mia ___ a short story last week.", "context": "Selecciona la forma en pasado.", "explanation": "“Wrote” es la forma de pasado de “write”.",
+      "options": [{ "id": "eng-write-a", "text": "write" }, { "id": "eng-write-b", "text": "writed" }, { "id": "eng-write-c", "text": "wrote" }, { "id": "eng-write-d", "text": "written" }], "correctOptionId": "eng-write-c"
+    }
+  ]
+}

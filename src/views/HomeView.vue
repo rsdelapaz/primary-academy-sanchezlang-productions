@@ -1,5 +1,11 @@
 <script setup lang="ts">
+import { onMounted } from 'vue'
 import { RouterLink } from 'vue-router'
+import { useCatalog } from '../presentation/catalog'
+
+const { manifest, loading, error, loadManifest } = useCatalog()
+
+onMounted(() => { void loadManifest() })
 </script>
 
 <template>
@@ -15,10 +21,36 @@ import { RouterLink } from 'vue-router'
         Aprende, explora y descubre
       </h1>
       <p>Entrena tu conocimiento en pequeñas aventuras.</p>
-      <RouterLink
-        class="button primary"
-        to="/ingles"
-      >Elegir área</RouterLink>
+      <p
+        v-if="loading"
+        role="status"
+      >
+        Cargando asignaturas...
+      </p>
+      <p
+        v-else-if="error"
+        class="error"
+        role="alert"
+      >
+        {{ error }}
+      </p>
+      <p v-else-if="!manifest?.subjects.length">
+        Todavía no hay asignaturas disponibles.
+      </p>
+      <nav
+        v-else
+        class="subject-links"
+        aria-label="Asignaturas"
+      >
+        <RouterLink
+          v-for="subject in manifest.subjects"
+          :key="subject.id"
+          class="button primary"
+          :to="{ name: 'subject', params: { subjectId: subject.id } }"
+        >
+          {{ subject.title }}
+        </RouterLink>
+      </nav>
     </div>
     <div
       class="compass-card"

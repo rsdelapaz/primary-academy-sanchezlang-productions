@@ -1,48 +1,64 @@
 <script setup lang="ts">
 import { computed, ref } from 'vue'
-import { RouterLink, useRouter } from 'vue-router'
-import { abandonSession, advanceSession, answerCurrent, session } from '../game/session'
+import { RouterLink, useRoute, useRouter } from 'vue-router'
+import { getCurrentQuestion } from '../domain/game'
+import { abandonActiveGame, advanceActiveQuestion, answerActiveQuestion, gameSession } from '../presentation/game-session'
 
+const route = useRoute()
 const router = useRouter()
-const selectedId = ref<string | null>(null)
-const answered = ref(false)
-const feedbackCorrect = ref(false)
-
-const current = computed(() => session.value?.questions[session.value.currentIndex])
+const error = ref('')
+const current = computed(() => gameSession.value ? getCurrentQuestion(gameSession.value) : undefined)
+const answered = computed(() => gameSession.value?.phase === 'feedback')
+const selectedOptionId = computed(() => {
+  const game = gameSession.value
+  const question = current.value
+  if (!game || !question || !answered.value) return null
+  return game.answers.find((answer) => answer.exerciseId === question.exercise.id)?.selectedOptionId ?? null
+})
+const options = computed(() => current.value?.optionIds.map((id) => ({
+  id,
+  text: current.value?.exercise.options.find((option) => option.id === id)?.text ?? '',
+})) ?? [])
 
 function choose(optionId: string) {
-  if (!current.value || answered.value) return
-  selectedId.value = optionId
-  const answer = answerCurrent(optionId)
-  feedbackCorrect.value = answer.correct
-  answered.value = true
+  if (!current.value) return
+  try {
+    error.value = ''
+    answerActiveQuestion(current.value.exercise.id, optionId)
+  } catch (caught) {
+    error.value = caught instanceof Error ? caught.message : 'No se pudo evaluar la respuesta.'
+  }
 }
 
 async function nextQuestion() {
-  advanceSession()
-  if (session.value?.status === 'completed') {
-    await router.push('/resultados')
-    return
+  try {
+    const updated = advanceActiveQuestion()
+    if (updated.status === 'completed') {
+      await router.push({ name: 'results', params: route.params })
+    }
+  } catch (caught) {
+    error.value = caught instanceof Error ? caught.message : 'No se pudo avanzar.'
   }
-  selectedId.value = null
-  answered.value = false
-  feedbackCorrect.value = false
 }
 
 async function abandon() {
-  abandonSession()
-  await router.push('/')
+  try {
+    abandonActiveGame()
+    await router.replace({ name: 'home' })
+  } catch (caught) {
+    error.value = caught instanceof Error ? caught.message : 'No se pudo abandonar la partida.'
+  }
 }
 </script>
 
 <template>
   <section
-    v-if="session && current"
+    v-if="gameSession && current"
     class="screen game-screen"
     aria-labelledby="question-title"
   >
     <div class="game-header">
-      <span>Pregunta {{ session.currentIndex + 1 }} de {{ session.questions.length }}</span>
+      <span>Pregunta {{ gameSession.currentQuestionIndex + 1 }} de {{ gameSession.questions.length }}</span>
       <button
         class="text-button"
         type="button"
@@ -55,10 +71,13 @@ async function abandon() {
       class="progress"
       aria-hidden="true"
     >
-      <span :style="{ width: `${((session.currentIndex + (answered ? 1 : 0)) / session.questions.length) * 100}%` }"></span>
+      <span :style="{ width: `${((gameSession.currentQuestionIndex + (answered ? 1 : 0)) / gameSession.questions.length) * 100}%` }"></span>
     </div>
     <article class="card question-card">
-      <p class="context">
+      <p
+        v-if="current.exercise.context"
+        class="context"
+      >
         {{ current.exercise.context }}
       </p>
       <h1 id="question-title">
@@ -70,37 +89,48 @@ async function abandon() {
         aria-label="Opciones de respuesta"
       >
         <button
-          v-for="(optionId, index) in current.optionIds"
-          :key="optionId"
+          v-for="(option, index) in options"
+          :key="option.id"
           type="button"
           class="option"
-          :class="{ selected: selectedId === optionId, correct: answered && optionId === current.exercise.correctOptionId, wrong: answered && selectedId === optionId && optionId !== current.exercise.correctOptionId }"
+          :class="{
+            selected: selectedOptionId === option.id,
+            correct: answered && option.id === current.exercise.correctOptionId,
+            wrong: answered && selectedOptionId === option.id && option.id !== current.exercise.correctOptionId,
+          }"
           :disabled="answered"
-          @click="choose(optionId)"
+          @click="choose(option.id)"
         >
           <span
             class="option-key"
             aria-hidden="true"
           >{{ String.fromCharCode(65 + index) }}</span>
-          {{ current.exercise.options.find((option) => option.id === optionId)?.label }}
+          {{ option.text }}
         </button>
       </div>
       <div
         v-if="answered"
         class="feedback"
-        :class="{ success: feedbackCorrect }"
+        :class="{ success: selectedOptionId === current.exercise.correctOptionId }"
         role="status"
       >
-        <strong>{{ feedbackCorrect ? '¡Muy bien! Sigue explorando.' : 'Casi lo tienes. Aprende con este detalle.' }}</strong>
+        <strong>{{ selectedOptionId === current.exercise.correctOptionId ? '¡Muy bien! Sigue explorando.' : 'Casi lo tienes. Aprende con este detalle.' }}</strong>
         <p>{{ current.exercise.explanation }}</p>
         <button
           class="button primary"
           type="button"
           @click="nextQuestion"
         >
-          {{ session.currentIndex + 1 === session.questions.length ? 'Ver resultados' : 'Siguiente' }}
+          {{ gameSession.currentQuestionIndex + 1 === gameSession.questions.length ? 'Ver resultados' : 'Siguiente' }}
         </button>
       </div>
+      <p
+        v-if="error"
+        class="error"
+        role="alert"
+      >
+        {{ error }}
+      </p>
     </article>
   </section>
   <section
@@ -110,7 +140,7 @@ async function abandon() {
     <p>No hay una partida activa.</p>
     <RouterLink
       class="button primary"
-      to="/ingles/irregular-verbs"
-    >Ir al tema</RouterLink>
+      :to="{ name: 'home' }"
+    >Ir al inicio</RouterLink>
   </section>
 </template>

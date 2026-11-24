@@ -1,15 +1,17 @@
 <script setup lang="ts">
 import { computed } from 'vue'
-import { RouterLink } from 'vue-router'
-import { session } from '../game/session'
+import { RouterLink, useRoute } from 'vue-router'
+import { gameSession } from '../presentation/game-session'
 
+const route = useRoute()
 const errors = computed(() => {
-  if (!session.value) return []
-  return session.value.answers
+  const game = gameSession.value
+  if (!game) return []
+  return game.answers
     .filter((answer) => !answer.correct)
     .map((answer) => ({
       answer,
-      question: session.value!.questions.find((item) => item.exercise.id === answer.exerciseId)?.exercise,
+      question: game.questions.find((item) => item.exercise.id === answer.exerciseId)?.exercise,
     }))
 })
 </script>
@@ -21,7 +23,7 @@ const errors = computed(() => {
   >
     <RouterLink
       class="back-link"
-      to="/resultados"
+      :to="{ name: 'results', params: route.params }"
     >← Resultados</RouterLink>
     <p class="eyebrow">
       Aprendizaje
@@ -39,8 +41,8 @@ const errors = computed(() => {
         class="card review-card"
       >
         <h2>{{ item.question?.prompt }}</h2>
-        <p><strong>Elegiste:</strong> {{ item.question?.options.find((option) => option.id === item.answer.selectedOptionId)?.label }}</p>
-        <p><strong>Respuesta:</strong> {{ item.question?.options.find((option) => option.id === item.question?.correctOptionId)?.label }}</p>
+        <p><strong>Elegiste:</strong> {{ item.question?.options.find((option) => option.id === item.answer.selectedOptionId)?.text }}</p>
+        <p><strong>Respuesta:</strong> {{ item.question?.options.find((option) => option.id === item.question?.correctOptionId)?.text }}</p>
         <p>{{ item.question?.explanation }}</p>
       </article>
     </div>

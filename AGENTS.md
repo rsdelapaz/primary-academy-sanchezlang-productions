@@ -1,12 +1,17 @@
 # AGENTS.md
 
 - Mantén TypeScript estricto y Vue 3 Composition API con `<script setup>`.
-- Separa contenido, evaluación, sesión de juego y presentación.
-- Usa identificadores estables; corrige respuestas por ID, no por índice.
-- Mezcla con Fisher-Yates sin mutar datos originales; permite inyectar `random`.
-- Implementa solo `single_choice`; no añadas backend, Pinia, PWA, UI pesada ni CSV.
+- El dominio en `src/domain/` es TypeScript puro; no importa Vue, Router, DOM, storage ni contenidos concretos.
+- Separa Content Engine, Exercise Engine, Game Engine, scoring, presentación y persistencia.
+- El JSON versionado es el formato runtime; los esquemas y validadores son contrato. Datos externos siempre se validan desde `unknown`.
+- IDs estables e independientes del idioma; corrige por ID, no por posición visual.
+- Fisher-Yates sin mutar originales; aleatoriedad inyectable y opciones mezcladas una vez por presentación.
+- `single_choice` es la única modalidad/tipo operativo actual; otros tipos solo tienen contrato.
+- No generar contenidos definitivos; los paquetes actuales son fixtures técnicos.
+- CSV será edición/intercambio futuro; no añadir todavía importador, administración ni bancos masivos.
+- No añadir backend, Pinia, PWA, UI pesada o persistencia sin necesidad aprobada.
 - Mobile-first, 320 px mínimo, teclado/táctil y `prefers-reduced-motion`.
-- Interfaz en español; no recopiles datos personales ni secretos.
+- Interfaz en español; no recopilar datos personales infantiles ni secretos.
 - Skills locales: `.agents/skills/`; carga solo lo necesario y conserva atribución.
 - Master: si existe `docs/MASTER_REQUIREMENTS.md`, úsalo selectivamente sin duplicarlo.
 - Comandos:
@@ -15,6 +20,8 @@
   - `npm run lint`
   - `npm run typecheck`
   - `npm run test`
+  - `npm run validate:content`
+  - `npm run check:domain`
   - `npm run build`
   - `npm run check:bundle`
   - `npm run check`

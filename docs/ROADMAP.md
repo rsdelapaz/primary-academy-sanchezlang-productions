@@ -1,20 +1,22 @@
 # Roadmap
 
-## PA-001 — Base completada
+## PA-001 — Foundation
 
-- SPA Vue 3 ejecutable y responsive.
-- Ruta completa hasta revisión de errores.
-- 18 verbos irregulares y modalidad `single_choice`.
-- Pruebas de lógica crítica y presupuesto inicial.
+- Aplicación Vue 3 ejecutable, responsive y con flujo de juego inicial.
+- Modalidad `single_choice`, Fisher-Yates y fixtures provisionales.
 
-## Fases pendientes
+## PA-002 — Motor universal y contrato de contenidos
 
-- Ampliar hasta 500 ejercicios y construir el contenido editorial.
-- Importador CSV universal y administración.
-- Persistencia de progreso local y exportación.
-- Aprendizaje adaptativo y repetición espaciada.
-- Más modalidades y mecánicas de juego.
-- Multijugador.
-- Gamificación avanzada.
-- PWA solo si mejora una necesidad demostrada.
-- Backend, cuentas y datos personales solo con requerimiento posterior.
+- Catálogo y paquetes JSON versionados y validados.
+- Dominio independiente de Vue y navegación basada en catálogo/IDs.
+- Solo `single_choice` operativo; los otros tipos siguen siendo contrato, no funcionalidades.
+- Los dos paquetes actuales son fixtures técnicos y no contenido aprobado.
+
+## Fases posteriores
+
+- Sustituir fixtures por contenidos pedagógicos aprobados; producir el banco planificado de 500 ejercicios cuando dirección/editorial lo priorice.
+- Importador CSV para edición/intercambio, sin hacer de CSV el formato de ejecución.
+- Persistencia local y, si se autoriza, adaptadores para rankings locales/remotos.
+- Nuevas modalidades, administración, aprendizaje adaptativo y repetición espaciada.
+- Multijugador, gamificación avanzada y PWA solo con requerimiento validado.
+- No añadir backend, cuentas ni datos personales de menores sin decisión y revisión específicas.

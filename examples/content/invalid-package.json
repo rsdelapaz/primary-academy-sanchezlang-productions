@@ -1,0 +1,28 @@
+{
+  "schemaVersion": "1.0.0",
+  "contentVersion": "0.1.0",
+  "subjectId": "example-subject",
+  "topicId": "example-topic",
+  "concepts": [{ "id": "example-concept", "label": "Ejemplo inválido" }],
+  "learningObjectives": [{ "id": "example-objective", "label": "Validar una respuesta" }],
+  "exercises": [
+    {
+      "id": "example-question",
+      "type": "single_choice",
+      "conceptId": "example-concept",
+      "learningObjectiveIds": ["example-objective"],
+      "difficulty": "beginner",
+      "tags": [],
+      "instructionLanguage": "es",
+      "exerciseLanguage": "es",
+      "explanationLanguage": "es",
+      "prompt": "Ejemplo intencionalmente inválido",
+      "explanation": "El identificador correcto no existe en las opciones.",
+      "options": [
+        { "id": "example-option-a", "text": "Opción A" },
+        { "id": "example-option-b", "text": "Opción B" }
+      ],
+      "correctOptionId": "missing-option"
+    }
+  ]
+}
