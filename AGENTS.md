@@ -1,0 +1,21 @@
+# AGENTS.md
+
+- Mantén TypeScript estricto y Vue 3 Composition API con `<script setup>`.
+- Separa contenido, evaluación, sesión de juego y presentación.
+- Usa identificadores estables; corrige respuestas por ID, no por índice.
+- Mezcla con Fisher-Yates sin mutar datos originales; permite inyectar `random`.
+- Implementa solo `single_choice`; no añadas backend, Pinia, PWA, UI pesada ni CSV.
+- Mobile-first, 320 px mínimo, teclado/táctil y `prefers-reduced-motion`.
+- Interfaz en español; no recopiles datos personales ni secretos.
+- Skills locales: `.agents/skills/`; carga solo lo necesario y conserva atribución.
+- Master: si existe `docs/MASTER_REQUIREMENTS.md`, úsalo selectivamente sin duplicarlo.
+- Comandos:
+  - `npm ci`
+  - `npm run dev`
+  - `npm run lint`
+  - `npm run typecheck`
+  - `npm run test`
+  - `npm run build`
+  - `npm run check:bundle`
+  - `npm run check`
+- No hagas commit, push, merge, despliegue ni cambios destructivos sin autorización.
