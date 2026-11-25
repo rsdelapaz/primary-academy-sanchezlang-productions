@@ -58,7 +58,21 @@ export interface SingleChoiceExercise extends ExerciseBase {
   answerVariants?: string[]
 }
 
-export type Exercise = SingleChoiceExercise
+export interface FlashcardExercise extends ExerciseBase {
+  type: 'flashcard'
+  front: string
+  back: string
+}
+
+export type Exercise = SingleChoiceExercise | FlashcardExercise
+
+export function isSingleChoiceExercise(exercise: Exercise): exercise is SingleChoiceExercise {
+  return exercise.type === 'single_choice'
+}
+
+export function isFlashcardExercise(exercise: Exercise): exercise is FlashcardExercise {
+  return exercise.type === 'flashcard'
+}
 
 export interface ContentPackage {
   schemaVersion: string

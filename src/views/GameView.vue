@@ -1,16 +1,22 @@
 <script setup lang="ts">
 import { computed, ref } from 'vue'
 import { RouterLink, useRoute, useRouter } from 'vue-router'
+import TreasureBoard from '../components/TreasureBoard.vue'
 import { getCurrentQuestion, getGameStats } from '../domain/game'
-import { abandonActiveGame, advanceActiveQuestion, answerActiveQuestion, gameSession } from '../presentation/game-session'
+import type { TreasureId } from '../domain/treasure'
+import { abandonActiveGame, advanceActiveQuestion, answerActiveQuestion, gameSession, openActiveTreasure } from '../presentation/game-session'
 
 const route = useRoute()
 const router = useRouter()
 const error = ref('')
-const abandonDialog = ref<HTMLDialogElement | null>(null)
+const treasureError = ref('')
+const abandonDialog = ref<{ showModal: () => void; close: () => void } | null>(null)
 const current = computed(() => gameSession.value ? getCurrentQuestion(gameSession.value) : undefined)
 const answered = computed(() => gameSession.value?.phase === 'feedback')
 const stats = computed(() => gameSession.value ? getGameStats(gameSession.value) : null)
+const treasureState = computed(() => gameSession.value?.modeState.modeId === 'treasure'
+  ? gameSession.value.modeState
+  : null)
 const selectedOptionId = computed(() => {
   const game = gameSession.value
   const question = current.value
@@ -56,6 +62,15 @@ async function abandon() {
 function requestAbandon() {
   abandonDialog.value?.showModal()
 }
+
+function openChest(treasureId: TreasureId) {
+  treasureError.value = ''
+  try {
+    openActiveTreasure(treasureId)
+  } catch (caught) {
+    treasureError.value = caught instanceof Error ? caught.message : 'No se pudo abrir el cofre.'
+  }
+}
 </script>
 
 <template>
@@ -85,6 +100,14 @@ function requestAbandon() {
       <span :style="{ width: `${stats?.progressPercent ?? 0}%` }"></span>
     </div>
     <p class="progress-label">{{ stats?.answeredCount }} de {{ stats?.totalQuestions }} retos completados</p>
+    <TreasureBoard
+      v-if="treasureState"
+      :state="treasureState"
+      :question-count="gameSession.questions.length"
+      :can-open="gameSession.phase === 'feedback'"
+      @open="openChest"
+    />
+    <p v-if="treasureError" class="error" role="alert">{{ treasureError }}</p>
     <article class="card question-card">
       <p
         v-if="current.exercise.context"

@@ -2,18 +2,27 @@ import type { ExerciseDifficulty, SingleChoiceExercise } from './content'
 import { fisherYates, type RandomSource } from './random'
 import { evaluateSingleChoice } from './exercise-engine'
 import { pointsForEvaluation, SCORING_VERSION } from './scoring'
+import {
+  getEligibleExercises,
+  getPresetCount,
+  type ActivityConfiguration,
+} from './activity-configuration'
+import {
+  applyModeAnswer,
+  createModeState,
+  getGameMode,
+  isGameModeCompatible,
+  type GameModeId,
+  type GameModeState,
+} from './game-modes'
 
-export type GameModeId = 'classic'
+export { GAME_MODES } from './game-modes'
+export type { GameModeId, GameModeState, TreasureModeState } from './game-modes'
+export { DURATION_PRESETS, getEligibleExercises, getPresetCount } from './activity-configuration'
+export type { DifficultyFilter, DurationPreset } from './activity-configuration'
 export type GameStatus = 'active' | 'abandoned' | 'completed'
 export type GamePhase = 'answering' | 'feedback'
-export type DurationPreset = 'short' | 'medium' | 'long'
-export type DifficultyFilter = ExerciseDifficulty | 'all'
-
-export interface GameConfiguration {
-  duration: { kind: 'preset'; preset: DurationPreset; questionCount: number }
-    | { kind: 'custom'; questionCount: number }
-  difficulty: DifficultyFilter
-}
+export type GameConfiguration = ActivityConfiguration
 
 export interface SessionQuestion {
   exercise: SingleChoiceExercise
@@ -53,6 +62,7 @@ export interface GameSession {
   topicId: string
   contentVersion: string
   modeId: GameModeId
+  modeState: GameModeState
   configuration: GameConfiguration
   questions: SessionQuestion[]
   answers: SessionAnswer[]
@@ -84,30 +94,11 @@ export interface CreateSessionInput {
   startedAt?: string
 }
 
-export const DURATION_PRESETS = [
-  { id: 'short', title: 'Corta', count: 5 },
-  { id: 'medium', title: 'Media', count: 10 },
-  { id: 'long', title: 'Larga', count: 20 },
-] as const
-
-export const GAME_MODES = [{ id: 'classic' as const, title: 'Reto Relámpago', exerciseTypes: ['single_choice'] as const }]
 export const QUICK_PLAY_COUNT = 10
 
-export function getPresetCount(preset: DurationPreset): number {
-  const definition = DURATION_PRESETS.find(({ id }) => id === preset)
-  if (!definition) throw new Error(`Duración predefinida desconocida: ${preset}`)
-  return definition.count
-}
-
-export function getEligibleExercises(
-  exercises: readonly SingleChoiceExercise[],
-  difficulty: DifficultyFilter,
-): SingleChoiceExercise[] {
-  return exercises.filter((exercise) => difficulty === 'all' || exercise.difficulty === difficulty)
-}
-
 export function createGameSession(input: CreateSessionInput): GameSession {
-  if (input.modeId !== 'classic') throw new Error(`Modalidad no operativa: ${input.modeId}`)
+  const mode = getGameMode(input.modeId)
+  if (!mode) throw new Error(`Modalidad no operativa: ${input.modeId}`)
   if (!input.sessionId.trim() || !input.subjectId.trim() || !input.topicId.trim() || !input.contentVersion.trim()) {
     throw new Error('La sesión requiere IDs y versión de contenido.')
   }
@@ -122,8 +113,8 @@ export function createGameSession(input: CreateSessionInput): GameSession {
     throw new Error('El banco contiene identificadores de ejercicios duplicados.')
   }
   if (count > eligible.length) throw new Error('La partida no puede superar los ejercicios compatibles disponibles.')
-  if (eligible.some((exercise) => exercise.type !== 'single_choice')) {
-    throw new Error('La modalidad clásica solo admite single_choice.')
+  if (eligible.some((exercise) => !isGameModeCompatible(mode.id, exercise.type))) {
+    throw new Error(`La modalidad ${mode.id} no es compatible con todos los ejercicios seleccionados.`)
   }
   for (const exercise of eligible) {
     const ids = exercise.options.map((option) => option.id)
@@ -150,7 +141,8 @@ export function createGameSession(input: CreateSessionInput): GameSession {
     subjectId: input.subjectId,
     topicId: input.topicId,
     contentVersion: input.contentVersion,
-    modeId: 'classic',
+    modeId: mode.id,
+    modeState: createModeState(mode.id),
     configuration,
     questions,
     answers: [],
@@ -205,6 +197,7 @@ export function answerQuestion(
     phase: 'feedback',
     answers: [...current.answers, { ...evaluation, points }],
     score: current.score + points,
+    modeState: applyModeAnswer(current.modeState, evaluation),
   }
 }
 

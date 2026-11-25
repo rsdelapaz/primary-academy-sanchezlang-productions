@@ -42,6 +42,7 @@ async function startRecommended() {
       challenge.subject.id,
       challenge.topic.id,
       challenge.content,
+      challenge.modeId,
       challenge.configuration,
     )
     await router.push({
@@ -67,9 +68,17 @@ async function startRecommended() {
       <p class="eyebrow">Tu próxima aventura empieza aquí</p>
       <h1 id="home-title">¡Hola, RetoNauta!</h1>
       <p>Explora ideas, supera retos y celebra cada descubrimiento.</p>
-      <RouterLink class="button secondary choose-challenge-link" :to="{ name: 'choose-challenge' }">
-        Elegir mi reto
-      </RouterLink>
+      <div class="home-area-links" role="group" aria-label="Áreas de actividad">
+        <RouterLink class="button secondary choose-challenge-link" :to="{ name: 'choose-challenge' }">
+          Jugar: elegir mi reto
+        </RouterLink>
+        <RouterLink
+          class="button secondary choose-challenge-link"
+          :to="{ name: 'choose-challenge', query: { experience: 'study' } }"
+        >
+          Estudiar
+        </RouterLink>
+      </div>
     </header>
 
     <section class="card recommended-card" aria-labelledby="recommended-title">
@@ -121,14 +130,14 @@ async function startRecommended() {
           class="content-card"
           :to="{
             name: 'choose-challenge',
-            params: { subjectId: subject.id, topicId: topic.id, modeId: 'classic' },
+            params: { subjectId: subject.id, topicId: topic.id },
           }"
         >
           <span class="content-card-icon" aria-hidden="true">✧</span>
           <span class="content-card-copy">
             <small>{{ subject.title }}</small>
             <strong>{{ topic.title }}</strong>
-            <span>Elige cómo jugar →</span>
+            <span>Elige un área →</span>
           </span>
         </RouterLink>
       </nav>

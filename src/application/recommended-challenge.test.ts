@@ -1,5 +1,13 @@
 import { describe, expect, it } from 'vitest'
-import type { ContentManifest, ContentPackage, ContentSubject, ContentTopicReference, SingleChoiceExercise } from '../domain/content'
+import {
+  isSingleChoiceExercise,
+  type ContentManifest,
+  type ContentPackage,
+  type ContentSubject,
+  type ContentTopicReference,
+  type FlashcardExercise,
+  type SingleChoiceExercise,
+} from '../domain/content'
 import { findRecommendedChallenge } from './recommended-challenge'
 
 function packageWithDifficulty(
@@ -29,6 +37,24 @@ function packageWithDifficulty(
       options: [{ id: 'a', text: 'A' }, { id: 'b', text: 'B' }],
       correctOptionId: 'a',
     })),
+  }
+}
+
+function technicalFlashcard(source: SingleChoiceExercise, id: string): FlashcardExercise {
+  return {
+    id,
+    type: 'flashcard',
+    conceptId: source.conceptId,
+    learningObjectiveIds: source.learningObjectiveIds,
+    difficulty: source.difficulty,
+    tags: [],
+    instructionLanguage: 'es',
+    exerciseLanguage: 'en',
+    explanationLanguage: 'es',
+    prompt: 'Technical fixture',
+    explanation: 'Technical fixture only.',
+    front: 'go',
+    back: 'went',
   }
 }
 
@@ -74,5 +100,30 @@ describe('recommended challenge', () => {
       packageWithDifficulty(subject, topic, Array.from({ length: 3 }, () => 'beginner')))
 
     expect(recommendation.configuration.duration).toEqual({ kind: 'custom', questionCount: 3 })
+  })
+
+  it('counts only single-choice exercises in mixed and flashcard-only packages', async () => {
+    const recommendation = await findRecommendedChallenge(catalog(), async (subject, topic) => {
+      const bank = packageWithDifficulty(subject, topic, ['beginner', 'beginner'])
+      if (subject.id === 'subject-a') {
+        return {
+          ...bank,
+          exercises: bank.exercises
+            .filter(isSingleChoiceExercise)
+            .map((exercise) => technicalFlashcard(exercise, exercise.id)),
+        }
+      }
+      const singleChoice = bank.exercises.filter(isSingleChoiceExercise)
+      return {
+        ...bank,
+        exercises: [
+          technicalFlashcard(singleChoice[0]!, 'technical-flashcard'),
+          singleChoice[1]!,
+        ],
+      }
+    })
+
+    expect(recommendation.subject.id).toBe('subject-b')
+    expect(recommendation.configuration.duration).toEqual({ kind: 'custom', questionCount: 1 })
   })
 })

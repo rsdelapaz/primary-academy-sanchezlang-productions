@@ -1,0 +1,5948 @@
+{
+  "schemaVersion": "1.0.0",
+  "contentVersion": "1.0.0",
+  "subjectId": "mathematics",
+  "topicId": "no-pierdas-el-equilibrio",
+  "concepts": [
+    {
+      "id": "mul-terms",
+      "label": "Términos de la multiplicación"
+    },
+    {
+      "id": "mul-1-digits",
+      "label": "Multiplicaciones por 1 cifra"
+    },
+    {
+      "id": "mul-2-digits",
+      "label": "Multiplicaciones por 2 cifras"
+    },
+    {
+      "id": "mul-3-digits",
+      "label": "Multiplicaciones por 3 cifras"
+    },
+    {
+      "id": "commutative",
+      "label": "Propiedad conmutativa"
+    },
+    {
+      "id": "associative",
+      "label": "Propiedad asociativa"
+    },
+    {
+      "id": "distributive",
+      "label": "Propiedad distributiva"
+    },
+    {
+      "id": "power-terms",
+      "label": "Términos de la potencia"
+    },
+    {
+      "id": "powers-ten",
+      "label": "Potencias de base 10"
+    },
+    {
+      "id": "decimal-powers",
+      "label": "Descomposición en potencias de base 10"
+    },
+    {
+      "id": "horizontal-decomp",
+      "label": "Cálculo horizontal por descomposición"
+    },
+    {
+      "id": "div-terms",
+      "label": "Términos de la división"
+    },
+    {
+      "id": "division-check",
+      "label": "Prueba de la división"
+    },
+    {
+      "id": "div-1-digits",
+      "label": "Divisiones por 1 cifra"
+    },
+    {
+      "id": "div-2-digits",
+      "label": "Divisiones por 2 cifras"
+    },
+    {
+      "id": "div-3-digits",
+      "label": "Divisiones por 3 cifras"
+    },
+    {
+      "id": "horizontal-calc",
+      "label": "Cálculo horizontal"
+    },
+    {
+      "id": "word-problems",
+      "label": "Resolución de problemas"
+    },
+    {
+      "id": "combined-operations",
+      "label": "Operaciones combinadas"
+    }
+  ],
+  "learningObjectives": [
+    {
+      "id": "obj-mul-terms",
+      "label": "Identificar factores y producto e interpretar la multiplicación."
+    },
+    {
+      "id": "obj-mul-1-digits",
+      "label": "Calcular productos con un factor de 1 cifra."
+    },
+    {
+      "id": "obj-mul-2-digits",
+      "label": "Calcular productos con un factor de 2 cifras."
+    },
+    {
+      "id": "obj-mul-3-digits",
+      "label": "Calcular productos con un factor de 3 cifras."
+    },
+    {
+      "id": "obj-commutative",
+      "label": "Reconocer y aplicar el intercambio de factores."
+    },
+    {
+      "id": "obj-associative",
+      "label": "Agrupar factores de distinta forma sin alterar el producto."
+    },
+    {
+      "id": "obj-distributive",
+      "label": "Distribuir la multiplicación respecto de una suma o resta."
+    },
+    {
+      "id": "obj-power-terms",
+      "label": "Identificar base y exponente y representar productos de factores iguales."
+    },
+    {
+      "id": "obj-powers-ten",
+      "label": "Relacionar el exponente con el número de ceros de una potencia de diez."
+    },
+    {
+      "id": "obj-decimal-powers",
+      "label": "Representar números naturales mediante sus cifras y potencias de diez."
+    },
+    {
+      "id": "obj-horizontal-decomp",
+      "label": "Descomponer factores o números para facilitar el cálculo horizontal."
+    },
+    {
+      "id": "obj-div-terms",
+      "label": "Identificar dividendo, divisor, cociente y resto."
+    },
+    {
+      "id": "obj-division-check",
+      "label": "Verificar divisiones mediante divisor × cociente + resto = dividendo y resto válido."
+    },
+    {
+      "id": "obj-div-1-digits",
+      "label": "Calcular cociente y resto con divisores de 1 cifra."
+    },
+    {
+      "id": "obj-div-2-digits",
+      "label": "Calcular cociente y resto con divisores de 2 cifras."
+    },
+    {
+      "id": "obj-div-3-digits",
+      "label": "Calcular cociente y resto con divisores de 3 cifras."
+    },
+    {
+      "id": "obj-horizontal-calc",
+      "label": "Usar estrategias de cálculo mental en las cuatro operaciones."
+    },
+    {
+      "id": "obj-word-problems",
+      "label": "Elegir y combinar operaciones para resolver problemas cotidianos."
+    },
+    {
+      "id": "obj-combined-operations",
+      "label": "Resolver expresiones respetando paréntesis y prioridad de las operaciones."
+    }
+  ],
+  "exercises": [
+    {
+      "id": "math-t2-mul-terms-01",
+      "type": "single_choice",
+      "conceptId": "mul-terms",
+      "learningObjectiveIds": [
+        "obj-mul-terms"
+      ],
+      "difficulty": "beginner",
+      "tags": [
+        "multiplicacion",
+        "mul-terms"
+      ],
+      "instructionLanguage": "es",
+      "exerciseLanguage": "es",
+      "explanationLanguage": "es",
+      "context": "Elige la respuesta correcta.",
+      "prompt": "En 6 × 4 = 24, ¿cómo se llama el 24?",
+      "explanation": "El resultado de una multiplicación se llama producto.",
+      "options": [
+        {
+          "id": "math-t2-mul-terms-01-o4",
+          "text": "Sumando"
+        },
+        {
+          "id": "math-t2-mul-terms-01-o3",
+          "text": "Cociente"
+        },
+        {
+          "id": "math-t2-mul-terms-01-o2",
+          "text": "Factor"
+        },
+        {
+          "id": "math-t2-mul-terms-01-o1",
+          "text": "Producto"
+        }
+      ],
+      "correctOptionId": "math-t2-mul-terms-01-o1"
+    },
+    {
+      "id": "math-t2-mul-terms-02",
+      "type": "single_choice",
+      "conceptId": "mul-terms",
+      "learningObjectiveIds": [
+        "obj-mul-terms"
+      ],
+      "difficulty": "beginner",
+      "tags": [
+        "multiplicacion",
+        "mul-terms"
+      ],
+      "instructionLanguage": "es",
+      "exerciseLanguage": "es",
+      "explanationLanguage": "es",
+      "context": "Elige la respuesta correcta.",
+      "prompt": "En 8 × 7 = 56, ¿qué son 8 y 7?",
+      "explanation": "Los números que multiplicamos son los factores.",
+      "options": [
+        {
+          "id": "math-t2-mul-terms-02-o3",
+          "text": "Dividendos"
+        },
+        {
+          "id": "math-t2-mul-terms-02-o4",
+          "text": "Restos"
+        },
+        {
+          "id": "math-t2-mul-terms-02-o1",
+          "text": "Factores"
+        },
+        {
+          "id": "math-t2-mul-terms-02-o2",
+          "text": "Productos"
+        }
+      ],
+      "correctOptionId": "math-t2-mul-terms-02-o1"
+    },
+    {
+      "id": "math-t2-mul-terms-03",
+      "type": "single_choice",
+      "conceptId": "mul-terms",
+      "learningObjectiveIds": [
+        "obj-mul-terms"
+      ],
+      "difficulty": "beginner",
+      "tags": [
+        "multiplicacion",
+        "mul-terms"
+      ],
+      "instructionLanguage": "es",
+      "exerciseLanguage": "es",
+      "explanationLanguage": "es",
+      "context": "Elige la respuesta correcta.",
+      "prompt": "¿Qué operación representa 5 + 5 + 5 + 5?",
+      "explanation": "Hay cuatro grupos de cinco, por eso escribimos 4 × 5.",
+      "options": [
+        {
+          "id": "math-t2-mul-terms-03-o1",
+          "text": "4 × 5"
+        },
+        {
+          "id": "math-t2-mul-terms-03-o4",
+          "text": "5 − 4"
+        },
+        {
+          "id": "math-t2-mul-terms-03-o3",
+          "text": "5 × 5"
+        },
+        {
+          "id": "math-t2-mul-terms-03-o2",
+          "text": "4 + 5"
+        }
+      ],
+      "correctOptionId": "math-t2-mul-terms-03-o1"
+    },
+    {
+      "id": "math-t2-mul-terms-04",
+      "type": "single_choice",
+      "conceptId": "mul-terms",
+      "learningObjectiveIds": [
+        "obj-mul-terms"
+      ],
+      "difficulty": "beginner",
+      "tags": [
+        "multiplicacion",
+        "mul-terms"
+      ],
+      "instructionLanguage": "es",
+      "exerciseLanguage": "es",
+      "explanationLanguage": "es",
+      "context": "Elige la respuesta correcta.",
+      "prompt": "En 9 × 3 = 27, ¿cuál es un factor?",
+      "explanation": "9 y 3 son factores; 27 es el producto.",
+      "options": [
+        {
+          "id": "math-t2-mul-terms-04-o4",
+          "text": "12"
+        },
+        {
+          "id": "math-t2-mul-terms-04-o3",
+          "text": "36"
+        },
+        {
+          "id": "math-t2-mul-terms-04-o2",
+          "text": "27"
+        },
+        {
+          "id": "math-t2-mul-terms-04-o1",
+          "text": "9"
+        }
+      ],
+      "correctOptionId": "math-t2-mul-terms-04-o1"
+    },
+    {
+      "id": "math-t2-mul-terms-05",
+      "type": "single_choice",
+      "conceptId": "mul-terms",
+      "learningObjectiveIds": [
+        "obj-mul-terms"
+      ],
+      "difficulty": "intermediate",
+      "tags": [
+        "multiplicacion",
+        "mul-terms"
+      ],
+      "instructionLanguage": "es",
+      "exerciseLanguage": "es",
+      "explanationLanguage": "es",
+      "context": "Elige la respuesta correcta.",
+      "prompt": "En 12 × □ = 84, ¿qué factor falta?",
+      "explanation": "84 ÷ 12 = 7; por tanto, 12 × 7 = 84.",
+      "options": [
+        {
+          "id": "math-t2-mul-terms-05-o4",
+          "text": "9"
+        },
+        {
+          "id": "math-t2-mul-terms-05-o2",
+          "text": "6"
+        },
+        {
+          "id": "math-t2-mul-terms-05-o3",
+          "text": "8"
+        },
+        {
+          "id": "math-t2-mul-terms-05-o1",
+          "text": "7"
+        }
+      ],
+      "correctOptionId": "math-t2-mul-terms-05-o1"
+    },
+    {
+      "id": "math-t2-mul-terms-06",
+      "type": "single_choice",
+      "conceptId": "mul-terms",
+      "learningObjectiveIds": [
+        "obj-mul-terms"
+      ],
+      "difficulty": "intermediate",
+      "tags": [
+        "multiplicacion",
+        "mul-terms"
+      ],
+      "instructionLanguage": "es",
+      "exerciseLanguage": "es",
+      "explanationLanguage": "es",
+      "context": "Elige la respuesta correcta.",
+      "prompt": "¿Qué producto corresponde a 13 y 6?",
+      "explanation": "13 × 6 = 78.",
+      "options": [
+        {
+          "id": "math-t2-mul-terms-06-o3",
+          "text": "72"
+        },
+        {
+          "id": "math-t2-mul-terms-06-o2",
+          "text": "19"
+        },
+        {
+          "id": "math-t2-mul-terms-06-o4",
+          "text": "86"
+        },
+        {
+          "id": "math-t2-mul-terms-06-o1",
+          "text": "78"
+        }
+      ],
+      "correctOptionId": "math-t2-mul-terms-06-o1"
+    },
+    {
+      "id": "math-t2-mul-terms-07",
+      "type": "single_choice",
+      "conceptId": "mul-terms",
+      "learningObjectiveIds": [
+        "obj-mul-terms"
+      ],
+      "difficulty": "intermediate",
+      "tags": [
+        "multiplicacion",
+        "mul-terms"
+      ],
+      "instructionLanguage": "es",
+      "exerciseLanguage": "es",
+      "explanationLanguage": "es",
+      "context": "Elige la respuesta correcta.",
+      "prompt": "Si un factor es 0 y el otro es 58, ¿cuál es el producto?",
+      "explanation": "Cualquier número multiplicado por cero da cero.",
+      "options": [
+        {
+          "id": "math-t2-mul-terms-07-o4",
+          "text": "580"
+        },
+        {
+          "id": "math-t2-mul-terms-07-o1",
+          "text": "0"
+        },
+        {
+          "id": "math-t2-mul-terms-07-o3",
+          "text": "1"
+        },
+        {
+          "id": "math-t2-mul-terms-07-o2",
+          "text": "58"
+        }
+      ],
+      "correctOptionId": "math-t2-mul-terms-07-o1"
+    },
+    {
+      "id": "math-t2-mul-terms-08",
+      "type": "single_choice",
+      "conceptId": "mul-terms",
+      "learningObjectiveIds": [
+        "obj-mul-terms"
+      ],
+      "difficulty": "advanced",
+      "tags": [
+        "multiplicacion",
+        "mul-terms"
+      ],
+      "instructionLanguage": "es",
+      "exerciseLanguage": "es",
+      "explanationLanguage": "es",
+      "context": "Elige la respuesta correcta.",
+      "prompt": "El producto es 96 y uno de los factores es 16. ¿Cuál es el otro?",
+      "explanation": "96 ÷ 16 = 6. Comprueba: 16 × 6 = 96.",
+      "options": [
+        {
+          "id": "math-t2-mul-terms-08-o1",
+          "text": "6"
+        },
+        {
+          "id": "math-t2-mul-terms-08-o3",
+          "text": "12"
+        },
+        {
+          "id": "math-t2-mul-terms-08-o4",
+          "text": "16"
+        },
+        {
+          "id": "math-t2-mul-terms-08-o2",
+          "text": "8"
+        }
+      ],
+      "correctOptionId": "math-t2-mul-terms-08-o1"
+    },
+    {
+      "id": "math-t2-mul-1-digits-01",
+      "type": "single_choice",
+      "conceptId": "mul-1-digits",
+      "learningObjectiveIds": [
+        "obj-mul-1-digits"
+      ],
+      "difficulty": "beginner",
+      "tags": [
+        "multiplicacion",
+        "mul-1-digits"
+      ],
+      "instructionLanguage": "es",
+      "exerciseLanguage": "es",
+      "explanationLanguage": "es",
+      "context": "Calcula y elige el resultado.",
+      "prompt": "23 × 3 = ?",
+      "explanation": "23 × 3 = 69.",
+      "options": [
+        {
+          "id": "math-t2-mul-1-digits-01-o4",
+          "text": "79"
+        },
+        {
+          "id": "math-t2-mul-1-digits-01-o2",
+          "text": "92"
+        },
+        {
+          "id": "math-t2-mul-1-digits-01-o1",
+          "text": "69"
+        },
+        {
+          "id": "math-t2-mul-1-digits-01-o3",
+          "text": "46"
+        }
+      ],
+      "correctOptionId": "math-t2-mul-1-digits-01-o1"
+    },
+    {
+      "id": "math-t2-mul-1-digits-02",
+      "type": "single_choice",
+      "conceptId": "mul-1-digits",
+      "learningObjectiveIds": [
+        "obj-mul-1-digits"
+      ],
+      "difficulty": "beginner",
+      "tags": [
+        "multiplicacion",
+        "mul-1-digits"
+      ],
+      "instructionLanguage": "es",
+      "exerciseLanguage": "es",
+      "explanationLanguage": "es",
+      "context": "Calcula y elige el resultado.",
+      "prompt": "47 × 6 = ?",
+      "explanation": "47 × 6 = 282.",
+      "options": [
+        {
+          "id": "math-t2-mul-1-digits-02-o1",
+          "text": "282"
+        },
+        {
+          "id": "math-t2-mul-1-digits-02-o2",
+          "text": "329"
+        },
+        {
+          "id": "math-t2-mul-1-digits-02-o4",
+          "text": "292"
+        },
+        {
+          "id": "math-t2-mul-1-digits-02-o3",
+          "text": "235"
+        }
+      ],
+      "correctOptionId": "math-t2-mul-1-digits-02-o1"
+    },
+    {
+      "id": "math-t2-mul-1-digits-03",
+      "type": "single_choice",
+      "conceptId": "mul-1-digits",
+      "learningObjectiveIds": [
+        "obj-mul-1-digits"
+      ],
+      "difficulty": "beginner",
+      "tags": [
+        "multiplicacion",
+        "mul-1-digits"
+      ],
+      "instructionLanguage": "es",
+      "exerciseLanguage": "es",
+      "explanationLanguage": "es",
+      "context": "Calcula y elige el resultado.",
+      "prompt": "108 × 5 = ?",
+      "explanation": "108 × 5 = 540.",
+      "options": [
+        {
+          "id": "math-t2-mul-1-digits-03-o4",
+          "text": "550"
+        },
+        {
+          "id": "math-t2-mul-1-digits-03-o2",
+          "text": "648"
+        },
+        {
+          "id": "math-t2-mul-1-digits-03-o1",
+          "text": "540"
+        },
+        {
+          "id": "math-t2-mul-1-digits-03-o3",
+          "text": "432"
+        }
+      ],
+      "correctOptionId": "math-t2-mul-1-digits-03-o1"
+    },
+    {
+      "id": "math-t2-mul-1-digits-04",
+      "type": "single_choice",
+      "conceptId": "mul-1-digits",
+      "learningObjectiveIds": [
+        "obj-mul-1-digits"
+      ],
+      "difficulty": "intermediate",
+      "tags": [
+        "multiplicacion",
+        "mul-1-digits"
+      ],
+      "instructionLanguage": "es",
+      "exerciseLanguage": "es",
+      "explanationLanguage": "es",
+      "context": "Calcula y elige el resultado.",
+      "prompt": "326 × 4 = ?",
+      "explanation": "326 × 4 = 1 304.",
+      "options": [
+        {
+          "id": "math-t2-mul-1-digits-04-o1",
+          "text": "1 304"
+        },
+        {
+          "id": "math-t2-mul-1-digits-04-o3",
+          "text": "978"
+        },
+        {
+          "id": "math-t2-mul-1-digits-04-o2",
+          "text": "1 630"
+        },
+        {
+          "id": "math-t2-mul-1-digits-04-o4",
+          "text": "1 314"
+        }
+      ],
+      "correctOptionId": "math-t2-mul-1-digits-04-o1"
+    },
+    {
+      "id": "math-t2-mul-1-digits-05",
+      "type": "single_choice",
+      "conceptId": "mul-1-digits",
+      "learningObjectiveIds": [
+        "obj-mul-1-digits"
+      ],
+      "difficulty": "intermediate",
+      "tags": [
+        "multiplicacion",
+        "mul-1-digits"
+      ],
+      "instructionLanguage": "es",
+      "exerciseLanguage": "es",
+      "explanationLanguage": "es",
+      "context": "Calcula y elige el resultado.",
+      "prompt": "574 × 8 = ?",
+      "explanation": "574 × 8 = 4 592.",
+      "options": [
+        {
+          "id": "math-t2-mul-1-digits-05-o4",
+          "text": "4 602"
+        },
+        {
+          "id": "math-t2-mul-1-digits-05-o2",
+          "text": "5 166"
+        },
+        {
+          "id": "math-t2-mul-1-digits-05-o3",
+          "text": "4 018"
+        },
+        {
+          "id": "math-t2-mul-1-digits-05-o1",
+          "text": "4 592"
+        }
+      ],
+      "correctOptionId": "math-t2-mul-1-digits-05-o1"
+    },
+    {
+      "id": "math-t2-mul-1-digits-06",
+      "type": "single_choice",
+      "conceptId": "mul-1-digits",
+      "learningObjectiveIds": [
+        "obj-mul-1-digits"
+      ],
+      "difficulty": "intermediate",
+      "tags": [
+        "multiplicacion",
+        "mul-1-digits"
+      ],
+      "instructionLanguage": "es",
+      "exerciseLanguage": "es",
+      "explanationLanguage": "es",
+      "context": "Calcula y elige el resultado.",
+      "prompt": "1 036 × 7 = ?",
+      "explanation": "1 036 × 7 = 7 252.",
+      "options": [
+        {
+          "id": "math-t2-mul-1-digits-06-o3",
+          "text": "6 216"
+        },
+        {
+          "id": "math-t2-mul-1-digits-06-o4",
+          "text": "7 262"
+        },
+        {
+          "id": "math-t2-mul-1-digits-06-o1",
+          "text": "7 252"
+        },
+        {
+          "id": "math-t2-mul-1-digits-06-o2",
+          "text": "8 288"
+        }
+      ],
+      "correctOptionId": "math-t2-mul-1-digits-06-o1"
+    },
+    {
+      "id": "math-t2-mul-1-digits-07",
+      "type": "single_choice",
+      "conceptId": "mul-1-digits",
+      "learningObjectiveIds": [
+        "obj-mul-1-digits"
+      ],
+      "difficulty": "advanced",
+      "tags": [
+        "multiplicacion",
+        "mul-1-digits"
+      ],
+      "instructionLanguage": "es",
+      "exerciseLanguage": "es",
+      "explanationLanguage": "es",
+      "context": "Calcula y elige el resultado.",
+      "prompt": "2 087 × 9 = ?",
+      "explanation": "2 087 × 9 = 18 783.",
+      "options": [
+        {
+          "id": "math-t2-mul-1-digits-07-o3",
+          "text": "16 696"
+        },
+        {
+          "id": "math-t2-mul-1-digits-07-o2",
+          "text": "20 870"
+        },
+        {
+          "id": "math-t2-mul-1-digits-07-o1",
+          "text": "18 783"
+        },
+        {
+          "id": "math-t2-mul-1-digits-07-o4",
+          "text": "18 793"
+        }
+      ],
+      "correctOptionId": "math-t2-mul-1-digits-07-o1"
+    },
+    {
+      "id": "math-t2-mul-1-digits-08",
+      "type": "single_choice",
+      "conceptId": "mul-1-digits",
+      "learningObjectiveIds": [
+        "obj-mul-1-digits"
+      ],
+      "difficulty": "advanced",
+      "tags": [
+        "multiplicacion",
+        "mul-1-digits"
+      ],
+      "instructionLanguage": "es",
+      "exerciseLanguage": "es",
+      "explanationLanguage": "es",
+      "context": "Calcula y elige el resultado.",
+      "prompt": "4 658 × 6 = ?",
+      "explanation": "4 658 × 6 = 27 948.",
+      "options": [
+        {
+          "id": "math-t2-mul-1-digits-08-o2",
+          "text": "32 606"
+        },
+        {
+          "id": "math-t2-mul-1-digits-08-o4",
+          "text": "27 958"
+        },
+        {
+          "id": "math-t2-mul-1-digits-08-o3",
+          "text": "23 290"
+        },
+        {
+          "id": "math-t2-mul-1-digits-08-o1",
+          "text": "27 948"
+        }
+      ],
+      "correctOptionId": "math-t2-mul-1-digits-08-o1"
+    },
+    {
+      "id": "math-t2-mul-2-digits-01",
+      "type": "single_choice",
+      "conceptId": "mul-2-digits",
+      "learningObjectiveIds": [
+        "obj-mul-2-digits"
+      ],
+      "difficulty": "beginner",
+      "tags": [
+        "multiplicacion",
+        "mul-2-digits"
+      ],
+      "instructionLanguage": "es",
+      "exerciseLanguage": "es",
+      "explanationLanguage": "es",
+      "context": "Calcula y elige el resultado.",
+      "prompt": "12 × 11 = ?",
+      "explanation": "Descompón 11 en 10 + 1. Los productos parciales son 120 + 12 = 132.",
+      "options": [
+        {
+          "id": "math-t2-mul-2-digits-01-o4",
+          "text": "12"
+        },
+        {
+          "id": "math-t2-mul-2-digits-01-o1",
+          "text": "132"
+        },
+        {
+          "id": "math-t2-mul-2-digits-01-o2",
+          "text": "144"
+        },
+        {
+          "id": "math-t2-mul-2-digits-01-o3",
+          "text": "120"
+        }
+      ],
+      "correctOptionId": "math-t2-mul-2-digits-01-o1"
+    },
+    {
+      "id": "math-t2-mul-2-digits-02",
+      "type": "single_choice",
+      "conceptId": "mul-2-digits",
+      "learningObjectiveIds": [
+        "obj-mul-2-digits"
+      ],
+      "difficulty": "beginner",
+      "tags": [
+        "multiplicacion",
+        "mul-2-digits"
+      ],
+      "instructionLanguage": "es",
+      "exerciseLanguage": "es",
+      "explanationLanguage": "es",
+      "context": "Calcula y elige el resultado.",
+      "prompt": "24 × 12 = ?",
+      "explanation": "Descompón 12 en 10 + 2. Los productos parciales son 240 + 48 = 288.",
+      "options": [
+        {
+          "id": "math-t2-mul-2-digits-02-o3",
+          "text": "264"
+        },
+        {
+          "id": "math-t2-mul-2-digits-02-o2",
+          "text": "312"
+        },
+        {
+          "id": "math-t2-mul-2-digits-02-o4",
+          "text": "48"
+        },
+        {
+          "id": "math-t2-mul-2-digits-02-o1",
+          "text": "288"
+        }
+      ],
+      "correctOptionId": "math-t2-mul-2-digits-02-o1"
+    },
+    {
+      "id": "math-t2-mul-2-digits-03",
+      "type": "single_choice",
+      "conceptId": "mul-2-digits",
+      "learningObjectiveIds": [
+        "obj-mul-2-digits"
+      ],
+      "difficulty": "beginner",
+      "tags": [
+        "multiplicacion",
+        "mul-2-digits"
+      ],
+      "instructionLanguage": "es",
+      "exerciseLanguage": "es",
+      "explanationLanguage": "es",
+      "context": "Calcula y elige el resultado.",
+      "prompt": "35 × 20 = ?",
+      "explanation": "35 × 20 = 700.",
+      "options": [
+        {
+          "id": "math-t2-mul-2-digits-03-o1",
+          "text": "700"
+        },
+        {
+          "id": "math-t2-mul-2-digits-03-o4",
+          "text": "0"
+        },
+        {
+          "id": "math-t2-mul-2-digits-03-o3",
+          "text": "665"
+        },
+        {
+          "id": "math-t2-mul-2-digits-03-o2",
+          "text": "735"
+        }
+      ],
+      "correctOptionId": "math-t2-mul-2-digits-03-o1"
+    },
+    {
+      "id": "math-t2-mul-2-digits-04",
+      "type": "single_choice",
+      "conceptId": "mul-2-digits",
+      "learningObjectiveIds": [
+        "obj-mul-2-digits"
+      ],
+      "difficulty": "intermediate",
+      "tags": [
+        "multiplicacion",
+        "mul-2-digits"
+      ],
+      "instructionLanguage": "es",
+      "exerciseLanguage": "es",
+      "explanationLanguage": "es",
+      "context": "Calcula y elige el resultado.",
+      "prompt": "46 × 23 = ?",
+      "explanation": "Descompón 23 en 20 + 3. Los productos parciales son 920 + 138 = 1 058.",
+      "options": [
+        {
+          "id": "math-t2-mul-2-digits-04-o3",
+          "text": "1 012"
+        },
+        {
+          "id": "math-t2-mul-2-digits-04-o2",
+          "text": "1 104"
+        },
+        {
+          "id": "math-t2-mul-2-digits-04-o1",
+          "text": "1 058"
+        },
+        {
+          "id": "math-t2-mul-2-digits-04-o4",
+          "text": "138"
+        }
+      ],
+      "correctOptionId": "math-t2-mul-2-digits-04-o1"
+    },
+    {
+      "id": "math-t2-mul-2-digits-05",
+      "type": "single_choice",
+      "conceptId": "mul-2-digits",
+      "learningObjectiveIds": [
+        "obj-mul-2-digits"
+      ],
+      "difficulty": "intermediate",
+      "tags": [
+        "multiplicacion",
+        "mul-2-digits"
+      ],
+      "instructionLanguage": "es",
+      "exerciseLanguage": "es",
+      "explanationLanguage": "es",
+      "context": "Calcula y elige el resultado.",
+      "prompt": "127 × 34 = ?",
+      "explanation": "Descompón 34 en 30 + 4. Los productos parciales son 3 810 + 508 = 4 318.",
+      "options": [
+        {
+          "id": "math-t2-mul-2-digits-05-o2",
+          "text": "4 445"
+        },
+        {
+          "id": "math-t2-mul-2-digits-05-o4",
+          "text": "508"
+        },
+        {
+          "id": "math-t2-mul-2-digits-05-o1",
+          "text": "4 318"
+        },
+        {
+          "id": "math-t2-mul-2-digits-05-o3",
+          "text": "4 191"
+        }
+      ],
+      "correctOptionId": "math-t2-mul-2-digits-05-o1"
+    },
+    {
+      "id": "math-t2-mul-2-digits-06",
+      "type": "single_choice",
+      "conceptId": "mul-2-digits",
+      "learningObjectiveIds": [
+        "obj-mul-2-digits"
+      ],
+      "difficulty": "intermediate",
+      "tags": [
+        "multiplicacion",
+        "mul-2-digits"
+      ],
+      "instructionLanguage": "es",
+      "exerciseLanguage": "es",
+      "explanationLanguage": "es",
+      "context": "Calcula y elige el resultado.",
+      "prompt": "308 × 25 = ?",
+      "explanation": "Descompón 25 en 20 + 5. Los productos parciales son 6 160 + 1 540 = 7 700.",
+      "options": [
+        {
+          "id": "math-t2-mul-2-digits-06-o3",
+          "text": "7 392"
+        },
+        {
+          "id": "math-t2-mul-2-digits-06-o4",
+          "text": "1 540"
+        },
+        {
+          "id": "math-t2-mul-2-digits-06-o1",
+          "text": "7 700"
+        },
+        {
+          "id": "math-t2-mul-2-digits-06-o2",
+          "text": "8 008"
+        }
+      ],
+      "correctOptionId": "math-t2-mul-2-digits-06-o1"
+    },
+    {
+      "id": "math-t2-mul-2-digits-07",
+      "type": "single_choice",
+      "conceptId": "mul-2-digits",
+      "learningObjectiveIds": [
+        "obj-mul-2-digits"
+      ],
+      "difficulty": "advanced",
+      "tags": [
+        "multiplicacion",
+        "mul-2-digits"
+      ],
+      "instructionLanguage": "es",
+      "exerciseLanguage": "es",
+      "explanationLanguage": "es",
+      "context": "Calcula y elige el resultado.",
+      "prompt": "427 × 68 = ?",
+      "explanation": "Descompón 68 en 60 + 8. Los productos parciales son 25 620 + 3 416 = 29 036.",
+      "options": [
+        {
+          "id": "math-t2-mul-2-digits-07-o4",
+          "text": "3 416"
+        },
+        {
+          "id": "math-t2-mul-2-digits-07-o3",
+          "text": "28 609"
+        },
+        {
+          "id": "math-t2-mul-2-digits-07-o2",
+          "text": "29 463"
+        },
+        {
+          "id": "math-t2-mul-2-digits-07-o1",
+          "text": "29 036"
+        }
+      ],
+      "correctOptionId": "math-t2-mul-2-digits-07-o1"
+    },
+    {
+      "id": "math-t2-mul-2-digits-08",
+      "type": "single_choice",
+      "conceptId": "mul-2-digits",
+      "learningObjectiveIds": [
+        "obj-mul-2-digits"
+      ],
+      "difficulty": "advanced",
+      "tags": [
+        "multiplicacion",
+        "mul-2-digits"
+      ],
+      "instructionLanguage": "es",
+      "exerciseLanguage": "es",
+      "explanationLanguage": "es",
+      "context": "Calcula y elige el resultado.",
+      "prompt": "1 206 × 47 = ?",
+      "explanation": "Descompón 47 en 40 + 7. Los productos parciales son 48 240 + 8 442 = 56 682.",
+      "options": [
+        {
+          "id": "math-t2-mul-2-digits-08-o1",
+          "text": "56 682"
+        },
+        {
+          "id": "math-t2-mul-2-digits-08-o4",
+          "text": "8 442"
+        },
+        {
+          "id": "math-t2-mul-2-digits-08-o2",
+          "text": "57 888"
+        },
+        {
+          "id": "math-t2-mul-2-digits-08-o3",
+          "text": "55 476"
+        }
+      ],
+      "correctOptionId": "math-t2-mul-2-digits-08-o1"
+    },
+    {
+      "id": "math-t2-mul-3-digits-01",
+      "type": "single_choice",
+      "conceptId": "mul-3-digits",
+      "learningObjectiveIds": [
+        "obj-mul-3-digits"
+      ],
+      "difficulty": "beginner",
+      "tags": [
+        "multiplicacion",
+        "mul-3-digits"
+      ],
+      "instructionLanguage": "es",
+      "exerciseLanguage": "es",
+      "explanationLanguage": "es",
+      "context": "Calcula y elige el resultado.",
+      "prompt": "4 × 123 = ?",
+      "explanation": "Descompón 123 en 100 + 20 + 3. Los productos parciales son 400 + 80 + 12 = 492.",
+      "options": [
+        {
+          "id": "math-t2-mul-3-digits-01-o2",
+          "text": "496"
+        },
+        {
+          "id": "math-t2-mul-3-digits-01-o3",
+          "text": "488"
+        },
+        {
+          "id": "math-t2-mul-3-digits-01-o4",
+          "text": "12"
+        },
+        {
+          "id": "math-t2-mul-3-digits-01-o1",
+          "text": "492"
+        }
+      ],
+      "correctOptionId": "math-t2-mul-3-digits-01-o1"
+    },
+    {
+      "id": "math-t2-mul-3-digits-02",
+      "type": "single_choice",
+      "conceptId": "mul-3-digits",
+      "learningObjectiveIds": [
+        "obj-mul-3-digits"
+      ],
+      "difficulty": "intermediate",
+      "tags": [
+        "multiplicacion",
+        "mul-3-digits"
+      ],
+      "instructionLanguage": "es",
+      "exerciseLanguage": "es",
+      "explanationLanguage": "es",
+      "context": "Calcula y elige el resultado.",
+      "prompt": "12 × 105 = ?",
+      "explanation": "Descompón 105 en 100 + 5. Los productos parciales son 1 200 + 60 = 1 260.",
+      "options": [
+        {
+          "id": "math-t2-mul-3-digits-02-o1",
+          "text": "1 260"
+        },
+        {
+          "id": "math-t2-mul-3-digits-02-o4",
+          "text": "60"
+        },
+        {
+          "id": "math-t2-mul-3-digits-02-o2",
+          "text": "1 272"
+        },
+        {
+          "id": "math-t2-mul-3-digits-02-o3",
+          "text": "1 248"
+        }
+      ],
+      "correctOptionId": "math-t2-mul-3-digits-02-o1"
+    },
+    {
+      "id": "math-t2-mul-3-digits-03",
+      "type": "single_choice",
+      "conceptId": "mul-3-digits",
+      "learningObjectiveIds": [
+        "obj-mul-3-digits"
+      ],
+      "difficulty": "intermediate",
+      "tags": [
+        "multiplicacion",
+        "mul-3-digits"
+      ],
+      "instructionLanguage": "es",
+      "exerciseLanguage": "es",
+      "explanationLanguage": "es",
+      "context": "Calcula y elige el resultado.",
+      "prompt": "23 × 102 = ?",
+      "explanation": "Descompón 102 en 100 + 2. Los productos parciales son 2 300 + 46 = 2 346.",
+      "options": [
+        {
+          "id": "math-t2-mul-3-digits-03-o2",
+          "text": "2 369"
+        },
+        {
+          "id": "math-t2-mul-3-digits-03-o1",
+          "text": "2 346"
+        },
+        {
+          "id": "math-t2-mul-3-digits-03-o3",
+          "text": "2 323"
+        },
+        {
+          "id": "math-t2-mul-3-digits-03-o4",
+          "text": "46"
+        }
+      ],
+      "correctOptionId": "math-t2-mul-3-digits-03-o1"
+    },
+    {
+      "id": "math-t2-mul-3-digits-04",
+      "type": "single_choice",
+      "conceptId": "mul-3-digits",
+      "learningObjectiveIds": [
+        "obj-mul-3-digits"
+      ],
+      "difficulty": "intermediate",
+      "tags": [
+        "multiplicacion",
+        "mul-3-digits"
+      ],
+      "instructionLanguage": "es",
+      "exerciseLanguage": "es",
+      "explanationLanguage": "es",
+      "context": "Calcula y elige el resultado.",
+      "prompt": "35 × 214 = ?",
+      "explanation": "Descompón 214 en 200 + 10 + 4. Los productos parciales son 7 000 + 350 + 140 = 7 490.",
+      "options": [
+        {
+          "id": "math-t2-mul-3-digits-04-o2",
+          "text": "7 525"
+        },
+        {
+          "id": "math-t2-mul-3-digits-04-o4",
+          "text": "140"
+        },
+        {
+          "id": "math-t2-mul-3-digits-04-o3",
+          "text": "7 455"
+        },
+        {
+          "id": "math-t2-mul-3-digits-04-o1",
+          "text": "7 490"
+        }
+      ],
+      "correctOptionId": "math-t2-mul-3-digits-04-o1"
+    },
+    {
+      "id": "math-t2-mul-3-digits-05",
+      "type": "single_choice",
+      "conceptId": "mul-3-digits",
+      "learningObjectiveIds": [
+        "obj-mul-3-digits"
+      ],
+      "difficulty": "advanced",
+      "tags": [
+        "multiplicacion",
+        "mul-3-digits"
+      ],
+      "instructionLanguage": "es",
+      "exerciseLanguage": "es",
+      "explanationLanguage": "es",
+      "context": "Calcula y elige el resultado.",
+      "prompt": "108 × 125 = ?",
+      "explanation": "Descompón 125 en 100 + 20 + 5. Los productos parciales son 10 800 + 2 160 + 540 = 13 500.",
+      "options": [
+        {
+          "id": "math-t2-mul-3-digits-05-o4",
+          "text": "540"
+        },
+        {
+          "id": "math-t2-mul-3-digits-05-o1",
+          "text": "13 500"
+        },
+        {
+          "id": "math-t2-mul-3-digits-05-o3",
+          "text": "13 392"
+        },
+        {
+          "id": "math-t2-mul-3-digits-05-o2",
+          "text": "13 608"
+        }
+      ],
+      "correctOptionId": "math-t2-mul-3-digits-05-o1"
+    },
+    {
+      "id": "math-t2-mul-3-digits-06",
+      "type": "single_choice",
+      "conceptId": "mul-3-digits",
+      "learningObjectiveIds": [
+        "obj-mul-3-digits"
+      ],
+      "difficulty": "advanced",
+      "tags": [
+        "multiplicacion",
+        "mul-3-digits"
+      ],
+      "instructionLanguage": "es",
+      "exerciseLanguage": "es",
+      "explanationLanguage": "es",
+      "context": "Calcula y elige el resultado.",
+      "prompt": "234 × 306 = ?",
+      "explanation": "Descompón 306 en 300 + 6. Los productos parciales son 70 200 + 1 404 = 71 604.",
+      "options": [
+        {
+          "id": "math-t2-mul-3-digits-06-o1",
+          "text": "71 604"
+        },
+        {
+          "id": "math-t2-mul-3-digits-06-o3",
+          "text": "71 370"
+        },
+        {
+          "id": "math-t2-mul-3-digits-06-o2",
+          "text": "71 838"
+        },
+        {
+          "id": "math-t2-mul-3-digits-06-o4",
+          "text": "1 404"
+        }
+      ],
+      "correctOptionId": "math-t2-mul-3-digits-06-o1"
+    },
+    {
+      "id": "math-t2-mul-3-digits-07",
+      "type": "single_choice",
+      "conceptId": "mul-3-digits",
+      "learningObjectiveIds": [
+        "obj-mul-3-digits"
+      ],
+      "difficulty": "advanced",
+      "tags": [
+        "multiplicacion",
+        "mul-3-digits"
+      ],
+      "instructionLanguage": "es",
+      "exerciseLanguage": "es",
+      "explanationLanguage": "es",
+      "context": "Calcula y elige el resultado.",
+      "prompt": "407 × 218 = ?",
+      "explanation": "Descompón 218 en 200 + 10 + 8. Los productos parciales son 81 400 + 4 070 + 3 256 = 88 726.",
+      "options": [
+        {
+          "id": "math-t2-mul-3-digits-07-o3",
+          "text": "88 319"
+        },
+        {
+          "id": "math-t2-mul-3-digits-07-o2",
+          "text": "89 133"
+        },
+        {
+          "id": "math-t2-mul-3-digits-07-o4",
+          "text": "3 256"
+        },
+        {
+          "id": "math-t2-mul-3-digits-07-o1",
+          "text": "88 726"
+        }
+      ],
+      "correctOptionId": "math-t2-mul-3-digits-07-o1"
+    },
+    {
+      "id": "math-t2-mul-3-digits-08",
+      "type": "single_choice",
+      "conceptId": "mul-3-digits",
+      "learningObjectiveIds": [
+        "obj-mul-3-digits"
+      ],
+      "difficulty": "advanced",
+      "tags": [
+        "multiplicacion",
+        "mul-3-digits"
+      ],
+      "instructionLanguage": "es",
+      "exerciseLanguage": "es",
+      "explanationLanguage": "es",
+      "context": "Calcula y elige el resultado.",
+      "prompt": "512 × 304 = ?",
+      "explanation": "Descompón 304 en 300 + 4. Los productos parciales son 153 600 + 2 048 = 155 648.",
+      "options": [
+        {
+          "id": "math-t2-mul-3-digits-08-o4",
+          "text": "2 048"
+        },
+        {
+          "id": "math-t2-mul-3-digits-08-o3",
+          "text": "155 136"
+        },
+        {
+          "id": "math-t2-mul-3-digits-08-o1",
+          "text": "155 648"
+        },
+        {
+          "id": "math-t2-mul-3-digits-08-o2",
+          "text": "156 160"
+        }
+      ],
+      "correctOptionId": "math-t2-mul-3-digits-08-o1"
+    },
+    {
+      "id": "math-t2-commutative-01",
+      "type": "single_choice",
+      "conceptId": "commutative",
+      "learningObjectiveIds": [
+        "obj-commutative"
+      ],
+      "difficulty": "beginner",
+      "tags": [
+        "propiedades",
+        "commutative"
+      ],
+      "instructionLanguage": "es",
+      "exerciseLanguage": "es",
+      "explanationLanguage": "es",
+      "context": "Elige la respuesta correcta.",
+      "prompt": "¿Qué propiedad explica que 3 × 8 = 8 × 3?",
+      "explanation": "La propiedad conmutativa cambia el orden de los factores sin cambiar el producto.",
+      "options": [
+        {
+          "id": "math-t2-commutative-01-o3",
+          "text": "Distributiva"
+        },
+        {
+          "id": "math-t2-commutative-01-o4",
+          "text": "División exacta"
+        },
+        {
+          "id": "math-t2-commutative-01-o2",
+          "text": "Asociativa"
+        },
+        {
+          "id": "math-t2-commutative-01-o1",
+          "text": "Conmutativa"
+        }
+      ],
+      "correctOptionId": "math-t2-commutative-01-o1"
+    },
+    {
+      "id": "math-t2-commutative-02",
+      "type": "single_choice",
+      "conceptId": "commutative",
+      "learningObjectiveIds": [
+        "obj-commutative"
+      ],
+      "difficulty": "beginner",
+      "tags": [
+        "propiedades",
+        "commutative"
+      ],
+      "instructionLanguage": "es",
+      "exerciseLanguage": "es",
+      "explanationLanguage": "es",
+      "context": "Elige la respuesta correcta.",
+      "prompt": "Completa: 7 × 9 = 9 × □.",
+      "explanation": "Al intercambiar los factores, 7 × 9 se convierte en 9 × 7.",
+      "options": [
+        {
+          "id": "math-t2-commutative-02-o2",
+          "text": "9"
+        },
+        {
+          "id": "math-t2-commutative-02-o3",
+          "text": "16"
+        },
+        {
+          "id": "math-t2-commutative-02-o4",
+          "text": "63"
+        },
+        {
+          "id": "math-t2-commutative-02-o1",
+          "text": "7"
+        }
+      ],
+      "correctOptionId": "math-t2-commutative-02-o1"
+    },
+    {
+      "id": "math-t2-commutative-03",
+      "type": "single_choice",
+      "conceptId": "commutative",
+      "learningObjectiveIds": [
+        "obj-commutative"
+      ],
+      "difficulty": "beginner",
+      "tags": [
+        "propiedades",
+        "commutative"
+      ],
+      "instructionLanguage": "es",
+      "exerciseLanguage": "es",
+      "explanationLanguage": "es",
+      "context": "Elige la respuesta correcta.",
+      "prompt": "Si 4 × 12 = 48, ¿cuánto es 12 × 4?",
+      "explanation": "El orden de los factores no cambia el producto.",
+      "options": [
+        {
+          "id": "math-t2-commutative-03-o3",
+          "text": "36"
+        },
+        {
+          "id": "math-t2-commutative-03-o1",
+          "text": "48"
+        },
+        {
+          "id": "math-t2-commutative-03-o2",
+          "text": "16"
+        },
+        {
+          "id": "math-t2-commutative-03-o4",
+          "text": "124"
+        }
+      ],
+      "correctOptionId": "math-t2-commutative-03-o1"
+    },
+    {
+      "id": "math-t2-commutative-04",
+      "type": "single_choice",
+      "conceptId": "commutative",
+      "learningObjectiveIds": [
+        "obj-commutative"
+      ],
+      "difficulty": "intermediate",
+      "tags": [
+        "propiedades",
+        "commutative"
+      ],
+      "instructionLanguage": "es",
+      "exerciseLanguage": "es",
+      "explanationLanguage": "es",
+      "context": "Elige la respuesta correcta.",
+      "prompt": "¿Qué igualdad muestra un intercambio de factores?",
+      "explanation": "Se intercambian 15 y 6 y se mantiene la multiplicación.",
+      "options": [
+        {
+          "id": "math-t2-commutative-04-o2",
+          "text": "15 × 6 = 15 + 6"
+        },
+        {
+          "id": "math-t2-commutative-04-o4",
+          "text": "15 × 6 = 6 + 15"
+        },
+        {
+          "id": "math-t2-commutative-04-o3",
+          "text": "15 × 6 = 15 × 7"
+        },
+        {
+          "id": "math-t2-commutative-04-o1",
+          "text": "15 × 6 = 6 × 15"
+        }
+      ],
+      "correctOptionId": "math-t2-commutative-04-o1"
+    },
+    {
+      "id": "math-t2-commutative-05",
+      "type": "single_choice",
+      "conceptId": "commutative",
+      "learningObjectiveIds": [
+        "obj-commutative"
+      ],
+      "difficulty": "intermediate",
+      "tags": [
+        "propiedades",
+        "commutative"
+      ],
+      "instructionLanguage": "es",
+      "exerciseLanguage": "es",
+      "explanationLanguage": "es",
+      "context": "Elige la respuesta correcta.",
+      "prompt": "¿Qué operación tiene la propiedad conmutativa para cualquier par de números naturales?",
+      "explanation": "En la multiplicación, a × b = b × a. No ocurre siempre en la resta ni en la división.",
+      "options": [
+        {
+          "id": "math-t2-commutative-05-o4",
+          "text": "Ninguna de las anteriores"
+        },
+        {
+          "id": "math-t2-commutative-05-o2",
+          "text": "Resta"
+        },
+        {
+          "id": "math-t2-commutative-05-o1",
+          "text": "Multiplicación"
+        },
+        {
+          "id": "math-t2-commutative-05-o3",
+          "text": "División"
+        }
+      ],
+      "correctOptionId": "math-t2-commutative-05-o1"
+    },
+    {
+      "id": "math-t2-commutative-06",
+      "type": "single_choice",
+      "conceptId": "commutative",
+      "learningObjectiveIds": [
+        "obj-commutative"
+      ],
+      "difficulty": "intermediate",
+      "tags": [
+        "propiedades",
+        "commutative"
+      ],
+      "instructionLanguage": "es",
+      "exerciseLanguage": "es",
+      "explanationLanguage": "es",
+      "context": "Elige la respuesta correcta.",
+      "prompt": "¿Qué producto puedes usar para calcular 18 × 5 cambiando solo el orden?",
+      "explanation": "La conmutativa permite calcular 5 × 18 en lugar de 18 × 5.",
+      "options": [
+        {
+          "id": "math-t2-commutative-06-o1",
+          "text": "5 × 18"
+        },
+        {
+          "id": "math-t2-commutative-06-o2",
+          "text": "18 + 5"
+        },
+        {
+          "id": "math-t2-commutative-06-o4",
+          "text": "18 − 5"
+        },
+        {
+          "id": "math-t2-commutative-06-o3",
+          "text": "5 × 19"
+        }
+      ],
+      "correctOptionId": "math-t2-commutative-06-o1"
+    },
+    {
+      "id": "math-t2-commutative-07",
+      "type": "single_choice",
+      "conceptId": "commutative",
+      "learningObjectiveIds": [
+        "obj-commutative"
+      ],
+      "difficulty": "advanced",
+      "tags": [
+        "propiedades",
+        "commutative"
+      ],
+      "instructionLanguage": "es",
+      "exerciseLanguage": "es",
+      "explanationLanguage": "es",
+      "context": "Elige la respuesta correcta.",
+      "prompt": "Una caja tiene 24 filas de 6 fichas. Si colocas 6 filas de 24, ¿cuántas fichas habrá?",
+      "explanation": "24 × 6 = 6 × 24 = 144: el número de fichas no cambia.",
+      "options": [
+        {
+          "id": "math-t2-commutative-07-o2",
+          "text": "30"
+        },
+        {
+          "id": "math-t2-commutative-07-o4",
+          "text": "148"
+        },
+        {
+          "id": "math-t2-commutative-07-o1",
+          "text": "144"
+        },
+        {
+          "id": "math-t2-commutative-07-o3",
+          "text": "120"
+        }
+      ],
+      "correctOptionId": "math-t2-commutative-07-o1"
+    },
+    {
+      "id": "math-t2-commutative-08",
+      "type": "single_choice",
+      "conceptId": "commutative",
+      "learningObjectiveIds": [
+        "obj-commutative"
+      ],
+      "difficulty": "advanced",
+      "tags": [
+        "propiedades",
+        "commutative"
+      ],
+      "instructionLanguage": "es",
+      "exerciseLanguage": "es",
+      "explanationLanguage": "es",
+      "context": "Elige la respuesta correcta.",
+      "prompt": "¿Qué transformación utiliza solamente la propiedad conmutativa?",
+      "explanation": "Se intercambian 4 y 25 sin cambiar la agrupación ni la operación.",
+      "options": [
+        {
+          "id": "math-t2-commutative-08-o3",
+          "text": "4 × (25 + 2) → 4 × 25 + 4 × 2"
+        },
+        {
+          "id": "math-t2-commutative-08-o4",
+          "text": "4 × 25 → 4 + 25"
+        },
+        {
+          "id": "math-t2-commutative-08-o1",
+          "text": "(4 × 25) × 2 → (25 × 4) × 2"
+        },
+        {
+          "id": "math-t2-commutative-08-o2",
+          "text": "(4 × 25) × 2 → 4 × (25 × 2)"
+        }
+      ],
+      "correctOptionId": "math-t2-commutative-08-o1"
+    },
+    {
+      "id": "math-t2-associative-01",
+      "type": "single_choice",
+      "conceptId": "associative",
+      "learningObjectiveIds": [
+        "obj-associative"
+      ],
+      "difficulty": "beginner",
+      "tags": [
+        "propiedades",
+        "associative"
+      ],
+      "instructionLanguage": "es",
+      "exerciseLanguage": "es",
+      "explanationLanguage": "es",
+      "context": "Elige la respuesta correcta.",
+      "prompt": "¿Qué propiedad permite cambiar la agrupación de tres factores?",
+      "explanation": "La asociativa permite cambiar los paréntesis sin variar el producto.",
+      "options": [
+        {
+          "id": "math-t2-associative-01-o1",
+          "text": "Asociativa"
+        },
+        {
+          "id": "math-t2-associative-01-o2",
+          "text": "Conmutativa"
+        },
+        {
+          "id": "math-t2-associative-01-o3",
+          "text": "Distributiva"
+        },
+        {
+          "id": "math-t2-associative-01-o4",
+          "text": "Prueba de la división"
+        }
+      ],
+      "correctOptionId": "math-t2-associative-01-o1"
+    },
+    {
+      "id": "math-t2-associative-02",
+      "type": "single_choice",
+      "conceptId": "associative",
+      "learningObjectiveIds": [
+        "obj-associative"
+      ],
+      "difficulty": "beginner",
+      "tags": [
+        "propiedades",
+        "associative"
+      ],
+      "instructionLanguage": "es",
+      "exerciseLanguage": "es",
+      "explanationLanguage": "es",
+      "context": "Elige la respuesta correcta.",
+      "prompt": "Completa: (2 × 5) × 3 = 2 × (5 × □).",
+      "explanation": "Los factores permanecen en el mismo orden; solo cambia su agrupación.",
+      "options": [
+        {
+          "id": "math-t2-associative-02-o1",
+          "text": "3"
+        },
+        {
+          "id": "math-t2-associative-02-o3",
+          "text": "5"
+        },
+        {
+          "id": "math-t2-associative-02-o2",
+          "text": "2"
+        },
+        {
+          "id": "math-t2-associative-02-o4",
+          "text": "10"
+        }
+      ],
+      "correctOptionId": "math-t2-associative-02-o1"
+    },
+    {
+      "id": "math-t2-associative-03",
+      "type": "single_choice",
+      "conceptId": "associative",
+      "learningObjectiveIds": [
+        "obj-associative"
+      ],
+      "difficulty": "beginner",
+      "tags": [
+        "propiedades",
+        "associative"
+      ],
+      "instructionLanguage": "es",
+      "exerciseLanguage": "es",
+      "explanationLanguage": "es",
+      "context": "Elige la respuesta correcta.",
+      "prompt": "¿Cuánto vale (4 × 2) × 5?",
+      "explanation": "4 × 2 = 8 y 8 × 5 = 40; también 4 × (2 × 5) = 40.",
+      "options": [
+        {
+          "id": "math-t2-associative-03-o1",
+          "text": "40"
+        },
+        {
+          "id": "math-t2-associative-03-o2",
+          "text": "20"
+        },
+        {
+          "id": "math-t2-associative-03-o3",
+          "text": "11"
+        },
+        {
+          "id": "math-t2-associative-03-o4",
+          "text": "45"
+        }
+      ],
+      "correctOptionId": "math-t2-associative-03-o1"
+    },
+    {
+      "id": "math-t2-associative-04",
+      "type": "single_choice",
+      "conceptId": "associative",
+      "learningObjectiveIds": [
+        "obj-associative"
+      ],
+      "difficulty": "intermediate",
+      "tags": [
+        "propiedades",
+        "associative"
+      ],
+      "instructionLanguage": "es",
+      "exerciseLanguage": "es",
+      "explanationLanguage": "es",
+      "context": "Elige la respuesta correcta.",
+      "prompt": "¿Qué igualdad aplica la propiedad asociativa?",
+      "explanation": "La asociativa conserva los tres factores y cambia los paréntesis.",
+      "options": [
+        {
+          "id": "math-t2-associative-04-o2",
+          "text": "3 × 7 = 7 × 3"
+        },
+        {
+          "id": "math-t2-associative-04-o1",
+          "text": "(3 × 7) × 2 = 3 × (7 × 2)"
+        },
+        {
+          "id": "math-t2-associative-04-o4",
+          "text": "3 × 7 = 3 + 7"
+        },
+        {
+          "id": "math-t2-associative-04-o3",
+          "text": "3 × (7 + 2) = 3 × 7 + 3 × 2"
+        }
+      ],
+      "correctOptionId": "math-t2-associative-04-o1"
+    },
+    {
+      "id": "math-t2-associative-05",
+      "type": "single_choice",
+      "conceptId": "associative",
+      "learningObjectiveIds": [
+        "obj-associative"
+      ],
+      "difficulty": "intermediate",
+      "tags": [
+        "propiedades",
+        "associative"
+      ],
+      "instructionLanguage": "es",
+      "exerciseLanguage": "es",
+      "explanationLanguage": "es",
+      "context": "Elige la respuesta correcta.",
+      "prompt": "Para calcular 6 × 2 × 5, ¿qué agrupación ayuda a obtener primero 10?",
+      "explanation": "2 × 5 = 10; después 6 × 10 = 60.",
+      "options": [
+        {
+          "id": "math-t2-associative-05-o4",
+          "text": "6 × (2 + 5)"
+        },
+        {
+          "id": "math-t2-associative-05-o2",
+          "text": "(6 × 2) × 5"
+        },
+        {
+          "id": "math-t2-associative-05-o3",
+          "text": "(6 + 2) × 5"
+        },
+        {
+          "id": "math-t2-associative-05-o1",
+          "text": "6 × (2 × 5)"
+        }
+      ],
+      "correctOptionId": "math-t2-associative-05-o1"
+    },
+    {
+      "id": "math-t2-associative-06",
+      "type": "single_choice",
+      "conceptId": "associative",
+      "learningObjectiveIds": [
+        "obj-associative"
+      ],
+      "difficulty": "intermediate",
+      "tags": [
+        "propiedades",
+        "associative"
+      ],
+      "instructionLanguage": "es",
+      "exerciseLanguage": "es",
+      "explanationLanguage": "es",
+      "context": "Elige la respuesta correcta.",
+      "prompt": "Completa: (8 × 5) × 4 = 8 × (□ × 4).",
+      "explanation": "Se mantienen los factores 8, 5 y 4.",
+      "options": [
+        {
+          "id": "math-t2-associative-06-o3",
+          "text": "8"
+        },
+        {
+          "id": "math-t2-associative-06-o2",
+          "text": "4"
+        },
+        {
+          "id": "math-t2-associative-06-o4",
+          "text": "40"
+        },
+        {
+          "id": "math-t2-associative-06-o1",
+          "text": "5"
+        }
+      ],
+      "correctOptionId": "math-t2-associative-06-o1"
+    },
+    {
+      "id": "math-t2-associative-07",
+      "type": "single_choice",
+      "conceptId": "associative",
+      "learningObjectiveIds": [
+        "obj-associative"
+      ],
+      "difficulty": "advanced",
+      "tags": [
+        "propiedades",
+        "associative"
+      ],
+      "instructionLanguage": "es",
+      "exerciseLanguage": "es",
+      "explanationLanguage": "es",
+      "context": "Elige la respuesta correcta.",
+      "prompt": "Calcula 25 × 4 × 17 agrupando primero 25 y 4.",
+      "explanation": "25 × 4 = 100. Después, 100 × 17 = 1 700.",
+      "options": [
+        {
+          "id": "math-t2-associative-07-o4",
+          "text": "1 710"
+        },
+        {
+          "id": "math-t2-associative-07-o3",
+          "text": "425"
+        },
+        {
+          "id": "math-t2-associative-07-o2",
+          "text": "170"
+        },
+        {
+          "id": "math-t2-associative-07-o1",
+          "text": "1 700"
+        }
+      ],
+      "correctOptionId": "math-t2-associative-07-o1"
+    },
+    {
+      "id": "math-t2-associative-08",
+      "type": "single_choice",
+      "conceptId": "associative",
+      "learningObjectiveIds": [
+        "obj-associative"
+      ],
+      "difficulty": "advanced",
+      "tags": [
+        "propiedades",
+        "associative"
+      ],
+      "instructionLanguage": "es",
+      "exerciseLanguage": "es",
+      "explanationLanguage": "es",
+      "context": "Elige la respuesta correcta.",
+      "prompt": "¿Qué expresión conserva el orden y cambia solo la agrupación de (12 × 5) × 2?",
+      "explanation": "La asociativa cambia solo los paréntesis, no el orden ni las operaciones.",
+      "options": [
+        {
+          "id": "math-t2-associative-08-o3",
+          "text": "12 × (5 + 2)"
+        },
+        {
+          "id": "math-t2-associative-08-o1",
+          "text": "12 × (5 × 2)"
+        },
+        {
+          "id": "math-t2-associative-08-o4",
+          "text": "(12 + 5) × 2"
+        },
+        {
+          "id": "math-t2-associative-08-o2",
+          "text": "(5 × 12) × 2"
+        }
+      ],
+      "correctOptionId": "math-t2-associative-08-o1"
+    },
+    {
+      "id": "math-t2-distributive-01",
+      "type": "single_choice",
+      "conceptId": "distributive",
+      "learningObjectiveIds": [
+        "obj-distributive"
+      ],
+      "difficulty": "beginner",
+      "tags": [
+        "propiedades",
+        "distributive"
+      ],
+      "instructionLanguage": "es",
+      "exerciseLanguage": "es",
+      "explanationLanguage": "es",
+      "context": "Elige la respuesta correcta.",
+      "prompt": "¿Cómo se desarrolla 3 × (4 + 2)?",
+      "explanation": "Multiplicamos 3 por cada sumando y sumamos los resultados.",
+      "options": [
+        {
+          "id": "math-t2-distributive-01-o1",
+          "text": "3 × 4 + 3 × 2"
+        },
+        {
+          "id": "math-t2-distributive-01-o2",
+          "text": "3 × 4 + 2"
+        },
+        {
+          "id": "math-t2-distributive-01-o3",
+          "text": "3 + 4 × 2"
+        },
+        {
+          "id": "math-t2-distributive-01-o4",
+          "text": "3 × 4 − 3 × 2"
+        }
+      ],
+      "correctOptionId": "math-t2-distributive-01-o1"
+    },
+    {
+      "id": "math-t2-distributive-02",
+      "type": "single_choice",
+      "conceptId": "distributive",
+      "learningObjectiveIds": [
+        "obj-distributive"
+      ],
+      "difficulty": "beginner",
+      "tags": [
+        "propiedades",
+        "distributive"
+      ],
+      "instructionLanguage": "es",
+      "exerciseLanguage": "es",
+      "explanationLanguage": "es",
+      "context": "Elige la respuesta correcta.",
+      "prompt": "¿Qué propiedad se usa en 2 × (5 + 3) = 2 × 5 + 2 × 3?",
+      "explanation": "La distributiva reparte la multiplicación entre los sumandos.",
+      "options": [
+        {
+          "id": "math-t2-distributive-02-o2",
+          "text": "Conmutativa"
+        },
+        {
+          "id": "math-t2-distributive-02-o1",
+          "text": "Distributiva"
+        },
+        {
+          "id": "math-t2-distributive-02-o4",
+          "text": "División exacta"
+        },
+        {
+          "id": "math-t2-distributive-02-o3",
+          "text": "Asociativa"
+        }
+      ],
+      "correctOptionId": "math-t2-distributive-02-o1"
+    },
+    {
+      "id": "math-t2-distributive-03",
+      "type": "single_choice",
+      "conceptId": "distributive",
+      "learningObjectiveIds": [
+        "obj-distributive"
+      ],
+      "difficulty": "beginner",
+      "tags": [
+        "propiedades",
+        "distributive"
+      ],
+      "instructionLanguage": "es",
+      "exerciseLanguage": "es",
+      "explanationLanguage": "es",
+      "context": "Elige la respuesta correcta.",
+      "prompt": "Completa: 4 × (10 + 2) = 40 + □.",
+      "explanation": "4 × 2 = 8, así que 4 × 12 = 40 + 8.",
+      "options": [
+        {
+          "id": "math-t2-distributive-03-o4",
+          "text": "12"
+        },
+        {
+          "id": "math-t2-distributive-03-o1",
+          "text": "8"
+        },
+        {
+          "id": "math-t2-distributive-03-o3",
+          "text": "4"
+        },
+        {
+          "id": "math-t2-distributive-03-o2",
+          "text": "2"
+        }
+      ],
+      "correctOptionId": "math-t2-distributive-03-o1"
+    },
+    {
+      "id": "math-t2-distributive-04",
+      "type": "single_choice",
+      "conceptId": "distributive",
+      "learningObjectiveIds": [
+        "obj-distributive"
+      ],
+      "difficulty": "intermediate",
+      "tags": [
+        "propiedades",
+        "distributive"
+      ],
+      "instructionLanguage": "es",
+      "exerciseLanguage": "es",
+      "explanationLanguage": "es",
+      "context": "Elige la respuesta correcta.",
+      "prompt": "¿Cómo calculas 7 × 19 usando 20 − 1?",
+      "explanation": "19 = 20 − 1. Multiplica ambos términos y resta.",
+      "options": [
+        {
+          "id": "math-t2-distributive-04-o1",
+          "text": "7 × 20 − 7 × 1"
+        },
+        {
+          "id": "math-t2-distributive-04-o3",
+          "text": "7 × 20 + 7 × 1"
+        },
+        {
+          "id": "math-t2-distributive-04-o2",
+          "text": "7 × 20 − 1"
+        },
+        {
+          "id": "math-t2-distributive-04-o4",
+          "text": "7 × (20 + 1)"
+        }
+      ],
+      "correctOptionId": "math-t2-distributive-04-o1"
+    },
+    {
+      "id": "math-t2-distributive-05",
+      "type": "single_choice",
+      "conceptId": "distributive",
+      "learningObjectiveIds": [
+        "obj-distributive"
+      ],
+      "difficulty": "intermediate",
+      "tags": [
+        "propiedades",
+        "distributive"
+      ],
+      "instructionLanguage": "es",
+      "exerciseLanguage": "es",
+      "explanationLanguage": "es",
+      "context": "Elige la respuesta correcta.",
+      "prompt": "Calcula 6 × 34 usando 30 + 4.",
+      "explanation": "6 × 30 + 6 × 4 = 180 + 24 = 204.",
+      "options": [
+        {
+          "id": "math-t2-distributive-05-o4",
+          "text": "210"
+        },
+        {
+          "id": "math-t2-distributive-05-o2",
+          "text": "184"
+        },
+        {
+          "id": "math-t2-distributive-05-o3",
+          "text": "180"
+        },
+        {
+          "id": "math-t2-distributive-05-o1",
+          "text": "204"
+        }
+      ],
+      "correctOptionId": "math-t2-distributive-05-o1"
+    },
+    {
+      "id": "math-t2-distributive-06",
+      "type": "single_choice",
+      "conceptId": "distributive",
+      "learningObjectiveIds": [
+        "obj-distributive"
+      ],
+      "difficulty": "intermediate",
+      "tags": [
+        "propiedades",
+        "distributive"
+      ],
+      "instructionLanguage": "es",
+      "exerciseLanguage": "es",
+      "explanationLanguage": "es",
+      "context": "Elige la respuesta correcta.",
+      "prompt": "¿Qué factor común permite escribir 9 × 8 + 9 × 2 como una sola multiplicación?",
+      "explanation": "9 es común a ambos productos: 9 × (8 + 2).",
+      "options": [
+        {
+          "id": "math-t2-distributive-06-o1",
+          "text": "9"
+        },
+        {
+          "id": "math-t2-distributive-06-o3",
+          "text": "2"
+        },
+        {
+          "id": "math-t2-distributive-06-o4",
+          "text": "10"
+        },
+        {
+          "id": "math-t2-distributive-06-o2",
+          "text": "8"
+        }
+      ],
+      "correctOptionId": "math-t2-distributive-06-o1"
+    },
+    {
+      "id": "math-t2-distributive-07",
+      "type": "single_choice",
+      "conceptId": "distributive",
+      "learningObjectiveIds": [
+        "obj-distributive"
+      ],
+      "difficulty": "advanced",
+      "tags": [
+        "propiedades",
+        "distributive"
+      ],
+      "instructionLanguage": "es",
+      "exerciseLanguage": "es",
+      "explanationLanguage": "es",
+      "context": "Elige la respuesta correcta.",
+      "prompt": "Calcula 18 × 99 utilizando la distributiva.",
+      "explanation": "18 × (100 − 1) = 1 800 − 18 = 1 782.",
+      "options": [
+        {
+          "id": "math-t2-distributive-07-o1",
+          "text": "1 782"
+        },
+        {
+          "id": "math-t2-distributive-07-o3",
+          "text": "1 799"
+        },
+        {
+          "id": "math-t2-distributive-07-o2",
+          "text": "1 800"
+        },
+        {
+          "id": "math-t2-distributive-07-o4",
+          "text": "1 818"
+        }
+      ],
+      "correctOptionId": "math-t2-distributive-07-o1"
+    },
+    {
+      "id": "math-t2-distributive-08",
+      "type": "single_choice",
+      "conceptId": "distributive",
+      "learningObjectiveIds": [
+        "obj-distributive"
+      ],
+      "difficulty": "advanced",
+      "tags": [
+        "propiedades",
+        "distributive"
+      ],
+      "instructionLanguage": "es",
+      "exerciseLanguage": "es",
+      "explanationLanguage": "es",
+      "context": "Elige la respuesta correcta.",
+      "prompt": "¿Qué expresión equivale a 25 × 48 usando 50 − 2?",
+      "explanation": "48 = 50 − 2. Se multiplica 25 por ambos términos y se resta.",
+      "options": [
+        {
+          "id": "math-t2-distributive-08-o3",
+          "text": "25 × 50 + 25 × 2"
+        },
+        {
+          "id": "math-t2-distributive-08-o1",
+          "text": "25 × 50 − 25 × 2"
+        },
+        {
+          "id": "math-t2-distributive-08-o4",
+          "text": "25 × 48 − 25 × 2"
+        },
+        {
+          "id": "math-t2-distributive-08-o2",
+          "text": "25 × 50 − 2"
+        }
+      ],
+      "correctOptionId": "math-t2-distributive-08-o1"
+    },
+    {
+      "id": "math-t2-power-terms-01",
+      "type": "single_choice",
+      "conceptId": "power-terms",
+      "learningObjectiveIds": [
+        "obj-power-terms"
+      ],
+      "difficulty": "beginner",
+      "tags": [
+        "potencias",
+        "power-terms"
+      ],
+      "instructionLanguage": "es",
+      "exerciseLanguage": "es",
+      "explanationLanguage": "es",
+      "context": "Elige la respuesta correcta.",
+      "prompt": "En 4³, ¿cuál es la base?",
+      "explanation": "La base es el número que se repite como factor: 4.",
+      "options": [
+        {
+          "id": "math-t2-power-terms-01-o4",
+          "text": "64"
+        },
+        {
+          "id": "math-t2-power-terms-01-o1",
+          "text": "4"
+        },
+        {
+          "id": "math-t2-power-terms-01-o2",
+          "text": "3"
+        },
+        {
+          "id": "math-t2-power-terms-01-o3",
+          "text": "12"
+        }
+      ],
+      "correctOptionId": "math-t2-power-terms-01-o1"
+    },
+    {
+      "id": "math-t2-power-terms-02",
+      "type": "single_choice",
+      "conceptId": "power-terms",
+      "learningObjectiveIds": [
+        "obj-power-terms"
+      ],
+      "difficulty": "beginner",
+      "tags": [
+        "potencias",
+        "power-terms"
+      ],
+      "instructionLanguage": "es",
+      "exerciseLanguage": "es",
+      "explanationLanguage": "es",
+      "context": "Elige la respuesta correcta.",
+      "prompt": "En 7², ¿cuál es el exponente?",
+      "explanation": "El exponente indica cuántas veces aparece la base como factor.",
+      "options": [
+        {
+          "id": "math-t2-power-terms-02-o2",
+          "text": "7"
+        },
+        {
+          "id": "math-t2-power-terms-02-o4",
+          "text": "49"
+        },
+        {
+          "id": "math-t2-power-terms-02-o3",
+          "text": "14"
+        },
+        {
+          "id": "math-t2-power-terms-02-o1",
+          "text": "2"
+        }
+      ],
+      "correctOptionId": "math-t2-power-terms-02-o1"
+    },
+    {
+      "id": "math-t2-power-terms-03",
+      "type": "single_choice",
+      "conceptId": "power-terms",
+      "learningObjectiveIds": [
+        "obj-power-terms"
+      ],
+      "difficulty": "beginner",
+      "tags": [
+        "potencias",
+        "power-terms"
+      ],
+      "instructionLanguage": "es",
+      "exerciseLanguage": "es",
+      "explanationLanguage": "es",
+      "context": "Elige la respuesta correcta.",
+      "prompt": "¿Qué multiplicación representa 5³?",
+      "explanation": "5³ significa multiplicar tres factores iguales a 5.",
+      "options": [
+        {
+          "id": "math-t2-power-terms-03-o1",
+          "text": "5 × 5 × 5"
+        },
+        {
+          "id": "math-t2-power-terms-03-o4",
+          "text": "5 + 5 + 5"
+        },
+        {
+          "id": "math-t2-power-terms-03-o2",
+          "text": "5 × 3"
+        },
+        {
+          "id": "math-t2-power-terms-03-o3",
+          "text": "3 × 3 × 3 × 3 × 3"
+        }
+      ],
+      "correctOptionId": "math-t2-power-terms-03-o1"
+    },
+    {
+      "id": "math-t2-power-terms-04",
+      "type": "single_choice",
+      "conceptId": "power-terms",
+      "learningObjectiveIds": [
+        "obj-power-terms"
+      ],
+      "difficulty": "intermediate",
+      "tags": [
+        "potencias",
+        "power-terms"
+      ],
+      "instructionLanguage": "es",
+      "exerciseLanguage": "es",
+      "explanationLanguage": "es",
+      "context": "Elige la respuesta correcta.",
+      "prompt": "¿Cómo escribimos 6 × 6 × 6 × 6 en forma de potencia?",
+      "explanation": "La base es 6 y aparece cuatro veces; el exponente es 4.",
+      "options": [
+        {
+          "id": "math-t2-power-terms-04-o3",
+          "text": "6²"
+        },
+        {
+          "id": "math-t2-power-terms-04-o4",
+          "text": "24⁴"
+        },
+        {
+          "id": "math-t2-power-terms-04-o2",
+          "text": "4⁶"
+        },
+        {
+          "id": "math-t2-power-terms-04-o1",
+          "text": "6⁴"
+        }
+      ],
+      "correctOptionId": "math-t2-power-terms-04-o1"
+    },
+    {
+      "id": "math-t2-power-terms-05",
+      "type": "single_choice",
+      "conceptId": "power-terms",
+      "learningObjectiveIds": [
+        "obj-power-terms"
+      ],
+      "difficulty": "intermediate",
+      "tags": [
+        "potencias",
+        "power-terms"
+      ],
+      "instructionLanguage": "es",
+      "exerciseLanguage": "es",
+      "explanationLanguage": "es",
+      "context": "Elige la respuesta correcta.",
+      "prompt": "¿Cuánto vale 3⁴?",
+      "explanation": "3 × 3 × 3 × 3 = 81.",
+      "options": [
+        {
+          "id": "math-t2-power-terms-05-o3",
+          "text": "27"
+        },
+        {
+          "id": "math-t2-power-terms-05-o4",
+          "text": "64"
+        },
+        {
+          "id": "math-t2-power-terms-05-o1",
+          "text": "81"
+        },
+        {
+          "id": "math-t2-power-terms-05-o2",
+          "text": "12"
+        }
+      ],
+      "correctOptionId": "math-t2-power-terms-05-o1"
+    },
+    {
+      "id": "math-t2-power-terms-06",
+      "type": "single_choice",
+      "conceptId": "power-terms",
+      "learningObjectiveIds": [
+        "obj-power-terms"
+      ],
+      "difficulty": "intermediate",
+      "tags": [
+        "potencias",
+        "power-terms"
+      ],
+      "instructionLanguage": "es",
+      "exerciseLanguage": "es",
+      "explanationLanguage": "es",
+      "context": "Elige la respuesta correcta.",
+      "prompt": "¿Qué significa elevar un número al cuadrado?",
+      "explanation": "Elevar al cuadrado significa usar ese número como factor dos veces.",
+      "options": [
+        {
+          "id": "math-t2-power-terms-06-o1",
+          "text": "Multiplicarlo por sí mismo"
+        },
+        {
+          "id": "math-t2-power-terms-06-o2",
+          "text": "Multiplicarlo por 2"
+        },
+        {
+          "id": "math-t2-power-terms-06-o3",
+          "text": "Sumarle 2"
+        },
+        {
+          "id": "math-t2-power-terms-06-o4",
+          "text": "Dividirlo entre 2"
+        }
+      ],
+      "correctOptionId": "math-t2-power-terms-06-o1"
+    },
+    {
+      "id": "math-t2-power-terms-07",
+      "type": "single_choice",
+      "conceptId": "power-terms",
+      "learningObjectiveIds": [
+        "obj-power-terms"
+      ],
+      "difficulty": "advanced",
+      "tags": [
+        "potencias",
+        "power-terms"
+      ],
+      "instructionLanguage": "es",
+      "exerciseLanguage": "es",
+      "explanationLanguage": "es",
+      "context": "Elige la respuesta correcta.",
+      "prompt": "¿Qué potencia representa un cubo formado por 4 × 4 × 4 cubitos?",
+      "explanation": "Hay tres dimensiones de cuatro cubitos: 4³ = 64.",
+      "options": [
+        {
+          "id": "math-t2-power-terms-07-o2",
+          "text": "3⁴"
+        },
+        {
+          "id": "math-t2-power-terms-07-o1",
+          "text": "4³"
+        },
+        {
+          "id": "math-t2-power-terms-07-o4",
+          "text": "12²"
+        },
+        {
+          "id": "math-t2-power-terms-07-o3",
+          "text": "4²"
+        }
+      ],
+      "correctOptionId": "math-t2-power-terms-07-o1"
+    },
+    {
+      "id": "math-t2-power-terms-08",
+      "type": "single_choice",
+      "conceptId": "power-terms",
+      "learningObjectiveIds": [
+        "obj-power-terms"
+      ],
+      "difficulty": "advanced",
+      "tags": [
+        "potencias",
+        "power-terms"
+      ],
+      "instructionLanguage": "es",
+      "exerciseLanguage": "es",
+      "explanationLanguage": "es",
+      "context": "Elige la respuesta correcta.",
+      "prompt": "¿Qué potencia de base 2 tiene valor 32?",
+      "explanation": "2 × 2 × 2 × 2 × 2 = 32.",
+      "options": [
+        {
+          "id": "math-t2-power-terms-08-o4",
+          "text": "2³"
+        },
+        {
+          "id": "math-t2-power-terms-08-o3",
+          "text": "2⁶"
+        },
+        {
+          "id": "math-t2-power-terms-08-o2",
+          "text": "2⁴"
+        },
+        {
+          "id": "math-t2-power-terms-08-o1",
+          "text": "2⁵"
+        }
+      ],
+      "correctOptionId": "math-t2-power-terms-08-o1"
+    },
+    {
+      "id": "math-t2-powers-ten-01",
+      "type": "single_choice",
+      "conceptId": "powers-ten",
+      "learningObjectiveIds": [
+        "obj-powers-ten"
+      ],
+      "difficulty": "beginner",
+      "tags": [
+        "potencias",
+        "powers-ten"
+      ],
+      "instructionLanguage": "es",
+      "exerciseLanguage": "es",
+      "explanationLanguage": "es",
+      "context": "Calcula y elige el resultado.",
+      "prompt": "¿Cuánto vale 10¹?",
+      "explanation": "10¹ es 1 seguido de 1 cero: 10.",
+      "options": [
+        {
+          "id": "math-t2-powers-ten-01-o1",
+          "text": "10"
+        },
+        {
+          "id": "math-t2-powers-ten-01-o3",
+          "text": "100"
+        },
+        {
+          "id": "math-t2-powers-ten-01-o4",
+          "text": "11"
+        },
+        {
+          "id": "math-t2-powers-ten-01-o2",
+          "text": "1"
+        }
+      ],
+      "correctOptionId": "math-t2-powers-ten-01-o1"
+    },
+    {
+      "id": "math-t2-powers-ten-02",
+      "type": "single_choice",
+      "conceptId": "powers-ten",
+      "learningObjectiveIds": [
+        "obj-powers-ten"
+      ],
+      "difficulty": "beginner",
+      "tags": [
+        "potencias",
+        "powers-ten"
+      ],
+      "instructionLanguage": "es",
+      "exerciseLanguage": "es",
+      "explanationLanguage": "es",
+      "context": "Calcula y elige el resultado.",
+      "prompt": "¿Cuánto vale 10²?",
+      "explanation": "10² es 1 seguido de 2 ceros: 100.",
+      "options": [
+        {
+          "id": "math-t2-powers-ten-02-o4",
+          "text": "1 000"
+        },
+        {
+          "id": "math-t2-powers-ten-02-o1",
+          "text": "100"
+        },
+        {
+          "id": "math-t2-powers-ten-02-o3",
+          "text": "10"
+        },
+        {
+          "id": "math-t2-powers-ten-02-o2",
+          "text": "20"
+        }
+      ],
+      "correctOptionId": "math-t2-powers-ten-02-o1"
+    },
+    {
+      "id": "math-t2-powers-ten-03",
+      "type": "single_choice",
+      "conceptId": "powers-ten",
+      "learningObjectiveIds": [
+        "obj-powers-ten"
+      ],
+      "difficulty": "beginner",
+      "tags": [
+        "potencias",
+        "powers-ten"
+      ],
+      "instructionLanguage": "es",
+      "exerciseLanguage": "es",
+      "explanationLanguage": "es",
+      "context": "Calcula y elige el resultado.",
+      "prompt": "¿Cuánto vale 10³?",
+      "explanation": "10³ es 1 seguido de 3 ceros: 1 000.",
+      "options": [
+        {
+          "id": "math-t2-powers-ten-03-o3",
+          "text": "100"
+        },
+        {
+          "id": "math-t2-powers-ten-03-o2",
+          "text": "30"
+        },
+        {
+          "id": "math-t2-powers-ten-03-o1",
+          "text": "1 000"
+        },
+        {
+          "id": "math-t2-powers-ten-03-o4",
+          "text": "10 000"
+        }
+      ],
+      "correctOptionId": "math-t2-powers-ten-03-o1"
+    },
+    {
+      "id": "math-t2-powers-ten-04",
+      "type": "single_choice",
+      "conceptId": "powers-ten",
+      "learningObjectiveIds": [
+        "obj-powers-ten"
+      ],
+      "difficulty": "intermediate",
+      "tags": [
+        "potencias",
+        "powers-ten"
+      ],
+      "instructionLanguage": "es",
+      "exerciseLanguage": "es",
+      "explanationLanguage": "es",
+      "context": "Calcula y elige el resultado.",
+      "prompt": "¿Cuánto vale 10⁴?",
+      "explanation": "10⁴ es 1 seguido de 4 ceros: 10 000.",
+      "options": [
+        {
+          "id": "math-t2-powers-ten-04-o3",
+          "text": "1 000"
+        },
+        {
+          "id": "math-t2-powers-ten-04-o4",
+          "text": "100 000"
+        },
+        {
+          "id": "math-t2-powers-ten-04-o1",
+          "text": "10 000"
+        },
+        {
+          "id": "math-t2-powers-ten-04-o2",
+          "text": "40"
+        }
+      ],
+      "correctOptionId": "math-t2-powers-ten-04-o1"
+    },
+    {
+      "id": "math-t2-powers-ten-05",
+      "type": "single_choice",
+      "conceptId": "powers-ten",
+      "learningObjectiveIds": [
+        "obj-powers-ten"
+      ],
+      "difficulty": "intermediate",
+      "tags": [
+        "potencias",
+        "powers-ten"
+      ],
+      "instructionLanguage": "es",
+      "exerciseLanguage": "es",
+      "explanationLanguage": "es",
+      "context": "Calcula y elige el resultado.",
+      "prompt": "¿Cuánto vale 10⁵?",
+      "explanation": "10⁵ es 1 seguido de 5 ceros: 100 000.",
+      "options": [
+        {
+          "id": "math-t2-powers-ten-05-o3",
+          "text": "10 000"
+        },
+        {
+          "id": "math-t2-powers-ten-05-o2",
+          "text": "50"
+        },
+        {
+          "id": "math-t2-powers-ten-05-o1",
+          "text": "100 000"
+        },
+        {
+          "id": "math-t2-powers-ten-05-o4",
+          "text": "1 000 000"
+        }
+      ],
+      "correctOptionId": "math-t2-powers-ten-05-o1"
+    },
+    {
+      "id": "math-t2-powers-ten-06",
+      "type": "single_choice",
+      "conceptId": "powers-ten",
+      "learningObjectiveIds": [
+        "obj-powers-ten"
+      ],
+      "difficulty": "intermediate",
+      "tags": [
+        "potencias",
+        "powers-ten"
+      ],
+      "instructionLanguage": "es",
+      "exerciseLanguage": "es",
+      "explanationLanguage": "es",
+      "context": "Calcula y elige el resultado.",
+      "prompt": "¿Cuánto vale 10⁶?",
+      "explanation": "10⁶ es 1 seguido de 6 ceros: 1 000 000.",
+      "options": [
+        {
+          "id": "math-t2-powers-ten-06-o2",
+          "text": "60"
+        },
+        {
+          "id": "math-t2-powers-ten-06-o4",
+          "text": "10 000 000"
+        },
+        {
+          "id": "math-t2-powers-ten-06-o3",
+          "text": "100 000"
+        },
+        {
+          "id": "math-t2-powers-ten-06-o1",
+          "text": "1 000 000"
+        }
+      ],
+      "correctOptionId": "math-t2-powers-ten-06-o1"
+    },
+    {
+      "id": "math-t2-powers-ten-07",
+      "type": "single_choice",
+      "conceptId": "powers-ten",
+      "learningObjectiveIds": [
+        "obj-powers-ten"
+      ],
+      "difficulty": "advanced",
+      "tags": [
+        "potencias",
+        "powers-ten"
+      ],
+      "instructionLanguage": "es",
+      "exerciseLanguage": "es",
+      "explanationLanguage": "es",
+      "context": "Elige la respuesta correcta.",
+      "prompt": "¿Qué potencia representa 100 × 1 000?",
+      "explanation": "100 × 1 000 = 100 000 = 10⁵.",
+      "options": [
+        {
+          "id": "math-t2-powers-ten-07-o3",
+          "text": "10³"
+        },
+        {
+          "id": "math-t2-powers-ten-07-o4",
+          "text": "10⁶"
+        },
+        {
+          "id": "math-t2-powers-ten-07-o1",
+          "text": "10⁵"
+        },
+        {
+          "id": "math-t2-powers-ten-07-o2",
+          "text": "10²"
+        }
+      ],
+      "correctOptionId": "math-t2-powers-ten-07-o1"
+    },
+    {
+      "id": "math-t2-powers-ten-08",
+      "type": "single_choice",
+      "conceptId": "powers-ten",
+      "learningObjectiveIds": [
+        "obj-powers-ten"
+      ],
+      "difficulty": "advanced",
+      "tags": [
+        "potencias",
+        "powers-ten"
+      ],
+      "instructionLanguage": "es",
+      "exerciseLanguage": "es",
+      "explanationLanguage": "es",
+      "context": "Elige la respuesta correcta.",
+      "prompt": "¿Qué potencia de base 10 equivale a un millón?",
+      "explanation": "Un millón es 1 000 000: un 1 seguido de seis ceros.",
+      "options": [
+        {
+          "id": "math-t2-powers-ten-08-o4",
+          "text": "10⁸"
+        },
+        {
+          "id": "math-t2-powers-ten-08-o3",
+          "text": "10⁷"
+        },
+        {
+          "id": "math-t2-powers-ten-08-o1",
+          "text": "10⁶"
+        },
+        {
+          "id": "math-t2-powers-ten-08-o2",
+          "text": "10⁵"
+        }
+      ],
+      "correctOptionId": "math-t2-powers-ten-08-o1"
+    },
+    {
+      "id": "math-t2-decimal-powers-01",
+      "type": "single_choice",
+      "conceptId": "decimal-powers",
+      "learningObjectiveIds": [
+        "obj-decimal-powers"
+      ],
+      "difficulty": "beginner",
+      "tags": [
+        "descomposicion",
+        "decimal-powers"
+      ],
+      "instructionLanguage": "es",
+      "exerciseLanguage": "es",
+      "explanationLanguage": "es",
+      "context": "Elige la respuesta correcta.",
+      "prompt": "¿Cuál es la descomposición de 340 en potencias de 10?",
+      "explanation": "340 = 3 × 10² + 4 × 10¹. Cada cifra multiplica la potencia correspondiente a su posición.",
+      "options": [
+        {
+          "id": "math-t2-decimal-powers-01-o1",
+          "text": "3 × 10² + 4 × 10¹"
+        },
+        {
+          "id": "math-t2-decimal-powers-01-o3",
+          "text": "3 × 10³ + 4 × 10²"
+        },
+        {
+          "id": "math-t2-decimal-powers-01-o4",
+          "text": "4 × 10² + 4 × 10¹"
+        },
+        {
+          "id": "math-t2-decimal-powers-01-o2",
+          "text": "3 × 10² + 5 × 10¹"
+        }
+      ],
+      "correctOptionId": "math-t2-decimal-powers-01-o1"
+    },
+    {
+      "id": "math-t2-decimal-powers-02",
+      "type": "single_choice",
+      "conceptId": "decimal-powers",
+      "learningObjectiveIds": [
+        "obj-decimal-powers"
+      ],
+      "difficulty": "beginner",
+      "tags": [
+        "descomposicion",
+        "decimal-powers"
+      ],
+      "instructionLanguage": "es",
+      "exerciseLanguage": "es",
+      "explanationLanguage": "es",
+      "context": "Elige la respuesta correcta.",
+      "prompt": "¿Cuál es la descomposición de 572 en potencias de 10?",
+      "explanation": "572 = 5 × 10² + 7 × 10¹ + 2. Cada cifra multiplica la potencia correspondiente a su posición.",
+      "options": [
+        {
+          "id": "math-t2-decimal-powers-02-o2",
+          "text": "5 × 10² + 8 × 10¹ + 2"
+        },
+        {
+          "id": "math-t2-decimal-powers-02-o1",
+          "text": "5 × 10² + 7 × 10¹ + 2"
+        },
+        {
+          "id": "math-t2-decimal-powers-02-o4",
+          "text": "6 × 10² + 7 × 10¹ + 2"
+        },
+        {
+          "id": "math-t2-decimal-powers-02-o3",
+          "text": "5 × 10³ + 7 × 10² + 2 × 10¹"
+        }
+      ],
+      "correctOptionId": "math-t2-decimal-powers-02-o1"
+    },
+    {
+      "id": "math-t2-decimal-powers-03",
+      "type": "single_choice",
+      "conceptId": "decimal-powers",
+      "learningObjectiveIds": [
+        "obj-decimal-powers"
+      ],
+      "difficulty": "intermediate",
+      "tags": [
+        "descomposicion",
+        "decimal-powers"
+      ],
+      "instructionLanguage": "es",
+      "exerciseLanguage": "es",
+      "explanationLanguage": "es",
+      "context": "Elige la respuesta correcta.",
+      "prompt": "¿Cuál es la descomposición de 608 en potencias de 10?",
+      "explanation": "608 = 6 × 10² + 8. Cada cifra multiplica la potencia correspondiente a su posición.",
+      "options": [
+        {
+          "id": "math-t2-decimal-powers-03-o1",
+          "text": "6 × 10² + 8"
+        },
+        {
+          "id": "math-t2-decimal-powers-03-o2",
+          "text": "6 × 10² + 1 × 10¹ + 8"
+        },
+        {
+          "id": "math-t2-decimal-powers-03-o4",
+          "text": "7 × 10² + 8"
+        },
+        {
+          "id": "math-t2-decimal-powers-03-o3",
+          "text": "6 × 10³ + 8 × 10¹"
+        }
+      ],
+      "correctOptionId": "math-t2-decimal-powers-03-o1"
+    },
+    {
+      "id": "math-t2-decimal-powers-04",
+      "type": "single_choice",
+      "conceptId": "decimal-powers",
+      "learningObjectiveIds": [
+        "obj-decimal-powers"
+      ],
+      "difficulty": "intermediate",
+      "tags": [
+        "descomposicion",
+        "decimal-powers"
+      ],
+      "instructionLanguage": "es",
+      "exerciseLanguage": "es",
+      "explanationLanguage": "es",
+      "context": "Elige la respuesta correcta.",
+      "prompt": "¿Cuál es la descomposición de 4 205 en potencias de 10?",
+      "explanation": "4 205 = 4 × 10³ + 2 × 10² + 5. Cada cifra multiplica la potencia correspondiente a su posición.",
+      "options": [
+        {
+          "id": "math-t2-decimal-powers-04-o1",
+          "text": "4 × 10³ + 2 × 10² + 5"
+        },
+        {
+          "id": "math-t2-decimal-powers-04-o2",
+          "text": "4 × 10³ + 2 × 10² + 1 × 10¹ + 5"
+        },
+        {
+          "id": "math-t2-decimal-powers-04-o3",
+          "text": "4 × 10⁴ + 2 × 10³ + 5 × 10¹"
+        },
+        {
+          "id": "math-t2-decimal-powers-04-o4",
+          "text": "4 × 10³ + 3 × 10² + 5"
+        }
+      ],
+      "correctOptionId": "math-t2-decimal-powers-04-o1"
+    },
+    {
+      "id": "math-t2-decimal-powers-05",
+      "type": "single_choice",
+      "conceptId": "decimal-powers",
+      "learningObjectiveIds": [
+        "obj-decimal-powers"
+      ],
+      "difficulty": "intermediate",
+      "tags": [
+        "descomposicion",
+        "decimal-powers"
+      ],
+      "instructionLanguage": "es",
+      "exerciseLanguage": "es",
+      "explanationLanguage": "es",
+      "context": "Elige la respuesta correcta.",
+      "prompt": "¿Cuál es la descomposición de 7 032 en potencias de 10?",
+      "explanation": "7 032 = 7 × 10³ + 3 × 10¹ + 2. Cada cifra multiplica la potencia correspondiente a su posición.",
+      "options": [
+        {
+          "id": "math-t2-decimal-powers-05-o3",
+          "text": "7 × 10⁴ + 3 × 10² + 2 × 10¹"
+        },
+        {
+          "id": "math-t2-decimal-powers-05-o4",
+          "text": "7 × 10³ + 1 × 10² + 3 × 10¹ + 2"
+        },
+        {
+          "id": "math-t2-decimal-powers-05-o1",
+          "text": "7 × 10³ + 3 × 10¹ + 2"
+        },
+        {
+          "id": "math-t2-decimal-powers-05-o2",
+          "text": "7 × 10³ + 4 × 10¹ + 2"
+        }
+      ],
+      "correctOptionId": "math-t2-decimal-powers-05-o1"
+    },
+    {
+      "id": "math-t2-decimal-powers-06",
+      "type": "single_choice",
+      "conceptId": "decimal-powers",
+      "learningObjectiveIds": [
+        "obj-decimal-powers"
+      ],
+      "difficulty": "advanced",
+      "tags": [
+        "descomposicion",
+        "decimal-powers"
+      ],
+      "instructionLanguage": "es",
+      "exerciseLanguage": "es",
+      "explanationLanguage": "es",
+      "context": "Elige la respuesta correcta.",
+      "prompt": "¿Cuál es la descomposición de 15 060 en potencias de 10?",
+      "explanation": "15 060 = 1 × 10⁴ + 5 × 10³ + 6 × 10¹. Cada cifra multiplica la potencia correspondiente a su posición.",
+      "options": [
+        {
+          "id": "math-t2-decimal-powers-06-o1",
+          "text": "1 × 10⁴ + 5 × 10³ + 6 × 10¹"
+        },
+        {
+          "id": "math-t2-decimal-powers-06-o2",
+          "text": "1 × 10⁴ + 5 × 10³ + 7 × 10¹"
+        },
+        {
+          "id": "math-t2-decimal-powers-06-o4",
+          "text": "1 × 10⁴ + 5 × 10³ + 1 × 10² + 6 × 10¹"
+        },
+        {
+          "id": "math-t2-decimal-powers-06-o3",
+          "text": "1 × 10⁵ + 5 × 10⁴ + 6 × 10²"
+        }
+      ],
+      "correctOptionId": "math-t2-decimal-powers-06-o1"
+    },
+    {
+      "id": "math-t2-decimal-powers-07",
+      "type": "single_choice",
+      "conceptId": "decimal-powers",
+      "learningObjectiveIds": [
+        "obj-decimal-powers"
+      ],
+      "difficulty": "advanced",
+      "tags": [
+        "descomposicion",
+        "decimal-powers"
+      ],
+      "instructionLanguage": "es",
+      "exerciseLanguage": "es",
+      "explanationLanguage": "es",
+      "context": "Calcula y elige el resultado.",
+      "prompt": "¿Qué número representa 4 × 10⁴ + 6 × 10² + 8?",
+      "explanation": "La suma de los valores posicionales da 40 608.",
+      "options": [
+        {
+          "id": "math-t2-decimal-powers-07-o2",
+          "text": "4 060"
+        },
+        {
+          "id": "math-t2-decimal-powers-07-o3",
+          "text": "41 608"
+        },
+        {
+          "id": "math-t2-decimal-powers-07-o1",
+          "text": "40 608"
+        },
+        {
+          "id": "math-t2-decimal-powers-07-o4",
+          "text": "40 708"
+        }
+      ],
+      "correctOptionId": "math-t2-decimal-powers-07-o1"
+    },
+    {
+      "id": "math-t2-decimal-powers-08",
+      "type": "single_choice",
+      "conceptId": "decimal-powers",
+      "learningObjectiveIds": [
+        "obj-decimal-powers"
+      ],
+      "difficulty": "intermediate",
+      "tags": [
+        "descomposicion",
+        "decimal-powers"
+      ],
+      "instructionLanguage": "es",
+      "exerciseLanguage": "es",
+      "explanationLanguage": "es",
+      "context": "Calcula y elige el resultado.",
+      "prompt": "¿Qué número representa 3 × 10⁴ + 2 × 10² + 5?",
+      "explanation": "La suma de los valores posicionales da 30 205.",
+      "options": [
+        {
+          "id": "math-t2-decimal-powers-08-o3",
+          "text": "31 205"
+        },
+        {
+          "id": "math-t2-decimal-powers-08-o2",
+          "text": "3 020"
+        },
+        {
+          "id": "math-t2-decimal-powers-08-o4",
+          "text": "30 305"
+        },
+        {
+          "id": "math-t2-decimal-powers-08-o1",
+          "text": "30 205"
+        }
+      ],
+      "correctOptionId": "math-t2-decimal-powers-08-o1"
+    },
+    {
+      "id": "math-t2-horizontal-decomp-01",
+      "type": "single_choice",
+      "conceptId": "horizontal-decomp",
+      "learningObjectiveIds": [
+        "obj-horizontal-decomp"
+      ],
+      "difficulty": "beginner",
+      "tags": [
+        "descomposicion",
+        "horizontal-decomp",
+        "calculo-horizontal"
+      ],
+      "instructionLanguage": "es",
+      "exerciseLanguage": "es",
+      "explanationLanguage": "es",
+      "context": "Calcula en horizontal descomponiendo el primer factor.",
+      "prompt": "23 × 4 = ?",
+      "explanation": "Descompón 23 en 20 + 3. Multiplica cada parte por 4: 80 + 12 = 92.",
+      "options": [
+        {
+          "id": "math-t2-horizontal-decomp-01-o4",
+          "text": "27"
+        },
+        {
+          "id": "math-t2-horizontal-decomp-01-o3",
+          "text": "96"
+        },
+        {
+          "id": "math-t2-horizontal-decomp-01-o1",
+          "text": "92"
+        },
+        {
+          "id": "math-t2-horizontal-decomp-01-o2",
+          "text": "69"
+        }
+      ],
+      "correctOptionId": "math-t2-horizontal-decomp-01-o1"
+    },
+    {
+      "id": "math-t2-horizontal-decomp-02",
+      "type": "single_choice",
+      "conceptId": "horizontal-decomp",
+      "learningObjectiveIds": [
+        "obj-horizontal-decomp"
+      ],
+      "difficulty": "beginner",
+      "tags": [
+        "descomposicion",
+        "horizontal-decomp",
+        "calculo-horizontal"
+      ],
+      "instructionLanguage": "es",
+      "exerciseLanguage": "es",
+      "explanationLanguage": "es",
+      "context": "Calcula en horizontal descomponiendo el primer factor.",
+      "prompt": "42 × 3 = ?",
+      "explanation": "Descompón 42 en 40 + 2. Multiplica cada parte por 3: 120 + 6 = 126.",
+      "options": [
+        {
+          "id": "math-t2-horizontal-decomp-02-o4",
+          "text": "45"
+        },
+        {
+          "id": "math-t2-horizontal-decomp-02-o2",
+          "text": "84"
+        },
+        {
+          "id": "math-t2-horizontal-decomp-02-o1",
+          "text": "126"
+        },
+        {
+          "id": "math-t2-horizontal-decomp-02-o3",
+          "text": "129"
+        }
+      ],
+      "correctOptionId": "math-t2-horizontal-decomp-02-o1"
+    },
+    {
+      "id": "math-t2-horizontal-decomp-03",
+      "type": "single_choice",
+      "conceptId": "horizontal-decomp",
+      "learningObjectiveIds": [
+        "obj-horizontal-decomp"
+      ],
+      "difficulty": "beginner",
+      "tags": [
+        "descomposicion",
+        "horizontal-decomp",
+        "calculo-horizontal"
+      ],
+      "instructionLanguage": "es",
+      "exerciseLanguage": "es",
+      "explanationLanguage": "es",
+      "context": "Calcula en horizontal descomponiendo el primer factor.",
+      "prompt": "65 × 6 = ?",
+      "explanation": "Descompón 65 en 60 + 5. Multiplica cada parte por 6: 360 + 30 = 390.",
+      "options": [
+        {
+          "id": "math-t2-horizontal-decomp-03-o4",
+          "text": "71"
+        },
+        {
+          "id": "math-t2-horizontal-decomp-03-o2",
+          "text": "325"
+        },
+        {
+          "id": "math-t2-horizontal-decomp-03-o3",
+          "text": "396"
+        },
+        {
+          "id": "math-t2-horizontal-decomp-03-o1",
+          "text": "390"
+        }
+      ],
+      "correctOptionId": "math-t2-horizontal-decomp-03-o1"
+    },
+    {
+      "id": "math-t2-horizontal-decomp-04",
+      "type": "single_choice",
+      "conceptId": "horizontal-decomp",
+      "learningObjectiveIds": [
+        "obj-horizontal-decomp"
+      ],
+      "difficulty": "intermediate",
+      "tags": [
+        "descomposicion",
+        "horizontal-decomp",
+        "calculo-horizontal"
+      ],
+      "instructionLanguage": "es",
+      "exerciseLanguage": "es",
+      "explanationLanguage": "es",
+      "context": "Calcula en horizontal descomponiendo el primer factor.",
+      "prompt": "123 × 5 = ?",
+      "explanation": "Descompón 123 en 100 + 20 + 3. Multiplica cada parte por 5: 500 + 100 + 15 = 615.",
+      "options": [
+        {
+          "id": "math-t2-horizontal-decomp-04-o1",
+          "text": "615"
+        },
+        {
+          "id": "math-t2-horizontal-decomp-04-o3",
+          "text": "620"
+        },
+        {
+          "id": "math-t2-horizontal-decomp-04-o4",
+          "text": "128"
+        },
+        {
+          "id": "math-t2-horizontal-decomp-04-o2",
+          "text": "492"
+        }
+      ],
+      "correctOptionId": "math-t2-horizontal-decomp-04-o1"
+    },
+    {
+      "id": "math-t2-horizontal-decomp-05",
+      "type": "single_choice",
+      "conceptId": "horizontal-decomp",
+      "learningObjectiveIds": [
+        "obj-horizontal-decomp"
+      ],
+      "difficulty": "intermediate",
+      "tags": [
+        "descomposicion",
+        "horizontal-decomp",
+        "calculo-horizontal"
+      ],
+      "instructionLanguage": "es",
+      "exerciseLanguage": "es",
+      "explanationLanguage": "es",
+      "context": "Calcula en horizontal descomponiendo el primer factor.",
+      "prompt": "247 × 3 = ?",
+      "explanation": "Descompón 247 en 200 + 40 + 7. Multiplica cada parte por 3: 600 + 120 + 21 = 741.",
+      "options": [
+        {
+          "id": "math-t2-horizontal-decomp-05-o2",
+          "text": "494"
+        },
+        {
+          "id": "math-t2-horizontal-decomp-05-o4",
+          "text": "250"
+        },
+        {
+          "id": "math-t2-horizontal-decomp-05-o1",
+          "text": "741"
+        },
+        {
+          "id": "math-t2-horizontal-decomp-05-o3",
+          "text": "744"
+        }
+      ],
+      "correctOptionId": "math-t2-horizontal-decomp-05-o1"
+    },
+    {
+      "id": "math-t2-horizontal-decomp-06",
+      "type": "single_choice",
+      "conceptId": "horizontal-decomp",
+      "learningObjectiveIds": [
+        "obj-horizontal-decomp"
+      ],
+      "difficulty": "intermediate",
+      "tags": [
+        "descomposicion",
+        "horizontal-decomp",
+        "calculo-horizontal"
+      ],
+      "instructionLanguage": "es",
+      "exerciseLanguage": "es",
+      "explanationLanguage": "es",
+      "context": "Calcula en horizontal descomponiendo el primer factor.",
+      "prompt": "306 × 8 = ?",
+      "explanation": "Descompón 306 en 300 + 6. Multiplica cada parte por 8: 2 400 + 48 = 2 448.",
+      "options": [
+        {
+          "id": "math-t2-horizontal-decomp-06-o3",
+          "text": "2 456"
+        },
+        {
+          "id": "math-t2-horizontal-decomp-06-o4",
+          "text": "314"
+        },
+        {
+          "id": "math-t2-horizontal-decomp-06-o2",
+          "text": "2 142"
+        },
+        {
+          "id": "math-t2-horizontal-decomp-06-o1",
+          "text": "2 448"
+        }
+      ],
+      "correctOptionId": "math-t2-horizontal-decomp-06-o1"
+    },
+    {
+      "id": "math-t2-horizontal-decomp-07",
+      "type": "single_choice",
+      "conceptId": "horizontal-decomp",
+      "learningObjectiveIds": [
+        "obj-horizontal-decomp"
+      ],
+      "difficulty": "advanced",
+      "tags": [
+        "descomposicion",
+        "horizontal-decomp",
+        "calculo-horizontal"
+      ],
+      "instructionLanguage": "es",
+      "exerciseLanguage": "es",
+      "explanationLanguage": "es",
+      "context": "Calcula en horizontal descomponiendo el primer factor.",
+      "prompt": "125 × 24 = ?",
+      "explanation": "Descompón 125 en 100 + 20 + 5. Multiplica cada parte por 24: 2 400 + 480 + 120 = 3 000.",
+      "options": [
+        {
+          "id": "math-t2-horizontal-decomp-07-o2",
+          "text": "2 875"
+        },
+        {
+          "id": "math-t2-horizontal-decomp-07-o1",
+          "text": "3 000"
+        },
+        {
+          "id": "math-t2-horizontal-decomp-07-o4",
+          "text": "149"
+        },
+        {
+          "id": "math-t2-horizontal-decomp-07-o3",
+          "text": "3 024"
+        }
+      ],
+      "correctOptionId": "math-t2-horizontal-decomp-07-o1"
+    },
+    {
+      "id": "math-t2-horizontal-decomp-08",
+      "type": "single_choice",
+      "conceptId": "horizontal-decomp",
+      "learningObjectiveIds": [
+        "obj-horizontal-decomp"
+      ],
+      "difficulty": "advanced",
+      "tags": [
+        "descomposicion",
+        "horizontal-decomp",
+        "calculo-horizontal"
+      ],
+      "instructionLanguage": "es",
+      "exerciseLanguage": "es",
+      "explanationLanguage": "es",
+      "context": "Calcula en horizontal descomponiendo el primer factor.",
+      "prompt": "207 × 35 = ?",
+      "explanation": "Descompón 207 en 200 + 7. Multiplica cada parte por 35: 7 000 + 245 = 7 245.",
+      "options": [
+        {
+          "id": "math-t2-horizontal-decomp-08-o4",
+          "text": "242"
+        },
+        {
+          "id": "math-t2-horizontal-decomp-08-o2",
+          "text": "7 038"
+        },
+        {
+          "id": "math-t2-horizontal-decomp-08-o3",
+          "text": "7 280"
+        },
+        {
+          "id": "math-t2-horizontal-decomp-08-o1",
+          "text": "7 245"
+        }
+      ],
+      "correctOptionId": "math-t2-horizontal-decomp-08-o1"
+    },
+    {
+      "id": "math-t2-div-terms-01",
+      "type": "single_choice",
+      "conceptId": "div-terms",
+      "learningObjectiveIds": [
+        "obj-div-terms"
+      ],
+      "difficulty": "beginner",
+      "tags": [
+        "division",
+        "div-terms"
+      ],
+      "instructionLanguage": "es",
+      "exerciseLanguage": "es",
+      "explanationLanguage": "es",
+      "context": "Elige la respuesta correcta.",
+      "prompt": "En 35 ÷ 5 = 7, ¿cuál es el dividendo?",
+      "explanation": "El dividendo es la cantidad que se reparte: 35.",
+      "options": [
+        {
+          "id": "math-t2-div-terms-01-o4",
+          "text": "0"
+        },
+        {
+          "id": "math-t2-div-terms-01-o2",
+          "text": "5"
+        },
+        {
+          "id": "math-t2-div-terms-01-o3",
+          "text": "7"
+        },
+        {
+          "id": "math-t2-div-terms-01-o1",
+          "text": "35"
+        }
+      ],
+      "correctOptionId": "math-t2-div-terms-01-o1"
+    },
+    {
+      "id": "math-t2-div-terms-02",
+      "type": "single_choice",
+      "conceptId": "div-terms",
+      "learningObjectiveIds": [
+        "obj-div-terms"
+      ],
+      "difficulty": "beginner",
+      "tags": [
+        "division",
+        "div-terms"
+      ],
+      "instructionLanguage": "es",
+      "exerciseLanguage": "es",
+      "explanationLanguage": "es",
+      "context": "Elige la respuesta correcta.",
+      "prompt": "En 42 ÷ 6 = 7, ¿cuál es el divisor?",
+      "explanation": "El divisor indica entre cuánto dividimos: 6.",
+      "options": [
+        {
+          "id": "math-t2-div-terms-02-o1",
+          "text": "6"
+        },
+        {
+          "id": "math-t2-div-terms-02-o4",
+          "text": "0"
+        },
+        {
+          "id": "math-t2-div-terms-02-o3",
+          "text": "7"
+        },
+        {
+          "id": "math-t2-div-terms-02-o2",
+          "text": "42"
+        }
+      ],
+      "correctOptionId": "math-t2-div-terms-02-o1"
+    },
+    {
+      "id": "math-t2-div-terms-03",
+      "type": "single_choice",
+      "conceptId": "div-terms",
+      "learningObjectiveIds": [
+        "obj-div-terms"
+      ],
+      "difficulty": "beginner",
+      "tags": [
+        "division",
+        "div-terms"
+      ],
+      "instructionLanguage": "es",
+      "exerciseLanguage": "es",
+      "explanationLanguage": "es",
+      "context": "Elige la respuesta correcta.",
+      "prompt": "En 56 ÷ 8 = 7, ¿cómo se llama el 7?",
+      "explanation": "El cociente es el resultado entero de la división.",
+      "options": [
+        {
+          "id": "math-t2-div-terms-03-o2",
+          "text": "Dividendo"
+        },
+        {
+          "id": "math-t2-div-terms-03-o3",
+          "text": "Divisor"
+        },
+        {
+          "id": "math-t2-div-terms-03-o1",
+          "text": "Cociente"
+        },
+        {
+          "id": "math-t2-div-terms-03-o4",
+          "text": "Resto"
+        }
+      ],
+      "correctOptionId": "math-t2-div-terms-03-o1"
+    },
+    {
+      "id": "math-t2-div-terms-04",
+      "type": "single_choice",
+      "conceptId": "div-terms",
+      "learningObjectiveIds": [
+        "obj-div-terms"
+      ],
+      "difficulty": "intermediate",
+      "tags": [
+        "division",
+        "div-terms"
+      ],
+      "instructionLanguage": "es",
+      "exerciseLanguage": "es",
+      "explanationLanguage": "es",
+      "context": "Elige la respuesta correcta.",
+      "prompt": "Al dividir 29 entre 4 obtenemos 7 y sobran 1. ¿Cómo se llama ese 1?",
+      "explanation": "El resto es la cantidad que sobra tras repartir en grupos completos.",
+      "options": [
+        {
+          "id": "math-t2-div-terms-04-o3",
+          "text": "Divisor"
+        },
+        {
+          "id": "math-t2-div-terms-04-o2",
+          "text": "Cociente"
+        },
+        {
+          "id": "math-t2-div-terms-04-o1",
+          "text": "Resto"
+        },
+        {
+          "id": "math-t2-div-terms-04-o4",
+          "text": "Producto"
+        }
+      ],
+      "correctOptionId": "math-t2-div-terms-04-o1"
+    },
+    {
+      "id": "math-t2-div-terms-05",
+      "type": "single_choice",
+      "conceptId": "div-terms",
+      "learningObjectiveIds": [
+        "obj-div-terms"
+      ],
+      "difficulty": "intermediate",
+      "tags": [
+        "division",
+        "div-terms"
+      ],
+      "instructionLanguage": "es",
+      "exerciseLanguage": "es",
+      "explanationLanguage": "es",
+      "context": "Elige la respuesta correcta.",
+      "prompt": "¿Qué caracteriza a una división exacta?",
+      "explanation": "Una división exacta no deja resto.",
+      "options": [
+        {
+          "id": "math-t2-div-terms-05-o3",
+          "text": "Divisor igual a cero"
+        },
+        {
+          "id": "math-t2-div-terms-05-o4",
+          "text": "Dividendo igual al divisor siempre"
+        },
+        {
+          "id": "math-t2-div-terms-05-o1",
+          "text": "Resto igual a cero"
+        },
+        {
+          "id": "math-t2-div-terms-05-o2",
+          "text": "Cociente igual a cero"
+        }
+      ],
+      "correctOptionId": "math-t2-div-terms-05-o1"
+    },
+    {
+      "id": "math-t2-div-terms-06",
+      "type": "single_choice",
+      "conceptId": "div-terms",
+      "learningObjectiveIds": [
+        "obj-div-terms"
+      ],
+      "difficulty": "intermediate",
+      "tags": [
+        "division",
+        "div-terms"
+      ],
+      "instructionLanguage": "es",
+      "exerciseLanguage": "es",
+      "explanationLanguage": "es",
+      "context": "Elige la respuesta correcta.",
+      "prompt": "En una división entre 8, ¿qué resto es posible?",
+      "explanation": "El resto es menor que el divisor; al dividir entre 8 puede ser de 0 a 7.",
+      "options": [
+        {
+          "id": "math-t2-div-terms-06-o4",
+          "text": "10"
+        },
+        {
+          "id": "math-t2-div-terms-06-o1",
+          "text": "7"
+        },
+        {
+          "id": "math-t2-div-terms-06-o2",
+          "text": "8"
+        },
+        {
+          "id": "math-t2-div-terms-06-o3",
+          "text": "9"
+        }
+      ],
+      "correctOptionId": "math-t2-div-terms-06-o1"
+    },
+    {
+      "id": "math-t2-div-terms-07",
+      "type": "single_choice",
+      "conceptId": "div-terms",
+      "learningObjectiveIds": [
+        "obj-div-terms"
+      ],
+      "difficulty": "advanced",
+      "tags": [
+        "division",
+        "div-terms"
+      ],
+      "instructionLanguage": "es",
+      "exerciseLanguage": "es",
+      "explanationLanguage": "es",
+      "context": "Elige la respuesta correcta.",
+      "prompt": "En una división con divisor 12, cociente 9 y resto 5, ¿cuál es el dividendo?",
+      "explanation": "Dividendo = 12 × 9 + 5 = 113.",
+      "options": [
+        {
+          "id": "math-t2-div-terms-07-o3",
+          "text": "117"
+        },
+        {
+          "id": "math-t2-div-terms-07-o4",
+          "text": "125"
+        },
+        {
+          "id": "math-t2-div-terms-07-o2",
+          "text": "108"
+        },
+        {
+          "id": "math-t2-div-terms-07-o1",
+          "text": "113"
+        }
+      ],
+      "correctOptionId": "math-t2-div-terms-07-o1"
+    },
+    {
+      "id": "math-t2-div-terms-08",
+      "type": "single_choice",
+      "conceptId": "div-terms",
+      "learningObjectiveIds": [
+        "obj-div-terms"
+      ],
+      "difficulty": "advanced",
+      "tags": [
+        "division",
+        "div-terms"
+      ],
+      "instructionLanguage": "es",
+      "exerciseLanguage": "es",
+      "explanationLanguage": "es",
+      "context": "Elige la respuesta correcta.",
+      "prompt": "El dividendo es 97, el divisor es 9 y el cociente es 10. ¿Cuál es el resto?",
+      "explanation": "97 − 9 × 10 = 97 − 90 = 7; el resto es menor que 9.",
+      "options": [
+        {
+          "id": "math-t2-div-terms-08-o3",
+          "text": "10"
+        },
+        {
+          "id": "math-t2-div-terms-08-o1",
+          "text": "7"
+        },
+        {
+          "id": "math-t2-div-terms-08-o2",
+          "text": "9"
+        },
+        {
+          "id": "math-t2-div-terms-08-o4",
+          "text": "17"
+        }
+      ],
+      "correctOptionId": "math-t2-div-terms-08-o1"
+    },
+    {
+      "id": "math-t2-division-check-01",
+      "type": "single_choice",
+      "conceptId": "division-check",
+      "learningObjectiveIds": [
+        "obj-division-check"
+      ],
+      "difficulty": "beginner",
+      "tags": [
+        "division",
+        "division-check"
+      ],
+      "instructionLanguage": "es",
+      "exerciseLanguage": "es",
+      "explanationLanguage": "es",
+      "context": "Elige la respuesta correcta.",
+      "prompt": "¿Cómo se comprueba una división exacta?",
+      "explanation": "Si el resto es cero, multiplicar divisor por cociente devuelve el dividendo.",
+      "options": [
+        {
+          "id": "math-t2-division-check-01-o1",
+          "text": "Divisor × cociente = dividendo"
+        },
+        {
+          "id": "math-t2-division-check-01-o2",
+          "text": "Dividendo × cociente = divisor"
+        },
+        {
+          "id": "math-t2-division-check-01-o4",
+          "text": "Dividendo − divisor = cociente"
+        },
+        {
+          "id": "math-t2-division-check-01-o3",
+          "text": "Divisor + cociente = dividendo"
+        }
+      ],
+      "correctOptionId": "math-t2-division-check-01-o1"
+    },
+    {
+      "id": "math-t2-division-check-02",
+      "type": "single_choice",
+      "conceptId": "division-check",
+      "learningObjectiveIds": [
+        "obj-division-check"
+      ],
+      "difficulty": "beginner",
+      "tags": [
+        "division",
+        "division-check"
+      ],
+      "instructionLanguage": "es",
+      "exerciseLanguage": "es",
+      "explanationLanguage": "es",
+      "context": "Elige la respuesta correcta.",
+      "prompt": "¿Es correcta la división 36 ÷ 4 = 9? ¿Qué prueba lo demuestra?",
+      "explanation": "4 × 9 = 36, de modo que la división es exacta.",
+      "options": [
+        {
+          "id": "math-t2-division-check-02-o1",
+          "text": "4 × 9 = 36"
+        },
+        {
+          "id": "math-t2-division-check-02-o4",
+          "text": "36 − 9 = 4"
+        },
+        {
+          "id": "math-t2-division-check-02-o3",
+          "text": "4 + 9 = 36"
+        },
+        {
+          "id": "math-t2-division-check-02-o2",
+          "text": "36 × 4 = 9"
+        }
+      ],
+      "correctOptionId": "math-t2-division-check-02-o1"
+    },
+    {
+      "id": "math-t2-division-check-03",
+      "type": "single_choice",
+      "conceptId": "division-check",
+      "learningObjectiveIds": [
+        "obj-division-check"
+      ],
+      "difficulty": "beginner",
+      "tags": [
+        "division",
+        "division-check"
+      ],
+      "instructionLanguage": "es",
+      "exerciseLanguage": "es",
+      "explanationLanguage": "es",
+      "context": "Elige la respuesta correcta.",
+      "prompt": "¿Qué operación comprueba 54 ÷ 6 = 9?",
+      "explanation": "El producto del divisor por el cociente debe ser 54.",
+      "options": [
+        {
+          "id": "math-t2-division-check-03-o4",
+          "text": "6 + 9"
+        },
+        {
+          "id": "math-t2-division-check-03-o1",
+          "text": "6 × 9"
+        },
+        {
+          "id": "math-t2-division-check-03-o3",
+          "text": "54 + 9"
+        },
+        {
+          "id": "math-t2-division-check-03-o2",
+          "text": "54 × 6"
+        }
+      ],
+      "correctOptionId": "math-t2-division-check-03-o1"
+    },
+    {
+      "id": "math-t2-division-check-04",
+      "type": "single_choice",
+      "conceptId": "division-check",
+      "learningObjectiveIds": [
+        "obj-division-check"
+      ],
+      "difficulty": "intermediate",
+      "tags": [
+        "division",
+        "division-check"
+      ],
+      "instructionLanguage": "es",
+      "exerciseLanguage": "es",
+      "explanationLanguage": "es",
+      "context": "Elige la respuesta correcta.",
+      "prompt": "En una división con resto, ¿qué fórmula es correcta?",
+      "explanation": "Al total de los grupos completos le sumamos lo que sobra.",
+      "options": [
+        {
+          "id": "math-t2-division-check-04-o1",
+          "text": "Divisor × cociente + resto = dividendo"
+        },
+        {
+          "id": "math-t2-division-check-04-o3",
+          "text": "Dividendo × divisor + resto = cociente"
+        },
+        {
+          "id": "math-t2-division-check-04-o4",
+          "text": "Divisor + cociente + resto = dividendo"
+        },
+        {
+          "id": "math-t2-division-check-04-o2",
+          "text": "Divisor × cociente − resto = dividendo"
+        }
+      ],
+      "correctOptionId": "math-t2-division-check-04-o1"
+    },
+    {
+      "id": "math-t2-division-check-05",
+      "type": "single_choice",
+      "conceptId": "division-check",
+      "learningObjectiveIds": [
+        "obj-division-check"
+      ],
+      "difficulty": "intermediate",
+      "tags": [
+        "division",
+        "division-check"
+      ],
+      "instructionLanguage": "es",
+      "exerciseLanguage": "es",
+      "explanationLanguage": "es",
+      "context": "Elige la respuesta correcta.",
+      "prompt": "¿Qué igualdad comprueba 38 ÷ 5, con cociente 7 y resto 3?",
+      "explanation": "5 × 7 + 3 = 35 + 3 = 38 y 3 es menor que 5.",
+      "options": [
+        {
+          "id": "math-t2-division-check-05-o3",
+          "text": "5 × 3 + 7 = 38"
+        },
+        {
+          "id": "math-t2-division-check-05-o1",
+          "text": "5 × 7 + 3 = 38"
+        },
+        {
+          "id": "math-t2-division-check-05-o2",
+          "text": "5 × 7 − 3 = 38"
+        },
+        {
+          "id": "math-t2-division-check-05-o4",
+          "text": "38 × 5 + 3 = 7"
+        }
+      ],
+      "correctOptionId": "math-t2-division-check-05-o1"
+    },
+    {
+      "id": "math-t2-division-check-06",
+      "type": "single_choice",
+      "conceptId": "division-check",
+      "learningObjectiveIds": [
+        "obj-division-check"
+      ],
+      "difficulty": "intermediate",
+      "tags": [
+        "division",
+        "division-check"
+      ],
+      "instructionLanguage": "es",
+      "exerciseLanguage": "es",
+      "explanationLanguage": "es",
+      "context": "Elige la respuesta correcta.",
+      "prompt": "Dividendo 82, divisor 9 y cociente 9. ¿Qué resto completa la prueba?",
+      "explanation": "82 − 9 × 9 = 82 − 81 = 1.",
+      "options": [
+        {
+          "id": "math-t2-division-check-06-o1",
+          "text": "1"
+        },
+        {
+          "id": "math-t2-division-check-06-o3",
+          "text": "8"
+        },
+        {
+          "id": "math-t2-division-check-06-o2",
+          "text": "0"
+        },
+        {
+          "id": "math-t2-division-check-06-o4",
+          "text": "9"
+        }
+      ],
+      "correctOptionId": "math-t2-division-check-06-o1"
+    },
+    {
+      "id": "math-t2-division-check-07",
+      "type": "single_choice",
+      "conceptId": "division-check",
+      "learningObjectiveIds": [
+        "obj-division-check"
+      ],
+      "difficulty": "advanced",
+      "tags": [
+        "division",
+        "division-check"
+      ],
+      "instructionLanguage": "es",
+      "exerciseLanguage": "es",
+      "explanationLanguage": "es",
+      "context": "Elige la respuesta correcta.",
+      "prompt": "Un alumno dice: 67 ÷ 8 tiene cociente 7 y resto 11. ¿Por qué es incorrecto?",
+      "explanation": "Aunque 8 × 7 + 11 = 67, el resto 11 no es menor que 8. El cociente correcto es 8 y el resto es 3.",
+      "options": [
+        {
+          "id": "math-t2-division-check-07-o3",
+          "text": "El cociente debe ser siempre par"
+        },
+        {
+          "id": "math-t2-division-check-07-o2",
+          "text": "El dividendo es impar"
+        },
+        {
+          "id": "math-t2-division-check-07-o4",
+          "text": "Una división nunca puede tener resto"
+        },
+        {
+          "id": "math-t2-division-check-07-o1",
+          "text": "El resto es mayor o igual que el divisor"
+        }
+      ],
+      "correctOptionId": "math-t2-division-check-07-o1"
+    },
+    {
+      "id": "math-t2-division-check-08",
+      "type": "single_choice",
+      "conceptId": "division-check",
+      "learningObjectiveIds": [
+        "obj-division-check"
+      ],
+      "difficulty": "advanced",
+      "tags": [
+        "division",
+        "division-check"
+      ],
+      "instructionLanguage": "es",
+      "exerciseLanguage": "es",
+      "explanationLanguage": "es",
+      "context": "Elige la respuesta correcta.",
+      "prompt": "¿Cuál de estas divisiones está correctamente comprobada?",
+      "explanation": "12 × 10 + 5 = 125 y 5 < 12. Ambas condiciones se cumplen.",
+      "options": [
+        {
+          "id": "math-t2-division-check-08-o4",
+          "text": "125 ÷ 12: cociente 10, resto 2"
+        },
+        {
+          "id": "math-t2-division-check-08-o2",
+          "text": "125 ÷ 12: cociente 9, resto 17"
+        },
+        {
+          "id": "math-t2-division-check-08-o1",
+          "text": "125 ÷ 12: cociente 10, resto 5"
+        },
+        {
+          "id": "math-t2-division-check-08-o3",
+          "text": "125 ÷ 12: cociente 11, resto 3"
+        }
+      ],
+      "correctOptionId": "math-t2-division-check-08-o1"
+    },
+    {
+      "id": "math-t2-div-1-digits-01",
+      "type": "single_choice",
+      "conceptId": "div-1-digits",
+      "learningObjectiveIds": [
+        "obj-div-1-digits"
+      ],
+      "difficulty": "beginner",
+      "tags": [
+        "division",
+        "div-1-digits"
+      ],
+      "instructionLanguage": "es",
+      "exerciseLanguage": "es",
+      "explanationLanguage": "es",
+      "context": "Calcula y elige el resultado.",
+      "prompt": "48 ÷ 4 = ?",
+      "explanation": "4 × 12 = 48. El resto es cero.",
+      "options": [
+        {
+          "id": "math-t2-div-1-digits-01-o1",
+          "text": "12"
+        },
+        {
+          "id": "math-t2-div-1-digits-01-o2",
+          "text": "11"
+        },
+        {
+          "id": "math-t2-div-1-digits-01-o4",
+          "text": "120"
+        },
+        {
+          "id": "math-t2-div-1-digits-01-o3",
+          "text": "13"
+        }
+      ],
+      "correctOptionId": "math-t2-div-1-digits-01-o1"
+    },
+    {
+      "id": "math-t2-div-1-digits-02",
+      "type": "single_choice",
+      "conceptId": "div-1-digits",
+      "learningObjectiveIds": [
+        "obj-div-1-digits"
+      ],
+      "difficulty": "beginner",
+      "tags": [
+        "division",
+        "div-1-digits"
+      ],
+      "instructionLanguage": "es",
+      "exerciseLanguage": "es",
+      "explanationLanguage": "es",
+      "context": "Calcula y elige el resultado.",
+      "prompt": "84 ÷ 6 = ?",
+      "explanation": "6 × 14 = 84. El resto es cero.",
+      "options": [
+        {
+          "id": "math-t2-div-1-digits-02-o4",
+          "text": "140"
+        },
+        {
+          "id": "math-t2-div-1-digits-02-o1",
+          "text": "14"
+        },
+        {
+          "id": "math-t2-div-1-digits-02-o2",
+          "text": "13"
+        },
+        {
+          "id": "math-t2-div-1-digits-02-o3",
+          "text": "15"
+        }
+      ],
+      "correctOptionId": "math-t2-div-1-digits-02-o1"
+    },
+    {
+      "id": "math-t2-div-1-digits-03",
+      "type": "single_choice",
+      "conceptId": "div-1-digits",
+      "learningObjectiveIds": [
+        "obj-div-1-digits"
+      ],
+      "difficulty": "beginner",
+      "tags": [
+        "division",
+        "div-1-digits"
+      ],
+      "instructionLanguage": "es",
+      "exerciseLanguage": "es",
+      "explanationLanguage": "es",
+      "context": "Busca los grupos completos y lo que sobra.",
+      "prompt": "Al dividir 65 entre 7, ¿cuál es el cociente y el resto?",
+      "explanation": "7 × 9 + 2 = 65. El resto 2 es menor que 7.",
+      "options": [
+        {
+          "id": "math-t2-div-1-digits-03-o1",
+          "text": "9, resto 2"
+        },
+        {
+          "id": "math-t2-div-1-digits-03-o4",
+          "text": "10, resto 0"
+        },
+        {
+          "id": "math-t2-div-1-digits-03-o2",
+          "text": "8, resto 9"
+        },
+        {
+          "id": "math-t2-div-1-digits-03-o3",
+          "text": "9, resto 3"
+        }
+      ],
+      "correctOptionId": "math-t2-div-1-digits-03-o1"
+    },
+    {
+      "id": "math-t2-div-1-digits-04",
+      "type": "single_choice",
+      "conceptId": "div-1-digits",
+      "learningObjectiveIds": [
+        "obj-div-1-digits"
+      ],
+      "difficulty": "intermediate",
+      "tags": [
+        "division",
+        "div-1-digits"
+      ],
+      "instructionLanguage": "es",
+      "exerciseLanguage": "es",
+      "explanationLanguage": "es",
+      "context": "Calcula y elige el resultado.",
+      "prompt": "296 ÷ 8 = ?",
+      "explanation": "8 × 37 = 296. El resto es cero.",
+      "options": [
+        {
+          "id": "math-t2-div-1-digits-04-o2",
+          "text": "36"
+        },
+        {
+          "id": "math-t2-div-1-digits-04-o1",
+          "text": "37"
+        },
+        {
+          "id": "math-t2-div-1-digits-04-o3",
+          "text": "38"
+        },
+        {
+          "id": "math-t2-div-1-digits-04-o4",
+          "text": "370"
+        }
+      ],
+      "correctOptionId": "math-t2-div-1-digits-04-o1"
+    },
+    {
+      "id": "math-t2-div-1-digits-05",
+      "type": "single_choice",
+      "conceptId": "div-1-digits",
+      "learningObjectiveIds": [
+        "obj-div-1-digits"
+      ],
+      "difficulty": "intermediate",
+      "tags": [
+        "division",
+        "div-1-digits"
+      ],
+      "instructionLanguage": "es",
+      "exerciseLanguage": "es",
+      "explanationLanguage": "es",
+      "context": "Busca los grupos completos y lo que sobra.",
+      "prompt": "Al dividir 508 entre 9, ¿cuál es el cociente y el resto?",
+      "explanation": "9 × 56 + 4 = 508. El resto 4 es menor que 9.",
+      "options": [
+        {
+          "id": "math-t2-div-1-digits-05-o3",
+          "text": "56, resto 5"
+        },
+        {
+          "id": "math-t2-div-1-digits-05-o2",
+          "text": "55, resto 13"
+        },
+        {
+          "id": "math-t2-div-1-digits-05-o1",
+          "text": "56, resto 4"
+        },
+        {
+          "id": "math-t2-div-1-digits-05-o4",
+          "text": "57, resto 0"
+        }
+      ],
+      "correctOptionId": "math-t2-div-1-digits-05-o1"
+    },
+    {
+      "id": "math-t2-div-1-digits-06",
+      "type": "single_choice",
+      "conceptId": "div-1-digits",
+      "learningObjectiveIds": [
+        "obj-div-1-digits"
+      ],
+      "difficulty": "intermediate",
+      "tags": [
+        "division",
+        "div-1-digits"
+      ],
+      "instructionLanguage": "es",
+      "exerciseLanguage": "es",
+      "explanationLanguage": "es",
+      "context": "Busca los grupos completos y lo que sobra.",
+      "prompt": "Al dividir 617 entre 5, ¿cuál es el cociente y el resto?",
+      "explanation": "5 × 123 + 2 = 617. El resto 2 es menor que 5.",
+      "options": [
+        {
+          "id": "math-t2-div-1-digits-06-o4",
+          "text": "124, resto 0"
+        },
+        {
+          "id": "math-t2-div-1-digits-06-o3",
+          "text": "123, resto 3"
+        },
+        {
+          "id": "math-t2-div-1-digits-06-o2",
+          "text": "122, resto 7"
+        },
+        {
+          "id": "math-t2-div-1-digits-06-o1",
+          "text": "123, resto 2"
+        }
+      ],
+      "correctOptionId": "math-t2-div-1-digits-06-o1"
+    },
+    {
+      "id": "math-t2-div-1-digits-07",
+      "type": "single_choice",
+      "conceptId": "div-1-digits",
+      "learningObjectiveIds": [
+        "obj-div-1-digits"
+      ],
+      "difficulty": "advanced",
+      "tags": [
+        "division",
+        "div-1-digits"
+      ],
+      "instructionLanguage": "es",
+      "exerciseLanguage": "es",
+      "explanationLanguage": "es",
+      "context": "Busca los grupos completos y lo que sobra.",
+      "prompt": "Al dividir 2 147 entre 7, ¿cuál es el cociente y el resto?",
+      "explanation": "7 × 306 + 5 = 2 147. El resto 5 es menor que 7.",
+      "options": [
+        {
+          "id": "math-t2-div-1-digits-07-o1",
+          "text": "306, resto 5"
+        },
+        {
+          "id": "math-t2-div-1-digits-07-o3",
+          "text": "306, resto 6"
+        },
+        {
+          "id": "math-t2-div-1-digits-07-o4",
+          "text": "307, resto 0"
+        },
+        {
+          "id": "math-t2-div-1-digits-07-o2",
+          "text": "305, resto 12"
+        }
+      ],
+      "correctOptionId": "math-t2-div-1-digits-07-o1"
+    },
+    {
+      "id": "math-t2-div-1-digits-08",
+      "type": "single_choice",
+      "conceptId": "div-1-digits",
+      "learningObjectiveIds": [
+        "obj-div-1-digits"
+      ],
+      "difficulty": "advanced",
+      "tags": [
+        "division",
+        "div-1-digits"
+      ],
+      "instructionLanguage": "es",
+      "exerciseLanguage": "es",
+      "explanationLanguage": "es",
+      "context": "Busca los grupos completos y lo que sobra.",
+      "prompt": "Al dividir 4 223 entre 8, ¿cuál es el cociente y el resto?",
+      "explanation": "8 × 527 + 7 = 4 223. El resto 7 es menor que 8.",
+      "options": [
+        {
+          "id": "math-t2-div-1-digits-08-o4",
+          "text": "528, resto 0"
+        },
+        {
+          "id": "math-t2-div-1-digits-08-o3",
+          "text": "527, resto 8"
+        },
+        {
+          "id": "math-t2-div-1-digits-08-o1",
+          "text": "527, resto 7"
+        },
+        {
+          "id": "math-t2-div-1-digits-08-o2",
+          "text": "526, resto 15"
+        }
+      ],
+      "correctOptionId": "math-t2-div-1-digits-08-o1"
+    },
+    {
+      "id": "math-t2-div-2-digits-01",
+      "type": "single_choice",
+      "conceptId": "div-2-digits",
+      "learningObjectiveIds": [
+        "obj-div-2-digits"
+      ],
+      "difficulty": "beginner",
+      "tags": [
+        "division",
+        "div-2-digits"
+      ],
+      "instructionLanguage": "es",
+      "exerciseLanguage": "es",
+      "explanationLanguage": "es",
+      "context": "Calcula y elige el resultado.",
+      "prompt": "120 ÷ 10 = ?",
+      "explanation": "10 × 12 = 120. El resto es cero.",
+      "options": [
+        {
+          "id": "math-t2-div-2-digits-01-o1",
+          "text": "12"
+        },
+        {
+          "id": "math-t2-div-2-digits-01-o3",
+          "text": "13"
+        },
+        {
+          "id": "math-t2-div-2-digits-01-o2",
+          "text": "11"
+        },
+        {
+          "id": "math-t2-div-2-digits-01-o4",
+          "text": "120"
+        }
+      ],
+      "correctOptionId": "math-t2-div-2-digits-01-o1"
+    },
+    {
+      "id": "math-t2-div-2-digits-02",
+      "type": "single_choice",
+      "conceptId": "div-2-digits",
+      "learningObjectiveIds": [
+        "obj-div-2-digits"
+      ],
+      "difficulty": "beginner",
+      "tags": [
+        "division",
+        "div-2-digits"
+      ],
+      "instructionLanguage": "es",
+      "exerciseLanguage": "es",
+      "explanationLanguage": "es",
+      "context": "Calcula y elige el resultado.",
+      "prompt": "96 ÷ 12 = ?",
+      "explanation": "12 × 8 = 96. El resto es cero.",
+      "options": [
+        {
+          "id": "math-t2-div-2-digits-02-o1",
+          "text": "8"
+        },
+        {
+          "id": "math-t2-div-2-digits-02-o3",
+          "text": "9"
+        },
+        {
+          "id": "math-t2-div-2-digits-02-o2",
+          "text": "7"
+        },
+        {
+          "id": "math-t2-div-2-digits-02-o4",
+          "text": "80"
+        }
+      ],
+      "correctOptionId": "math-t2-div-2-digits-02-o1"
+    },
+    {
+      "id": "math-t2-div-2-digits-03",
+      "type": "single_choice",
+      "conceptId": "div-2-digits",
+      "learningObjectiveIds": [
+        "obj-div-2-digits"
+      ],
+      "difficulty": "intermediate",
+      "tags": [
+        "division",
+        "div-2-digits"
+      ],
+      "instructionLanguage": "es",
+      "exerciseLanguage": "es",
+      "explanationLanguage": "es",
+      "context": "Busca los grupos completos y lo que sobra.",
+      "prompt": "Al dividir 139 entre 15, ¿cuál es el cociente y el resto?",
+      "explanation": "15 × 9 + 4 = 139. El resto 4 es menor que 15.",
+      "options": [
+        {
+          "id": "math-t2-div-2-digits-03-o3",
+          "text": "9, resto 5"
+        },
+        {
+          "id": "math-t2-div-2-digits-03-o1",
+          "text": "9, resto 4"
+        },
+        {
+          "id": "math-t2-div-2-digits-03-o2",
+          "text": "8, resto 19"
+        },
+        {
+          "id": "math-t2-div-2-digits-03-o4",
+          "text": "10, resto 0"
+        }
+      ],
+      "correctOptionId": "math-t2-div-2-digits-03-o1"
+    },
+    {
+      "id": "math-t2-div-2-digits-04",
+      "type": "single_choice",
+      "conceptId": "div-2-digits",
+      "learningObjectiveIds": [
+        "obj-div-2-digits"
+      ],
+      "difficulty": "intermediate",
+      "tags": [
+        "division",
+        "div-2-digits"
+      ],
+      "instructionLanguage": "es",
+      "exerciseLanguage": "es",
+      "explanationLanguage": "es",
+      "context": "Calcula y elige el resultado.",
+      "prompt": "312 ÷ 24 = ?",
+      "explanation": "24 × 13 = 312. El resto es cero.",
+      "options": [
+        {
+          "id": "math-t2-div-2-digits-04-o1",
+          "text": "13"
+        },
+        {
+          "id": "math-t2-div-2-digits-04-o2",
+          "text": "12"
+        },
+        {
+          "id": "math-t2-div-2-digits-04-o3",
+          "text": "14"
+        },
+        {
+          "id": "math-t2-div-2-digits-04-o4",
+          "text": "130"
+        }
+      ],
+      "correctOptionId": "math-t2-div-2-digits-04-o1"
+    },
+    {
+      "id": "math-t2-div-2-digits-05",
+      "type": "single_choice",
+      "conceptId": "div-2-digits",
+      "learningObjectiveIds": [
+        "obj-div-2-digits"
+      ],
+      "difficulty": "intermediate",
+      "tags": [
+        "division",
+        "div-2-digits"
+      ],
+      "instructionLanguage": "es",
+      "exerciseLanguage": "es",
+      "explanationLanguage": "es",
+      "context": "Busca los grupos completos y lo que sobra.",
+      "prompt": "Al dividir 807 entre 32, ¿cuál es el cociente y el resto?",
+      "explanation": "32 × 25 + 7 = 807. El resto 7 es menor que 32.",
+      "options": [
+        {
+          "id": "math-t2-div-2-digits-05-o3",
+          "text": "25, resto 8"
+        },
+        {
+          "id": "math-t2-div-2-digits-05-o2",
+          "text": "24, resto 39"
+        },
+        {
+          "id": "math-t2-div-2-digits-05-o4",
+          "text": "26, resto 0"
+        },
+        {
+          "id": "math-t2-div-2-digits-05-o1",
+          "text": "25, resto 7"
+        }
+      ],
+      "correctOptionId": "math-t2-div-2-digits-05-o1"
+    },
+    {
+      "id": "math-t2-div-2-digits-06",
+      "type": "single_choice",
+      "conceptId": "div-2-digits",
+      "learningObjectiveIds": [
+        "obj-div-2-digits"
+      ],
+      "difficulty": "intermediate",
+      "tags": [
+        "division",
+        "div-2-digits"
+      ],
+      "instructionLanguage": "es",
+      "exerciseLanguage": "es",
+      "explanationLanguage": "es",
+      "context": "Calcula y elige el resultado.",
+      "prompt": "846 ÷ 47 = ?",
+      "explanation": "47 × 18 = 846. El resto es cero.",
+      "options": [
+        {
+          "id": "math-t2-div-2-digits-06-o4",
+          "text": "180"
+        },
+        {
+          "id": "math-t2-div-2-digits-06-o2",
+          "text": "17"
+        },
+        {
+          "id": "math-t2-div-2-digits-06-o1",
+          "text": "18"
+        },
+        {
+          "id": "math-t2-div-2-digits-06-o3",
+          "text": "19"
+        }
+      ],
+      "correctOptionId": "math-t2-div-2-digits-06-o1"
+    },
+    {
+      "id": "math-t2-div-2-digits-07",
+      "type": "single_choice",
+      "conceptId": "div-2-digits",
+      "learningObjectiveIds": [
+        "obj-div-2-digits"
+      ],
+      "difficulty": "advanced",
+      "tags": [
+        "division",
+        "div-2-digits"
+      ],
+      "instructionLanguage": "es",
+      "exerciseLanguage": "es",
+      "explanationLanguage": "es",
+      "context": "Busca los grupos completos y lo que sobra.",
+      "prompt": "Al dividir 2 943 entre 68, ¿cuál es el cociente y el resto?",
+      "explanation": "68 × 43 + 19 = 2 943. El resto 19 es menor que 68.",
+      "options": [
+        {
+          "id": "math-t2-div-2-digits-07-o3",
+          "text": "43, resto 20"
+        },
+        {
+          "id": "math-t2-div-2-digits-07-o4",
+          "text": "44, resto 0"
+        },
+        {
+          "id": "math-t2-div-2-digits-07-o1",
+          "text": "43, resto 19"
+        },
+        {
+          "id": "math-t2-div-2-digits-07-o2",
+          "text": "42, resto 87"
+        }
+      ],
+      "correctOptionId": "math-t2-div-2-digits-07-o1"
+    },
+    {
+      "id": "math-t2-div-2-digits-08",
+      "type": "single_choice",
+      "conceptId": "div-2-digits",
+      "learningObjectiveIds": [
+        "obj-div-2-digits"
+      ],
+      "difficulty": "advanced",
+      "tags": [
+        "division",
+        "div-2-digits"
+      ],
+      "instructionLanguage": "es",
+      "exerciseLanguage": "es",
+      "explanationLanguage": "es",
+      "context": "Busca los grupos completos y lo que sobra.",
+      "prompt": "Al dividir 7 674 entre 75, ¿cuál es el cociente y el resto?",
+      "explanation": "75 × 102 + 24 = 7 674. El resto 24 es menor que 75.",
+      "options": [
+        {
+          "id": "math-t2-div-2-digits-08-o3",
+          "text": "102, resto 25"
+        },
+        {
+          "id": "math-t2-div-2-digits-08-o2",
+          "text": "101, resto 99"
+        },
+        {
+          "id": "math-t2-div-2-digits-08-o1",
+          "text": "102, resto 24"
+        },
+        {
+          "id": "math-t2-div-2-digits-08-o4",
+          "text": "103, resto 0"
+        }
+      ],
+      "correctOptionId": "math-t2-div-2-digits-08-o1"
+    },
+    {
+      "id": "math-t2-div-3-digits-01",
+      "type": "single_choice",
+      "conceptId": "div-3-digits",
+      "learningObjectiveIds": [
+        "obj-div-3-digits"
+      ],
+      "difficulty": "beginner",
+      "tags": [
+        "division",
+        "div-3-digits"
+      ],
+      "instructionLanguage": "es",
+      "exerciseLanguage": "es",
+      "explanationLanguage": "es",
+      "context": "Calcula y elige el resultado.",
+      "prompt": "500 ÷ 100 = ?",
+      "explanation": "100 × 5 = 500. El resto es cero.",
+      "options": [
+        {
+          "id": "math-t2-div-3-digits-01-o3",
+          "text": "6"
+        },
+        {
+          "id": "math-t2-div-3-digits-01-o4",
+          "text": "50"
+        },
+        {
+          "id": "math-t2-div-3-digits-01-o1",
+          "text": "5"
+        },
+        {
+          "id": "math-t2-div-3-digits-01-o2",
+          "text": "4"
+        }
+      ],
+      "correctOptionId": "math-t2-div-3-digits-01-o1"
+    },
+    {
+      "id": "math-t2-div-3-digits-02",
+      "type": "single_choice",
+      "conceptId": "div-3-digits",
+      "learningObjectiveIds": [
+        "obj-div-3-digits"
+      ],
+      "difficulty": "intermediate",
+      "tags": [
+        "division",
+        "div-3-digits"
+      ],
+      "instructionLanguage": "es",
+      "exerciseLanguage": "es",
+      "explanationLanguage": "es",
+      "context": "Calcula y elige el resultado.",
+      "prompt": "480 ÷ 120 = ?",
+      "explanation": "120 × 4 = 480. El resto es cero.",
+      "options": [
+        {
+          "id": "math-t2-div-3-digits-02-o3",
+          "text": "5"
+        },
+        {
+          "id": "math-t2-div-3-digits-02-o4",
+          "text": "40"
+        },
+        {
+          "id": "math-t2-div-3-digits-02-o1",
+          "text": "4"
+        },
+        {
+          "id": "math-t2-div-3-digits-02-o2",
+          "text": "3"
+        }
+      ],
+      "correctOptionId": "math-t2-div-3-digits-02-o1"
+    },
+    {
+      "id": "math-t2-div-3-digits-03",
+      "type": "single_choice",
+      "conceptId": "div-3-digits",
+      "learningObjectiveIds": [
+        "obj-div-3-digits"
+      ],
+      "difficulty": "intermediate",
+      "tags": [
+        "division",
+        "div-3-digits"
+      ],
+      "instructionLanguage": "es",
+      "exerciseLanguage": "es",
+      "explanationLanguage": "es",
+      "context": "Calcula y elige el resultado.",
+      "prompt": "1 000 ÷ 125 = ?",
+      "explanation": "125 × 8 = 1 000. El resto es cero.",
+      "options": [
+        {
+          "id": "math-t2-div-3-digits-03-o3",
+          "text": "9"
+        },
+        {
+          "id": "math-t2-div-3-digits-03-o1",
+          "text": "8"
+        },
+        {
+          "id": "math-t2-div-3-digits-03-o2",
+          "text": "7"
+        },
+        {
+          "id": "math-t2-div-3-digits-03-o4",
+          "text": "80"
+        }
+      ],
+      "correctOptionId": "math-t2-div-3-digits-03-o1"
+    },
+    {
+      "id": "math-t2-div-3-digits-04",
+      "type": "single_choice",
+      "conceptId": "div-3-digits",
+      "learningObjectiveIds": [
+        "obj-div-3-digits"
+      ],
+      "difficulty": "intermediate",
+      "tags": [
+        "division",
+        "div-3-digits"
+      ],
+      "instructionLanguage": "es",
+      "exerciseLanguage": "es",
+      "explanationLanguage": "es",
+      "context": "Busca los grupos completos y lo que sobra.",
+      "prompt": "Al dividir 2 453 entre 203, ¿cuál es el cociente y el resto?",
+      "explanation": "203 × 12 + 17 = 2 453. El resto 17 es menor que 203.",
+      "options": [
+        {
+          "id": "math-t2-div-3-digits-04-o2",
+          "text": "11, resto 220"
+        },
+        {
+          "id": "math-t2-div-3-digits-04-o4",
+          "text": "13, resto 0"
+        },
+        {
+          "id": "math-t2-div-3-digits-04-o3",
+          "text": "12, resto 18"
+        },
+        {
+          "id": "math-t2-div-3-digits-04-o1",
+          "text": "12, resto 17"
+        }
+      ],
+      "correctOptionId": "math-t2-div-3-digits-04-o1"
+    },
+    {
+      "id": "math-t2-div-3-digits-05",
+      "type": "single_choice",
+      "conceptId": "div-3-digits",
+      "learningObjectiveIds": [
+        "obj-div-3-digits"
+      ],
+      "difficulty": "advanced",
+      "tags": [
+        "division",
+        "div-3-digits"
+      ],
+      "instructionLanguage": "es",
+      "exerciseLanguage": "es",
+      "explanationLanguage": "es",
+      "context": "Calcula y elige el resultado.",
+      "prompt": "5 024 ÷ 314 = ?",
+      "explanation": "314 × 16 = 5 024. El resto es cero.",
+      "options": [
+        {
+          "id": "math-t2-div-3-digits-05-o4",
+          "text": "160"
+        },
+        {
+          "id": "math-t2-div-3-digits-05-o3",
+          "text": "17"
+        },
+        {
+          "id": "math-t2-div-3-digits-05-o2",
+          "text": "15"
+        },
+        {
+          "id": "math-t2-div-3-digits-05-o1",
+          "text": "16"
+        }
+      ],
+      "correctOptionId": "math-t2-div-3-digits-05-o1"
+    },
+    {
+      "id": "math-t2-div-3-digits-06",
+      "type": "single_choice",
+      "conceptId": "div-3-digits",
+      "learningObjectiveIds": [
+        "obj-div-3-digits"
+      ],
+      "difficulty": "advanced",
+      "tags": [
+        "division",
+        "div-3-digits"
+      ],
+      "instructionLanguage": "es",
+      "exerciseLanguage": "es",
+      "explanationLanguage": "es",
+      "context": "Busca los grupos completos y lo que sobra.",
+      "prompt": "Al dividir 5 029 entre 215, ¿cuál es el cociente y el resto?",
+      "explanation": "215 × 23 + 84 = 5 029. El resto 84 es menor que 215.",
+      "options": [
+        {
+          "id": "math-t2-div-3-digits-06-o1",
+          "text": "23, resto 84"
+        },
+        {
+          "id": "math-t2-div-3-digits-06-o4",
+          "text": "24, resto 0"
+        },
+        {
+          "id": "math-t2-div-3-digits-06-o3",
+          "text": "23, resto 85"
+        },
+        {
+          "id": "math-t2-div-3-digits-06-o2",
+          "text": "22, resto 299"
+        }
+      ],
+      "correctOptionId": "math-t2-div-3-digits-06-o1"
+    },
+    {
+      "id": "math-t2-div-3-digits-07",
+      "type": "single_choice",
+      "conceptId": "div-3-digits",
+      "learningObjectiveIds": [
+        "obj-div-3-digits"
+      ],
+      "difficulty": "advanced",
+      "tags": [
+        "division",
+        "div-3-digits"
+      ],
+      "instructionLanguage": "es",
+      "exerciseLanguage": "es",
+      "explanationLanguage": "es",
+      "context": "Busca los grupos completos y lo que sobra.",
+      "prompt": "Al dividir 14 368 entre 407, ¿cuál es el cociente y el resto?",
+      "explanation": "407 × 35 + 123 = 14 368. El resto 123 es menor que 407.",
+      "options": [
+        {
+          "id": "math-t2-div-3-digits-07-o3",
+          "text": "35, resto 124"
+        },
+        {
+          "id": "math-t2-div-3-digits-07-o1",
+          "text": "35, resto 123"
+        },
+        {
+          "id": "math-t2-div-3-digits-07-o4",
+          "text": "36, resto 0"
+        },
+        {
+          "id": "math-t2-div-3-digits-07-o2",
+          "text": "34, resto 530"
+        }
+      ],
+      "correctOptionId": "math-t2-div-3-digits-07-o1"
+    },
+    {
+      "id": "math-t2-div-3-digits-08",
+      "type": "single_choice",
+      "conceptId": "div-3-digits",
+      "learningObjectiveIds": [
+        "obj-div-3-digits"
+      ],
+      "difficulty": "advanced",
+      "tags": [
+        "division",
+        "div-3-digits"
+      ],
+      "instructionLanguage": "es",
+      "exerciseLanguage": "es",
+      "explanationLanguage": "es",
+      "context": "Busca los grupos completos y lo que sobra.",
+      "prompt": "Al dividir 25 841 entre 608, ¿cuál es el cociente y el resto?",
+      "explanation": "608 × 42 + 305 = 25 841. El resto 305 es menor que 608.",
+      "options": [
+        {
+          "id": "math-t2-div-3-digits-08-o1",
+          "text": "42, resto 305"
+        },
+        {
+          "id": "math-t2-div-3-digits-08-o3",
+          "text": "42, resto 306"
+        },
+        {
+          "id": "math-t2-div-3-digits-08-o4",
+          "text": "43, resto 0"
+        },
+        {
+          "id": "math-t2-div-3-digits-08-o2",
+          "text": "41, resto 913"
+        }
+      ],
+      "correctOptionId": "math-t2-div-3-digits-08-o1"
+    },
+    {
+      "id": "math-t2-horizontal-calc-01",
+      "type": "single_choice",
+      "conceptId": "horizontal-calc",
+      "learningObjectiveIds": [
+        "obj-horizontal-calc"
+      ],
+      "difficulty": "beginner",
+      "tags": [
+        "pensemos",
+        "horizontal-calc"
+      ],
+      "instructionLanguage": "es",
+      "exerciseLanguage": "es",
+      "explanationLanguage": "es",
+      "context": "Calcula mentalmente o en horizontal.",
+      "prompt": "48 + 25 = ?",
+      "explanation": "48 + 25 = 48 + 20 + 5 = 73.",
+      "options": [
+        {
+          "id": "math-t2-horizontal-calc-01-o3",
+          "text": "63"
+        },
+        {
+          "id": "math-t2-horizontal-calc-01-o1",
+          "text": "73"
+        },
+        {
+          "id": "math-t2-horizontal-calc-01-o2",
+          "text": "83"
+        },
+        {
+          "id": "math-t2-horizontal-calc-01-o4",
+          "text": "173"
+        }
+      ],
+      "correctOptionId": "math-t2-horizontal-calc-01-o1"
+    },
+    {
+      "id": "math-t2-horizontal-calc-02",
+      "type": "single_choice",
+      "conceptId": "horizontal-calc",
+      "learningObjectiveIds": [
+        "obj-horizontal-calc"
+      ],
+      "difficulty": "beginner",
+      "tags": [
+        "pensemos",
+        "horizontal-calc"
+      ],
+      "instructionLanguage": "es",
+      "exerciseLanguage": "es",
+      "explanationLanguage": "es",
+      "context": "Calcula mentalmente o en horizontal.",
+      "prompt": "93 − 38 = ?",
+      "explanation": "Resta 30 y después 8: 63 − 8 = 55.",
+      "options": [
+        {
+          "id": "math-t2-horizontal-calc-02-o3",
+          "text": "45"
+        },
+        {
+          "id": "math-t2-horizontal-calc-02-o1",
+          "text": "55"
+        },
+        {
+          "id": "math-t2-horizontal-calc-02-o2",
+          "text": "65"
+        },
+        {
+          "id": "math-t2-horizontal-calc-02-o4",
+          "text": "155"
+        }
+      ],
+      "correctOptionId": "math-t2-horizontal-calc-02-o1"
+    },
+    {
+      "id": "math-t2-horizontal-calc-03",
+      "type": "single_choice",
+      "conceptId": "horizontal-calc",
+      "learningObjectiveIds": [
+        "obj-horizontal-calc"
+      ],
+      "difficulty": "beginner",
+      "tags": [
+        "pensemos",
+        "horizontal-calc"
+      ],
+      "instructionLanguage": "es",
+      "exerciseLanguage": "es",
+      "explanationLanguage": "es",
+      "context": "Calcula mentalmente o en horizontal.",
+      "prompt": "25 × 8 = ?",
+      "explanation": "25 × 4 = 100; multiplica después por 2: 200.",
+      "options": [
+        {
+          "id": "math-t2-horizontal-calc-03-o4",
+          "text": "300"
+        },
+        {
+          "id": "math-t2-horizontal-calc-03-o3",
+          "text": "190"
+        },
+        {
+          "id": "math-t2-horizontal-calc-03-o2",
+          "text": "210"
+        },
+        {
+          "id": "math-t2-horizontal-calc-03-o1",
+          "text": "200"
+        }
+      ],
+      "correctOptionId": "math-t2-horizontal-calc-03-o1"
+    },
+    {
+      "id": "math-t2-horizontal-calc-04",
+      "type": "single_choice",
+      "conceptId": "horizontal-calc",
+      "learningObjectiveIds": [
+        "obj-horizontal-calc"
+      ],
+      "difficulty": "intermediate",
+      "tags": [
+        "pensemos",
+        "horizontal-calc"
+      ],
+      "instructionLanguage": "es",
+      "exerciseLanguage": "es",
+      "explanationLanguage": "es",
+      "context": "Calcula mentalmente o en horizontal.",
+      "prompt": "360 ÷ 9 = ?",
+      "explanation": "Busca el número que multiplicado por 9 da 360: 40.",
+      "options": [
+        {
+          "id": "math-t2-horizontal-calc-04-o3",
+          "text": "30"
+        },
+        {
+          "id": "math-t2-horizontal-calc-04-o4",
+          "text": "140"
+        },
+        {
+          "id": "math-t2-horizontal-calc-04-o2",
+          "text": "50"
+        },
+        {
+          "id": "math-t2-horizontal-calc-04-o1",
+          "text": "40"
+        }
+      ],
+      "correctOptionId": "math-t2-horizontal-calc-04-o1"
+    },
+    {
+      "id": "math-t2-horizontal-calc-05",
+      "type": "single_choice",
+      "conceptId": "horizontal-calc",
+      "learningObjectiveIds": [
+        "obj-horizontal-calc"
+      ],
+      "difficulty": "intermediate",
+      "tags": [
+        "pensemos",
+        "horizontal-calc"
+      ],
+      "instructionLanguage": "es",
+      "exerciseLanguage": "es",
+      "explanationLanguage": "es",
+      "context": "Calcula mentalmente o en horizontal.",
+      "prompt": "398 + 205 = ?",
+      "explanation": "398 + 205 = 398 + 200 + 5 = 603.",
+      "options": [
+        {
+          "id": "math-t2-horizontal-calc-05-o2",
+          "text": "613"
+        },
+        {
+          "id": "math-t2-horizontal-calc-05-o3",
+          "text": "593"
+        },
+        {
+          "id": "math-t2-horizontal-calc-05-o1",
+          "text": "603"
+        },
+        {
+          "id": "math-t2-horizontal-calc-05-o4",
+          "text": "703"
+        }
+      ],
+      "correctOptionId": "math-t2-horizontal-calc-05-o1"
+    },
+    {
+      "id": "math-t2-horizontal-calc-06",
+      "type": "single_choice",
+      "conceptId": "horizontal-calc",
+      "learningObjectiveIds": [
+        "obj-horizontal-calc"
+      ],
+      "difficulty": "intermediate",
+      "tags": [
+        "pensemos",
+        "horizontal-calc"
+      ],
+      "instructionLanguage": "es",
+      "exerciseLanguage": "es",
+      "explanationLanguage": "es",
+      "context": "Calcula mentalmente o en horizontal.",
+      "prompt": "1 000 − 487 = ?",
+      "explanation": "Resta 480 y después 7: 520 − 7 = 513.",
+      "options": [
+        {
+          "id": "math-t2-horizontal-calc-06-o3",
+          "text": "503"
+        },
+        {
+          "id": "math-t2-horizontal-calc-06-o4",
+          "text": "613"
+        },
+        {
+          "id": "math-t2-horizontal-calc-06-o1",
+          "text": "513"
+        },
+        {
+          "id": "math-t2-horizontal-calc-06-o2",
+          "text": "523"
+        }
+      ],
+      "correctOptionId": "math-t2-horizontal-calc-06-o1"
+    },
+    {
+      "id": "math-t2-horizontal-calc-07",
+      "type": "single_choice",
+      "conceptId": "horizontal-calc",
+      "learningObjectiveIds": [
+        "obj-horizontal-calc"
+      ],
+      "difficulty": "advanced",
+      "tags": [
+        "pensemos",
+        "horizontal-calc"
+      ],
+      "instructionLanguage": "es",
+      "exerciseLanguage": "es",
+      "explanationLanguage": "es",
+      "context": "Calcula mentalmente o en horizontal.",
+      "prompt": "125 × 16 = ?",
+      "explanation": "125 × 4 = 500; multiplica después por 4: 2 000.",
+      "options": [
+        {
+          "id": "math-t2-horizontal-calc-07-o2",
+          "text": "2 010"
+        },
+        {
+          "id": "math-t2-horizontal-calc-07-o3",
+          "text": "1 990"
+        },
+        {
+          "id": "math-t2-horizontal-calc-07-o4",
+          "text": "2 100"
+        },
+        {
+          "id": "math-t2-horizontal-calc-07-o1",
+          "text": "2 000"
+        }
+      ],
+      "correctOptionId": "math-t2-horizontal-calc-07-o1"
+    },
+    {
+      "id": "math-t2-horizontal-calc-08",
+      "type": "single_choice",
+      "conceptId": "horizontal-calc",
+      "learningObjectiveIds": [
+        "obj-horizontal-calc"
+      ],
+      "difficulty": "advanced",
+      "tags": [
+        "pensemos",
+        "horizontal-calc"
+      ],
+      "instructionLanguage": "es",
+      "exerciseLanguage": "es",
+      "explanationLanguage": "es",
+      "context": "Calcula mentalmente o en horizontal.",
+      "prompt": "2 400 ÷ 25 = ?",
+      "explanation": "Busca el número que multiplicado por 25 da 2 400: 96.",
+      "options": [
+        {
+          "id": "math-t2-horizontal-calc-08-o3",
+          "text": "86"
+        },
+        {
+          "id": "math-t2-horizontal-calc-08-o4",
+          "text": "196"
+        },
+        {
+          "id": "math-t2-horizontal-calc-08-o1",
+          "text": "96"
+        },
+        {
+          "id": "math-t2-horizontal-calc-08-o2",
+          "text": "106"
+        }
+      ],
+      "correctOptionId": "math-t2-horizontal-calc-08-o1"
+    },
+    {
+      "id": "math-t2-word-problems-01",
+      "type": "single_choice",
+      "conceptId": "word-problems",
+      "learningObjectiveIds": [
+        "obj-word-problems"
+      ],
+      "difficulty": "beginner",
+      "tags": [
+        "pensemos",
+        "word-problems"
+      ],
+      "instructionLanguage": "es",
+      "exerciseLanguage": "es",
+      "explanationLanguage": "es",
+      "context": "Lee con atención y elige la respuesta.",
+      "prompt": "Hay 7 cajas con 8 rotuladores cada una. ¿Cuántos rotuladores hay?",
+      "explanation": "7 × 8 = 56 rotuladores.",
+      "options": [
+        {
+          "id": "math-t2-word-problems-01-o1",
+          "text": "56"
+        },
+        {
+          "id": "math-t2-word-problems-01-o3",
+          "text": "48"
+        },
+        {
+          "id": "math-t2-word-problems-01-o2",
+          "text": "15"
+        },
+        {
+          "id": "math-t2-word-problems-01-o4",
+          "text": "64"
+        }
+      ],
+      "correctOptionId": "math-t2-word-problems-01-o1"
+    },
+    {
+      "id": "math-t2-word-problems-02",
+      "type": "single_choice",
+      "conceptId": "word-problems",
+      "learningObjectiveIds": [
+        "obj-word-problems"
+      ],
+      "difficulty": "beginner",
+      "tags": [
+        "pensemos",
+        "word-problems"
+      ],
+      "instructionLanguage": "es",
+      "exerciseLanguage": "es",
+      "explanationLanguage": "es",
+      "context": "Lee con atención y elige la respuesta.",
+      "prompt": "Se reparten 72 cromos por igual entre 9 amigos. ¿Cuántos recibe cada uno?",
+      "explanation": "72 ÷ 9 = 8 cromos por persona.",
+      "options": [
+        {
+          "id": "math-t2-word-problems-02-o1",
+          "text": "8"
+        },
+        {
+          "id": "math-t2-word-problems-02-o2",
+          "text": "9"
+        },
+        {
+          "id": "math-t2-word-problems-02-o3",
+          "text": "63"
+        },
+        {
+          "id": "math-t2-word-problems-02-o4",
+          "text": "81"
+        }
+      ],
+      "correctOptionId": "math-t2-word-problems-02-o1"
+    },
+    {
+      "id": "math-t2-word-problems-03",
+      "type": "single_choice",
+      "conceptId": "word-problems",
+      "learningObjectiveIds": [
+        "obj-word-problems"
+      ],
+      "difficulty": "beginner",
+      "tags": [
+        "pensemos",
+        "word-problems"
+      ],
+      "instructionLanguage": "es",
+      "exerciseLanguage": "es",
+      "explanationLanguage": "es",
+      "context": "Lee con atención y elige la respuesta.",
+      "prompt": "Hay 45 pegatinas y 6 bolsas. Se ponen tantas pegatinas como sea posible en cada bolsa, todas con la misma cantidad. ¿Cuántas sobran?",
+      "explanation": "45 = 6 × 7 + 3. Sobran 3 pegatinas.",
+      "options": [
+        {
+          "id": "math-t2-word-problems-03-o4",
+          "text": "9"
+        },
+        {
+          "id": "math-t2-word-problems-03-o3",
+          "text": "7"
+        },
+        {
+          "id": "math-t2-word-problems-03-o1",
+          "text": "3"
+        },
+        {
+          "id": "math-t2-word-problems-03-o2",
+          "text": "6"
+        }
+      ],
+      "correctOptionId": "math-t2-word-problems-03-o1"
+    },
+    {
+      "id": "math-t2-word-problems-04",
+      "type": "single_choice",
+      "conceptId": "word-problems",
+      "learningObjectiveIds": [
+        "obj-word-problems"
+      ],
+      "difficulty": "intermediate",
+      "tags": [
+        "pensemos",
+        "word-problems"
+      ],
+      "instructionLanguage": "es",
+      "exerciseLanguage": "es",
+      "explanationLanguage": "es",
+      "context": "Lee con atención y elige la respuesta.",
+      "prompt": "Un teatro tiene 18 filas con 24 asientos por fila. ¿Cuántos asientos hay?",
+      "explanation": "18 × 24 = 432 asientos.",
+      "options": [
+        {
+          "id": "math-t2-word-problems-04-o1",
+          "text": "432"
+        },
+        {
+          "id": "math-t2-word-problems-04-o2",
+          "text": "42"
+        },
+        {
+          "id": "math-t2-word-problems-04-o3",
+          "text": "342"
+        },
+        {
+          "id": "math-t2-word-problems-04-o4",
+          "text": "420"
+        }
+      ],
+      "correctOptionId": "math-t2-word-problems-04-o1"
+    },
+    {
+      "id": "math-t2-word-problems-05",
+      "type": "single_choice",
+      "conceptId": "word-problems",
+      "learningObjectiveIds": [
+        "obj-word-problems"
+      ],
+      "difficulty": "intermediate",
+      "tags": [
+        "pensemos",
+        "word-problems"
+      ],
+      "instructionLanguage": "es",
+      "exerciseLanguage": "es",
+      "explanationLanguage": "es",
+      "context": "Lee con atención y elige la respuesta.",
+      "prompt": "Una biblioteca recibe 360 libros y los coloca por igual en 15 estanterías. ¿Cuántos coloca en cada una?",
+      "explanation": "360 ÷ 15 = 24 libros por estantería.",
+      "options": [
+        {
+          "id": "math-t2-word-problems-05-o3",
+          "text": "25"
+        },
+        {
+          "id": "math-t2-word-problems-05-o4",
+          "text": "345"
+        },
+        {
+          "id": "math-t2-word-problems-05-o1",
+          "text": "24"
+        },
+        {
+          "id": "math-t2-word-problems-05-o2",
+          "text": "15"
+        }
+      ],
+      "correctOptionId": "math-t2-word-problems-05-o1"
+    },
+    {
+      "id": "math-t2-word-problems-06",
+      "type": "single_choice",
+      "conceptId": "word-problems",
+      "learningObjectiveIds": [
+        "obj-word-problems"
+      ],
+      "difficulty": "intermediate",
+      "tags": [
+        "pensemos",
+        "word-problems"
+      ],
+      "instructionLanguage": "es",
+      "exerciseLanguage": "es",
+      "explanationLanguage": "es",
+      "context": "Lee con atención y elige la respuesta.",
+      "prompt": "Hay 6 equipos de 8 jugadores. Cada jugador recibe 2 botellas. ¿Cuántas botellas se necesitan?",
+      "explanation": "6 × 8 = 48 jugadores; 48 × 2 = 96 botellas.",
+      "options": [
+        {
+          "id": "math-t2-word-problems-06-o4",
+          "text": "98"
+        },
+        {
+          "id": "math-t2-word-problems-06-o3",
+          "text": "16"
+        },
+        {
+          "id": "math-t2-word-problems-06-o2",
+          "text": "48"
+        },
+        {
+          "id": "math-t2-word-problems-06-o1",
+          "text": "96"
+        }
+      ],
+      "correctOptionId": "math-t2-word-problems-06-o1"
+    },
+    {
+      "id": "math-t2-word-problems-07",
+      "type": "single_choice",
+      "conceptId": "word-problems",
+      "learningObjectiveIds": [
+        "obj-word-problems"
+      ],
+      "difficulty": "advanced",
+      "tags": [
+        "pensemos",
+        "word-problems"
+      ],
+      "instructionLanguage": "es",
+      "exerciseLanguage": "es",
+      "explanationLanguage": "es",
+      "context": "Lee con atención y elige la respuesta.",
+      "prompt": "Un colegio compra 24 cajas con 36 lápices. Reparte 240 lápices. ¿Cuántos quedan?",
+      "explanation": "24 × 36 = 864. Después, 864 − 240 = 624 lápices.",
+      "options": [
+        {
+          "id": "math-t2-word-problems-07-o3",
+          "text": "600"
+        },
+        {
+          "id": "math-t2-word-problems-07-o4",
+          "text": "840"
+        },
+        {
+          "id": "math-t2-word-problems-07-o2",
+          "text": "864"
+        },
+        {
+          "id": "math-t2-word-problems-07-o1",
+          "text": "624"
+        }
+      ],
+      "correctOptionId": "math-t2-word-problems-07-o1"
+    },
+    {
+      "id": "math-t2-word-problems-08",
+      "type": "single_choice",
+      "conceptId": "word-problems",
+      "learningObjectiveIds": [
+        "obj-word-problems"
+      ],
+      "difficulty": "advanced",
+      "tags": [
+        "pensemos",
+        "word-problems"
+      ],
+      "instructionLanguage": "es",
+      "exerciseLanguage": "es",
+      "explanationLanguage": "es",
+      "context": "Lee con atención y elige la respuesta.",
+      "prompt": "Hay 275 alumnos. Cada autobús tiene 52 plazas. ¿Cuántos autobuses se necesitan como mínimo?",
+      "explanation": "275 ÷ 52 tiene cociente 5 y resto 15. Hace falta un autobús más: 6.",
+      "options": [
+        {
+          "id": "math-t2-word-problems-08-o4",
+          "text": "7"
+        },
+        {
+          "id": "math-t2-word-problems-08-o1",
+          "text": "6"
+        },
+        {
+          "id": "math-t2-word-problems-08-o2",
+          "text": "5"
+        },
+        {
+          "id": "math-t2-word-problems-08-o3",
+          "text": "4"
+        }
+      ],
+      "correctOptionId": "math-t2-word-problems-08-o1"
+    },
+    {
+      "id": "math-t2-combined-operations-01",
+      "type": "single_choice",
+      "conceptId": "combined-operations",
+      "learningObjectiveIds": [
+        "obj-combined-operations"
+      ],
+      "difficulty": "beginner",
+      "tags": [
+        "pensemos",
+        "combined-operations"
+      ],
+      "instructionLanguage": "es",
+      "exerciseLanguage": "es",
+      "explanationLanguage": "es",
+      "context": "Respeta el orden de las operaciones.",
+      "prompt": "6 + 4 × 3 = ?",
+      "explanation": "Primero 4 × 3 = 12. Después 6 + 12 = 18.",
+      "options": [
+        {
+          "id": "math-t2-combined-operations-01-o1",
+          "text": "18"
+        },
+        {
+          "id": "math-t2-combined-operations-01-o2",
+          "text": "30"
+        },
+        {
+          "id": "math-t2-combined-operations-01-o4",
+          "text": "15"
+        },
+        {
+          "id": "math-t2-combined-operations-01-o3",
+          "text": "24"
+        }
+      ],
+      "correctOptionId": "math-t2-combined-operations-01-o1"
+    },
+    {
+      "id": "math-t2-combined-operations-02",
+      "type": "single_choice",
+      "conceptId": "combined-operations",
+      "learningObjectiveIds": [
+        "obj-combined-operations"
+      ],
+      "difficulty": "beginner",
+      "tags": [
+        "pensemos",
+        "combined-operations"
+      ],
+      "instructionLanguage": "es",
+      "exerciseLanguage": "es",
+      "explanationLanguage": "es",
+      "context": "Respeta el orden de las operaciones.",
+      "prompt": "20 − 12 ÷ 3 = ?",
+      "explanation": "Primero 12 ÷ 3 = 4. Después 20 − 4 = 16.",
+      "options": [
+        {
+          "id": "math-t2-combined-operations-02-o1",
+          "text": "16"
+        },
+        {
+          "id": "math-t2-combined-operations-02-o4",
+          "text": "6"
+        },
+        {
+          "id": "math-t2-combined-operations-02-o2",
+          "text": "8"
+        },
+        {
+          "id": "math-t2-combined-operations-02-o3",
+          "text": "4"
+        }
+      ],
+      "correctOptionId": "math-t2-combined-operations-02-o1"
+    },
+    {
+      "id": "math-t2-combined-operations-03",
+      "type": "single_choice",
+      "conceptId": "combined-operations",
+      "learningObjectiveIds": [
+        "obj-combined-operations"
+      ],
+      "difficulty": "beginner",
+      "tags": [
+        "pensemos",
+        "combined-operations"
+      ],
+      "instructionLanguage": "es",
+      "exerciseLanguage": "es",
+      "explanationLanguage": "es",
+      "context": "Respeta el orden de las operaciones.",
+      "prompt": "(6 + 4) × 3 = ?",
+      "explanation": "Primero los paréntesis: 6 + 4 = 10. Después 10 × 3 = 30.",
+      "options": [
+        {
+          "id": "math-t2-combined-operations-03-o4",
+          "text": "13"
+        },
+        {
+          "id": "math-t2-combined-operations-03-o3",
+          "text": "24"
+        },
+        {
+          "id": "math-t2-combined-operations-03-o1",
+          "text": "30"
+        },
+        {
+          "id": "math-t2-combined-operations-03-o2",
+          "text": "18"
+        }
+      ],
+      "correctOptionId": "math-t2-combined-operations-03-o1"
+    },
+    {
+      "id": "math-t2-combined-operations-04",
+      "type": "single_choice",
+      "conceptId": "combined-operations",
+      "learningObjectiveIds": [
+        "obj-combined-operations"
+      ],
+      "difficulty": "intermediate",
+      "tags": [
+        "pensemos",
+        "combined-operations"
+      ],
+      "instructionLanguage": "es",
+      "exerciseLanguage": "es",
+      "explanationLanguage": "es",
+      "context": "Respeta el orden de las operaciones.",
+      "prompt": "36 ÷ 6 × 2 = ?",
+      "explanation": "División y multiplicación tienen igual prioridad: de izquierda a derecha, 36 ÷ 6 = 6 y 6 × 2 = 12.",
+      "options": [
+        {
+          "id": "math-t2-combined-operations-04-o2",
+          "text": "3"
+        },
+        {
+          "id": "math-t2-combined-operations-04-o4",
+          "text": "18"
+        },
+        {
+          "id": "math-t2-combined-operations-04-o1",
+          "text": "12"
+        },
+        {
+          "id": "math-t2-combined-operations-04-o3",
+          "text": "6"
+        }
+      ],
+      "correctOptionId": "math-t2-combined-operations-04-o1"
+    },
+    {
+      "id": "math-t2-combined-operations-05",
+      "type": "single_choice",
+      "conceptId": "combined-operations",
+      "learningObjectiveIds": [
+        "obj-combined-operations"
+      ],
+      "difficulty": "intermediate",
+      "tags": [
+        "pensemos",
+        "combined-operations"
+      ],
+      "instructionLanguage": "es",
+      "exerciseLanguage": "es",
+      "explanationLanguage": "es",
+      "context": "Respeta el orden de las operaciones.",
+      "prompt": "30 − 8 + 5 = ?",
+      "explanation": "Suma y resta tienen igual prioridad: de izquierda a derecha, 30 − 8 = 22 y 22 + 5 = 27.",
+      "options": [
+        {
+          "id": "math-t2-combined-operations-05-o2",
+          "text": "17"
+        },
+        {
+          "id": "math-t2-combined-operations-05-o1",
+          "text": "27"
+        },
+        {
+          "id": "math-t2-combined-operations-05-o3",
+          "text": "23"
+        },
+        {
+          "id": "math-t2-combined-operations-05-o4",
+          "text": "37"
+        }
+      ],
+      "correctOptionId": "math-t2-combined-operations-05-o1"
+    },
+    {
+      "id": "math-t2-combined-operations-06",
+      "type": "single_choice",
+      "conceptId": "combined-operations",
+      "learningObjectiveIds": [
+        "obj-combined-operations"
+      ],
+      "difficulty": "intermediate",
+      "tags": [
+        "pensemos",
+        "combined-operations"
+      ],
+      "instructionLanguage": "es",
+      "exerciseLanguage": "es",
+      "explanationLanguage": "es",
+      "context": "Respeta el orden de las operaciones.",
+      "prompt": "5 × (12 − 4) + 6 = ?",
+      "explanation": "Paréntesis: 12 − 4 = 8. Multiplicación: 5 × 8 = 40. Suma: 40 + 6 = 46.",
+      "options": [
+        {
+          "id": "math-t2-combined-operations-06-o3",
+          "text": "40"
+        },
+        {
+          "id": "math-t2-combined-operations-06-o4",
+          "text": "66"
+        },
+        {
+          "id": "math-t2-combined-operations-06-o2",
+          "text": "36"
+        },
+        {
+          "id": "math-t2-combined-operations-06-o1",
+          "text": "46"
+        }
+      ],
+      "correctOptionId": "math-t2-combined-operations-06-o1"
+    },
+    {
+      "id": "math-t2-combined-operations-07",
+      "type": "single_choice",
+      "conceptId": "combined-operations",
+      "learningObjectiveIds": [
+        "obj-combined-operations"
+      ],
+      "difficulty": "advanced",
+      "tags": [
+        "pensemos",
+        "combined-operations"
+      ],
+      "instructionLanguage": "es",
+      "exerciseLanguage": "es",
+      "explanationLanguage": "es",
+      "context": "Respeta el orden de las operaciones.",
+      "prompt": "48 ÷ (2 + 4) + 7 × 3 − 5 = ?",
+      "explanation": "2 + 4 = 6; 48 ÷ 6 = 8; 7 × 3 = 21. Luego 8 + 21 − 5 = 24.",
+      "options": [
+        {
+          "id": "math-t2-combined-operations-07-o1",
+          "text": "24"
+        },
+        {
+          "id": "math-t2-combined-operations-07-o2",
+          "text": "16"
+        },
+        {
+          "id": "math-t2-combined-operations-07-o3",
+          "text": "29"
+        },
+        {
+          "id": "math-t2-combined-operations-07-o4",
+          "text": "40"
+        }
+      ],
+      "correctOptionId": "math-t2-combined-operations-07-o1"
+    },
+    {
+      "id": "math-t2-combined-operations-08",
+      "type": "single_choice",
+      "conceptId": "combined-operations",
+      "learningObjectiveIds": [
+        "obj-combined-operations"
+      ],
+      "difficulty": "advanced",
+      "tags": [
+        "pensemos",
+        "combined-operations"
+      ],
+      "instructionLanguage": "es",
+      "exerciseLanguage": "es",
+      "explanationLanguage": "es",
+      "context": "Respeta el orden de las operaciones.",
+      "prompt": "100 − 24 ÷ 6 × 3 + 8 = ?",
+      "explanation": "24 ÷ 6 × 3 = 4 × 3 = 12. Después 100 − 12 + 8 = 96.",
+      "options": [
+        {
+          "id": "math-t2-combined-operations-08-o1",
+          "text": "96"
+        },
+        {
+          "id": "math-t2-combined-operations-08-o4",
+          "text": "92"
+        },
+        {
+          "id": "math-t2-combined-operations-08-o2",
+          "text": "104"
+        },
+        {
+          "id": "math-t2-combined-operations-08-o3",
+          "text": "80"
+        }
+      ],
+      "correctOptionId": "math-t2-combined-operations-08-o1"
+    }
+  ]
+}

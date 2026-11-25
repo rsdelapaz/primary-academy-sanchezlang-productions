@@ -1,6 +1,6 @@
 {
   "schemaVersion": "1.0.0",
-  "contentVersion": "1.1.0",
+  "contentVersion": "1.2.0",
   "subjects": [
     {
       "id": "english",
@@ -10,6 +10,18 @@
           "id": "irregular-verbs",
           "title": "Verbos irregulares",
           "packagePath": "content/packages/english-irregular-verbs.json",
+          "contentVersion": "1.0.0"
+        }
+      ]
+    },
+    {
+      "id": "mathematics",
+      "title": "Matemáticas",
+      "topics": [
+        {
+          "id": "no-pierdas-el-equilibrio",
+          "title": "Tema 2 · ¡No pierdas el equilibrio!",
+          "packagePath": "content/packages/mathematics-no-pierdas-el-equilibrio.json",
           "contentVersion": "1.0.0"
         }
       ]

@@ -5,8 +5,9 @@ import {
   type GameConfiguration,
   type GameModeId,
 } from '../domain/game'
+import { getDefaultGameModeId } from '../domain/game-modes'
 import type { ContentService } from '../content/service'
-import type { ContentManifest, ContentPackage, ContentSubject, ContentTopicReference } from '../domain/content'
+import { isSingleChoiceExercise, type ContentManifest, type ContentPackage, type ContentSubject, type ContentTopicReference } from '../domain/content'
 
 export interface RecommendedChallenge {
   subject: ContentSubject
@@ -23,7 +24,8 @@ export async function findRecommendedChallenge(
   for (const subject of manifest.subjects) {
     for (const topic of subject.topics) {
       const content = await loadPackage(subject, topic)
-      const eligible = getEligibleExercises(content.exercises, 'beginner')
+      const compatible = content.exercises.filter(isSingleChoiceExercise)
+      const eligible = getEligibleExercises(compatible, 'beginner')
       if (!eligible.length) continue
 
       const questionCount = Math.min(QUICK_PLAY_COUNT, eligible.length)
@@ -35,7 +37,7 @@ export async function findRecommendedChallenge(
         difficulty: 'beginner',
       }
 
-      return { subject, topic, content, modeId: 'classic', configuration }
+      return { subject, topic, content, modeId: getDefaultGameModeId(), configuration }
     }
   }
 

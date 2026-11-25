@@ -12,6 +12,7 @@ import {
   getPresetCount,
   restartGame,
   type GameConfiguration,
+  type GameModeId,
 } from './game'
 
 const exercises: SingleChoiceExercise[] = Array.from({ length: 20 }, (_, index) => {
@@ -43,13 +44,13 @@ const shortConfig: GameConfiguration = {
   difficulty: 'all',
 }
 
-function create(random = () => 0) {
+function create(random = () => 0, modeId: GameModeId = 'classic') {
   return createGameSession({
     sessionId: 'session-one',
     subjectId: 'mathematics',
     topicId: 'addition',
     contentVersion: '1.2.0',
-    modeId: 'classic',
+    modeId,
     configuration: shortConfig,
     exercises,
     random,
@@ -99,13 +100,13 @@ describe('motor de juego independiente', () => {
     expect(game.questions.every(({ exercise }) => exercise.difficulty === 'beginner')).toBe(true)
   })
 
-  it('mezcla cuatro opciones reproduciblemente y conserva el orden por pregunta', () => {
+  it.each(['classic', 'treasure'] as const)('%s mezcla cuatro opciones reproduciblemente y conserva el orden por pregunta', (modeId) => {
     const seeded = (initial: number) => () => {
       initial = (initial * 9301 + 49297) % 233280
       return initial / 233280
     }
-    const first = create(seeded(42))
-    const second = create(seeded(42))
+    const first = create(seeded(42), modeId)
+    const second = create(seeded(42), modeId)
     expect(first.questions.map(({ optionIds }) => optionIds)).toEqual(second.questions.map(({ optionIds }) => optionIds))
     for (const question of first.questions) {
       expect(question.optionIds).toHaveLength(4)
@@ -113,7 +114,7 @@ describe('motor de juego independiente', () => {
     }
   })
 
-  it('distribuye la respuesta correcta entre las cuatro posiciones', () => {
+  it.each(['classic', 'treasure'] as const)('%s distribuye la respuesta correcta entre las cuatro posiciones', (modeId) => {
     const positions = new Set<number>()
     const counts = [0, 0, 0, 0]
     for (let seed = 1; seed <= 400; seed += 1) {
@@ -122,7 +123,7 @@ describe('motor de juego independiente', () => {
         subjectId: 'mathematics',
         topicId: 'addition',
         contentVersion: '1.2.0',
-        modeId: 'classic',
+        modeId,
         configuration: { duration: { kind: 'preset', preset: 'long', questionCount: 20 }, difficulty: 'all' },
         exercises,
         random: () => ((seed * 73) % 401) / 401,
@@ -140,7 +141,9 @@ describe('motor de juego independiente', () => {
     const session = create()
     const question = getCurrentQuestion(session)!
     const correctId = question.exercise.correctOptionId
+    const optionOrder = [...question.optionIds]
     const answered = answerQuestion(session, question.exercise.id, correctId)
+    expect(getCurrentQuestion(answered)?.optionIds).toEqual(optionOrder)
     expect(answered.answers[0]).toMatchObject({ exerciseId: question.exercise.id, selectedOptionId: correctId, correct: true, points: 100 })
     expect(session.answers).toHaveLength(0)
     expect(answerQuestion(session, question.exercise.id, question.optionIds[0]).answers[0].correct)
@@ -210,6 +213,21 @@ describe('motor de juego independiente', () => {
     expect(restarted.configuration).toEqual(shortConfig)
     expect(restarted.status).toBe('active')
     expect(restarted.answers).toEqual([])
+  })
+
+  it.each(['classic', 'treasure'] as const)('%s vuelve a generar las mezclas al reiniciar', (modeId) => {
+    let randomCalls = 0
+    const random = () => {
+      randomCalls += 1
+      return 0.4
+    }
+    const session = create(random, modeId)
+    const callsAtStart = randomCalls
+    const restarted = restartGame(abandonGame(session), exercises, 'reshuffled-session', random)
+
+    expect(randomCalls).toBeGreaterThan(callsAtStart)
+    expect(restarted.modeId).toBe(modeId)
+    expect(restarted.questions.every(({ optionIds }) => new Set(optionIds).size === 4)).toBe(true)
   })
 
   it('rechaza identificadores incompletos de sesión y contenido', () => {

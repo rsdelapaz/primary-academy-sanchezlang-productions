@@ -117,6 +117,7 @@ h1 {
 }
 .home-intro h1 { font-size: clamp(40px, 6vw, 68px); }
 .choose-challenge-link { width: fit-content; min-width: 190px; margin-top: 8px; }
+.home-area-links { display: flex; flex-wrap: wrap; gap: 8px; }
 .recommended-card {
   align-self: stretch;
   display: flex;
@@ -242,6 +243,8 @@ h1 {
 .selection-card:disabled { cursor: not-allowed; opacity: .62; }
 .selection-card-icon { color: var(--color-secondary-text); font-size: 20px; }
 .selection-card small { color: var(--color-text-muted); }
+.mode-art { width: 48px; height: 48px; display: grid; place-items: center; color: var(--color-secondary-text); }
+.mode-art svg { width: 44px; height: 44px; }
 .selection-summary {
   min-height: 54px;
   display: flex;
@@ -319,6 +322,30 @@ h1 {
 .choice-icon { color: var(--color-secondary-text); font-size: 21px; }
 .configuration-note { margin: 16px 0; color: var(--color-text-muted); }
 .start-game { width: 100%; margin-top: 4px; font-size: 18px; }
+.study-screen { max-width: 820px; }
+.study-heading { margin-bottom: 20px; }
+.study-heading h1 { font-size: clamp(32px, 6vw, 48px); }
+.study-heading > p:last-child { color: var(--color-text-muted); }
+.study-progress { margin: 16px 0; }
+.study-progress-heading { display: flex; justify-content: space-between; gap: 12px; margin-bottom: 8px; }
+.study-progress .progress { margin: 0; }
+.study-metrics { display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 8px; margin: 16px 0; }
+.study-metrics .metric { min-height: 74px; flex-direction: column; align-items: flex-start; justify-content: center; font-size: 13px; }
+.study-metrics .metric strong { font-size: 22px; }
+.study-card { min-height: 300px; display: flex; flex-direction: column; justify-content: space-between; gap: 20px; padding: clamp(18px, 5vw, 34px); }
+.study-card-index { align-self: flex-end; color: var(--color-text-muted); font-weight: 800; }
+.study-card-content { display: grid; place-items: center; flex: 1; text-align: center; overflow-wrap: anywhere; }
+.study-card-content h2 { margin: 4px 0; font-size: clamp(28px, 7vw, 48px); line-height: 1.15; }
+.study-reveal { min-height: 60px; width: 100%; }
+.study-rating-actions { display: grid; gap: 10px; }
+.study-rating-actions .button { min-height: 60px; }
+.study-finish { display: block; margin: 12px auto; }
+.study-results { display: grid; gap: 14px; max-width: 620px; margin: 18px auto; }
+.study-results h2 { margin: 0; font-size: clamp(24px, 5vw, 34px); }
+.study-results dl { display: grid; gap: 8px; margin: 0; }
+.study-results dl > div { display: flex; justify-content: space-between; gap: 12px; padding: 10px 0; border-bottom: 1px solid var(--color-border); }
+.study-results dd { margin: 0; font-weight: 900; }
+.study-restart { width: 100%; min-height: 60px; }
 .select-control {
   width: 100%;
   min-height: 48px;
@@ -418,6 +445,64 @@ h1 {
   background: var(--color-success-surface);
 }
 .feedback .button { width: 100%; min-height: 58px; margin-top: 8px; }
+.treasure-board {
+  margin: 0 0 16px;
+  padding: 14px;
+  border: 1px solid var(--color-border);
+  border-radius: var(--radius-card);
+  background: color-mix(in srgb, var(--color-decorative) 16%, var(--color-surface));
+}
+.treasure-board-header { display: flex; align-items: center; justify-content: space-between; gap: 12px; }
+.treasure-board-header h2 { margin: 2px 0 0; font-size: clamp(20px, 3vw, 26px); }
+.key-balance {
+  min-width: 62px;
+  min-height: 50px;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 6px;
+  padding: 8px 12px;
+  border-radius: 15px;
+  color: var(--color-on-primary);
+  background: var(--color-primary);
+  font-size: 19px;
+}
+.treasure-hint { margin: 10px 0; color: var(--color-text-muted); font-size: 13px; }
+.treasure-grid { display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 8px; margin-top: 12px; }
+.treasure-card {
+  min-width: 0;
+  border: 1px solid var(--color-border);
+  border-radius: var(--radius-control);
+  background: var(--color-surface);
+  overflow: hidden;
+}
+.treasure-card.opened { border-color: var(--color-success-text); background: var(--color-success-surface); }
+.treasure-open {
+  width: 100%;
+  min-height: 126px;
+  display: grid;
+  justify-items: center;
+  align-content: center;
+  gap: 5px;
+  padding: 8px 4px;
+  border: 0;
+  color: var(--color-text);
+  background: transparent;
+  font-size: clamp(10px, 1.5vw, 13px);
+  font-weight: 800;
+  text-align: center;
+}
+.treasure-open:disabled { cursor: not-allowed; opacity: .7; }
+.treasure-open:not(:disabled):hover { background: color-mix(in srgb, var(--color-primary) 10%, transparent); }
+.treasure-open > span:last-child { color: var(--color-secondary-text); font-size: 11px; }
+.treasure-art { width: 48px; height: 48px; }
+.treasure-card.opened .treasure-art { animation: treasure-pop .28s ease-out; }
+@keyframes treasure-pop {
+  0% { transform: scale(.72) rotate(-8deg); }
+  72% { transform: scale(1.1) rotate(3deg); }
+  100% { transform: scale(1) rotate(0); }
+}
+.treasure-disclaimer { margin: 10px 0 0; color: var(--color-text-muted); font-size: 12px; }
 .results-card { max-width: 640px; margin: 20px auto; text-align: center; }
 .results-card { padding: clamp(22px, 5vw, 38px); }
 .score-ring {
@@ -525,6 +610,7 @@ h1 {
   .theme-choice { grid-template-columns: 42px 1fr auto; }
   .difficulty-grid { grid-template-columns: repeat(4, minmax(0, 1fr)); }
   .duration-grid { grid-template-columns: repeat(3, minmax(0, 1fr)); }
+  .study-rating-actions { grid-template-columns: repeat(2, minmax(0, 1fr)); }
 }
 
 @media (min-width: 760px) {
@@ -543,5 +629,5 @@ h1 {
 }
 
 @media (prefers-reduced-motion: reduce) {
-  *, *::before, *::after { scroll-behavior: auto !important; transition: none !important; }
+  *, *::before, *::after { scroll-behavior: auto !important; transition: none !important; animation: none !important; }
 }

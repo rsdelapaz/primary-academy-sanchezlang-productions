@@ -1,14 +1,17 @@
 import { shallowRef } from 'vue'
-import type { ContentPackage, SingleChoiceExercise } from '../domain/content'
+import { isSingleChoiceExercise, type ContentPackage, type SingleChoiceExercise } from '../domain/content'
 import {
   abandonGame,
   advanceQuestion,
   answerQuestion,
   createGameSession,
   restartGame,
+  type GameModeId,
   type GameConfiguration,
   type GameSession,
 } from '../domain/game'
+import { isGameModeCompatible } from '../domain/game-modes'
+import { openTreasure as openTreasureInDomain, type TreasureId } from '../domain/treasure'
 
 export const gameSession = shallowRef<GameSession | null>(null)
 
@@ -16,6 +19,7 @@ export function startGame(
   subjectId: string,
   topicId: string,
   content: ContentPackage,
+  modeId: GameModeId,
   configuration: GameConfiguration,
 ): GameSession {
   const next = createGameSession({
@@ -23,9 +27,11 @@ export function startGame(
     subjectId,
     topicId,
     contentVersion: content.contentVersion,
-    modeId: 'classic',
+    modeId,
     configuration,
-    exercises: content.exercises,
+    exercises: content.exercises.filter((exercise): exercise is SingleChoiceExercise =>
+      isSingleChoiceExercise(exercise) && isGameModeCompatible(modeId, exercise.type),
+    ),
   })
   gameSession.value = next
   return next
@@ -49,8 +55,15 @@ export function abandonActiveGame(): GameSession {
   return gameSession.value
 }
 
+export function openActiveTreasure(treasureId: TreasureId): GameSession {
+  if (!gameSession.value) throw new Error('No hay una sesión activa.')
+  gameSession.value = openTreasureInDomain(gameSession.value, treasureId)
+  return gameSession.value
+}
+
 export function restartActiveGame(exercises: readonly SingleChoiceExercise[]): GameSession {
   if (!gameSession.value) throw new Error('No hay una sesión anterior que reiniciar.')
-  gameSession.value = restartGame(gameSession.value, exercises, crypto.randomUUID())
-  return gameSession.value
+  const next = restartGame(gameSession.value, exercises, crypto.randomUUID())
+  gameSession.value = next
+  return next
 }

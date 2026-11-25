@@ -1,5 +1,6 @@
 import { readFileSync } from 'node:fs'
 import { describe, expect, it } from 'vitest'
+import type { ContentManifest } from '../domain/content'
 import { createContentService } from './service'
 import manifestSchema from './manifest.schema.json'
 import packageSchema from './package.schema.json'
@@ -7,16 +8,18 @@ import { createContentValidators } from './validators.mjs'
 
 const validators = createContentValidators(manifestSchema, packageSchema)
 const readJson = (path: string): unknown => JSON.parse(readFileSync(path, 'utf8'))
-const manifestFile = readJson('public/content/manifest.json')
+const manifestFile = readJson('public/content/manifest.json') as ContentManifest
 const englishFile = readJson('public/content/packages/english-irregular-verbs.json')
-const mathFile = readJson('public/content/packages/mathematics-addition.json')
+const mathSubject = manifestFile.subjects.find(({ id }) => id === 'mathematics')!
+const mathTopic = mathSubject.topics[0]
+const mathFile = readJson(`public/${mathTopic.packagePath}`)
 
 describe('contrato de contenido JSON', () => {
   it('carga paquetes de asignaturas distintas desde el servicio validado', async () => {
     const fixtures = new Map([
       ['https://academy.test/app/content/manifest.json', manifestFile],
       ['https://academy.test/app/content/packages/english-irregular-verbs.json', englishFile],
-      ['https://academy.test/app/content/packages/mathematics-addition.json', mathFile],
+      [`https://academy.test/app/${mathTopic.packagePath}`, mathFile],
     ])
     const service = createContentService('https://academy.test/app/', async (url) => {
       const result = fixtures.get(url)
@@ -104,6 +107,40 @@ describe('contrato de contenido JSON', () => {
     const repeatedExercises = duplicateExercise.exercises as Array<Record<string, unknown>>
     repeatedExercises[1].id = repeatedExercises[0].id
     expect(() => validators.validatePackage(duplicateExercise, reference)).toThrow(/Ejercicio duplicado/)
+  })
+
+  it('valida flashcards y permite paquetes mixtos sin omitir referencias compartidas', () => {
+    const catalog = validators.validateManifest(manifestFile)
+    const subject = catalog.subjects[0]
+    const topic = subject.topics[0]
+    const reference = { ...topic, subjectId: subject.id, topicId: topic.id }
+    const mixed = structuredClone(englishFile) as Record<string, unknown>
+    const exercises = mixed.exercises as Array<Record<string, unknown>>
+    const quiz = exercises[0]
+    exercises[0] = {
+      id: 'technical-flashcard',
+      type: 'flashcard',
+      conceptId: quiz.conceptId,
+      learningObjectiveIds: quiz.learningObjectiveIds,
+      difficulty: quiz.difficulty,
+      tags: [],
+      instructionLanguage: 'es',
+      exerciseLanguage: 'en',
+      explanationLanguage: 'es',
+      prompt: 'Technical fixture',
+      explanation: 'Technical fixture only.',
+      front: 'go',
+      back: 'went',
+    }
+
+    const validated = validators.validatePackage(mixed, reference)
+    expect(validated.exercises[0].type).toBe('flashcard')
+    expect(validated.exercises[1].type).toBe('single_choice')
+
+    const missingBack = structuredClone(mixed) as Record<string, unknown>
+    const invalidExercises = missingBack.exercises as Array<Record<string, unknown>>
+    delete invalidExercises[0].back
+    expect(() => validators.validatePackage(missingBack, reference)).toThrow(/Paquete inválido/)
   })
 
   it('rechaza acceso fuera del base path y errores de red', async () => {

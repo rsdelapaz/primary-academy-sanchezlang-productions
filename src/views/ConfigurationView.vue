@@ -1,7 +1,16 @@
 <script setup lang="ts">
 import { computed, onMounted, ref, shallowRef } from 'vue'
 import { RouterLink, useRoute, useRouter } from 'vue-router'
-import type { ContentManifest, ContentPackage, ContentSubject, ContentTopicReference } from '../domain/content'
+import {
+  isFlashcardExercise,
+  isSingleChoiceExercise,
+  type ExerciseBase,
+  type ContentManifest,
+  type ContentPackage,
+  type ContentSubject,
+  type ContentTopicReference,
+  type SingleChoiceExercise,
+} from '../domain/content'
 import {
   DURATION_PRESETS,
   GAME_MODES,
@@ -13,9 +22,12 @@ import {
   type GameConfiguration,
   type GameModeId,
 } from '../domain/game'
+import { getDefaultGameModeId, isGameModeCompatible } from '../domain/game-modes'
 import { contentService } from '../content/service'
 import { startGame } from '../presentation/game-session'
+import { startStudy } from '../presentation/study-session'
 
+type Experience = 'play' | 'study'
 const route = useRoute()
 const router = useRouter()
 const manifest = shallowRef<ContentManifest | null>(null)
@@ -26,7 +38,8 @@ const error = ref('')
 const startError = ref('')
 const subjectId = ref('')
 const topicId = ref('')
-const modeId = ref<GameModeId>('classic')
+const experience = ref<Experience>('play')
+const modeId = ref<GameModeId | null>(null)
 const difficulty = ref<DifficultyFilter>('beginner')
 const duration = ref<DurationPreset | 'custom'>('medium')
 const customCount = ref(QUICK_PLAY_COUNT)
@@ -36,10 +49,18 @@ const selectedSubject = computed(() => manifest.value?.subjects.find(({ id }) =>
 const selectedTopic = computed(() => selectedSubject.value?.topics.find(({ id }) => id === topicId.value) ?? null)
 const selectedMode = computed(() => GAME_MODES.find(({ id }) => id === modeId.value) ?? null)
 const isLoading = computed(() => loadingCatalog.value || loadingBank.value)
-const availableCount = computed(() => content.value
-  ? getEligibleExercises(content.value.exercises, difficulty.value).length
-  : 0)
+const compatibleExercises = computed<ExerciseBase[]>(() => {
+  const exercises = content.value?.exercises ?? []
+  if (experience.value === 'study') return exercises.filter(isFlashcardExercise)
+  const mode = modeId.value
+  if (!mode) return []
+  return exercises.filter((exercise): exercise is SingleChoiceExercise =>
+    isSingleChoiceExercise(exercise) && isGameModeCompatible(mode, exercise.type),
+  )
+})
+const availableCount = computed(() => getEligibleExercises(compatibleExercises.value, difficulty.value).length)
 const selectedCount = computed(() => duration.value === 'custom' ? customCount.value : getPresetCount(duration.value))
+const activityNoun = computed(() => experience.value === 'study' ? 'tarjetas' : 'retos')
 const availableDifficulties = computed(() => {
   const choices = [
     { id: 'beginner' as const, title: 'Inicial', icon: '🌱' },
@@ -51,12 +72,13 @@ const availableDifficulties = computed(() => {
 const availableDurations = computed(() => DURATION_PRESETS.filter(({ count }) => count <= availableCount.value))
 const canStart = computed(() =>
   Number.isSafeInteger(selectedCount.value) && selectedCount.value > 0 &&
-  selectedCount.value <= availableCount.value && Boolean(selectedSubject.value && selectedTopic.value && selectedMode.value) &&
+  selectedCount.value <= availableCount.value && Boolean(selectedSubject.value && selectedTopic.value) &&
+  (experience.value === 'study' || Boolean(selectedMode.value)) &&
   !isLoading.value,
 )
 
 function countForDifficulty(value: DifficultyFilter): number {
-  return content.value ? getEligibleExercises(content.value.exercises, value).length : 0
+  return getEligibleExercises(compatibleExercises.value, value).length
 }
 
 function normalizeSettings(initial = false) {
@@ -119,15 +141,20 @@ async function loadSelectedBank(initial = false) {
 }
 
 async function syncRoute() {
-  if (!subjectId.value || !topicId.value || !modeId.value) return
+  if (!subjectId.value || !topicId.value || (experience.value === 'play' && !modeId.value)) return
   const current = router.currentRoute.value
+  const nextModeId = experience.value === 'play' ? modeId.value : undefined
+  const nextExperience = experience.value === 'study' ? 'study' : undefined
+  const nextQuery = nextExperience ? { experience: nextExperience } : {}
   if (current.name === 'choose-challenge' &&
     current.params.subjectId === subjectId.value &&
     current.params.topicId === topicId.value &&
-    current.params.modeId === modeId.value) return
+    current.params.modeId === nextModeId &&
+    current.query.experience === nextExperience) return
   await router.replace({
     name: 'choose-challenge',
-    params: { subjectId: subjectId.value, topicId: topicId.value, modeId: modeId.value },
+    params: { subjectId: subjectId.value, topicId: topicId.value, modeId: nextModeId },
+    query: nextQuery,
   })
 }
 
@@ -148,6 +175,14 @@ async function selectTopic(topic: ContentTopicReference) {
 
 async function selectMode(value: GameModeId) {
   modeId.value = value
+  normalizeSettings()
+  await syncRoute()
+}
+
+async function selectExperience(value: Experience) {
+  if (experience.value === value) return
+  experience.value = value
+  normalizeSettings(true)
   await syncRoute()
 }
 
@@ -166,6 +201,7 @@ async function initialize() {
   error.value = ''
   try {
     manifest.value = await contentService.loadManifest()
+    experience.value = route.query.experience === 'study' ? 'study' : 'play'
     const subject = manifest.value.subjects.find(({ id }) => id === route.params.subjectId)
       ?? manifest.value.subjects[0]
     if (!subject) return
@@ -173,7 +209,7 @@ async function initialize() {
     const topic = subject.topics.find(({ id }) => id === route.params.topicId) ?? subject.topics[0]
     if (!topic) return
     topicId.value = topic.id
-    modeId.value = GAME_MODES.find(({ id }) => id === route.params.modeId)?.id ?? GAME_MODES[0].id
+    modeId.value = GAME_MODES.find(({ id }) => id === route.params.modeId)?.id ?? getDefaultGameModeId()
     await loadSelectedBank(true)
     await syncRoute()
   } catch (caught) {
@@ -188,7 +224,7 @@ async function begin() {
   const topic = selectedTopic.value
   const bank = content.value
   const mode = selectedMode.value
-  if (!canStart.value || !subject || !topic || !bank || !mode) return
+  if (!canStart.value || !subject || !topic || !bank) return
   startError.value = ''
   try {
     const configuration: GameConfiguration = {
@@ -197,13 +233,21 @@ async function begin() {
         : { kind: 'preset', preset: duration.value, questionCount: getPresetCount(duration.value) },
       difficulty: difficulty.value,
     }
-    startGame(subject.id, topic.id, bank, configuration)
-    await router.push({
-      name: 'play',
-      params: { subjectId: subject.id, topicId: topic.id, modeId: mode.id },
-    })
+    if (experience.value === 'study') {
+      startStudy(subject.id, topic.id, bank, configuration)
+      await router.push({ name: 'study', params: { subjectId: subject.id, topicId: topic.id } })
+    } else {
+      if (!mode) return
+      startGame(subject.id, topic.id, bank, mode.id, configuration)
+      await router.push({
+        name: 'play',
+        params: { subjectId: subject.id, topicId: topic.id, modeId: mode.id },
+      })
+    }
   } catch (caught) {
-    startError.value = caught instanceof Error ? caught.message : 'No se pudo iniciar el reto.'
+    startError.value = caught instanceof Error
+      ? caught.message
+      : experience.value === 'study' ? 'No se pudo iniciar el estudio.' : 'No se pudo iniciar el reto.'
   }
 }
 
@@ -272,7 +316,35 @@ onMounted(() => { void initialize() })
             <span>Tema</span><strong>{{ selectedTopic.title }}</strong>
           </div>
 
-          <section v-if="GAME_MODES.length > 1" class="selection-section" aria-labelledby="mode-choice-title">
+          <section class="selection-section" aria-labelledby="experience-choice-title">
+            <h2 id="experience-choice-title">¿Qué quieres hacer?</h2>
+            <div class="selection-card-grid" role="group" aria-label="Elige un área">
+              <button
+                class="selection-card"
+                :class="{ active: experience === 'play' }"
+                type="button"
+                :aria-pressed="experience === 'play'"
+                @click="selectExperience('play')"
+              >
+                <span class="selection-card-icon" aria-hidden="true">⚡</span>
+                <strong>Jugar</strong>
+                <small>Supera retos y gana puntos.</small>
+              </button>
+              <button
+                class="selection-card"
+                :class="{ active: experience === 'study' }"
+                type="button"
+                :aria-pressed="experience === 'study'"
+                @click="selectExperience('study')"
+              >
+                <span class="selection-card-icon" aria-hidden="true">🗂️</span>
+                <strong>Estudiar</strong>
+                <small>Repasa con tarjetas a tu ritmo.</small>
+              </button>
+            </div>
+          </section>
+
+          <section v-if="experience === 'play' && GAME_MODES.length > 1" class="selection-section" aria-labelledby="mode-choice-title">
             <h2 id="mode-choice-title">¿Cómo quieres jugar?</h2>
             <div class="selection-card-grid" role="group" aria-label="Elige una modalidad">
               <button
@@ -284,14 +356,29 @@ onMounted(() => { void initialize() })
                 :aria-pressed="modeId === mode.id"
                 @click="selectMode(mode.id)"
               >
-                <span class="selection-card-icon" aria-hidden="true">⚡</span>
+                <span class="mode-art" aria-hidden="true">
+                  <svg v-if="mode.illustration === 'lightning'" viewBox="0 0 64 64">
+                    <path d="M36 4 13 35h15l-3 25 27-36H36z" fill="currentColor" />
+                    <circle cx="49" cy="12" r="5" fill="var(--color-reward)" />
+                  </svg>
+                  <svg v-else viewBox="0 0 64 64">
+                    <path d="M9 24h46v31H9z" fill="currentColor" />
+                    <path d="M7 18h50v12H7z" fill="var(--color-accent-secondary)" />
+                    <path d="M27 33h10v22H27z" fill="var(--color-reward)" />
+                    <circle cx="32" cy="39" r="2" fill="var(--color-text)" />
+                    <path d="M12 18v-6h40v6" fill="none" stroke="currentColor" stroke-width="4" />
+                  </svg>
+                </span>
                 <strong>{{ mode.title }}</strong>
-                <small>Responde a tu ritmo</small>
+                <small>{{ mode.description }}</small>
               </button>
             </div>
           </section>
-          <div v-else class="selection-summary">
+          <div v-else-if="experience === 'play'" class="selection-summary">
             <span>Modalidad</span><strong>{{ selectedMode?.title }}</strong>
+          </div>
+          <div v-else class="selection-summary">
+            <span>Experiencia</span><strong>Tarjetas de memoria</strong>
           </div>
         </div>
 
@@ -300,10 +387,10 @@ onMounted(() => { void initialize() })
           <p class="eyebrow">Tu aventura</p>
           <h2>{{ selectedTopic.title }}</h2>
           <div class="preview-details">
-            <span>{{ selectedCount }} retos</span>
+            <span>{{ selectedCount }} {{ activityNoun }}</span>
             <span>{{ difficulty === 'beginner' ? 'Inicial' : difficulty === 'intermediate' ? 'Intermedia' : difficulty === 'advanced' ? 'Avanzada' : 'Todas' }}</span>
           </div>
-          <p v-if="content" class="available-count">{{ availableCount }} retos compatibles</p>
+          <p v-if="content" class="available-count">{{ availableCount }} {{ activityNoun }} compatibles</p>
         </aside>
       </div>
 
@@ -327,7 +414,7 @@ onMounted(() => { void initialize() })
               >
                 <span class="choice-icon" aria-hidden="true">{{ option.icon }}</span>
                 <span class="choice-title">{{ option.title }}</span>
-                <span class="choice-detail">{{ countForDifficulty(option.id) }} retos</span>
+                <span class="choice-detail">{{ countForDifficulty(option.id) }} {{ activityNoun }}</span>
               </button>
             </div>
           </section>
@@ -346,12 +433,12 @@ onMounted(() => { void initialize() })
               >
                 <span class="choice-icon" aria-hidden="true">{{ preset.id === 'short' ? '⚡' : preset.id === 'medium' ? '🗺️' : '🏆' }}</span>
                 <span class="choice-title">{{ preset.title }}</span>
-                <span class="choice-detail">{{ preset.count }} retos</span>
+                <span class="choice-detail">{{ preset.count }} {{ activityNoun }}</span>
               </button>
             </div>
           </section>
           <div v-else class="selection-summary">
-            <span>Duración</span><strong>{{ availableCount }} retos disponibles</strong>
+            <span>Duración</span><strong>{{ availableCount }} {{ activityNoun }} disponibles</strong>
           </div>
 
           <button
@@ -364,9 +451,11 @@ onMounted(() => { void initialize() })
           >
             <span class="choice-icon" aria-hidden="true">🎯</span>
             <span class="choice-title">A mi ritmo</span>
-            <span class="choice-detail">Elige cuántos retos</span>
+            <span class="choice-detail">Elige cuántas {{ activityNoun }}</span>
           </button>
-          <label v-if="duration === 'custom' && availableCount > 0" class="field-label" for="custom-count">Número de retos</label>
+          <label v-if="duration === 'custom' && availableCount > 0" class="field-label" for="custom-count">
+            Número de {{ activityNoun }}
+          </label>
           <input
             v-if="duration === 'custom' && availableCount > 0"
             id="custom-count"
@@ -376,15 +465,28 @@ onMounted(() => { void initialize() })
             min="1"
             :max="availableCount"
           />
-          <p class="configuration-note">No repetiremos ningún reto y puedes cambiar estos ajustes antes de empezar.</p>
+          <p class="configuration-note">
+            {{ experience === 'study' ? 'Las tarjetas difíciles vuelven al final de la cola.' : 'No repetiremos ningún reto.' }}
+            Puedes cambiar estos ajustes antes de empezar.
+          </p>
         </div>
       </details>
 
       <p v-if="error" class="error" role="alert">{{ error }}</p>
-      <p v-if="availableCount === 0 && !isLoading" class="error" role="alert">No hay retos compatibles con esta selección.</p>
+      <p v-if="availableCount === 0 && !isLoading" class="empty-message" role="status">
+        {{ experience === 'study'
+          ? 'Este tema todavía no tiene tarjetas de memoria. Elige otro contenido para estudiar.'
+          : 'No hay retos compatibles con esta selección.' }}
+      </p>
       <p v-if="startError" class="error" role="alert">{{ startError }}</p>
-      <button class="button primary start-game" type="button" :disabled="!canStart" @click="begin">
-        {{ isLoading ? 'Preparando...' : '¡A jugar!' }}
+      <button
+        v-if="availableCount > 0 || isLoading"
+        class="button primary start-game"
+        type="button"
+        :disabled="!canStart"
+        @click="begin"
+      >
+        {{ isLoading ? 'Preparando...' : experience === 'study' ? '¡A estudiar!' : '¡A jugar!' }}
       </button>
     </template>
   </section>

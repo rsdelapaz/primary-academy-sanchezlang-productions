@@ -2,7 +2,7 @@
 import { ref } from 'vue'
 import { useThemePreference, type ThemeId } from '../presentation/theme-preference'
 
-const menu = ref<HTMLDetailsElement | null>(null)
+const menu = ref<{ open: boolean } | null>(null)
 const error = ref('')
 const { activeTheme, themes, selectTheme } = useThemePreference()
 

@@ -83,7 +83,7 @@ export function createContentValidators(manifestSchema, packageSchema) {
           throw new Error(`Orden de respuesta inválido en el ejercicio: ${exercise.id}`)
         }
       }
-      if (exercise.type !== 'single_choice') {
+      if (exercise.type !== 'single_choice' && exercise.type !== 'flashcard') {
         throw new Error(`Tipo de ejercicio no operativo: ${exercise.type}`)
       }
     }

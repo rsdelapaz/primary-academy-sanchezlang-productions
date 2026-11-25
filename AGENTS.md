@@ -5,8 +5,11 @@
 - Separa Content Engine, Exercise Engine, Game Engine, scoring, presentación y persistencia.
 - El JSON versionado es el formato runtime; los esquemas y validadores son contrato. Datos externos siempre se validan desde `unknown`.
 - IDs estables e independientes del idioma; corrige por ID, no por posición visual.
-- Fisher-Yates sin mutar originales; aleatoriedad inyectable y opciones mezcladas una vez por presentación.
-- `single_choice` es la única modalidad/tipo operativo actual; otros tipos solo tienen contrato.
+- Mezcla preguntas y opciones con Fisher-Yates sin mutar originales; aleatoriedad inyectable.
+- Iniciar o reiniciar genera una nueva distribución aleatoria; las opciones mantienen el orden durante toda la pregunta y los cambios de tema.
+- No fuerces posiciones distintas consecutivas: coincidencias entre distribuciones pueden ocurrir naturalmente.
+- Conserva pruebas deterministas de cuatro opciones para ambas modalidades recreativas, sin imponer que cambie la posición entre preguntas.
+- `single_choice` opera en juego y `flashcard` en autoestudio; no habilites otros tipos.
 - Preserva el contenido educativo suministrado por dirección; no lo regeneres ni elimines.
 - CSV queda para edición/intercambio futuro; no añadir aún importador, administración ni bancos masivos.
 - No añadir backend, Pinia, PWA, UI pesada o persistencia sin necesidad aprobada.

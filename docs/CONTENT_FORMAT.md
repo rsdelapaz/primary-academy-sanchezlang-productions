@@ -41,11 +41,13 @@ Campos raíz:
 
 Cada ejercicio comparte `id`, `type`, `conceptId`, `learningObjectiveIds`, `difficulty` (`beginner`, `intermediate`, `advanced`), `tags`, `instructionLanguage`, `exerciseLanguage`, `explanationLanguage`, `prompt` y `explanation`. Los idiomas usan etiquetas tipo BCP 47 (`es`, `en`, `es-MX`). `context`, `hints`, `answerVariants` y `media` son opcionales. Un recurso multimedia solo referencia rutas locales seguras bajo `content/media/` con extensiones permitidas por el esquema.
 
-`single_choice`, el único tipo que se puede jugar actualmente, requiere entre 2 y 8 `options` (`id`, `text`) y un `correctOptionId` que referencia una opción existente. Los IDs de opciones no se repiten en un ejercicio. Ordenar las opciones en el JSON no fija su presentación: el motor genera el orden al iniciar la pregunta.
+`single_choice`, usado por las modalidades recreativas, requiere entre 2 y 8 `options` (`id`, `text`) y un `correctOptionId` que referencia una opción existente. Los IDs de opciones no se repiten en un ejercicio. Ordenar las opciones en el JSON no fija su presentación: el motor genera el orden al iniciar la pregunta.
+
+`flashcard` requiere `front` y `back` y se presenta en el área de autoestudio, sin evaluación objetiva ni puntuación. Un paquete puede mezclar `single_choice` y `flashcard`; cada experiencia selecciona únicamente los ejercicios de su tipo compatible.
 
 ### Tipos contemplados por el contrato
 
-Solo `single_choice` tiene evaluador y presentación operativos. Las siguientes estructuras se validan para preparar evolución; el loader las rechaza como no operativas:
+Solo `single_choice` y `flashcard` tienen presentación operativa. Las siguientes estructuras se validan para preparar evolución; el loader las rechaza como no operativas:
 
 - `multiple_choice`: `options` y `correctOptionIds` no vacíos, referidos a opciones existentes.
 - `true_false`: `correctValue` booleano.
@@ -53,7 +55,6 @@ Solo `single_choice` tiene evaluador y presentación operativos. Las siguientes 
 - `fill_blank`: `textWithBlanks` con marcadores `{{id}}` y una lista `blanks` con respuestas aceptadas por marcador.
 - `matching`: pares estables con `left` y `right`.
 - `ordering`: elementos identificados y `correctOrder` que contiene exactamente esos IDs.
-- `flashcard`: `front` y `back`.
 
 No añadir lógica o propiedades específicas de una asignatura al formato universal. La validación rechaza versiones incompatibles, campos inesperados, IDs/referencias inválidas, duplicados, respuestas que no apuntan a opciones válidas y tipos todavía no operativos.
 
