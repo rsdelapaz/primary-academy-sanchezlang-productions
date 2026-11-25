@@ -58,16 +58,31 @@ export interface SingleChoiceExercise extends ExerciseBase {
   answerVariants?: string[]
 }
 
+export interface TypedAnswerExercise extends ExerciseBase {
+  type: 'typed_answer'
+  acceptedAnswers: string[]
+  caseSensitive?: boolean
+}
+
 export interface FlashcardExercise extends ExerciseBase {
   type: 'flashcard'
   front: string
   back: string
 }
 
-export type Exercise = SingleChoiceExercise | FlashcardExercise
+export type GameExercise = SingleChoiceExercise | TypedAnswerExercise
+export type Exercise = GameExercise | FlashcardExercise
 
 export function isSingleChoiceExercise(exercise: Exercise): exercise is SingleChoiceExercise {
   return exercise.type === 'single_choice'
+}
+
+export function isTypedAnswerExercise(exercise: Exercise): exercise is TypedAnswerExercise {
+  return exercise.type === 'typed_answer'
+}
+
+export function isGameExercise(exercise: Exercise): exercise is GameExercise {
+  return exercise.type === 'single_choice' || exercise.type === 'typed_answer'
 }
 
 export function isFlashcardExercise(exercise: Exercise): exercise is FlashcardExercise {

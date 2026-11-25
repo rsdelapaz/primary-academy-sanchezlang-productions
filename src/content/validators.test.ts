@@ -132,15 +132,89 @@ describe('contrato de contenido JSON', () => {
       front: 'go',
       back: 'went',
     }
+    const typed = exercises[1]
+    exercises[1] = {
+      id: 'technical-typed-answer',
+      type: 'typed_answer',
+      conceptId: typed.conceptId,
+      learningObjectiveIds: typed.learningObjectiveIds,
+      difficulty: typed.difficulty,
+      tags: [],
+      instructionLanguage: 'es',
+      exerciseLanguage: 'en',
+      explanationLanguage: 'es',
+      prompt: 'Technical fixture',
+      explanation: 'Technical fixture only.',
+      acceptedAnswers: ['went', 'gone'],
+    }
 
     const validated = validators.validatePackage(mixed, reference)
     expect(validated.exercises[0].type).toBe('flashcard')
-    expect(validated.exercises[1].type).toBe('single_choice')
+    expect(validated.exercises[1].type).toBe('typed_answer')
+    expect(validated.exercises[2].type).toBe('single_choice')
 
     const missingBack = structuredClone(mixed) as Record<string, unknown>
     const invalidExercises = missingBack.exercises as Array<Record<string, unknown>>
     delete invalidExercises[0].back
     expect(() => validators.validatePackage(missingBack, reference)).toThrow(/Paquete inválido/)
+  })
+
+  it('rechaza respuestas escritas vacías y variantes duplicadas tras normalización', () => {
+    const catalog = validators.validateManifest(manifestFile)
+    const subject = catalog.subjects[0]
+    const topic = subject.topics[0]
+    const reference = { ...topic, subjectId: subject.id, topicId: topic.id }
+    const typedPackage = (acceptedAnswers: string[], caseSensitive?: boolean) => {
+      const fixture = structuredClone(englishFile) as Record<string, unknown>
+      const exercises = fixture.exercises as Array<Record<string, unknown>>
+      const source = exercises[0]
+      exercises[0] = {
+        id: 'technical-typed-answer',
+        type: 'typed_answer',
+        conceptId: source.conceptId,
+        learningObjectiveIds: source.learningObjectiveIds,
+        difficulty: source.difficulty,
+        tags: [],
+        instructionLanguage: 'es',
+        exerciseLanguage: 'en',
+        explanationLanguage: 'es',
+        prompt: 'Technical fixture',
+        explanation: 'Technical fixture only.',
+        acceptedAnswers,
+        ...(caseSensitive === undefined ? {} : { caseSensitive }),
+      }
+      return fixture
+    }
+
+    expect(() => validators.validatePackage(typedPackage(['  ']), reference))
+      .toThrow(/Respuesta aceptada vacía/)
+    expect(() => validators.validatePackage(typedPackage(['café', 'cafe\u0301']), reference))
+      .toThrow(/duplicadas tras normalización/)
+    expect(() => validators.validatePackage(typedPackage(['Go', ' go ']), reference))
+      .toThrow(/duplicadas tras normalización/)
+    expect(validators.validatePackage(typedPackage(['Go', ' go '], true), reference).exercises[0].type)
+      .toBe('typed_answer')
+
+    const mathematics = structuredClone(mathFile) as Record<string, unknown>
+    const mathExercises = mathematics.exercises as Array<Record<string, unknown>>
+    const source = mathExercises[0]
+    mathExercises[0] = {
+      id: 'technical-math-answer',
+      type: 'typed_answer',
+      conceptId: source.conceptId,
+      learningObjectiveIds: source.learningObjectiveIds,
+      difficulty: source.difficulty,
+      tags: [],
+      instructionLanguage: 'es',
+      exerciseLanguage: 'es',
+      explanationLanguage: 'es',
+      prompt: 'Fixture de cálculo.',
+      explanation: 'Fixture técnico de matemáticas.',
+      acceptedAnswers: ['42'],
+    }
+    const mathReference = { ...mathTopic, subjectId: mathSubject.id, topicId: mathTopic.id }
+    expect(validators.validatePackage(mathematics, mathReference).exercises[0].type)
+      .toBe('typed_answer')
   })
 
   it('rechaza acceso fuera del base path y errores de red', async () => {

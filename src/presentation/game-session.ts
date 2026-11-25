@@ -1,5 +1,5 @@
 import { shallowRef } from 'vue'
-import { isSingleChoiceExercise, type ContentPackage, type SingleChoiceExercise } from '../domain/content'
+import { isGameExercise, type ContentPackage, type GameExercise } from '../domain/content'
 import {
   abandonGame,
   advanceQuestion,
@@ -8,6 +8,7 @@ import {
   restartGame,
   type GameModeId,
   type GameConfiguration,
+  type GameAnswerResponse,
   type GameSession,
 } from '../domain/game'
 import { isGameModeCompatible } from '../domain/game-modes'
@@ -29,17 +30,17 @@ export function startGame(
     contentVersion: content.contentVersion,
     modeId,
     configuration,
-    exercises: content.exercises.filter((exercise): exercise is SingleChoiceExercise =>
-      isSingleChoiceExercise(exercise) && isGameModeCompatible(modeId, exercise.type),
+    exercises: content.exercises.filter((exercise): exercise is GameExercise =>
+      isGameExercise(exercise) && isGameModeCompatible(modeId, exercise.type),
     ),
   })
   gameSession.value = next
   return next
 }
 
-export function answerActiveQuestion(exerciseId: string, optionId: string): GameSession {
+export function answerActiveQuestion(exerciseId: string, response: GameAnswerResponse): GameSession {
   if (!gameSession.value) throw new Error('No hay una sesión activa.')
-  gameSession.value = answerQuestion(gameSession.value, exerciseId, optionId)
+  gameSession.value = answerQuestion(gameSession.value, exerciseId, response)
   return gameSession.value
 }
 
@@ -61,7 +62,7 @@ export function openActiveTreasure(treasureId: TreasureId): GameSession {
   return gameSession.value
 }
 
-export function restartActiveGame(exercises: readonly SingleChoiceExercise[]): GameSession {
+export function restartActiveGame(exercises: readonly GameExercise[]): GameSession {
   if (!gameSession.value) throw new Error('No hay una sesión anterior que reiniciar.')
   const next = restartGame(gameSession.value, exercises, crypto.randomUUID())
   gameSession.value = next

@@ -3,10 +3,11 @@ import { computed, ref } from 'vue'
 import { RouterLink, useRoute, useRouter } from 'vue-router'
 import TreasureBoard from '../components/TreasureBoard.vue'
 import { getGameStats } from '../domain/game'
-import { isSingleChoiceExercise } from '../domain/content'
+import { isGameExercise } from '../domain/content'
 import type { TreasureId } from '../domain/treasure'
 import { contentService } from '../content/service'
 import { gameSession, openActiveTreasure, restartActiveGame } from '../presentation/game-session'
+import { announceTreasureOpened, treasureRewardScene } from '../presentation/game-feel'
 
 const route = useRoute()
 const router = useRouter()
@@ -32,7 +33,7 @@ async function restart() {
     const topic = subject?.topics.find(({ id }) => id === gameSession.value?.topicId)
     if (!subject || !topic) throw new Error('El contenido original ya no está en el catálogo.')
     const content = await contentService.loadPackage(subject, topic)
-    restartActiveGame(content.exercises.filter(isSingleChoiceExercise))
+    restartActiveGame(content.exercises.filter(isGameExercise))
     await router.push({ name: 'play', params: route.params })
   } catch (caught) {
     error.value = caught instanceof Error ? caught.message : 'No se pudo reiniciar la partida.'
@@ -42,9 +43,11 @@ async function restart() {
 }
 
 function openChest(treasureId: TreasureId) {
+  if (treasureRewardScene.value) return
   treasureError.value = ''
   try {
     openActiveTreasure(treasureId)
+    announceTreasureOpened(treasureId)
   } catch (caught) {
     treasureError.value = caught instanceof Error ? caught.message : 'No se pudo abrir el cofre.'
   }

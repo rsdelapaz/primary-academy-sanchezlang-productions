@@ -43,7 +43,7 @@ const strategies: { [Id in GameModeId]: GameModeStrategy<GameModeStates[Id]> } =
       description: 'Responde, suma puntos y aprende con cada reto.',
       illustration: 'lightning',
       quickPlayDefault: true,
-      compatibleExerciseTypes: ['single_choice'],
+      compatibleExerciseTypes: ['single_choice', 'typed_answer'],
     },
     createState: () => ({ modeId: 'classic' }),
     applyAnswer: (state) => state,
@@ -55,7 +55,7 @@ const strategies: { [Id in GameModeId]: GameModeStrategy<GameModeStates[Id]> } =
       description: 'Gana llaves con tus aciertos y elige qué cofres abrir.',
       illustration: 'treasure',
       quickPlayDefault: false,
-      compatibleExerciseTypes: ['single_choice'],
+      compatibleExerciseTypes: ['single_choice', 'typed_answer'],
     },
     createState: () => ({ modeId: 'treasure', keysAvailable: 0, openedTreasures: [] }),
     applyAnswer: (state, evaluation) => evaluation.correct

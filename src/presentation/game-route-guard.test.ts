@@ -53,7 +53,10 @@ describe('guardas de acceso a rutas de partida', () => {
       kind: 'redirect', name: 'play',
       params: { subjectId: 'sample-subject', topicId: 'sample-topic', modeId: 'classic' },
     })
-    const answered = answerQuestion(active, exercise.id, exercise.correctOptionId)
+    const answered = answerQuestion(active, exercise.id, {
+      type: 'single_choice',
+      optionId: exercise.correctOptionId,
+    })
     const completed = advanceQuestion(answered, '2026-01-01T00:00:00.000Z')
     expect(guardGameRoute(request, completed)).toEqual({ kind: 'allow' })
   })

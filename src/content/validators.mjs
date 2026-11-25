@@ -83,7 +83,22 @@ export function createContentValidators(manifestSchema, packageSchema) {
           throw new Error(`Orden de respuesta inválido en el ejercicio: ${exercise.id}`)
         }
       }
-      if (exercise.type !== 'single_choice' && exercise.type !== 'flashcard') {
+      if (exercise.type === 'typed_answer') {
+        const caseSensitive = exercise.caseSensitive === true
+        const normalizedAnswers = exercise.acceptedAnswers.map((answer) => {
+          const normalized = answer.normalize('NFC').trim()
+          return caseSensitive ? normalized : normalized.toLowerCase()
+        })
+        if (normalizedAnswers.some((answer) => answer.length === 0)) {
+          throw new Error(`Respuesta aceptada vacía en el ejercicio: ${exercise.id}`)
+        }
+        if (new Set(normalizedAnswers).size !== normalizedAnswers.length) {
+          throw new Error(`Respuestas aceptadas duplicadas tras normalización en el ejercicio: ${exercise.id}`)
+        }
+      }
+      if (exercise.type !== 'single_choice' &&
+        exercise.type !== 'typed_answer' &&
+        exercise.type !== 'flashcard') {
         throw new Error(`Tipo de ejercicio no operativo: ${exercise.type}`)
       }
     }

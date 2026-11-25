@@ -43,15 +43,18 @@ Cada ejercicio comparte `id`, `type`, `conceptId`, `learningObjectiveIds`, `diff
 
 `single_choice`, usado por las modalidades recreativas, requiere entre 2 y 8 `options` (`id`, `text`) y un `correctOptionId` que referencia una opción existente. Los IDs de opciones no se repiten en un ejercicio. Ordenar las opciones en el JSON no fija su presentación: el motor genera el orden al iniciar la pregunta.
 
+`typed_answer`, también disponible en las dos modalidades recreativas, requiere `acceptedAnswers` con una o más respuestas no vacías; `caseSensitive` es opcional y por defecto es `false`. Las variantes no pueden duplicarse tras normalizar Unicode a NFC y quitar espacios exteriores; cuando no es sensible a mayúsculas, también se comparan sin distinguirlas. La evaluación conserva la respuesta escrita original, pero no corrige aproximaciones ni ignora acentos, signos u ortografía.
+
 `flashcard` requiere `front` y `back` y se presenta en el área de autoestudio, sin evaluación objetiva ni puntuación. Un paquete puede mezclar `single_choice` y `flashcard`; cada experiencia selecciona únicamente los ejercicios de su tipo compatible.
 
 ### Tipos contemplados por el contrato
 
-Solo `single_choice` y `flashcard` tienen presentación operativa. Las siguientes estructuras se validan para preparar evolución; el loader las rechaza como no operativas:
+`single_choice`, `typed_answer` y `flashcard` son operativos. Los paquetes pueden combinar los tres; la configuración filtra por modalidad, formato de respuesta, dificultad y duración antes de iniciar. El formato mixto selecciona ejercicios sin reemplazo y muestra la distribución disponible cuando el banco no permite un reparto equilibrado.
+
+Las siguientes estructuras se validan para preparar evolución; el loader las rechaza como no operativas:
 
 - `multiple_choice`: `options` y `correctOptionIds` no vacíos, referidos a opciones existentes.
 - `true_false`: `correctValue` booleano.
-- `typed_answer`: `acceptedAnswers` y `caseSensitive` opcional.
 - `fill_blank`: `textWithBlanks` con marcadores `{{id}}` y una lista `blanks` con respuestas aceptadas por marcador.
 - `matching`: pares estables con `left` y `right`.
 - `ordering`: elementos identificados y `correctOrder` que contiene exactamente esos IDs.

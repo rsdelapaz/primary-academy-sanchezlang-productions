@@ -44,15 +44,19 @@ function treasureState(game: ReturnType<typeof createTreasureGame>) {
 function answerCorrectly(game: ReturnType<typeof createTreasureGame>) {
   const question = getCurrentQuestion(game)
   if (!question) throw new Error('Expected a current question.')
-  return answerQuestion(game, question.exercise.id, question.exercise.correctOptionId)
+  const response = question.type === 'single_choice'
+    ? { type: 'single_choice' as const, optionId: question.exercise.correctOptionId }
+    : { type: 'typed_answer' as const, text: question.exercise.acceptedAnswers[0] }
+  return answerQuestion(game, question.exercise.id, response)
 }
 
 describe('Misión del Tesoro', () => {
   it('awards one key for each correct answer and neither keys nor points for errors', () => {
     let game = createTreasureGame()
     const first = getCurrentQuestion(game)!
+    if (first.type !== 'single_choice') throw new Error('Expected a single-choice question.')
     const wrongId = first.optionIds.find((id) => id !== first.exercise.correctOptionId)!
-    game = answerQuestion(game, first.exercise.id, wrongId)
+    game = answerQuestion(game, first.exercise.id, { type: 'single_choice', optionId: wrongId })
     expect(treasureState(game).keysAvailable).toBe(0)
     expect(game.score).toBe(0)
 
@@ -62,12 +66,24 @@ describe('Misión del Tesoro', () => {
     expect(game.score).toBe(100)
   })
 
-  it('calculates the three chest prices from the configured question count', () => {
-    expect([5, 7, 10].map((count) => [
+  it('prices every chest so a perfect game can open all rewards', () => {
+    expect([5, 7, 10, 20].map((count) => [
       getTreasureCost('star-crystal', count),
       getTreasureCost('golden-compass', count),
       getTreasureCost('moon-crown', count),
-    ])).toEqual([[1, 2, 3], [2, 3, 5], [2, 4, 6]])
+    ])).toEqual([[1, 2, 2], [2, 3, 2], [2, 3, 5], [4, 6, 10]])
+    expect([3, 5, 10, 20].map((count) => [
+      getTreasureCost('star-crystal', count),
+      getTreasureCost('golden-compass', count),
+      getTreasureCost('moon-crown', count),
+    ].reduce((total, cost) => total + cost, 0))).toEqual([3, 5, 10, 20])
+  })
+
+  it('offers one-key chests for short sessions and rejects unavailable ones', () => {
+    expect(getTreasureCost('star-crystal', 1)).toBe(1)
+    expect(getTreasureCost('star-crystal', 2)).toBe(1)
+    expect(getTreasureCost('golden-compass', 2)).toBe(1)
+    expect(() => getTreasureCost('moon-crown', 2)).toThrow(/no está disponible/)
   })
 
   it('allows opening only during feedback, rejects insufficient keys and prevents duplicates', () => {
@@ -96,7 +112,7 @@ describe('Misión del Tesoro', () => {
     const opened = openTreasure(game, 'moon-crown')
     expect(opened.result).toEqual(result)
     expect(opened.score).toBe(500)
-    expect(treasureState(opened).keysAvailable).toBe(2)
+    expect(treasureState(opened).keysAvailable).toBe(3)
 
     const restarted = restartGame(opened, exercises, 'treasure-restarted', () => 0)
     expect(restarted.modeId).toBe('treasure')
@@ -104,9 +120,11 @@ describe('Misión del Tesoro', () => {
     expect(treasureState(restarted)).toEqual({ modeId: 'treasure', keysAvailable: 0, openedTreasures: [] })
   })
 
-  it('registers treasure compatibility with single-choice exercises', () => {
+  it('registers both game modes for the two operational answer types', () => {
     expect(isGameModeCompatible('treasure', 'single_choice')).toBe(true)
     expect(isGameModeCompatible('classic', 'single_choice')).toBe(true)
+    expect(isGameModeCompatible('treasure', 'typed_answer')).toBe(true)
+    expect(isGameModeCompatible('classic', 'typed_answer')).toBe(true)
     expect(isGameModeCompatible('treasure', 'matching')).toBe(false)
   })
 })

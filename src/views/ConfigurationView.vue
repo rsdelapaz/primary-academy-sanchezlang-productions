@@ -1,27 +1,32 @@
 <script setup lang="ts">
-import { computed, onMounted, ref, shallowRef } from 'vue'
+import { computed, onMounted, ref, shallowRef, watch } from 'vue'
 import { RouterLink, useRoute, useRouter } from 'vue-router'
 import {
   isFlashcardExercise,
+  isGameExercise,
   isSingleChoiceExercise,
+  isTypedAnswerExercise,
   type ExerciseBase,
   type ContentManifest,
   type ContentPackage,
   type ContentSubject,
   type ContentTopicReference,
-  type SingleChoiceExercise,
+  type GameExercise,
 } from '../domain/content'
 import {
   DURATION_PRESETS,
   GAME_MODES,
   QUICK_PLAY_COUNT,
+  getMixedExerciseDistribution,
   getEligibleExercises,
   getPresetCount,
   type DifficultyFilter,
   type DurationPreset,
+  type GameAnswerFormat,
   type GameConfiguration,
   type GameModeId,
 } from '../domain/game'
+import type { ActivityConfiguration } from '../domain/activity-configuration'
 import { getDefaultGameModeId, isGameModeCompatible } from '../domain/game-modes'
 import { contentService } from '../content/service'
 import { startGame } from '../presentation/game-session'
@@ -40,6 +45,7 @@ const subjectId = ref('')
 const topicId = ref('')
 const experience = ref<Experience>('play')
 const modeId = ref<GameModeId | null>(null)
+const answerFormat = ref<GameAnswerFormat>('selection')
 const difficulty = ref<DifficultyFilter>('beginner')
 const duration = ref<DurationPreset | 'custom'>('medium')
 const customCount = ref(QUICK_PLAY_COUNT)
@@ -49,44 +55,96 @@ const selectedSubject = computed(() => manifest.value?.subjects.find(({ id }) =>
 const selectedTopic = computed(() => selectedSubject.value?.topics.find(({ id }) => id === topicId.value) ?? null)
 const selectedMode = computed(() => GAME_MODES.find(({ id }) => id === modeId.value) ?? null)
 const isLoading = computed(() => loadingCatalog.value || loadingBank.value)
+const modeCompatibleExercises = computed<GameExercise[]>(() => {
+  const mode = modeId.value
+  if (!mode) return []
+  return (content.value?.exercises ?? []).filter((exercise): exercise is GameExercise =>
+    isGameExercise(exercise) && isGameModeCompatible(mode, exercise.type),
+  )
+})
+const availableAnswerFormats = computed(() => {
+  const hasSelection = modeCompatibleExercises.value.some(isSingleChoiceExercise)
+  const hasWritten = modeCompatibleExercises.value.some(isTypedAnswerExercise)
+  const options: { id: GameAnswerFormat; title: string; description: string }[] = []
+  if (hasSelection) {
+    options.push({ id: 'selection', title: 'Selección', description: 'Elige entre varias respuestas.' })
+  }
+  if (hasSelection && hasWritten) {
+    options.push({ id: 'mixed', title: 'Mixto', description: 'Combina respuestas elegidas y escritas.' })
+  }
+  if (hasWritten) {
+    options.push({ id: 'written', title: 'Sin pistas', description: 'Escribe la respuesta de memoria.' })
+  }
+  return options
+})
 const compatibleExercises = computed<ExerciseBase[]>(() => {
   const exercises = content.value?.exercises ?? []
   if (experience.value === 'study') return exercises.filter(isFlashcardExercise)
-  const mode = modeId.value
-  if (!mode) return []
-  return exercises.filter((exercise): exercise is SingleChoiceExercise =>
-    isSingleChoiceExercise(exercise) && isGameModeCompatible(mode, exercise.type),
-  )
+  return getExercisesForFormat(modeCompatibleExercises.value, answerFormat.value, 'all')
 })
-const availableCount = computed(() => getEligibleExercises(compatibleExercises.value, difficulty.value).length)
+const availableCount = computed(() => experience.value === 'study'
+  ? getEligibleExercises(compatibleExercises.value, difficulty.value).length
+  : getExercisesForFormat(modeCompatibleExercises.value, answerFormat.value, difficulty.value).length)
 const selectedCount = computed(() => duration.value === 'custom' ? customCount.value : getPresetCount(duration.value))
 const activityNoun = computed(() => experience.value === 'study' ? 'tarjetas' : 'retos')
+const mixedDistribution = computed(() => {
+  if (!Number.isSafeInteger(selectedCount.value) || selectedCount.value < 1) {
+    return { singleChoice: 0, typedAnswer: 0 }
+  }
+  const exercises = getEligibleExercises(modeCompatibleExercises.value, difficulty.value)
+  return getMixedExerciseDistribution(exercises, selectedCount.value)
+})
+const mixedSelectedCount = computed(() => mixedDistribution.value.singleChoice + mixedDistribution.value.typedAnswer)
+const selectedFormatTitle = computed(() =>
+  availableAnswerFormats.value.find(({ id }) => id === answerFormat.value)?.title ?? 'Selección',
+)
 const availableDifficulties = computed(() => {
   const choices = [
     { id: 'beginner' as const, title: 'Inicial', icon: '🌱' },
     { id: 'intermediate' as const, title: 'Intermedia', icon: '🧭' },
     { id: 'advanced' as const, title: 'Avanzada', icon: '🚀' },
   ].filter(({ id }) => countForDifficulty(id) > 0)
-  return choices.length > 1 ? [...choices, { id: 'all' as const, title: 'Todas', icon: '✨' }] : choices
+  return choices.length > 1 || (choices.length === 0 && countForDifficulty('all') > 0)
+    ? [...choices, { id: 'all' as const, title: 'Todas', icon: '✨' }]
+    : choices
 })
 const availableDurations = computed(() => DURATION_PRESETS.filter(({ count }) => count <= availableCount.value))
 const canStart = computed(() =>
   Number.isSafeInteger(selectedCount.value) && selectedCount.value > 0 &&
   selectedCount.value <= availableCount.value && Boolean(selectedSubject.value && selectedTopic.value) &&
   (experience.value === 'study' || Boolean(selectedMode.value)) &&
+  (experience.value === 'study' || availableAnswerFormats.value.some(({ id }) => id === answerFormat.value)) &&
+  (experience.value !== 'play' || answerFormat.value !== 'mixed' ||
+    (selectedCount.value >= 2 && mixedDistribution.value.singleChoice > 0 &&
+      mixedDistribution.value.typedAnswer > 0 && mixedSelectedCount.value === selectedCount.value)) &&
   !isLoading.value,
 )
 
 function countForDifficulty(value: DifficultyFilter): number {
-  return getEligibleExercises(compatibleExercises.value, value).length
+  if (experience.value === 'study') return getEligibleExercises(compatibleExercises.value, value).length
+  return getExercisesForFormat(modeCompatibleExercises.value, answerFormat.value, value).length
+}
+
+function getExercisesForFormat(
+  exercises: readonly GameExercise[],
+  format: GameAnswerFormat,
+  difficultyFilter: DifficultyFilter,
+): GameExercise[] {
+  const eligible = getEligibleExercises(exercises, difficultyFilter)
+  if (format === 'selection') return eligible.filter(isSingleChoiceExercise)
+  if (format === 'written') return eligible.filter(isTypedAnswerExercise)
+  const hasSelection = eligible.some(isSingleChoiceExercise)
+  const hasWritten = eligible.some(isTypedAnswerExercise)
+  return hasSelection && hasWritten ? eligible : []
 }
 
 function normalizeSettings(initial = false) {
   const levels = (['beginner', 'intermediate', 'advanced'] as const)
     .filter((level) => countForDifficulty(level) > 0)
+  const allAvailable = countForDifficulty('all') > 0
   if (levels.length === 1) difficulty.value = levels[0]
-  else if (difficulty.value !== 'all' && !levels.includes(difficulty.value)) {
-    difficulty.value = levels[0] ?? 'beginner'
+  else if (difficulty.value === 'all' ? !allAvailable : !levels.includes(difficulty.value)) {
+    difficulty.value = levels[0] ?? (allAvailable ? 'all' : 'beginner')
   }
 
   const count = countForDifficulty(difficulty.value)
@@ -97,11 +155,13 @@ function normalizeSettings(initial = false) {
         ? 'short'
         : 'custom'
     customCount.value = Math.min(QUICK_PLAY_COUNT, count)
+    if (answerFormat.value === 'mixed' && count >= 2) customCount.value = Math.max(2, customCount.value)
     return
   }
 
   if (duration.value === 'custom') {
-    customCount.value = Math.min(Math.max(1, customCount.value), count)
+    const minimum = answerFormat.value === 'mixed' ? 2 : 1
+    customCount.value = Math.min(Math.max(minimum, customCount.value), count)
     return
   }
   const currentPreset = DURATION_PRESETS.find(({ id }) => id === duration.value)
@@ -113,6 +173,13 @@ function normalizeSettings(initial = false) {
     customCount.value = Math.min(QUICK_PLAY_COUNT, count)
   }
 }
+
+watch(availableAnswerFormats, (formats) => {
+  if (experience.value !== 'play' || formats.length === 0 ||
+    formats.some(({ id }) => id === answerFormat.value)) return
+  answerFormat.value = formats[0].id
+  normalizeSettings(true)
+})
 
 async function loadSelectedBank(initial = false) {
   const subject = selectedSubject.value
@@ -179,6 +246,12 @@ async function selectMode(value: GameModeId) {
   await syncRoute()
 }
 
+function selectAnswerFormat(value: GameAnswerFormat) {
+  if (!availableAnswerFormats.value.some(({ id }) => id === value)) return
+  answerFormat.value = value
+  normalizeSettings(true)
+}
+
 async function selectExperience(value: Experience) {
   if (experience.value === value) return
   experience.value = value
@@ -193,7 +266,10 @@ function selectDifficulty(value: DifficultyFilter) {
 
 function selectDuration(value: DurationPreset | 'custom') {
   duration.value = value
-  if (value === 'custom') customCount.value = Math.min(QUICK_PLAY_COUNT, availableCount.value)
+  if (value === 'custom') {
+    const minimum = answerFormat.value === 'mixed' ? 2 : 1
+    customCount.value = Math.min(Math.max(minimum, QUICK_PLAY_COUNT), availableCount.value)
+  }
 }
 
 async function initialize() {
@@ -227,17 +303,18 @@ async function begin() {
   if (!canStart.value || !subject || !topic || !bank) return
   startError.value = ''
   try {
-    const configuration: GameConfiguration = {
+    const activityConfiguration: ActivityConfiguration = {
       duration: duration.value === 'custom'
         ? { kind: 'custom', questionCount: customCount.value }
         : { kind: 'preset', preset: duration.value, questionCount: getPresetCount(duration.value) },
       difficulty: difficulty.value,
     }
     if (experience.value === 'study') {
-      startStudy(subject.id, topic.id, bank, configuration)
+      startStudy(subject.id, topic.id, bank, activityConfiguration)
       await router.push({ name: 'study', params: { subjectId: subject.id, topicId: topic.id } })
     } else {
       if (!mode) return
+      const configuration: GameConfiguration = { ...activityConfiguration, answerFormat: answerFormat.value }
       startGame(subject.id, topic.id, bank, mode.id, configuration)
       await router.push({
         name: 'play',
@@ -380,6 +457,53 @@ onMounted(() => { void initialize() })
           <div v-else class="selection-summary">
             <span>Experiencia</span><strong>Tarjetas de memoria</strong>
           </div>
+
+          <section
+            v-if="experience === 'play' && availableAnswerFormats.length > 1"
+            class="selection-section"
+            aria-labelledby="answer-format-title"
+          >
+            <h2 id="answer-format-title">¿Cómo responderás?</h2>
+            <div class="selection-card-grid" role="group" aria-label="Elige el formato de respuesta">
+              <button
+                v-for="format in availableAnswerFormats"
+                :key="format.id"
+                class="selection-card"
+                :class="{ active: answerFormat === format.id }"
+                type="button"
+                :aria-pressed="answerFormat === format.id"
+                :disabled="loadingBank"
+                @click="selectAnswerFormat(format.id)"
+              >
+                <span class="selection-card-icon" aria-hidden="true">
+                  {{ format.id === 'selection' ? '◉' : format.id === 'mixed' ? '⇄' : '✎' }}
+                </span>
+                <strong>{{ format.title }}</strong>
+                <small>{{ format.description }}</small>
+                <small v-if="format.id === 'mixed' && difficulty === 'advanced'" class="format-recommendation">
+                  Recomendado para dificultad avanzada
+                </small>
+              </button>
+            </div>
+            <p v-if="answerFormat === 'mixed'" class="configuration-note" role="status">
+              <span v-if="selectedCount < 2">El formato mixto requiere al menos 2 retos.</span>
+              <span v-else>
+                Distribución disponible: {{ mixedDistribution.singleChoice }} de selección y
+                {{ mixedDistribution.typedAnswer }} escritas para {{ selectedCount }} retos.
+              </span>
+              <span v-if="selectedCount >= 2 &&
+                (mixedDistribution.singleChoice === 0 || mixedDistribution.typedAnswer === 0)">
+                El banco no ofrece ambos tipos en esta dificultad; elige otra dificultad o formato.
+              </span>
+              <span v-else-if="selectedCount >= 2 && mixedSelectedCount < selectedCount">
+                El banco solo permite {{ mixedSelectedCount }}; reduce la duración para empezar.
+              </span>
+            </p>
+          </section>
+          <div v-else-if="experience === 'play'" class="selection-summary">
+            <span>Formato</span><strong>{{ selectedFormatTitle }}</strong>
+          </div>
+
         </div>
 
         <aside class="configuration-preview" aria-live="polite">
@@ -389,6 +513,7 @@ onMounted(() => { void initialize() })
           <div class="preview-details">
             <span>{{ selectedCount }} {{ activityNoun }}</span>
             <span>{{ difficulty === 'beginner' ? 'Inicial' : difficulty === 'intermediate' ? 'Intermedia' : difficulty === 'advanced' ? 'Avanzada' : 'Todas' }}</span>
+            <span v-if="experience === 'play'">{{ selectedFormatTitle }}</span>
           </div>
           <p v-if="content" class="available-count">{{ availableCount }} {{ activityNoun }} compatibles</p>
         </aside>
@@ -462,7 +587,7 @@ onMounted(() => { void initialize() })
             v-model.number="customCount"
             class="select-control"
             type="number"
-            min="1"
+            :min="answerFormat === 'mixed' ? 2 : 1"
             :max="availableCount"
           />
           <p class="configuration-note">

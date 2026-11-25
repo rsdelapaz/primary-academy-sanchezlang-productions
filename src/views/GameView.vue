@@ -2,9 +2,21 @@
 import { computed, ref } from 'vue'
 import { RouterLink, useRoute, useRouter } from 'vue-router'
 import TreasureBoard from '../components/TreasureBoard.vue'
-import { getCurrentQuestion, getGameStats } from '../domain/game'
+import TypedAnswerInput from '../components/TypedAnswerInput.vue'
+import {
+  getCurrentQuestion,
+  getGameStats,
+  type GameAnswerResponse,
+  type SessionAnswer,
+} from '../domain/game'
 import type { TreasureId } from '../domain/treasure'
 import { abandonActiveGame, advanceActiveQuestion, answerActiveQuestion, gameSession, openActiveTreasure } from '../presentation/game-session'
+import {
+  announceGameAnswer,
+  announceGameFinished,
+  announceTreasureOpened,
+  treasureRewardScene,
+} from '../presentation/game-feel'
 
 const route = useRoute()
 const router = useRouter()
@@ -17,31 +29,68 @@ const stats = computed(() => gameSession.value ? getGameStats(gameSession.value)
 const treasureState = computed(() => gameSession.value?.modeState.modeId === 'treasure'
   ? gameSession.value.modeState
   : null)
-const selectedOptionId = computed(() => {
+const currentAnswer = computed<SessionAnswer | undefined>(() => {
   const game = gameSession.value
   const question = current.value
-  if (!game || !question || !answered.value) return null
-  return game.answers.find((answer) => answer.exerciseId === question.exercise.id)?.selectedOptionId ?? null
+  if (!game || !question || !answered.value) return undefined
+  return game.answers.find((answer) => answer.exerciseId === question.exercise.id)
 })
-const options = computed(() => current.value?.optionIds.map((id) => ({
-  id,
-  text: current.value?.exercise.options.find((option) => option.id === id)?.text ?? '',
-})) ?? [])
+const selectedOptionId = computed(() => {
+  const answer = currentAnswer.value
+  return answer?.type === 'single_choice' ? answer.selectedOptionId : null
+})
+const options = computed(() => {
+  const question = current.value
+  if (!question || question.type !== 'single_choice') return []
+  return question.optionIds.map((id) => ({
+    id,
+    text: question.exercise.options.find((option) => option.id === id)?.text ?? '',
+  }))
+})
 
-function choose(optionId: string) {
-  if (!current.value) return
+function submitAnswer(response: GameAnswerResponse) {
+  const question = current.value
+  if (!question) return
   try {
     error.value = ''
-    answerActiveQuestion(current.value.exercise.id, optionId)
+    const previous = gameSession.value
+    const updated = answerActiveQuestion(question.exercise.id, response)
+    const answer = updated.answers[updated.answers.length - 1]
+    if (!answer) throw new Error('No se pudo leer el resultado de la respuesta.')
+    const previousKeys = previous?.modeState.modeId === 'treasure' ? previous.modeState.keysAvailable : 0
+    const currentKeys = updated.modeState.modeId === 'treasure' ? updated.modeState.keysAvailable : 0
+    announceGameAnswer({
+      correct: answer.correct,
+      points: answer.points,
+      streak: getGameStats(updated).currentStreak,
+      keyEarned: currentKeys > previousKeys,
+    })
   } catch (caught) {
     error.value = caught instanceof Error ? caught.message : 'No se pudo evaluar la respuesta.'
   }
+}
+
+function choose(optionId: string) {
+  if (current.value?.type !== 'single_choice') return
+  submitAnswer({ type: 'single_choice', optionId })
+}
+
+function submitWrittenAnswer(text: string) {
+  if (current.value?.type !== 'typed_answer') return
+  submitAnswer({ type: 'typed_answer', text })
 }
 
 async function nextQuestion() {
   try {
     const updated = advanceActiveQuestion()
     if (updated.status === 'completed') {
+      if (updated.result) {
+        announceGameFinished({
+          score: updated.result.score,
+          correctCount: updated.result.correctCount,
+          totalQuestions: updated.result.totalQuestions,
+        })
+      }
       await router.push({ name: 'results', params: route.params })
     }
   } catch (caught) {
@@ -64,9 +113,11 @@ function requestAbandon() {
 }
 
 function openChest(treasureId: TreasureId) {
+  if (treasureRewardScene.value) return
   treasureError.value = ''
   try {
     openActiveTreasure(treasureId)
+    announceTreasureOpened(treasureId)
   } catch (caught) {
     treasureError.value = caught instanceof Error ? caught.message : 'No se pudo abrir el cofre.'
   }
@@ -100,14 +151,6 @@ function openChest(treasureId: TreasureId) {
       <span :style="{ width: `${stats?.progressPercent ?? 0}%` }"></span>
     </div>
     <p class="progress-label">{{ stats?.answeredCount }} de {{ stats?.totalQuestions }} retos completados</p>
-    <TreasureBoard
-      v-if="treasureState"
-      :state="treasureState"
-      :question-count="gameSession.questions.length"
-      :can-open="gameSession.phase === 'feedback'"
-      @open="openChest"
-    />
-    <p v-if="treasureError" class="error" role="alert">{{ treasureError }}</p>
     <article class="card question-card">
       <p
         v-if="current.exercise.context"
@@ -119,6 +162,7 @@ function openChest(treasureId: TreasureId) {
         {{ current.exercise.prompt }}
       </h1>
       <div
+        v-if="current.type === 'single_choice'"
         class="options"
         role="group"
         aria-label="Opciones de respuesta"
@@ -130,8 +174,8 @@ function openChest(treasureId: TreasureId) {
           class="option"
           :class="{
             selected: selectedOptionId === option.id,
-            correct: answered && option.id === current.exercise.correctOptionId,
-            wrong: answered && selectedOptionId === option.id && option.id !== current.exercise.correctOptionId,
+            correct: answered && current.type === 'single_choice' && option.id === current.exercise.correctOptionId,
+            wrong: answered && selectedOptionId === option.id && current.type === 'single_choice' && option.id !== current.exercise.correctOptionId,
           }"
           :disabled="answered"
           @click="choose(option.id)"
@@ -142,7 +186,7 @@ function openChest(treasureId: TreasureId) {
           >{{ String.fromCharCode(65 + index) }}</span>
           {{ option.text }}
           <span
-            v-if="answered && option.id === current.exercise.correctOptionId"
+            v-if="answered && current.type === 'single_choice' && option.id === current.exercise.correctOptionId"
             class="option-state"
           ><span aria-hidden="true">✓ </span>Respuesta correcta</span>
           <span
@@ -151,13 +195,23 @@ function openChest(treasureId: TreasureId) {
           ><span aria-hidden="true">× </span>Tu respuesta</span>
         </button>
       </div>
+      <TypedAnswerInput
+        v-else
+        :key="current.exercise.id"
+        :disabled="answered"
+        @submit="submitWrittenAnswer"
+      />
       <div
         v-if="answered"
         class="feedback"
-        :class="{ success: selectedOptionId === current.exercise.correctOptionId }"
+        :class="{ success: currentAnswer?.correct }"
         role="status"
       >
-        <strong>{{ selectedOptionId === current.exercise.correctOptionId ? '¡Muy bien! Sigue explorando.' : 'Casi lo tienes. Aprende con este detalle.' }}</strong>
+        <strong>{{ currentAnswer?.correct ? '¡Muy bien! Sigue explorando.' : 'Casi lo tienes. Aprende con este detalle.' }}</strong>
+        <template v-if="current.type === 'typed_answer' && currentAnswer?.type === 'typed_answer'">
+          <p><strong>Tu respuesta:</strong> <span class="submitted-answer">{{ currentAnswer.submittedAnswer }}</span></p>
+          <p><strong>Respuesta aceptada:</strong> {{ current.exercise.acceptedAnswers.join(' / ') }}</p>
+        </template>
         <p>{{ current.exercise.explanation }}</p>
         <button
           class="button primary"
@@ -175,6 +229,15 @@ function openChest(treasureId: TreasureId) {
         {{ error }}
       </p>
     </article>
+    <TreasureBoard
+      v-if="treasureState"
+      :state="treasureState"
+      :question-count="gameSession.questions.length"
+      :can-open="gameSession.phase === 'feedback'"
+      compact
+      @open="openChest"
+    />
+    <p v-if="treasureError" class="error" role="alert">{{ treasureError }}</p>
   </section>
   <section
     v-else

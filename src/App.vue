@@ -1,6 +1,8 @@
 <script setup lang="ts">
 import { computed } from 'vue'
 import { RouterLink, RouterView } from 'vue-router'
+import GameFeelLayer from './components/GameFeelLayer.vue'
+import SoundToggle from './components/SoundToggle.vue'
 import ThemeSelector from './components/ThemeSelector.vue'
 import { useThemePreference } from './presentation/theme-preference'
 
@@ -22,11 +24,15 @@ const currentTheme = computed(() => themes.find((theme) => theme.id === activeTh
         >R</span>
         <span>RetoNautas</span>
       </RouterLink>
-      <ThemeSelector />
+      <div class="topbar-controls">
+        <SoundToggle />
+        <ThemeSelector />
+      </div>
     </header>
     <main>
       <RouterView />
     </main>
+    <GameFeelLayer />
     <span class="sr-only" aria-live="polite">{{ currentTheme.name }}</span>
   </div>
 </template>

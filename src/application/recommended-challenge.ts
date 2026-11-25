@@ -35,6 +35,7 @@ export async function findRecommendedChallenge(
           ? { kind: 'preset', preset: preset.id, questionCount }
           : { kind: 'custom', questionCount },
         difficulty: 'beginner',
+        answerFormat: 'selection',
       }
 
       return { subject, topic, content, modeId: getDefaultGameModeId(), configuration }
