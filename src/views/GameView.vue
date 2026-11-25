@@ -1,14 +1,16 @@
 <script setup lang="ts">
 import { computed, ref } from 'vue'
 import { RouterLink, useRoute, useRouter } from 'vue-router'
-import { getCurrentQuestion } from '../domain/game'
+import { getCurrentQuestion, getGameStats } from '../domain/game'
 import { abandonActiveGame, advanceActiveQuestion, answerActiveQuestion, gameSession } from '../presentation/game-session'
 
 const route = useRoute()
 const router = useRouter()
 const error = ref('')
+const abandonDialog = ref<HTMLDialogElement | null>(null)
 const current = computed(() => gameSession.value ? getCurrentQuestion(gameSession.value) : undefined)
 const answered = computed(() => gameSession.value?.phase === 'feedback')
+const stats = computed(() => gameSession.value ? getGameStats(gameSession.value) : null)
 const selectedOptionId = computed(() => {
   const game = gameSession.value
   const question = current.value
@@ -44,10 +46,15 @@ async function nextQuestion() {
 async function abandon() {
   try {
     abandonActiveGame()
+    abandonDialog.value?.close()
     await router.replace({ name: 'home' })
   } catch (caught) {
     error.value = caught instanceof Error ? caught.message : 'No se pudo abandonar la partida.'
   }
+}
+
+function requestAbandon() {
+  abandonDialog.value?.showModal()
 }
 </script>
 
@@ -62,17 +69,22 @@ async function abandon() {
       <button
         class="text-button"
         type="button"
-        @click="abandon"
+        @click="requestAbandon"
       >
         Abandonar
       </button>
+    </div>
+    <div class="game-metrics" aria-label="Tu partida">
+      <div class="metric"><span>⭐ Puntos</span><strong>{{ stats?.score }}</strong></div>
+      <div class="metric"><span>🔥 Racha actual</span><strong>{{ stats?.currentStreak }}</strong></div>
     </div>
     <div
       class="progress"
       aria-hidden="true"
     >
-      <span :style="{ width: `${((gameSession.currentQuestionIndex + (answered ? 1 : 0)) / gameSession.questions.length) * 100}%` }"></span>
+      <span :style="{ width: `${stats?.progressPercent ?? 0}%` }"></span>
     </div>
+    <p class="progress-label">{{ stats?.answeredCount }} de {{ stats?.totalQuestions }} retos completados</p>
     <article class="card question-card">
       <p
         v-if="current.exercise.context"
@@ -106,6 +118,14 @@ async function abandon() {
             aria-hidden="true"
           >{{ String.fromCharCode(65 + index) }}</span>
           {{ option.text }}
+          <span
+            v-if="answered && option.id === current.exercise.correctOptionId"
+            class="option-state"
+          ><span aria-hidden="true">✓ </span>Respuesta correcta</span>
+          <span
+            v-else-if="answered && option.id === selectedOptionId"
+            class="option-state"
+          ><span aria-hidden="true">× </span>Tu respuesta</span>
         </button>
       </div>
       <div
@@ -143,4 +163,16 @@ async function abandon() {
       :to="{ name: 'home' }"
     >Ir al inicio</RouterLink>
   </section>
+  <dialog ref="abandonDialog" class="confirm-dialog" aria-labelledby="abandon-title">
+    <h2 id="abandon-title">¿Quieres salir del reto?</h2>
+    <p>La partida actual se cerrará. Puedes volver a empezar cuando quieras.</p>
+    <div class="confirm-actions">
+      <button class="button secondary" type="button" autofocus @click="abandonDialog?.close()">
+        Seguir jugando
+      </button>
+      <button class="button primary" type="button" @click="abandon">
+        Salir al inicio
+      </button>
+    </div>
+  </dialog>
 </template>

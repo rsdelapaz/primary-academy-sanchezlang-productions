@@ -1,35 +1,4116 @@
 {
   "schemaVersion": "1.0.0",
-  "contentVersion": "0.1.0",
+  "contentVersion": "1.0.0",
   "subjectId": "english",
   "topicId": "irregular-verbs",
-  "concepts": [{ "id": "past-tense", "label": "Pasado simple", "description": "Fixture técnico, no aprobado como material pedagógico." }],
-  "learningObjectives": [{ "id": "identify-past-form", "label": "Identificar una forma verbal en pasado." }],
+  "concepts": [
+    {
+      "id": "verb-be",
+      "label": "be",
+      "description": "be / was, were / been — ser, estar."
+    },
+    {
+      "id": "verb-become",
+      "label": "become",
+      "description": "become / became / become — convertirse en."
+    },
+    {
+      "id": "verb-begin",
+      "label": "begin",
+      "description": "begin / began / begun — empezar."
+    },
+    {
+      "id": "verb-break",
+      "label": "break",
+      "description": "break / broke / broken — romper."
+    },
+    {
+      "id": "verb-bring",
+      "label": "bring",
+      "description": "bring / brought / brought — traer."
+    },
+    {
+      "id": "verb-buy",
+      "label": "buy",
+      "description": "buy / bought / bought — comprar."
+    },
+    {
+      "id": "verb-catch",
+      "label": "catch",
+      "description": "catch / caught / caught — atrapar, coger."
+    },
+    {
+      "id": "verb-choose",
+      "label": "choose",
+      "description": "choose / chose / chosen — elegir."
+    },
+    {
+      "id": "verb-come",
+      "label": "come",
+      "description": "come / came / come — venir."
+    },
+    {
+      "id": "verb-cut",
+      "label": "cut",
+      "description": "cut / cut / cut — cortar."
+    },
+    {
+      "id": "verb-do",
+      "label": "do",
+      "description": "do / did / done — hacer."
+    },
+    {
+      "id": "verb-drink",
+      "label": "drink",
+      "description": "drink / drank / drunk — beber."
+    },
+    {
+      "id": "verb-drive",
+      "label": "drive",
+      "description": "drive / drove / driven — conducir."
+    },
+    {
+      "id": "verb-eat",
+      "label": "eat",
+      "description": "eat / ate / eaten — comer."
+    },
+    {
+      "id": "verb-fall",
+      "label": "fall",
+      "description": "fall / fell / fallen — caer."
+    },
+    {
+      "id": "verb-feel",
+      "label": "feel",
+      "description": "feel / felt / felt — sentir."
+    },
+    {
+      "id": "verb-find",
+      "label": "find",
+      "description": "find / found / found — encontrar."
+    },
+    {
+      "id": "verb-fly",
+      "label": "fly",
+      "description": "fly / flew / flown — volar."
+    },
+    {
+      "id": "verb-forget",
+      "label": "forget",
+      "description": "forget / forgot / forgotten — olvidar."
+    },
+    {
+      "id": "verb-get",
+      "label": "get",
+      "description": "get / got / got / gotten — conseguir, obtener."
+    },
+    {
+      "id": "verb-give",
+      "label": "give",
+      "description": "give / gave / given — dar."
+    },
+    {
+      "id": "verb-go",
+      "label": "go",
+      "description": "go / went / gone — ir."
+    },
+    {
+      "id": "verb-have",
+      "label": "have",
+      "description": "have / had / had — tener."
+    },
+    {
+      "id": "verb-hear",
+      "label": "hear",
+      "description": "hear / heard / heard — oír."
+    },
+    {
+      "id": "verb-keep",
+      "label": "keep",
+      "description": "keep / kept / kept — guardar, conservar."
+    },
+    {
+      "id": "verb-know",
+      "label": "know",
+      "description": "know / knew / known — saber, conocer."
+    },
+    {
+      "id": "verb-leave",
+      "label": "leave",
+      "description": "leave / left / left — salir, dejar."
+    },
+    {
+      "id": "verb-lose",
+      "label": "lose",
+      "description": "lose / lost / lost — perder."
+    },
+    {
+      "id": "verb-make",
+      "label": "make",
+      "description": "make / made / made — hacer, fabricar."
+    },
+    {
+      "id": "verb-meet",
+      "label": "meet",
+      "description": "meet / met / met — conocer, encontrarse."
+    },
+    {
+      "id": "verb-pay",
+      "label": "pay",
+      "description": "pay / paid / paid — pagar."
+    },
+    {
+      "id": "verb-put",
+      "label": "put",
+      "description": "put / put / put — poner."
+    },
+    {
+      "id": "verb-read",
+      "label": "read",
+      "description": "read / read / read — leer."
+    },
+    {
+      "id": "verb-ride",
+      "label": "ride",
+      "description": "ride / rode / ridden — montar."
+    },
+    {
+      "id": "verb-run",
+      "label": "run",
+      "description": "run / ran / run — correr."
+    },
+    {
+      "id": "verb-say",
+      "label": "say",
+      "description": "say / said / said — decir."
+    },
+    {
+      "id": "verb-see",
+      "label": "see",
+      "description": "see / saw / seen — ver."
+    },
+    {
+      "id": "verb-sell",
+      "label": "sell",
+      "description": "sell / sold / sold — vender."
+    },
+    {
+      "id": "verb-send",
+      "label": "send",
+      "description": "send / sent / sent — enviar."
+    },
+    {
+      "id": "verb-sing",
+      "label": "sing",
+      "description": "sing / sang / sung — cantar."
+    },
+    {
+      "id": "verb-sit",
+      "label": "sit",
+      "description": "sit / sat / sat — sentarse."
+    },
+    {
+      "id": "verb-sleep",
+      "label": "sleep",
+      "description": "sleep / slept / slept — dormir."
+    },
+    {
+      "id": "verb-speak",
+      "label": "speak",
+      "description": "speak / spoke / spoken — hablar."
+    },
+    {
+      "id": "verb-stand",
+      "label": "stand",
+      "description": "stand / stood / stood — estar de pie."
+    },
+    {
+      "id": "verb-swim",
+      "label": "swim",
+      "description": "swim / swam / swum — nadar."
+    },
+    {
+      "id": "verb-take",
+      "label": "take",
+      "description": "take / took / taken — tomar, llevar."
+    },
+    {
+      "id": "verb-teach",
+      "label": "teach",
+      "description": "teach / taught / taught — enseñar."
+    },
+    {
+      "id": "verb-tell",
+      "label": "tell",
+      "description": "tell / told / told — contar, decir."
+    },
+    {
+      "id": "verb-think",
+      "label": "think",
+      "description": "think / thought / thought — pensar."
+    },
+    {
+      "id": "verb-understand",
+      "label": "understand",
+      "description": "understand / understood / understood — entender."
+    },
+    {
+      "id": "verb-wake",
+      "label": "wake",
+      "description": "wake / woke / woken — despertar(se)."
+    },
+    {
+      "id": "verb-wear",
+      "label": "wear",
+      "description": "wear / wore / worn — llevar puesto."
+    },
+    {
+      "id": "verb-win",
+      "label": "win",
+      "description": "win / won / won — ganar."
+    },
+    {
+      "id": "verb-write",
+      "label": "write",
+      "description": "write / wrote / written — escribir."
+    }
+  ],
+  "learningObjectives": [
+    {
+      "id": "recognise-past-simple",
+      "label": "Recordar la forma del pasado simple."
+    },
+    {
+      "id": "use-past-simple",
+      "label": "Aplicar el pasado simple en frases contextualizadas."
+    },
+    {
+      "id": "use-past-participle",
+      "label": "Usar el participio pasado con have o has."
+    }
+  ],
   "exercises": [
     {
-      "id": "eng-go-001", "type": "single_choice", "conceptId": "past-tense", "learningObjectiveIds": ["identify-past-form"], "difficulty": "beginner", "tags": ["fixture"], "instructionLanguage": "es", "exerciseLanguage": "en", "explanationLanguage": "es",
-      "prompt": "Yesterday, we ___ to the park.", "context": "Selecciona la forma en pasado.", "explanation": "“Went” es la forma de pasado de “go”.",
-      "options": [{ "id": "eng-go-a", "text": "go" }, { "id": "eng-go-b", "text": "went" }, { "id": "eng-go-c", "text": "goed" }, { "id": "eng-go-d", "text": "gone" }], "correctOptionId": "eng-go-b"
+      "id": "eng-iv-go-recognition",
+      "type": "single_choice",
+      "conceptId": "verb-go",
+      "learningObjectiveIds": [
+        "recognise-past-simple"
+      ],
+      "difficulty": "beginner",
+      "tags": [
+        "past-simple",
+        "recognition"
+      ],
+      "instructionLanguage": "es",
+      "exerciseLanguage": "en",
+      "explanationLanguage": "es",
+      "prompt": "What is the past simple of “go”?",
+      "context": "Elige la forma del pasado simple.",
+      "explanation": "El pasado simple de go (ir) es went. Es un verbo irregular.",
+      "options": [
+        {
+          "id": "eng-iv-go-recognition-goed",
+          "text": "goed"
+        },
+        {
+          "id": "eng-iv-go-recognition-went",
+          "text": "went"
+        },
+        {
+          "id": "eng-iv-go-recognition-gone",
+          "text": "gone"
+        },
+        {
+          "id": "eng-iv-go-recognition-go",
+          "text": "go"
+        }
+      ],
+      "correctOptionId": "eng-iv-go-recognition-went"
     },
     {
-      "id": "eng-eat-001", "type": "single_choice", "conceptId": "past-tense", "learningObjectiveIds": ["identify-past-form"], "difficulty": "beginner", "tags": ["fixture"], "instructionLanguage": "es", "exerciseLanguage": "en", "explanationLanguage": "es",
-      "prompt": "She ___ an apple this morning.", "context": "Selecciona la forma en pasado.", "explanation": "“Ate” es la forma de pasado de “eat”.",
-      "options": [{ "id": "eng-eat-a", "text": "eat" }, { "id": "eng-eat-b", "text": "eated" }, { "id": "eng-eat-c", "text": "ate" }, { "id": "eng-eat-d", "text": "eaten" }], "correctOptionId": "eng-eat-c"
+      "id": "eng-iv-eat-recognition",
+      "type": "single_choice",
+      "conceptId": "verb-eat",
+      "learningObjectiveIds": [
+        "recognise-past-simple"
+      ],
+      "difficulty": "beginner",
+      "tags": [
+        "past-simple",
+        "recognition"
+      ],
+      "instructionLanguage": "es",
+      "exerciseLanguage": "en",
+      "explanationLanguage": "es",
+      "prompt": "What is the past simple of “eat”?",
+      "context": "Elige la forma del pasado simple.",
+      "explanation": "El pasado simple de eat (comer) es ate. Es un verbo irregular.",
+      "options": [
+        {
+          "id": "eng-iv-eat-recognition-eat",
+          "text": "eat"
+        },
+        {
+          "id": "eng-iv-eat-recognition-eated",
+          "text": "eated"
+        },
+        {
+          "id": "eng-iv-eat-recognition-eaten",
+          "text": "eaten"
+        },
+        {
+          "id": "eng-iv-eat-recognition-ate",
+          "text": "ate"
+        }
+      ],
+      "correctOptionId": "eng-iv-eat-recognition-ate"
     },
     {
-      "id": "eng-see-001", "type": "single_choice", "conceptId": "past-tense", "learningObjectiveIds": ["identify-past-form"], "difficulty": "beginner", "tags": ["fixture"], "instructionLanguage": "es", "exerciseLanguage": "en", "explanationLanguage": "es",
-      "prompt": "I ___ a rainbow yesterday.", "context": "Selecciona la forma en pasado.", "explanation": "“Saw” es la forma de pasado de “see”.",
-      "options": [{ "id": "eng-see-a", "text": "see" }, { "id": "eng-see-b", "text": "saw" }, { "id": "eng-see-c", "text": "seen" }, { "id": "eng-see-d", "text": "seed" }], "correctOptionId": "eng-see-b"
+      "id": "eng-iv-see-recognition",
+      "type": "single_choice",
+      "conceptId": "verb-see",
+      "learningObjectiveIds": [
+        "recognise-past-simple"
+      ],
+      "difficulty": "beginner",
+      "tags": [
+        "past-simple",
+        "recognition"
+      ],
+      "instructionLanguage": "es",
+      "exerciseLanguage": "en",
+      "explanationLanguage": "es",
+      "prompt": "What is the past simple of “see”?",
+      "context": "Elige la forma del pasado simple.",
+      "explanation": "El pasado simple de see (ver) es saw. Es un verbo irregular.",
+      "options": [
+        {
+          "id": "eng-iv-see-recognition-seen",
+          "text": "seen"
+        },
+        {
+          "id": "eng-iv-see-recognition-saw",
+          "text": "saw"
+        },
+        {
+          "id": "eng-iv-see-recognition-see",
+          "text": "see"
+        },
+        {
+          "id": "eng-iv-see-recognition-seed",
+          "text": "seed"
+        }
+      ],
+      "correctOptionId": "eng-iv-see-recognition-saw"
     },
     {
-      "id": "eng-have-001", "type": "single_choice", "conceptId": "past-tense", "learningObjectiveIds": ["identify-past-form"], "difficulty": "beginner", "tags": ["fixture"], "instructionLanguage": "es", "exerciseLanguage": "en", "explanationLanguage": "es",
-      "prompt": "They ___ a great time at the museum.", "context": "Selecciona la forma en pasado.", "explanation": "“Had” es la forma de pasado de “have”.",
-      "options": [{ "id": "eng-have-a", "text": "have" }, { "id": "eng-have-b", "text": "has" }, { "id": "eng-have-c", "text": "had" }, { "id": "eng-have-d", "text": "haved" }], "correctOptionId": "eng-have-c"
+      "id": "eng-iv-do-recognition",
+      "type": "single_choice",
+      "conceptId": "verb-do",
+      "learningObjectiveIds": [
+        "recognise-past-simple"
+      ],
+      "difficulty": "beginner",
+      "tags": [
+        "past-simple",
+        "recognition"
+      ],
+      "instructionLanguage": "es",
+      "exerciseLanguage": "en",
+      "explanationLanguage": "es",
+      "prompt": "What is the past simple of “do”?",
+      "context": "Elige la forma del pasado simple.",
+      "explanation": "El pasado simple de do (hacer) es did. Es un verbo irregular.",
+      "options": [
+        {
+          "id": "eng-iv-do-recognition-done",
+          "text": "done"
+        },
+        {
+          "id": "eng-iv-do-recognition-did",
+          "text": "did"
+        },
+        {
+          "id": "eng-iv-do-recognition-do",
+          "text": "do"
+        },
+        {
+          "id": "eng-iv-do-recognition-doed",
+          "text": "doed"
+        }
+      ],
+      "correctOptionId": "eng-iv-do-recognition-did"
     },
     {
-      "id": "eng-write-001", "type": "single_choice", "conceptId": "past-tense", "learningObjectiveIds": ["identify-past-form"], "difficulty": "beginner", "tags": ["fixture"], "instructionLanguage": "es", "exerciseLanguage": "en", "explanationLanguage": "es",
-      "prompt": "Mia ___ a short story last week.", "context": "Selecciona la forma en pasado.", "explanation": "“Wrote” es la forma de pasado de “write”.",
-      "options": [{ "id": "eng-write-a", "text": "write" }, { "id": "eng-write-b", "text": "writed" }, { "id": "eng-write-c", "text": "wrote" }, { "id": "eng-write-d", "text": "written" }], "correctOptionId": "eng-write-c"
+      "id": "eng-iv-have-recognition",
+      "type": "single_choice",
+      "conceptId": "verb-have",
+      "learningObjectiveIds": [
+        "recognise-past-simple"
+      ],
+      "difficulty": "beginner",
+      "tags": [
+        "past-simple",
+        "recognition"
+      ],
+      "instructionLanguage": "es",
+      "exerciseLanguage": "en",
+      "explanationLanguage": "es",
+      "prompt": "What is the past simple of “have”?",
+      "context": "Elige la forma del pasado simple.",
+      "explanation": "El pasado simple de have (tener) es had. Es un verbo irregular.",
+      "options": [
+        {
+          "id": "eng-iv-have-recognition-have",
+          "text": "have"
+        },
+        {
+          "id": "eng-iv-have-recognition-haved",
+          "text": "haved"
+        },
+        {
+          "id": "eng-iv-have-recognition-has",
+          "text": "has"
+        },
+        {
+          "id": "eng-iv-have-recognition-had",
+          "text": "had"
+        }
+      ],
+      "correctOptionId": "eng-iv-have-recognition-had"
+    },
+    {
+      "id": "eng-iv-run-recognition",
+      "type": "single_choice",
+      "conceptId": "verb-run",
+      "learningObjectiveIds": [
+        "recognise-past-simple"
+      ],
+      "difficulty": "beginner",
+      "tags": [
+        "past-simple",
+        "recognition"
+      ],
+      "instructionLanguage": "es",
+      "exerciseLanguage": "en",
+      "explanationLanguage": "es",
+      "prompt": "What is the past simple of “run”?",
+      "context": "Elige la forma del pasado simple.",
+      "explanation": "El pasado simple de run (correr) es ran. Es un verbo irregular.",
+      "options": [
+        {
+          "id": "eng-iv-run-recognition-runs",
+          "text": "runs"
+        },
+        {
+          "id": "eng-iv-run-recognition-run",
+          "text": "run"
+        },
+        {
+          "id": "eng-iv-run-recognition-runned",
+          "text": "runned"
+        },
+        {
+          "id": "eng-iv-run-recognition-ran",
+          "text": "ran"
+        }
+      ],
+      "correctOptionId": "eng-iv-run-recognition-ran"
+    },
+    {
+      "id": "eng-iv-take-recognition",
+      "type": "single_choice",
+      "conceptId": "verb-take",
+      "learningObjectiveIds": [
+        "recognise-past-simple"
+      ],
+      "difficulty": "beginner",
+      "tags": [
+        "past-simple",
+        "recognition"
+      ],
+      "instructionLanguage": "es",
+      "exerciseLanguage": "en",
+      "explanationLanguage": "es",
+      "prompt": "What is the past simple of “take”?",
+      "context": "Elige la forma del pasado simple.",
+      "explanation": "El pasado simple de take (tomar, llevar) es took. Es un verbo irregular.",
+      "options": [
+        {
+          "id": "eng-iv-take-recognition-taked",
+          "text": "taked"
+        },
+        {
+          "id": "eng-iv-take-recognition-take",
+          "text": "take"
+        },
+        {
+          "id": "eng-iv-take-recognition-took",
+          "text": "took"
+        },
+        {
+          "id": "eng-iv-take-recognition-taken",
+          "text": "taken"
+        }
+      ],
+      "correctOptionId": "eng-iv-take-recognition-took"
+    },
+    {
+      "id": "eng-iv-write-recognition",
+      "type": "single_choice",
+      "conceptId": "verb-write",
+      "learningObjectiveIds": [
+        "recognise-past-simple"
+      ],
+      "difficulty": "beginner",
+      "tags": [
+        "past-simple",
+        "recognition"
+      ],
+      "instructionLanguage": "es",
+      "exerciseLanguage": "en",
+      "explanationLanguage": "es",
+      "prompt": "What is the past simple of “write”?",
+      "context": "Elige la forma del pasado simple.",
+      "explanation": "El pasado simple de write (escribir) es wrote. Es un verbo irregular.",
+      "options": [
+        {
+          "id": "eng-iv-write-recognition-write",
+          "text": "write"
+        },
+        {
+          "id": "eng-iv-write-recognition-writed",
+          "text": "writed"
+        },
+        {
+          "id": "eng-iv-write-recognition-wrote",
+          "text": "wrote"
+        },
+        {
+          "id": "eng-iv-write-recognition-written",
+          "text": "written"
+        }
+      ],
+      "correctOptionId": "eng-iv-write-recognition-wrote"
+    },
+    {
+      "id": "eng-iv-buy-recognition",
+      "type": "single_choice",
+      "conceptId": "verb-buy",
+      "learningObjectiveIds": [
+        "recognise-past-simple"
+      ],
+      "difficulty": "beginner",
+      "tags": [
+        "past-simple",
+        "recognition"
+      ],
+      "instructionLanguage": "es",
+      "exerciseLanguage": "en",
+      "explanationLanguage": "es",
+      "prompt": "What is the past simple of “buy”?",
+      "context": "Elige la forma del pasado simple.",
+      "explanation": "El pasado simple de buy (comprar) es bought. Es un verbo irregular.",
+      "options": [
+        {
+          "id": "eng-iv-buy-recognition-buy",
+          "text": "buy"
+        },
+        {
+          "id": "eng-iv-buy-recognition-bought",
+          "text": "bought"
+        },
+        {
+          "id": "eng-iv-buy-recognition-buyed",
+          "text": "buyed"
+        },
+        {
+          "id": "eng-iv-buy-recognition-buys",
+          "text": "buys"
+        }
+      ],
+      "correctOptionId": "eng-iv-buy-recognition-bought"
+    },
+    {
+      "id": "eng-iv-drink-recognition",
+      "type": "single_choice",
+      "conceptId": "verb-drink",
+      "learningObjectiveIds": [
+        "recognise-past-simple"
+      ],
+      "difficulty": "beginner",
+      "tags": [
+        "past-simple",
+        "recognition"
+      ],
+      "instructionLanguage": "es",
+      "exerciseLanguage": "en",
+      "explanationLanguage": "es",
+      "prompt": "What is the past simple of “drink”?",
+      "context": "Elige la forma del pasado simple.",
+      "explanation": "El pasado simple de drink (beber) es drank. Es un verbo irregular.",
+      "options": [
+        {
+          "id": "eng-iv-drink-recognition-drank",
+          "text": "drank"
+        },
+        {
+          "id": "eng-iv-drink-recognition-drink",
+          "text": "drink"
+        },
+        {
+          "id": "eng-iv-drink-recognition-drunk",
+          "text": "drunk"
+        },
+        {
+          "id": "eng-iv-drink-recognition-drinked",
+          "text": "drinked"
+        }
+      ],
+      "correctOptionId": "eng-iv-drink-recognition-drank"
+    },
+    {
+      "id": "eng-iv-give-recognition",
+      "type": "single_choice",
+      "conceptId": "verb-give",
+      "learningObjectiveIds": [
+        "recognise-past-simple"
+      ],
+      "difficulty": "beginner",
+      "tags": [
+        "past-simple",
+        "recognition"
+      ],
+      "instructionLanguage": "es",
+      "exerciseLanguage": "en",
+      "explanationLanguage": "es",
+      "prompt": "What is the past simple of “give”?",
+      "context": "Elige la forma del pasado simple.",
+      "explanation": "El pasado simple de give (dar) es gave. Es un verbo irregular.",
+      "options": [
+        {
+          "id": "eng-iv-give-recognition-gave",
+          "text": "gave"
+        },
+        {
+          "id": "eng-iv-give-recognition-given",
+          "text": "given"
+        },
+        {
+          "id": "eng-iv-give-recognition-gived",
+          "text": "gived"
+        },
+        {
+          "id": "eng-iv-give-recognition-give",
+          "text": "give"
+        }
+      ],
+      "correctOptionId": "eng-iv-give-recognition-gave"
+    },
+    {
+      "id": "eng-iv-come-recognition",
+      "type": "single_choice",
+      "conceptId": "verb-come",
+      "learningObjectiveIds": [
+        "recognise-past-simple"
+      ],
+      "difficulty": "beginner",
+      "tags": [
+        "past-simple",
+        "recognition"
+      ],
+      "instructionLanguage": "es",
+      "exerciseLanguage": "en",
+      "explanationLanguage": "es",
+      "prompt": "What is the past simple of “come”?",
+      "context": "Elige la forma del pasado simple.",
+      "explanation": "El pasado simple de come (venir) es came. Es un verbo irregular.",
+      "options": [
+        {
+          "id": "eng-iv-come-recognition-comed",
+          "text": "comed"
+        },
+        {
+          "id": "eng-iv-come-recognition-came",
+          "text": "came"
+        },
+        {
+          "id": "eng-iv-come-recognition-come",
+          "text": "come"
+        },
+        {
+          "id": "eng-iv-come-recognition-comes",
+          "text": "comes"
+        }
+      ],
+      "correctOptionId": "eng-iv-come-recognition-came"
+    },
+    {
+      "id": "eng-iv-find-recognition",
+      "type": "single_choice",
+      "conceptId": "verb-find",
+      "learningObjectiveIds": [
+        "recognise-past-simple"
+      ],
+      "difficulty": "beginner",
+      "tags": [
+        "past-simple",
+        "recognition"
+      ],
+      "instructionLanguage": "es",
+      "exerciseLanguage": "en",
+      "explanationLanguage": "es",
+      "prompt": "What is the past simple of “find”?",
+      "context": "Elige la forma del pasado simple.",
+      "explanation": "El pasado simple de find (encontrar) es found. Es un verbo irregular.",
+      "options": [
+        {
+          "id": "eng-iv-find-recognition-finded",
+          "text": "finded"
+        },
+        {
+          "id": "eng-iv-find-recognition-find",
+          "text": "find"
+        },
+        {
+          "id": "eng-iv-find-recognition-found",
+          "text": "found"
+        },
+        {
+          "id": "eng-iv-find-recognition-finds",
+          "text": "finds"
+        }
+      ],
+      "correctOptionId": "eng-iv-find-recognition-found"
+    },
+    {
+      "id": "eng-iv-make-recognition",
+      "type": "single_choice",
+      "conceptId": "verb-make",
+      "learningObjectiveIds": [
+        "recognise-past-simple"
+      ],
+      "difficulty": "beginner",
+      "tags": [
+        "past-simple",
+        "recognition"
+      ],
+      "instructionLanguage": "es",
+      "exerciseLanguage": "en",
+      "explanationLanguage": "es",
+      "prompt": "What is the past simple of “make”?",
+      "context": "Elige la forma del pasado simple.",
+      "explanation": "El pasado simple de make (hacer, fabricar) es made. Es un verbo irregular.",
+      "options": [
+        {
+          "id": "eng-iv-make-recognition-make",
+          "text": "make"
+        },
+        {
+          "id": "eng-iv-make-recognition-makes",
+          "text": "makes"
+        },
+        {
+          "id": "eng-iv-make-recognition-maked",
+          "text": "maked"
+        },
+        {
+          "id": "eng-iv-make-recognition-made",
+          "text": "made"
+        }
+      ],
+      "correctOptionId": "eng-iv-make-recognition-made"
+    },
+    {
+      "id": "eng-iv-sleep-recognition",
+      "type": "single_choice",
+      "conceptId": "verb-sleep",
+      "learningObjectiveIds": [
+        "recognise-past-simple"
+      ],
+      "difficulty": "beginner",
+      "tags": [
+        "past-simple",
+        "recognition"
+      ],
+      "instructionLanguage": "es",
+      "exerciseLanguage": "en",
+      "explanationLanguage": "es",
+      "prompt": "What is the past simple of “sleep”?",
+      "context": "Elige la forma del pasado simple.",
+      "explanation": "El pasado simple de sleep (dormir) es slept. Es un verbo irregular.",
+      "options": [
+        {
+          "id": "eng-iv-sleep-recognition-slept",
+          "text": "slept"
+        },
+        {
+          "id": "eng-iv-sleep-recognition-sleep",
+          "text": "sleep"
+        },
+        {
+          "id": "eng-iv-sleep-recognition-sleeped",
+          "text": "sleeped"
+        },
+        {
+          "id": "eng-iv-sleep-recognition-sleeps",
+          "text": "sleeps"
+        }
+      ],
+      "correctOptionId": "eng-iv-sleep-recognition-slept"
+    },
+    {
+      "id": "eng-iv-sing-recognition",
+      "type": "single_choice",
+      "conceptId": "verb-sing",
+      "learningObjectiveIds": [
+        "recognise-past-simple"
+      ],
+      "difficulty": "beginner",
+      "tags": [
+        "past-simple",
+        "recognition"
+      ],
+      "instructionLanguage": "es",
+      "exerciseLanguage": "en",
+      "explanationLanguage": "es",
+      "prompt": "What is the past simple of “sing”?",
+      "context": "Elige la forma del pasado simple.",
+      "explanation": "El pasado simple de sing (cantar) es sang. Es un verbo irregular.",
+      "options": [
+        {
+          "id": "eng-iv-sing-recognition-sang",
+          "text": "sang"
+        },
+        {
+          "id": "eng-iv-sing-recognition-sung",
+          "text": "sung"
+        },
+        {
+          "id": "eng-iv-sing-recognition-sing",
+          "text": "sing"
+        },
+        {
+          "id": "eng-iv-sing-recognition-singed",
+          "text": "singed"
+        }
+      ],
+      "correctOptionId": "eng-iv-sing-recognition-sang"
+    },
+    {
+      "id": "eng-iv-swim-recognition",
+      "type": "single_choice",
+      "conceptId": "verb-swim",
+      "learningObjectiveIds": [
+        "recognise-past-simple"
+      ],
+      "difficulty": "beginner",
+      "tags": [
+        "past-simple",
+        "recognition"
+      ],
+      "instructionLanguage": "es",
+      "exerciseLanguage": "en",
+      "explanationLanguage": "es",
+      "prompt": "What is the past simple of “swim”?",
+      "context": "Elige la forma del pasado simple.",
+      "explanation": "El pasado simple de swim (nadar) es swam. Es un verbo irregular.",
+      "options": [
+        {
+          "id": "eng-iv-swim-recognition-swum",
+          "text": "swum"
+        },
+        {
+          "id": "eng-iv-swim-recognition-swim",
+          "text": "swim"
+        },
+        {
+          "id": "eng-iv-swim-recognition-swam",
+          "text": "swam"
+        },
+        {
+          "id": "eng-iv-swim-recognition-swimmed",
+          "text": "swimmed"
+        }
+      ],
+      "correctOptionId": "eng-iv-swim-recognition-swam"
+    },
+    {
+      "id": "eng-iv-speak-recognition",
+      "type": "single_choice",
+      "conceptId": "verb-speak",
+      "learningObjectiveIds": [
+        "recognise-past-simple"
+      ],
+      "difficulty": "beginner",
+      "tags": [
+        "past-simple",
+        "recognition"
+      ],
+      "instructionLanguage": "es",
+      "exerciseLanguage": "en",
+      "explanationLanguage": "es",
+      "prompt": "What is the past simple of “speak”?",
+      "context": "Elige la forma del pasado simple.",
+      "explanation": "El pasado simple de speak (hablar) es spoke. Es un verbo irregular.",
+      "options": [
+        {
+          "id": "eng-iv-speak-recognition-speaked",
+          "text": "speaked"
+        },
+        {
+          "id": "eng-iv-speak-recognition-spoken",
+          "text": "spoken"
+        },
+        {
+          "id": "eng-iv-speak-recognition-spoke",
+          "text": "spoke"
+        },
+        {
+          "id": "eng-iv-speak-recognition-speak",
+          "text": "speak"
+        }
+      ],
+      "correctOptionId": "eng-iv-speak-recognition-spoke"
+    },
+    {
+      "id": "eng-iv-ride-recognition",
+      "type": "single_choice",
+      "conceptId": "verb-ride",
+      "learningObjectiveIds": [
+        "recognise-past-simple"
+      ],
+      "difficulty": "beginner",
+      "tags": [
+        "past-simple",
+        "recognition"
+      ],
+      "instructionLanguage": "es",
+      "exerciseLanguage": "en",
+      "explanationLanguage": "es",
+      "prompt": "What is the past simple of “ride”?",
+      "context": "Elige la forma del pasado simple.",
+      "explanation": "El pasado simple de ride (montar) es rode. Es un verbo irregular.",
+      "options": [
+        {
+          "id": "eng-iv-ride-recognition-rode",
+          "text": "rode"
+        },
+        {
+          "id": "eng-iv-ride-recognition-ridden",
+          "text": "ridden"
+        },
+        {
+          "id": "eng-iv-ride-recognition-rided",
+          "text": "rided"
+        },
+        {
+          "id": "eng-iv-ride-recognition-ride",
+          "text": "ride"
+        }
+      ],
+      "correctOptionId": "eng-iv-ride-recognition-rode"
+    },
+    {
+      "id": "eng-iv-fly-recognition",
+      "type": "single_choice",
+      "conceptId": "verb-fly",
+      "learningObjectiveIds": [
+        "recognise-past-simple"
+      ],
+      "difficulty": "beginner",
+      "tags": [
+        "past-simple",
+        "recognition"
+      ],
+      "instructionLanguage": "es",
+      "exerciseLanguage": "en",
+      "explanationLanguage": "es",
+      "prompt": "What is the past simple of “fly”?",
+      "context": "Elige la forma del pasado simple.",
+      "explanation": "El pasado simple de fly (volar) es flew. Es un verbo irregular.",
+      "options": [
+        {
+          "id": "eng-iv-fly-recognition-flyed",
+          "text": "flyed"
+        },
+        {
+          "id": "eng-iv-fly-recognition-flew",
+          "text": "flew"
+        },
+        {
+          "id": "eng-iv-fly-recognition-flown",
+          "text": "flown"
+        },
+        {
+          "id": "eng-iv-fly-recognition-fly",
+          "text": "fly"
+        }
+      ],
+      "correctOptionId": "eng-iv-fly-recognition-flew"
+    },
+    {
+      "id": "eng-iv-break-recognition",
+      "type": "single_choice",
+      "conceptId": "verb-break",
+      "learningObjectiveIds": [
+        "recognise-past-simple"
+      ],
+      "difficulty": "beginner",
+      "tags": [
+        "past-simple",
+        "recognition"
+      ],
+      "instructionLanguage": "es",
+      "exerciseLanguage": "en",
+      "explanationLanguage": "es",
+      "prompt": "What is the past simple of “break”?",
+      "context": "Elige la forma del pasado simple.",
+      "explanation": "El pasado simple de break (romper) es broke. Es un verbo irregular.",
+      "options": [
+        {
+          "id": "eng-iv-break-recognition-broken",
+          "text": "broken"
+        },
+        {
+          "id": "eng-iv-break-recognition-break",
+          "text": "break"
+        },
+        {
+          "id": "eng-iv-break-recognition-broke",
+          "text": "broke"
+        },
+        {
+          "id": "eng-iv-break-recognition-breaked",
+          "text": "breaked"
+        }
+      ],
+      "correctOptionId": "eng-iv-break-recognition-broke"
+    },
+    {
+      "id": "eng-iv-choose-recognition",
+      "type": "single_choice",
+      "conceptId": "verb-choose",
+      "learningObjectiveIds": [
+        "recognise-past-simple"
+      ],
+      "difficulty": "beginner",
+      "tags": [
+        "past-simple",
+        "recognition"
+      ],
+      "instructionLanguage": "es",
+      "exerciseLanguage": "en",
+      "explanationLanguage": "es",
+      "prompt": "What is the past simple of “choose”?",
+      "context": "Elige la forma del pasado simple.",
+      "explanation": "El pasado simple de choose (elegir) es chose. Es un verbo irregular.",
+      "options": [
+        {
+          "id": "eng-iv-choose-recognition-chosen",
+          "text": "chosen"
+        },
+        {
+          "id": "eng-iv-choose-recognition-chose",
+          "text": "chose"
+        },
+        {
+          "id": "eng-iv-choose-recognition-choose",
+          "text": "choose"
+        },
+        {
+          "id": "eng-iv-choose-recognition-choosed",
+          "text": "choosed"
+        }
+      ],
+      "correctOptionId": "eng-iv-choose-recognition-chose"
+    },
+    {
+      "id": "eng-iv-bring-recognition",
+      "type": "single_choice",
+      "conceptId": "verb-bring",
+      "learningObjectiveIds": [
+        "recognise-past-simple"
+      ],
+      "difficulty": "beginner",
+      "tags": [
+        "past-simple",
+        "recognition"
+      ],
+      "instructionLanguage": "es",
+      "exerciseLanguage": "en",
+      "explanationLanguage": "es",
+      "prompt": "What is the past simple of “bring”?",
+      "context": "Elige la forma del pasado simple.",
+      "explanation": "El pasado simple de bring (traer) es brought. Es un verbo irregular.",
+      "options": [
+        {
+          "id": "eng-iv-bring-recognition-brings",
+          "text": "brings"
+        },
+        {
+          "id": "eng-iv-bring-recognition-bring",
+          "text": "bring"
+        },
+        {
+          "id": "eng-iv-bring-recognition-brought",
+          "text": "brought"
+        },
+        {
+          "id": "eng-iv-bring-recognition-bringed",
+          "text": "bringed"
+        }
+      ],
+      "correctOptionId": "eng-iv-bring-recognition-brought"
+    },
+    {
+      "id": "eng-iv-tell-recognition",
+      "type": "single_choice",
+      "conceptId": "verb-tell",
+      "learningObjectiveIds": [
+        "recognise-past-simple"
+      ],
+      "difficulty": "beginner",
+      "tags": [
+        "past-simple",
+        "recognition"
+      ],
+      "instructionLanguage": "es",
+      "exerciseLanguage": "en",
+      "explanationLanguage": "es",
+      "prompt": "What is the past simple of “tell”?",
+      "context": "Elige la forma del pasado simple.",
+      "explanation": "El pasado simple de tell (contar, decir) es told. Es un verbo irregular.",
+      "options": [
+        {
+          "id": "eng-iv-tell-recognition-tell",
+          "text": "tell"
+        },
+        {
+          "id": "eng-iv-tell-recognition-told",
+          "text": "told"
+        },
+        {
+          "id": "eng-iv-tell-recognition-tells",
+          "text": "tells"
+        },
+        {
+          "id": "eng-iv-tell-recognition-telled",
+          "text": "telled"
+        }
+      ],
+      "correctOptionId": "eng-iv-tell-recognition-told"
+    },
+    {
+      "id": "eng-iv-be-context",
+      "type": "single_choice",
+      "conceptId": "verb-be",
+      "learningObjectiveIds": [
+        "use-past-simple"
+      ],
+      "difficulty": "intermediate",
+      "tags": [
+        "past-simple",
+        "context"
+      ],
+      "instructionLanguage": "es",
+      "exerciseLanguage": "en",
+      "explanationLanguage": "es",
+      "prompt": "Yesterday, I ___ at home.",
+      "context": "Completa la frase con el pasado de be.",
+      "explanation": "Con I usamos was en esta frase: I was at home. Were se usa con you, we y they; también existen otros usos avanzados.",
+      "options": [
+        {
+          "id": "eng-iv-be-context-am",
+          "text": "am"
+        },
+        {
+          "id": "eng-iv-be-context-been",
+          "text": "been"
+        },
+        {
+          "id": "eng-iv-be-context-were",
+          "text": "were"
+        },
+        {
+          "id": "eng-iv-be-context-was",
+          "text": "was"
+        }
+      ],
+      "correctOptionId": "eng-iv-be-context-was"
+    },
+    {
+      "id": "eng-iv-become-context",
+      "type": "single_choice",
+      "conceptId": "verb-become",
+      "learningObjectiveIds": [
+        "use-past-simple"
+      ],
+      "difficulty": "intermediate",
+      "tags": [
+        "past-simple",
+        "context"
+      ],
+      "instructionLanguage": "es",
+      "exerciseLanguage": "en",
+      "explanationLanguage": "es",
+      "prompt": "Last year, Sam ___ the team captain.",
+      "context": "Completa la frase con el pasado de become.",
+      "explanation": "La frase sitúa la acción en el pasado. El pasado simple de become (convertirse en) es became.",
+      "options": [
+        {
+          "id": "eng-iv-become-context-becomed",
+          "text": "becomed"
+        },
+        {
+          "id": "eng-iv-become-context-became",
+          "text": "became"
+        },
+        {
+          "id": "eng-iv-become-context-become",
+          "text": "become"
+        },
+        {
+          "id": "eng-iv-become-context-becomes",
+          "text": "becomes"
+        }
+      ],
+      "correctOptionId": "eng-iv-become-context-became"
+    },
+    {
+      "id": "eng-iv-begin-context",
+      "type": "single_choice",
+      "conceptId": "verb-begin",
+      "learningObjectiveIds": [
+        "use-past-simple"
+      ],
+      "difficulty": "intermediate",
+      "tags": [
+        "past-simple",
+        "context"
+      ],
+      "instructionLanguage": "es",
+      "exerciseLanguage": "en",
+      "explanationLanguage": "es",
+      "prompt": "The film ___ at six yesterday.",
+      "context": "Completa la frase con el pasado de begin.",
+      "explanation": "La frase sitúa la acción en el pasado. El pasado simple de begin (empezar) es began.",
+      "options": [
+        {
+          "id": "eng-iv-begin-context-began",
+          "text": "began"
+        },
+        {
+          "id": "eng-iv-begin-context-begined",
+          "text": "begined"
+        },
+        {
+          "id": "eng-iv-begin-context-begun",
+          "text": "begun"
+        },
+        {
+          "id": "eng-iv-begin-context-begin",
+          "text": "begin"
+        }
+      ],
+      "correctOptionId": "eng-iv-begin-context-began"
+    },
+    {
+      "id": "eng-iv-break-context",
+      "type": "single_choice",
+      "conceptId": "verb-break",
+      "learningObjectiveIds": [
+        "use-past-simple"
+      ],
+      "difficulty": "intermediate",
+      "tags": [
+        "past-simple",
+        "context"
+      ],
+      "instructionLanguage": "es",
+      "exerciseLanguage": "en",
+      "explanationLanguage": "es",
+      "prompt": "Yesterday, I ___ my pencil.",
+      "context": "Completa la frase con el pasado de break.",
+      "explanation": "La frase sitúa la acción en el pasado. El pasado simple de break (romper) es broke.",
+      "options": [
+        {
+          "id": "eng-iv-break-context-breaked",
+          "text": "breaked"
+        },
+        {
+          "id": "eng-iv-break-context-break",
+          "text": "break"
+        },
+        {
+          "id": "eng-iv-break-context-broke",
+          "text": "broke"
+        },
+        {
+          "id": "eng-iv-break-context-broken",
+          "text": "broken"
+        }
+      ],
+      "correctOptionId": "eng-iv-break-context-broke"
+    },
+    {
+      "id": "eng-iv-bring-context",
+      "type": "single_choice",
+      "conceptId": "verb-bring",
+      "learningObjectiveIds": [
+        "use-past-simple"
+      ],
+      "difficulty": "intermediate",
+      "tags": [
+        "past-simple",
+        "context"
+      ],
+      "instructionLanguage": "es",
+      "exerciseLanguage": "en",
+      "explanationLanguage": "es",
+      "prompt": "Yesterday, Lily ___ her lunch to school.",
+      "context": "Completa la frase con el pasado de bring.",
+      "explanation": "La frase sitúa la acción en el pasado. El pasado simple de bring (traer) es brought.",
+      "options": [
+        {
+          "id": "eng-iv-bring-context-brought",
+          "text": "brought"
+        },
+        {
+          "id": "eng-iv-bring-context-brings",
+          "text": "brings"
+        },
+        {
+          "id": "eng-iv-bring-context-bring",
+          "text": "bring"
+        },
+        {
+          "id": "eng-iv-bring-context-bringed",
+          "text": "bringed"
+        }
+      ],
+      "correctOptionId": "eng-iv-bring-context-brought"
+    },
+    {
+      "id": "eng-iv-buy-context",
+      "type": "single_choice",
+      "conceptId": "verb-buy",
+      "learningObjectiveIds": [
+        "use-past-simple"
+      ],
+      "difficulty": "intermediate",
+      "tags": [
+        "past-simple",
+        "context"
+      ],
+      "instructionLanguage": "es",
+      "exerciseLanguage": "en",
+      "explanationLanguage": "es",
+      "prompt": "Last Saturday, Dad ___ a new book.",
+      "context": "Completa la frase con el pasado de buy.",
+      "explanation": "La frase sitúa la acción en el pasado. El pasado simple de buy (comprar) es bought.",
+      "options": [
+        {
+          "id": "eng-iv-buy-context-buy",
+          "text": "buy"
+        },
+        {
+          "id": "eng-iv-buy-context-bought",
+          "text": "bought"
+        },
+        {
+          "id": "eng-iv-buy-context-buyed",
+          "text": "buyed"
+        },
+        {
+          "id": "eng-iv-buy-context-buys",
+          "text": "buys"
+        }
+      ],
+      "correctOptionId": "eng-iv-buy-context-bought"
+    },
+    {
+      "id": "eng-iv-catch-context",
+      "type": "single_choice",
+      "conceptId": "verb-catch",
+      "learningObjectiveIds": [
+        "use-past-simple"
+      ],
+      "difficulty": "intermediate",
+      "tags": [
+        "past-simple",
+        "context"
+      ],
+      "instructionLanguage": "es",
+      "exerciseLanguage": "en",
+      "explanationLanguage": "es",
+      "prompt": "Yesterday, Ben ___ the ball.",
+      "context": "Completa la frase con el pasado de catch.",
+      "explanation": "La frase sitúa la acción en el pasado. El pasado simple de catch (atrapar, coger) es caught.",
+      "options": [
+        {
+          "id": "eng-iv-catch-context-catch",
+          "text": "catch"
+        },
+        {
+          "id": "eng-iv-catch-context-catches",
+          "text": "catches"
+        },
+        {
+          "id": "eng-iv-catch-context-catched",
+          "text": "catched"
+        },
+        {
+          "id": "eng-iv-catch-context-caught",
+          "text": "caught"
+        }
+      ],
+      "correctOptionId": "eng-iv-catch-context-caught"
+    },
+    {
+      "id": "eng-iv-choose-context",
+      "type": "single_choice",
+      "conceptId": "verb-choose",
+      "learningObjectiveIds": [
+        "use-past-simple"
+      ],
+      "difficulty": "intermediate",
+      "tags": [
+        "past-simple",
+        "context"
+      ],
+      "instructionLanguage": "es",
+      "exerciseLanguage": "en",
+      "explanationLanguage": "es",
+      "prompt": "Last night, we ___ a film to watch.",
+      "context": "Completa la frase con el pasado de choose.",
+      "explanation": "La frase sitúa la acción en el pasado. El pasado simple de choose (elegir) es chose.",
+      "options": [
+        {
+          "id": "eng-iv-choose-context-choosed",
+          "text": "choosed"
+        },
+        {
+          "id": "eng-iv-choose-context-choose",
+          "text": "choose"
+        },
+        {
+          "id": "eng-iv-choose-context-chose",
+          "text": "chose"
+        },
+        {
+          "id": "eng-iv-choose-context-chosen",
+          "text": "chosen"
+        }
+      ],
+      "correctOptionId": "eng-iv-choose-context-chose"
+    },
+    {
+      "id": "eng-iv-come-context",
+      "type": "single_choice",
+      "conceptId": "verb-come",
+      "learningObjectiveIds": [
+        "use-past-simple"
+      ],
+      "difficulty": "intermediate",
+      "tags": [
+        "past-simple",
+        "context"
+      ],
+      "instructionLanguage": "es",
+      "exerciseLanguage": "en",
+      "explanationLanguage": "es",
+      "prompt": "My cousin ___ to our house last Sunday.",
+      "context": "Completa la frase con el pasado de come.",
+      "explanation": "La frase sitúa la acción en el pasado. El pasado simple de come (venir) es came.",
+      "options": [
+        {
+          "id": "eng-iv-come-context-come",
+          "text": "come"
+        },
+        {
+          "id": "eng-iv-come-context-comes",
+          "text": "comes"
+        },
+        {
+          "id": "eng-iv-come-context-comed",
+          "text": "comed"
+        },
+        {
+          "id": "eng-iv-come-context-came",
+          "text": "came"
+        }
+      ],
+      "correctOptionId": "eng-iv-come-context-came"
+    },
+    {
+      "id": "eng-iv-cut-context",
+      "type": "single_choice",
+      "conceptId": "verb-cut",
+      "learningObjectiveIds": [
+        "use-past-simple"
+      ],
+      "difficulty": "intermediate",
+      "tags": [
+        "past-simple",
+        "context"
+      ],
+      "instructionLanguage": "es",
+      "exerciseLanguage": "en",
+      "explanationLanguage": "es",
+      "prompt": "Yesterday, Mum ___ the cake into six pieces.",
+      "context": "Completa la frase con el pasado de cut.",
+      "explanation": "Cut mantiene la misma forma escrita en infinitivo, pasado y participio. La referencia temporal sitúa la acción en el pasado.",
+      "options": [
+        {
+          "id": "eng-iv-cut-context-cuts",
+          "text": "cuts"
+        },
+        {
+          "id": "eng-iv-cut-context-cutting",
+          "text": "cutting"
+        },
+        {
+          "id": "eng-iv-cut-context-cut",
+          "text": "cut"
+        },
+        {
+          "id": "eng-iv-cut-context-cutted",
+          "text": "cutted"
+        }
+      ],
+      "correctOptionId": "eng-iv-cut-context-cut"
+    },
+    {
+      "id": "eng-iv-do-context",
+      "type": "single_choice",
+      "conceptId": "verb-do",
+      "learningObjectiveIds": [
+        "use-past-simple"
+      ],
+      "difficulty": "intermediate",
+      "tags": [
+        "past-simple",
+        "context"
+      ],
+      "instructionLanguage": "es",
+      "exerciseLanguage": "en",
+      "explanationLanguage": "es",
+      "prompt": "Yesterday, I ___ my homework after lunch.",
+      "context": "Completa la frase con el pasado de do.",
+      "explanation": "La frase sitúa la acción en el pasado. El pasado simple de do (hacer) es did.",
+      "options": [
+        {
+          "id": "eng-iv-do-context-did",
+          "text": "did"
+        },
+        {
+          "id": "eng-iv-do-context-doed",
+          "text": "doed"
+        },
+        {
+          "id": "eng-iv-do-context-do",
+          "text": "do"
+        },
+        {
+          "id": "eng-iv-do-context-done",
+          "text": "done"
+        }
+      ],
+      "correctOptionId": "eng-iv-do-context-did"
+    },
+    {
+      "id": "eng-iv-drink-context",
+      "type": "single_choice",
+      "conceptId": "verb-drink",
+      "learningObjectiveIds": [
+        "use-past-simple"
+      ],
+      "difficulty": "intermediate",
+      "tags": [
+        "past-simple",
+        "context"
+      ],
+      "instructionLanguage": "es",
+      "exerciseLanguage": "en",
+      "explanationLanguage": "es",
+      "prompt": "Yesterday, Mia ___ a glass of water.",
+      "context": "Completa la frase con el pasado de drink.",
+      "explanation": "La frase sitúa la acción en el pasado. El pasado simple de drink (beber) es drank.",
+      "options": [
+        {
+          "id": "eng-iv-drink-context-drunk",
+          "text": "drunk"
+        },
+        {
+          "id": "eng-iv-drink-context-drank",
+          "text": "drank"
+        },
+        {
+          "id": "eng-iv-drink-context-drink",
+          "text": "drink"
+        },
+        {
+          "id": "eng-iv-drink-context-drinked",
+          "text": "drinked"
+        }
+      ],
+      "correctOptionId": "eng-iv-drink-context-drank"
+    },
+    {
+      "id": "eng-iv-drive-context",
+      "type": "single_choice",
+      "conceptId": "verb-drive",
+      "learningObjectiveIds": [
+        "use-past-simple"
+      ],
+      "difficulty": "intermediate",
+      "tags": [
+        "past-simple",
+        "context"
+      ],
+      "instructionLanguage": "es",
+      "exerciseLanguage": "en",
+      "explanationLanguage": "es",
+      "prompt": "Dad ___ us to the zoo last Saturday.",
+      "context": "Completa la frase con el pasado de drive.",
+      "explanation": "La frase sitúa la acción en el pasado. El pasado simple de drive (conducir) es drove.",
+      "options": [
+        {
+          "id": "eng-iv-drive-context-drive",
+          "text": "drive"
+        },
+        {
+          "id": "eng-iv-drive-context-driven",
+          "text": "driven"
+        },
+        {
+          "id": "eng-iv-drive-context-drove",
+          "text": "drove"
+        },
+        {
+          "id": "eng-iv-drive-context-drived",
+          "text": "drived"
+        }
+      ],
+      "correctOptionId": "eng-iv-drive-context-drove"
+    },
+    {
+      "id": "eng-iv-eat-context",
+      "type": "single_choice",
+      "conceptId": "verb-eat",
+      "learningObjectiveIds": [
+        "use-past-simple"
+      ],
+      "difficulty": "intermediate",
+      "tags": [
+        "past-simple",
+        "context"
+      ],
+      "instructionLanguage": "es",
+      "exerciseLanguage": "en",
+      "explanationLanguage": "es",
+      "prompt": "Yesterday, we ___ pizza for dinner.",
+      "context": "Completa la frase con el pasado de eat.",
+      "explanation": "La frase sitúa la acción en el pasado. El pasado simple de eat (comer) es ate.",
+      "options": [
+        {
+          "id": "eng-iv-eat-context-eaten",
+          "text": "eaten"
+        },
+        {
+          "id": "eng-iv-eat-context-ate",
+          "text": "ate"
+        },
+        {
+          "id": "eng-iv-eat-context-eat",
+          "text": "eat"
+        },
+        {
+          "id": "eng-iv-eat-context-eated",
+          "text": "eated"
+        }
+      ],
+      "correctOptionId": "eng-iv-eat-context-ate"
+    },
+    {
+      "id": "eng-iv-fall-context",
+      "type": "single_choice",
+      "conceptId": "verb-fall",
+      "learningObjectiveIds": [
+        "use-past-simple"
+      ],
+      "difficulty": "intermediate",
+      "tags": [
+        "past-simple",
+        "context"
+      ],
+      "instructionLanguage": "es",
+      "exerciseLanguage": "en",
+      "explanationLanguage": "es",
+      "prompt": "A leaf ___ from the tree yesterday.",
+      "context": "Completa la frase con el pasado de fall.",
+      "explanation": "La frase sitúa la acción en el pasado. El pasado simple de fall (caer) es fell.",
+      "options": [
+        {
+          "id": "eng-iv-fall-context-fell",
+          "text": "fell"
+        },
+        {
+          "id": "eng-iv-fall-context-falled",
+          "text": "falled"
+        },
+        {
+          "id": "eng-iv-fall-context-fall",
+          "text": "fall"
+        },
+        {
+          "id": "eng-iv-fall-context-fallen",
+          "text": "fallen"
+        }
+      ],
+      "correctOptionId": "eng-iv-fall-context-fell"
+    },
+    {
+      "id": "eng-iv-feel-context",
+      "type": "single_choice",
+      "conceptId": "verb-feel",
+      "learningObjectiveIds": [
+        "use-past-simple"
+      ],
+      "difficulty": "intermediate",
+      "tags": [
+        "past-simple",
+        "context"
+      ],
+      "instructionLanguage": "es",
+      "exerciseLanguage": "en",
+      "explanationLanguage": "es",
+      "prompt": "I ___ happy after the game yesterday.",
+      "context": "Completa la frase con el pasado de feel.",
+      "explanation": "La frase sitúa la acción en el pasado. El pasado simple de feel (sentir) es felt.",
+      "options": [
+        {
+          "id": "eng-iv-feel-context-feels",
+          "text": "feels"
+        },
+        {
+          "id": "eng-iv-feel-context-feeled",
+          "text": "feeled"
+        },
+        {
+          "id": "eng-iv-feel-context-feel",
+          "text": "feel"
+        },
+        {
+          "id": "eng-iv-feel-context-felt",
+          "text": "felt"
+        }
+      ],
+      "correctOptionId": "eng-iv-feel-context-felt"
+    },
+    {
+      "id": "eng-iv-find-context",
+      "type": "single_choice",
+      "conceptId": "verb-find",
+      "learningObjectiveIds": [
+        "use-past-simple"
+      ],
+      "difficulty": "intermediate",
+      "tags": [
+        "past-simple",
+        "context"
+      ],
+      "instructionLanguage": "es",
+      "exerciseLanguage": "en",
+      "explanationLanguage": "es",
+      "prompt": "Yesterday, we ___ a lost toy under the sofa.",
+      "context": "Completa la frase con el pasado de find.",
+      "explanation": "La frase sitúa la acción en el pasado. El pasado simple de find (encontrar) es found.",
+      "options": [
+        {
+          "id": "eng-iv-find-context-found",
+          "text": "found"
+        },
+        {
+          "id": "eng-iv-find-context-finds",
+          "text": "finds"
+        },
+        {
+          "id": "eng-iv-find-context-find",
+          "text": "find"
+        },
+        {
+          "id": "eng-iv-find-context-finded",
+          "text": "finded"
+        }
+      ],
+      "correctOptionId": "eng-iv-find-context-found"
+    },
+    {
+      "id": "eng-iv-fly-context",
+      "type": "single_choice",
+      "conceptId": "verb-fly",
+      "learningObjectiveIds": [
+        "use-past-simple"
+      ],
+      "difficulty": "intermediate",
+      "tags": [
+        "past-simple",
+        "context"
+      ],
+      "instructionLanguage": "es",
+      "exerciseLanguage": "en",
+      "explanationLanguage": "es",
+      "prompt": "Last summer, we ___ to London.",
+      "context": "Completa la frase con el pasado de fly.",
+      "explanation": "La frase sitúa la acción en el pasado. El pasado simple de fly (volar) es flew.",
+      "options": [
+        {
+          "id": "eng-iv-fly-context-fly",
+          "text": "fly"
+        },
+        {
+          "id": "eng-iv-fly-context-flyed",
+          "text": "flyed"
+        },
+        {
+          "id": "eng-iv-fly-context-flown",
+          "text": "flown"
+        },
+        {
+          "id": "eng-iv-fly-context-flew",
+          "text": "flew"
+        }
+      ],
+      "correctOptionId": "eng-iv-fly-context-flew"
+    },
+    {
+      "id": "eng-iv-forget-context",
+      "type": "single_choice",
+      "conceptId": "verb-forget",
+      "learningObjectiveIds": [
+        "use-past-simple"
+      ],
+      "difficulty": "intermediate",
+      "tags": [
+        "past-simple",
+        "context"
+      ],
+      "instructionLanguage": "es",
+      "exerciseLanguage": "en",
+      "explanationLanguage": "es",
+      "prompt": "Yesterday, Tom ___ his pencil case.",
+      "context": "Completa la frase con el pasado de forget.",
+      "explanation": "La frase sitúa la acción en el pasado. El pasado simple de forget (olvidar) es forgot.",
+      "options": [
+        {
+          "id": "eng-iv-forget-context-forgetted",
+          "text": "forgetted"
+        },
+        {
+          "id": "eng-iv-forget-context-forgot",
+          "text": "forgot"
+        },
+        {
+          "id": "eng-iv-forget-context-forgotten",
+          "text": "forgotten"
+        },
+        {
+          "id": "eng-iv-forget-context-forget",
+          "text": "forget"
+        }
+      ],
+      "correctOptionId": "eng-iv-forget-context-forgot"
+    },
+    {
+      "id": "eng-iv-get-context",
+      "type": "single_choice",
+      "conceptId": "verb-get",
+      "learningObjectiveIds": [
+        "use-past-simple"
+      ],
+      "difficulty": "intermediate",
+      "tags": [
+        "past-simple",
+        "context"
+      ],
+      "instructionLanguage": "es",
+      "exerciseLanguage": "en",
+      "explanationLanguage": "es",
+      "prompt": "Yesterday, I ___ a sticker for my good work.",
+      "context": "Completa la frase con el pasado de get.",
+      "explanation": "Got es el pasado simple de get, tanto en inglés británico como estadounidense.",
+      "options": [
+        {
+          "id": "eng-iv-get-context-got",
+          "text": "got"
+        },
+        {
+          "id": "eng-iv-get-context-getted",
+          "text": "getted"
+        },
+        {
+          "id": "eng-iv-get-context-gets",
+          "text": "gets"
+        },
+        {
+          "id": "eng-iv-get-context-get",
+          "text": "get"
+        }
+      ],
+      "correctOptionId": "eng-iv-get-context-got"
+    },
+    {
+      "id": "eng-iv-give-context",
+      "type": "single_choice",
+      "conceptId": "verb-give",
+      "learningObjectiveIds": [
+        "use-past-simple"
+      ],
+      "difficulty": "intermediate",
+      "tags": [
+        "past-simple",
+        "context"
+      ],
+      "instructionLanguage": "es",
+      "exerciseLanguage": "en",
+      "explanationLanguage": "es",
+      "prompt": "Last week, Grandma ___ me a birthday card.",
+      "context": "Completa la frase con el pasado de give.",
+      "explanation": "La frase sitúa la acción en el pasado. El pasado simple de give (dar) es gave.",
+      "options": [
+        {
+          "id": "eng-iv-give-context-gived",
+          "text": "gived"
+        },
+        {
+          "id": "eng-iv-give-context-given",
+          "text": "given"
+        },
+        {
+          "id": "eng-iv-give-context-gave",
+          "text": "gave"
+        },
+        {
+          "id": "eng-iv-give-context-give",
+          "text": "give"
+        }
+      ],
+      "correctOptionId": "eng-iv-give-context-gave"
+    },
+    {
+      "id": "eng-iv-go-context",
+      "type": "single_choice",
+      "conceptId": "verb-go",
+      "learningObjectiveIds": [
+        "use-past-simple"
+      ],
+      "difficulty": "intermediate",
+      "tags": [
+        "past-simple",
+        "context"
+      ],
+      "instructionLanguage": "es",
+      "exerciseLanguage": "en",
+      "explanationLanguage": "es",
+      "prompt": "Yesterday, Lucy ___ to the park.",
+      "context": "Completa la frase con el pasado de go.",
+      "explanation": "La frase sitúa la acción en el pasado. El pasado simple de go (ir) es went.",
+      "options": [
+        {
+          "id": "eng-iv-go-context-goed",
+          "text": "goed"
+        },
+        {
+          "id": "eng-iv-go-context-go",
+          "text": "go"
+        },
+        {
+          "id": "eng-iv-go-context-gone",
+          "text": "gone"
+        },
+        {
+          "id": "eng-iv-go-context-went",
+          "text": "went"
+        }
+      ],
+      "correctOptionId": "eng-iv-go-context-went"
+    },
+    {
+      "id": "eng-iv-have-context",
+      "type": "single_choice",
+      "conceptId": "verb-have",
+      "learningObjectiveIds": [
+        "use-past-simple"
+      ],
+      "difficulty": "intermediate",
+      "tags": [
+        "past-simple",
+        "context"
+      ],
+      "instructionLanguage": "es",
+      "exerciseLanguage": "en",
+      "explanationLanguage": "es",
+      "prompt": "We ___ a picnic last Sunday.",
+      "context": "Completa la frase con el pasado de have.",
+      "explanation": "La frase sitúa la acción en el pasado. El pasado simple de have (tener) es had.",
+      "options": [
+        {
+          "id": "eng-iv-have-context-haved",
+          "text": "haved"
+        },
+        {
+          "id": "eng-iv-have-context-have",
+          "text": "have"
+        },
+        {
+          "id": "eng-iv-have-context-has",
+          "text": "has"
+        },
+        {
+          "id": "eng-iv-have-context-had",
+          "text": "had"
+        }
+      ],
+      "correctOptionId": "eng-iv-have-context-had"
+    },
+    {
+      "id": "eng-iv-hear-context",
+      "type": "single_choice",
+      "conceptId": "verb-hear",
+      "learningObjectiveIds": [
+        "use-past-simple"
+      ],
+      "difficulty": "intermediate",
+      "tags": [
+        "past-simple",
+        "context"
+      ],
+      "instructionLanguage": "es",
+      "exerciseLanguage": "en",
+      "explanationLanguage": "es",
+      "prompt": "Last night, I ___ a strange noise.",
+      "context": "Completa la frase con el pasado de hear.",
+      "explanation": "La frase sitúa la acción en el pasado. El pasado simple de hear (oír) es heard.",
+      "options": [
+        {
+          "id": "eng-iv-hear-context-heard",
+          "text": "heard"
+        },
+        {
+          "id": "eng-iv-hear-context-hears",
+          "text": "hears"
+        },
+        {
+          "id": "eng-iv-hear-context-hear",
+          "text": "hear"
+        },
+        {
+          "id": "eng-iv-hear-context-heared",
+          "text": "heared"
+        }
+      ],
+      "correctOptionId": "eng-iv-hear-context-heard"
+    },
+    {
+      "id": "eng-iv-keep-context",
+      "type": "single_choice",
+      "conceptId": "verb-keep",
+      "learningObjectiveIds": [
+        "use-past-simple"
+      ],
+      "difficulty": "intermediate",
+      "tags": [
+        "past-simple",
+        "context"
+      ],
+      "instructionLanguage": "es",
+      "exerciseLanguage": "en",
+      "explanationLanguage": "es",
+      "prompt": "Last year, I ___ my ticket as a souvenir.",
+      "context": "Completa la frase con el pasado de keep.",
+      "explanation": "La frase sitúa la acción en el pasado. El pasado simple de keep (guardar, conservar) es kept.",
+      "options": [
+        {
+          "id": "eng-iv-keep-context-keeps",
+          "text": "keeps"
+        },
+        {
+          "id": "eng-iv-keep-context-keeped",
+          "text": "keeped"
+        },
+        {
+          "id": "eng-iv-keep-context-kept",
+          "text": "kept"
+        },
+        {
+          "id": "eng-iv-keep-context-keep",
+          "text": "keep"
+        }
+      ],
+      "correctOptionId": "eng-iv-keep-context-kept"
+    },
+    {
+      "id": "eng-iv-know-context",
+      "type": "single_choice",
+      "conceptId": "verb-know",
+      "learningObjectiveIds": [
+        "use-past-simple"
+      ],
+      "difficulty": "intermediate",
+      "tags": [
+        "past-simple",
+        "context"
+      ],
+      "instructionLanguage": "es",
+      "exerciseLanguage": "en",
+      "explanationLanguage": "es",
+      "prompt": "Yesterday, Anna ___ the answer to the question.",
+      "context": "Completa la frase con el pasado de know.",
+      "explanation": "La frase sitúa la acción en el pasado. El pasado simple de know (saber, conocer) es knew.",
+      "options": [
+        {
+          "id": "eng-iv-know-context-know",
+          "text": "know"
+        },
+        {
+          "id": "eng-iv-know-context-knowed",
+          "text": "knowed"
+        },
+        {
+          "id": "eng-iv-know-context-knew",
+          "text": "knew"
+        },
+        {
+          "id": "eng-iv-know-context-known",
+          "text": "known"
+        }
+      ],
+      "correctOptionId": "eng-iv-know-context-knew"
+    },
+    {
+      "id": "eng-iv-leave-context",
+      "type": "single_choice",
+      "conceptId": "verb-leave",
+      "learningObjectiveIds": [
+        "use-past-simple"
+      ],
+      "difficulty": "intermediate",
+      "tags": [
+        "past-simple",
+        "context"
+      ],
+      "instructionLanguage": "es",
+      "exerciseLanguage": "en",
+      "explanationLanguage": "es",
+      "prompt": "We ___ home at eight yesterday.",
+      "context": "Completa la frase con el pasado de leave.",
+      "explanation": "La frase sitúa la acción en el pasado. El pasado simple de leave (salir, dejar) es left.",
+      "options": [
+        {
+          "id": "eng-iv-leave-context-leaves",
+          "text": "leaves"
+        },
+        {
+          "id": "eng-iv-leave-context-left",
+          "text": "left"
+        },
+        {
+          "id": "eng-iv-leave-context-leaved",
+          "text": "leaved"
+        },
+        {
+          "id": "eng-iv-leave-context-leave",
+          "text": "leave"
+        }
+      ],
+      "correctOptionId": "eng-iv-leave-context-left"
+    },
+    {
+      "id": "eng-iv-lose-context",
+      "type": "single_choice",
+      "conceptId": "verb-lose",
+      "learningObjectiveIds": [
+        "use-past-simple"
+      ],
+      "difficulty": "intermediate",
+      "tags": [
+        "past-simple",
+        "context"
+      ],
+      "instructionLanguage": "es",
+      "exerciseLanguage": "en",
+      "explanationLanguage": "es",
+      "prompt": "Last Monday, Alex ___ his key.",
+      "context": "Completa la frase con el pasado de lose.",
+      "explanation": "La frase sitúa la acción en el pasado. El pasado simple de lose (perder) es lost.",
+      "options": [
+        {
+          "id": "eng-iv-lose-context-loses",
+          "text": "loses"
+        },
+        {
+          "id": "eng-iv-lose-context-losed",
+          "text": "losed"
+        },
+        {
+          "id": "eng-iv-lose-context-lose",
+          "text": "lose"
+        },
+        {
+          "id": "eng-iv-lose-context-lost",
+          "text": "lost"
+        }
+      ],
+      "correctOptionId": "eng-iv-lose-context-lost"
+    },
+    {
+      "id": "eng-iv-make-context",
+      "type": "single_choice",
+      "conceptId": "verb-make",
+      "learningObjectiveIds": [
+        "use-past-simple"
+      ],
+      "difficulty": "intermediate",
+      "tags": [
+        "past-simple",
+        "context"
+      ],
+      "instructionLanguage": "es",
+      "exerciseLanguage": "en",
+      "explanationLanguage": "es",
+      "prompt": "Yesterday, we ___ a paper boat.",
+      "context": "Completa la frase con el pasado de make.",
+      "explanation": "La frase sitúa la acción en el pasado. El pasado simple de make (hacer, fabricar) es made.",
+      "options": [
+        {
+          "id": "eng-iv-make-context-makes",
+          "text": "makes"
+        },
+        {
+          "id": "eng-iv-make-context-make",
+          "text": "make"
+        },
+        {
+          "id": "eng-iv-make-context-made",
+          "text": "made"
+        },
+        {
+          "id": "eng-iv-make-context-maked",
+          "text": "maked"
+        }
+      ],
+      "correctOptionId": "eng-iv-make-context-made"
+    },
+    {
+      "id": "eng-iv-meet-context",
+      "type": "single_choice",
+      "conceptId": "verb-meet",
+      "learningObjectiveIds": [
+        "use-past-simple"
+      ],
+      "difficulty": "intermediate",
+      "tags": [
+        "past-simple",
+        "context"
+      ],
+      "instructionLanguage": "es",
+      "exerciseLanguage": "en",
+      "explanationLanguage": "es",
+      "prompt": "I ___ my new teacher last week.",
+      "context": "Completa la frase con el pasado de meet.",
+      "explanation": "La frase sitúa la acción en el pasado. El pasado simple de meet (conocer, encontrarse) es met.",
+      "options": [
+        {
+          "id": "eng-iv-meet-context-meeted",
+          "text": "meeted"
+        },
+        {
+          "id": "eng-iv-meet-context-meet",
+          "text": "meet"
+        },
+        {
+          "id": "eng-iv-meet-context-meets",
+          "text": "meets"
+        },
+        {
+          "id": "eng-iv-meet-context-met",
+          "text": "met"
+        }
+      ],
+      "correctOptionId": "eng-iv-meet-context-met"
+    },
+    {
+      "id": "eng-iv-pay-context",
+      "type": "single_choice",
+      "conceptId": "verb-pay",
+      "learningObjectiveIds": [
+        "use-past-simple"
+      ],
+      "difficulty": "intermediate",
+      "tags": [
+        "past-simple",
+        "context"
+      ],
+      "instructionLanguage": "es",
+      "exerciseLanguage": "en",
+      "explanationLanguage": "es",
+      "prompt": "Yesterday, Dad ___ for the tickets.",
+      "context": "Completa la frase con el pasado de pay.",
+      "explanation": "La frase sitúa la acción en el pasado. El pasado simple de pay (pagar) es paid.",
+      "options": [
+        {
+          "id": "eng-iv-pay-context-paid",
+          "text": "paid"
+        },
+        {
+          "id": "eng-iv-pay-context-paying",
+          "text": "paying"
+        },
+        {
+          "id": "eng-iv-pay-context-pays",
+          "text": "pays"
+        },
+        {
+          "id": "eng-iv-pay-context-pay",
+          "text": "pay"
+        }
+      ],
+      "correctOptionId": "eng-iv-pay-context-paid"
+    },
+    {
+      "id": "eng-iv-put-context",
+      "type": "single_choice",
+      "conceptId": "verb-put",
+      "learningObjectiveIds": [
+        "use-past-simple"
+      ],
+      "difficulty": "intermediate",
+      "tags": [
+        "past-simple",
+        "context"
+      ],
+      "instructionLanguage": "es",
+      "exerciseLanguage": "en",
+      "explanationLanguage": "es",
+      "prompt": "Yesterday, I ___ my shoes by the door.",
+      "context": "Completa la frase con el pasado de put.",
+      "explanation": "Put mantiene la misma forma escrita en infinitivo, pasado y participio. La referencia temporal sitúa la acción en el pasado.",
+      "options": [
+        {
+          "id": "eng-iv-put-context-putting",
+          "text": "putting"
+        },
+        {
+          "id": "eng-iv-put-context-put",
+          "text": "put"
+        },
+        {
+          "id": "eng-iv-put-context-puts",
+          "text": "puts"
+        },
+        {
+          "id": "eng-iv-put-context-putted",
+          "text": "putted"
+        }
+      ],
+      "correctOptionId": "eng-iv-put-context-put"
+    },
+    {
+      "id": "eng-iv-read-context",
+      "type": "single_choice",
+      "conceptId": "verb-read",
+      "learningObjectiveIds": [
+        "use-past-simple"
+      ],
+      "difficulty": "intermediate",
+      "tags": [
+        "past-simple",
+        "context"
+      ],
+      "instructionLanguage": "es",
+      "exerciseLanguage": "en",
+      "explanationLanguage": "es",
+      "prompt": "Last night, I ___ a comic before bed.",
+      "context": "Completa la frase con el pasado de read.",
+      "explanation": "Read se escribe igual en infinitivo y pasado, pero en pasado se pronuncia /red/. Last night indica pasado.",
+      "options": [
+        {
+          "id": "eng-iv-read-context-readed",
+          "text": "readed"
+        },
+        {
+          "id": "eng-iv-read-context-read",
+          "text": "read"
+        },
+        {
+          "id": "eng-iv-read-context-reading",
+          "text": "reading"
+        },
+        {
+          "id": "eng-iv-read-context-reads",
+          "text": "reads"
+        }
+      ],
+      "correctOptionId": "eng-iv-read-context-read"
+    },
+    {
+      "id": "eng-iv-ride-context",
+      "type": "single_choice",
+      "conceptId": "verb-ride",
+      "learningObjectiveIds": [
+        "use-past-simple"
+      ],
+      "difficulty": "intermediate",
+      "tags": [
+        "past-simple",
+        "context"
+      ],
+      "instructionLanguage": "es",
+      "exerciseLanguage": "en",
+      "explanationLanguage": "es",
+      "prompt": "Last Sunday, I ___ my bike to the park.",
+      "context": "Completa la frase con el pasado de ride.",
+      "explanation": "La frase sitúa la acción en el pasado. El pasado simple de ride (montar) es rode.",
+      "options": [
+        {
+          "id": "eng-iv-ride-context-ridden",
+          "text": "ridden"
+        },
+        {
+          "id": "eng-iv-ride-context-rided",
+          "text": "rided"
+        },
+        {
+          "id": "eng-iv-ride-context-rode",
+          "text": "rode"
+        },
+        {
+          "id": "eng-iv-ride-context-ride",
+          "text": "ride"
+        }
+      ],
+      "correctOptionId": "eng-iv-ride-context-rode"
+    },
+    {
+      "id": "eng-iv-run-context",
+      "type": "single_choice",
+      "conceptId": "verb-run",
+      "learningObjectiveIds": [
+        "use-past-simple"
+      ],
+      "difficulty": "intermediate",
+      "tags": [
+        "past-simple",
+        "context"
+      ],
+      "instructionLanguage": "es",
+      "exerciseLanguage": "en",
+      "explanationLanguage": "es",
+      "prompt": "Yesterday, the dog ___ across the garden.",
+      "context": "Completa la frase con el pasado de run.",
+      "explanation": "La frase sitúa la acción en el pasado. El pasado simple de run (correr) es ran.",
+      "options": [
+        {
+          "id": "eng-iv-run-context-ran",
+          "text": "ran"
+        },
+        {
+          "id": "eng-iv-run-context-runned",
+          "text": "runned"
+        },
+        {
+          "id": "eng-iv-run-context-runs",
+          "text": "runs"
+        },
+        {
+          "id": "eng-iv-run-context-run",
+          "text": "run"
+        }
+      ],
+      "correctOptionId": "eng-iv-run-context-ran"
+    },
+    {
+      "id": "eng-iv-say-context",
+      "type": "single_choice",
+      "conceptId": "verb-say",
+      "learningObjectiveIds": [
+        "use-past-simple"
+      ],
+      "difficulty": "intermediate",
+      "tags": [
+        "past-simple",
+        "context"
+      ],
+      "instructionLanguage": "es",
+      "exerciseLanguage": "en",
+      "explanationLanguage": "es",
+      "prompt": "Yesterday, our teacher ___ hello to us.",
+      "context": "Completa la frase con el pasado de say.",
+      "explanation": "La frase sitúa la acción en el pasado. El pasado simple de say (decir) es said.",
+      "options": [
+        {
+          "id": "eng-iv-say-context-sayed",
+          "text": "sayed"
+        },
+        {
+          "id": "eng-iv-say-context-said",
+          "text": "said"
+        },
+        {
+          "id": "eng-iv-say-context-say",
+          "text": "say"
+        },
+        {
+          "id": "eng-iv-say-context-says",
+          "text": "says"
+        }
+      ],
+      "correctOptionId": "eng-iv-say-context-said"
+    },
+    {
+      "id": "eng-iv-see-context",
+      "type": "single_choice",
+      "conceptId": "verb-see",
+      "learningObjectiveIds": [
+        "use-past-simple"
+      ],
+      "difficulty": "intermediate",
+      "tags": [
+        "past-simple",
+        "context"
+      ],
+      "instructionLanguage": "es",
+      "exerciseLanguage": "en",
+      "explanationLanguage": "es",
+      "prompt": "Last night, we ___ a bright star.",
+      "context": "Completa la frase con el pasado de see.",
+      "explanation": "La frase sitúa la acción en el pasado. El pasado simple de see (ver) es saw.",
+      "options": [
+        {
+          "id": "eng-iv-see-context-see",
+          "text": "see"
+        },
+        {
+          "id": "eng-iv-see-context-seed",
+          "text": "seed"
+        },
+        {
+          "id": "eng-iv-see-context-saw",
+          "text": "saw"
+        },
+        {
+          "id": "eng-iv-see-context-seen",
+          "text": "seen"
+        }
+      ],
+      "correctOptionId": "eng-iv-see-context-saw"
+    },
+    {
+      "id": "eng-iv-sell-context",
+      "type": "single_choice",
+      "conceptId": "verb-sell",
+      "learningObjectiveIds": [
+        "use-past-simple"
+      ],
+      "difficulty": "intermediate",
+      "tags": [
+        "past-simple",
+        "context"
+      ],
+      "instructionLanguage": "es",
+      "exerciseLanguage": "en",
+      "explanationLanguage": "es",
+      "prompt": "Last Saturday, the shop ___ all its apples.",
+      "context": "Completa la frase con el pasado de sell.",
+      "explanation": "La frase sitúa la acción en el pasado. El pasado simple de sell (vender) es sold.",
+      "options": [
+        {
+          "id": "eng-iv-sell-context-sold",
+          "text": "sold"
+        },
+        {
+          "id": "eng-iv-sell-context-sell",
+          "text": "sell"
+        },
+        {
+          "id": "eng-iv-sell-context-sells",
+          "text": "sells"
+        },
+        {
+          "id": "eng-iv-sell-context-selled",
+          "text": "selled"
+        }
+      ],
+      "correctOptionId": "eng-iv-sell-context-sold"
+    },
+    {
+      "id": "eng-iv-send-context",
+      "type": "single_choice",
+      "conceptId": "verb-send",
+      "learningObjectiveIds": [
+        "use-past-simple"
+      ],
+      "difficulty": "intermediate",
+      "tags": [
+        "past-simple",
+        "context"
+      ],
+      "instructionLanguage": "es",
+      "exerciseLanguage": "en",
+      "explanationLanguage": "es",
+      "prompt": "Yesterday, I ___ a postcard to my aunt.",
+      "context": "Completa la frase con el pasado de send.",
+      "explanation": "La frase sitúa la acción en el pasado. El pasado simple de send (enviar) es sent.",
+      "options": [
+        {
+          "id": "eng-iv-send-context-sent",
+          "text": "sent"
+        },
+        {
+          "id": "eng-iv-send-context-sended",
+          "text": "sended"
+        },
+        {
+          "id": "eng-iv-send-context-send",
+          "text": "send"
+        },
+        {
+          "id": "eng-iv-send-context-sends",
+          "text": "sends"
+        }
+      ],
+      "correctOptionId": "eng-iv-send-context-sent"
+    },
+    {
+      "id": "eng-iv-sing-context",
+      "type": "single_choice",
+      "conceptId": "verb-sing",
+      "learningObjectiveIds": [
+        "use-past-simple"
+      ],
+      "difficulty": "intermediate",
+      "tags": [
+        "past-simple",
+        "context"
+      ],
+      "instructionLanguage": "es",
+      "exerciseLanguage": "en",
+      "explanationLanguage": "es",
+      "prompt": "Yesterday, we ___ a song in class.",
+      "context": "Completa la frase con el pasado de sing.",
+      "explanation": "La frase sitúa la acción en el pasado. El pasado simple de sing (cantar) es sang.",
+      "options": [
+        {
+          "id": "eng-iv-sing-context-sang",
+          "text": "sang"
+        },
+        {
+          "id": "eng-iv-sing-context-sung",
+          "text": "sung"
+        },
+        {
+          "id": "eng-iv-sing-context-singed",
+          "text": "singed"
+        },
+        {
+          "id": "eng-iv-sing-context-sing",
+          "text": "sing"
+        }
+      ],
+      "correctOptionId": "eng-iv-sing-context-sang"
+    },
+    {
+      "id": "eng-iv-sit-context",
+      "type": "single_choice",
+      "conceptId": "verb-sit",
+      "learningObjectiveIds": [
+        "use-past-simple"
+      ],
+      "difficulty": "intermediate",
+      "tags": [
+        "past-simple",
+        "context"
+      ],
+      "instructionLanguage": "es",
+      "exerciseLanguage": "en",
+      "explanationLanguage": "es",
+      "prompt": "Yesterday, I ___ next to my best friend.",
+      "context": "Completa la frase con el pasado de sit.",
+      "explanation": "La frase sitúa la acción en el pasado. El pasado simple de sit (sentarse) es sat.",
+      "options": [
+        {
+          "id": "eng-iv-sit-context-sitted",
+          "text": "sitted"
+        },
+        {
+          "id": "eng-iv-sit-context-sit",
+          "text": "sit"
+        },
+        {
+          "id": "eng-iv-sit-context-sits",
+          "text": "sits"
+        },
+        {
+          "id": "eng-iv-sit-context-sat",
+          "text": "sat"
+        }
+      ],
+      "correctOptionId": "eng-iv-sit-context-sat"
+    },
+    {
+      "id": "eng-iv-sleep-context",
+      "type": "single_choice",
+      "conceptId": "verb-sleep",
+      "learningObjectiveIds": [
+        "use-past-simple"
+      ],
+      "difficulty": "intermediate",
+      "tags": [
+        "past-simple",
+        "context"
+      ],
+      "instructionLanguage": "es",
+      "exerciseLanguage": "en",
+      "explanationLanguage": "es",
+      "prompt": "Last night, the baby ___ for eight hours.",
+      "context": "Completa la frase con el pasado de sleep.",
+      "explanation": "La frase sitúa la acción en el pasado. El pasado simple de sleep (dormir) es slept.",
+      "options": [
+        {
+          "id": "eng-iv-sleep-context-sleeped",
+          "text": "sleeped"
+        },
+        {
+          "id": "eng-iv-sleep-context-sleep",
+          "text": "sleep"
+        },
+        {
+          "id": "eng-iv-sleep-context-sleeps",
+          "text": "sleeps"
+        },
+        {
+          "id": "eng-iv-sleep-context-slept",
+          "text": "slept"
+        }
+      ],
+      "correctOptionId": "eng-iv-sleep-context-slept"
+    },
+    {
+      "id": "eng-iv-speak-context",
+      "type": "single_choice",
+      "conceptId": "verb-speak",
+      "learningObjectiveIds": [
+        "use-past-simple"
+      ],
+      "difficulty": "intermediate",
+      "tags": [
+        "past-simple",
+        "context"
+      ],
+      "instructionLanguage": "es",
+      "exerciseLanguage": "en",
+      "explanationLanguage": "es",
+      "prompt": "Yesterday, our guide ___ English.",
+      "context": "Completa la frase con el pasado de speak.",
+      "explanation": "La frase sitúa la acción en el pasado. El pasado simple de speak (hablar) es spoke.",
+      "options": [
+        {
+          "id": "eng-iv-speak-context-spoke",
+          "text": "spoke"
+        },
+        {
+          "id": "eng-iv-speak-context-speaked",
+          "text": "speaked"
+        },
+        {
+          "id": "eng-iv-speak-context-spoken",
+          "text": "spoken"
+        },
+        {
+          "id": "eng-iv-speak-context-speak",
+          "text": "speak"
+        }
+      ],
+      "correctOptionId": "eng-iv-speak-context-spoke"
+    },
+    {
+      "id": "eng-iv-stand-context",
+      "type": "single_choice",
+      "conceptId": "verb-stand",
+      "learningObjectiveIds": [
+        "use-past-simple"
+      ],
+      "difficulty": "intermediate",
+      "tags": [
+        "past-simple",
+        "context"
+      ],
+      "instructionLanguage": "es",
+      "exerciseLanguage": "en",
+      "explanationLanguage": "es",
+      "prompt": "Yesterday, we ___ in a long queue.",
+      "context": "Completa la frase con el pasado de stand.",
+      "explanation": "La frase sitúa la acción en el pasado. El pasado simple de stand (estar de pie) es stood.",
+      "options": [
+        {
+          "id": "eng-iv-stand-context-standed",
+          "text": "standed"
+        },
+        {
+          "id": "eng-iv-stand-context-stands",
+          "text": "stands"
+        },
+        {
+          "id": "eng-iv-stand-context-stand",
+          "text": "stand"
+        },
+        {
+          "id": "eng-iv-stand-context-stood",
+          "text": "stood"
+        }
+      ],
+      "correctOptionId": "eng-iv-stand-context-stood"
+    },
+    {
+      "id": "eng-iv-swim-context",
+      "type": "single_choice",
+      "conceptId": "verb-swim",
+      "learningObjectiveIds": [
+        "use-past-simple"
+      ],
+      "difficulty": "intermediate",
+      "tags": [
+        "past-simple",
+        "context"
+      ],
+      "instructionLanguage": "es",
+      "exerciseLanguage": "en",
+      "explanationLanguage": "es",
+      "prompt": "Last summer, I ___ in the sea.",
+      "context": "Completa la frase con el pasado de swim.",
+      "explanation": "La frase sitúa la acción en el pasado. El pasado simple de swim (nadar) es swam.",
+      "options": [
+        {
+          "id": "eng-iv-swim-context-swam",
+          "text": "swam"
+        },
+        {
+          "id": "eng-iv-swim-context-swimmed",
+          "text": "swimmed"
+        },
+        {
+          "id": "eng-iv-swim-context-swim",
+          "text": "swim"
+        },
+        {
+          "id": "eng-iv-swim-context-swum",
+          "text": "swum"
+        }
+      ],
+      "correctOptionId": "eng-iv-swim-context-swam"
+    },
+    {
+      "id": "eng-iv-take-context",
+      "type": "single_choice",
+      "conceptId": "verb-take",
+      "learningObjectiveIds": [
+        "use-past-simple"
+      ],
+      "difficulty": "intermediate",
+      "tags": [
+        "past-simple",
+        "context"
+      ],
+      "instructionLanguage": "es",
+      "exerciseLanguage": "en",
+      "explanationLanguage": "es",
+      "prompt": "Yesterday, Emma ___ a photo of a butterfly.",
+      "context": "Completa la frase con el pasado de take.",
+      "explanation": "La frase sitúa la acción en el pasado. El pasado simple de take (tomar, llevar) es took.",
+      "options": [
+        {
+          "id": "eng-iv-take-context-take",
+          "text": "take"
+        },
+        {
+          "id": "eng-iv-take-context-took",
+          "text": "took"
+        },
+        {
+          "id": "eng-iv-take-context-taked",
+          "text": "taked"
+        },
+        {
+          "id": "eng-iv-take-context-taken",
+          "text": "taken"
+        }
+      ],
+      "correctOptionId": "eng-iv-take-context-took"
+    },
+    {
+      "id": "eng-iv-teach-context",
+      "type": "single_choice",
+      "conceptId": "verb-teach",
+      "learningObjectiveIds": [
+        "use-past-simple"
+      ],
+      "difficulty": "intermediate",
+      "tags": [
+        "past-simple",
+        "context"
+      ],
+      "instructionLanguage": "es",
+      "exerciseLanguage": "en",
+      "explanationLanguage": "es",
+      "prompt": "Last week, our teacher ___ us a new song.",
+      "context": "Completa la frase con el pasado de teach.",
+      "explanation": "La frase sitúa la acción en el pasado. El pasado simple de teach (enseñar) es taught.",
+      "options": [
+        {
+          "id": "eng-iv-teach-context-taught",
+          "text": "taught"
+        },
+        {
+          "id": "eng-iv-teach-context-teached",
+          "text": "teached"
+        },
+        {
+          "id": "eng-iv-teach-context-teach",
+          "text": "teach"
+        },
+        {
+          "id": "eng-iv-teach-context-teaches",
+          "text": "teaches"
+        }
+      ],
+      "correctOptionId": "eng-iv-teach-context-taught"
+    },
+    {
+      "id": "eng-iv-tell-context",
+      "type": "single_choice",
+      "conceptId": "verb-tell",
+      "learningObjectiveIds": [
+        "use-past-simple"
+      ],
+      "difficulty": "intermediate",
+      "tags": [
+        "past-simple",
+        "context"
+      ],
+      "instructionLanguage": "es",
+      "exerciseLanguage": "en",
+      "explanationLanguage": "es",
+      "prompt": "Last night, Dad ___ us a funny story.",
+      "context": "Completa la frase con el pasado de tell.",
+      "explanation": "La frase sitúa la acción en el pasado. El pasado simple de tell (contar, decir) es told.",
+      "options": [
+        {
+          "id": "eng-iv-tell-context-tells",
+          "text": "tells"
+        },
+        {
+          "id": "eng-iv-tell-context-telled",
+          "text": "telled"
+        },
+        {
+          "id": "eng-iv-tell-context-tell",
+          "text": "tell"
+        },
+        {
+          "id": "eng-iv-tell-context-told",
+          "text": "told"
+        }
+      ],
+      "correctOptionId": "eng-iv-tell-context-told"
+    },
+    {
+      "id": "eng-iv-think-context",
+      "type": "single_choice",
+      "conceptId": "verb-think",
+      "learningObjectiveIds": [
+        "use-past-simple"
+      ],
+      "difficulty": "intermediate",
+      "tags": [
+        "past-simple",
+        "context"
+      ],
+      "instructionLanguage": "es",
+      "exerciseLanguage": "en",
+      "explanationLanguage": "es",
+      "prompt": "Yesterday, I ___ about my next birthday.",
+      "context": "Completa la frase con el pasado de think.",
+      "explanation": "La frase sitúa la acción en el pasado. El pasado simple de think (pensar) es thought.",
+      "options": [
+        {
+          "id": "eng-iv-think-context-thinks",
+          "text": "thinks"
+        },
+        {
+          "id": "eng-iv-think-context-think",
+          "text": "think"
+        },
+        {
+          "id": "eng-iv-think-context-thought",
+          "text": "thought"
+        },
+        {
+          "id": "eng-iv-think-context-thinked",
+          "text": "thinked"
+        }
+      ],
+      "correctOptionId": "eng-iv-think-context-thought"
+    },
+    {
+      "id": "eng-iv-understand-context",
+      "type": "single_choice",
+      "conceptId": "verb-understand",
+      "learningObjectiveIds": [
+        "use-past-simple"
+      ],
+      "difficulty": "intermediate",
+      "tags": [
+        "past-simple",
+        "context"
+      ],
+      "instructionLanguage": "es",
+      "exerciseLanguage": "en",
+      "explanationLanguage": "es",
+      "prompt": "Yesterday, I finally ___ the maths problem.",
+      "context": "Completa la frase con el pasado de understand.",
+      "explanation": "La frase sitúa la acción en el pasado. El pasado simple de understand (entender) es understood.",
+      "options": [
+        {
+          "id": "eng-iv-understand-context-understood",
+          "text": "understood"
+        },
+        {
+          "id": "eng-iv-understand-context-understanded",
+          "text": "understanded"
+        },
+        {
+          "id": "eng-iv-understand-context-understand",
+          "text": "understand"
+        },
+        {
+          "id": "eng-iv-understand-context-understands",
+          "text": "understands"
+        }
+      ],
+      "correctOptionId": "eng-iv-understand-context-understood"
+    },
+    {
+      "id": "eng-iv-wake-context",
+      "type": "single_choice",
+      "conceptId": "verb-wake",
+      "learningObjectiveIds": [
+        "use-past-simple"
+      ],
+      "difficulty": "intermediate",
+      "tags": [
+        "past-simple",
+        "context"
+      ],
+      "instructionLanguage": "es",
+      "exerciseLanguage": "en",
+      "explanationLanguage": "es",
+      "prompt": "Yesterday, I ___ up at seven.",
+      "context": "Completa la frase con el pasado de wake.",
+      "explanation": "La frase sitúa la acción en el pasado. El pasado simple de wake (despertar(se)) es woke.",
+      "options": [
+        {
+          "id": "eng-iv-wake-context-woke",
+          "text": "woke"
+        },
+        {
+          "id": "eng-iv-wake-context-wake",
+          "text": "wake"
+        },
+        {
+          "id": "eng-iv-wake-context-woken",
+          "text": "woken"
+        },
+        {
+          "id": "eng-iv-wake-context-waking",
+          "text": "waking"
+        }
+      ],
+      "correctOptionId": "eng-iv-wake-context-woke"
+    },
+    {
+      "id": "eng-iv-wear-context",
+      "type": "single_choice",
+      "conceptId": "verb-wear",
+      "learningObjectiveIds": [
+        "use-past-simple"
+      ],
+      "difficulty": "intermediate",
+      "tags": [
+        "past-simple",
+        "context"
+      ],
+      "instructionLanguage": "es",
+      "exerciseLanguage": "en",
+      "explanationLanguage": "es",
+      "prompt": "Yesterday, Mia ___ her red coat.",
+      "context": "Completa la frase con el pasado de wear.",
+      "explanation": "La frase sitúa la acción en el pasado. El pasado simple de wear (llevar puesto) es wore.",
+      "options": [
+        {
+          "id": "eng-iv-wear-context-worn",
+          "text": "worn"
+        },
+        {
+          "id": "eng-iv-wear-context-weared",
+          "text": "weared"
+        },
+        {
+          "id": "eng-iv-wear-context-wear",
+          "text": "wear"
+        },
+        {
+          "id": "eng-iv-wear-context-wore",
+          "text": "wore"
+        }
+      ],
+      "correctOptionId": "eng-iv-wear-context-wore"
+    },
+    {
+      "id": "eng-iv-win-context",
+      "type": "single_choice",
+      "conceptId": "verb-win",
+      "learningObjectiveIds": [
+        "use-past-simple"
+      ],
+      "difficulty": "intermediate",
+      "tags": [
+        "past-simple",
+        "context"
+      ],
+      "instructionLanguage": "es",
+      "exerciseLanguage": "en",
+      "explanationLanguage": "es",
+      "prompt": "Last Saturday, our team ___ the match.",
+      "context": "Completa la frase con el pasado de win.",
+      "explanation": "La frase sitúa la acción en el pasado. El pasado simple de win (ganar) es won.",
+      "options": [
+        {
+          "id": "eng-iv-win-context-win",
+          "text": "win"
+        },
+        {
+          "id": "eng-iv-win-context-won",
+          "text": "won"
+        },
+        {
+          "id": "eng-iv-win-context-winned",
+          "text": "winned"
+        },
+        {
+          "id": "eng-iv-win-context-wins",
+          "text": "wins"
+        }
+      ],
+      "correctOptionId": "eng-iv-win-context-won"
+    },
+    {
+      "id": "eng-iv-write-context",
+      "type": "single_choice",
+      "conceptId": "verb-write",
+      "learningObjectiveIds": [
+        "use-past-simple"
+      ],
+      "difficulty": "intermediate",
+      "tags": [
+        "past-simple",
+        "context"
+      ],
+      "instructionLanguage": "es",
+      "exerciseLanguage": "en",
+      "explanationLanguage": "es",
+      "prompt": "Yesterday, I ___ a letter to my friend.",
+      "context": "Completa la frase con el pasado de write.",
+      "explanation": "La frase sitúa la acción en el pasado. El pasado simple de write (escribir) es wrote.",
+      "options": [
+        {
+          "id": "eng-iv-write-context-written",
+          "text": "written"
+        },
+        {
+          "id": "eng-iv-write-context-write",
+          "text": "write"
+        },
+        {
+          "id": "eng-iv-write-context-wrote",
+          "text": "wrote"
+        },
+        {
+          "id": "eng-iv-write-context-writed",
+          "text": "writed"
+        }
+      ],
+      "correctOptionId": "eng-iv-write-context-wrote"
+    },
+    {
+      "id": "eng-iv-begin-participle",
+      "type": "single_choice",
+      "conceptId": "verb-begin",
+      "learningObjectiveIds": [
+        "use-past-participle"
+      ],
+      "difficulty": "advanced",
+      "tags": [
+        "past-participle",
+        "context",
+        "present-perfect"
+      ],
+      "instructionLanguage": "es",
+      "exerciseLanguage": "en",
+      "explanationLanguage": "es",
+      "prompt": "The lesson has already ___.",
+      "context": "Completa con el participio de begin.",
+      "explanation": "En esta estructura, después de have o has usamos el participio de begin: begun.",
+      "options": [
+        {
+          "id": "eng-iv-begin-participle-begined",
+          "text": "begined"
+        },
+        {
+          "id": "eng-iv-begin-participle-begin",
+          "text": "begin"
+        },
+        {
+          "id": "eng-iv-begin-participle-began",
+          "text": "began"
+        },
+        {
+          "id": "eng-iv-begin-participle-begun",
+          "text": "begun"
+        }
+      ],
+      "correctOptionId": "eng-iv-begin-participle-begun"
+    },
+    {
+      "id": "eng-iv-break-participle",
+      "type": "single_choice",
+      "conceptId": "verb-break",
+      "learningObjectiveIds": [
+        "use-past-participle"
+      ],
+      "difficulty": "advanced",
+      "tags": [
+        "past-participle",
+        "context",
+        "present-perfect"
+      ],
+      "instructionLanguage": "es",
+      "exerciseLanguage": "en",
+      "explanationLanguage": "es",
+      "prompt": "Oh no! I have ___ my pencil.",
+      "context": "Completa con el participio de break.",
+      "explanation": "En esta estructura, después de have o has usamos el participio de break: broken.",
+      "options": [
+        {
+          "id": "eng-iv-break-participle-broke",
+          "text": "broke"
+        },
+        {
+          "id": "eng-iv-break-participle-broken",
+          "text": "broken"
+        },
+        {
+          "id": "eng-iv-break-participle-break",
+          "text": "break"
+        },
+        {
+          "id": "eng-iv-break-participle-breaked",
+          "text": "breaked"
+        }
+      ],
+      "correctOptionId": "eng-iv-break-participle-broken"
+    },
+    {
+      "id": "eng-iv-choose-participle",
+      "type": "single_choice",
+      "conceptId": "verb-choose",
+      "learningObjectiveIds": [
+        "use-past-participle"
+      ],
+      "difficulty": "advanced",
+      "tags": [
+        "past-participle",
+        "context",
+        "present-perfect"
+      ],
+      "instructionLanguage": "es",
+      "exerciseLanguage": "en",
+      "explanationLanguage": "es",
+      "prompt": "We have ___ a name for our team.",
+      "context": "Completa con el participio de choose.",
+      "explanation": "En esta estructura, después de have o has usamos el participio de choose: chosen.",
+      "options": [
+        {
+          "id": "eng-iv-choose-participle-chose",
+          "text": "chose"
+        },
+        {
+          "id": "eng-iv-choose-participle-chosen",
+          "text": "chosen"
+        },
+        {
+          "id": "eng-iv-choose-participle-choosed",
+          "text": "choosed"
+        },
+        {
+          "id": "eng-iv-choose-participle-choose",
+          "text": "choose"
+        }
+      ],
+      "correctOptionId": "eng-iv-choose-participle-chosen"
+    },
+    {
+      "id": "eng-iv-do-participle",
+      "type": "single_choice",
+      "conceptId": "verb-do",
+      "learningObjectiveIds": [
+        "use-past-participle"
+      ],
+      "difficulty": "advanced",
+      "tags": [
+        "past-participle",
+        "context",
+        "present-perfect"
+      ],
+      "instructionLanguage": "es",
+      "exerciseLanguage": "en",
+      "explanationLanguage": "es",
+      "prompt": "I have ___ my homework.",
+      "context": "Completa con el participio de do.",
+      "explanation": "En esta estructura, después de have o has usamos el participio de do: done.",
+      "options": [
+        {
+          "id": "eng-iv-do-participle-done",
+          "text": "done"
+        },
+        {
+          "id": "eng-iv-do-participle-do",
+          "text": "do"
+        },
+        {
+          "id": "eng-iv-do-participle-did",
+          "text": "did"
+        },
+        {
+          "id": "eng-iv-do-participle-doed",
+          "text": "doed"
+        }
+      ],
+      "correctOptionId": "eng-iv-do-participle-done"
+    },
+    {
+      "id": "eng-iv-drink-participle",
+      "type": "single_choice",
+      "conceptId": "verb-drink",
+      "learningObjectiveIds": [
+        "use-past-participle"
+      ],
+      "difficulty": "advanced",
+      "tags": [
+        "past-participle",
+        "context",
+        "present-perfect"
+      ],
+      "instructionLanguage": "es",
+      "exerciseLanguage": "en",
+      "explanationLanguage": "es",
+      "prompt": "She has ___ all her water.",
+      "context": "Completa con el participio de drink.",
+      "explanation": "En esta estructura, después de have o has usamos el participio de drink: drunk.",
+      "options": [
+        {
+          "id": "eng-iv-drink-participle-drink",
+          "text": "drink"
+        },
+        {
+          "id": "eng-iv-drink-participle-drunk",
+          "text": "drunk"
+        },
+        {
+          "id": "eng-iv-drink-participle-drank",
+          "text": "drank"
+        },
+        {
+          "id": "eng-iv-drink-participle-drinked",
+          "text": "drinked"
+        }
+      ],
+      "correctOptionId": "eng-iv-drink-participle-drunk"
+    },
+    {
+      "id": "eng-iv-drive-participle",
+      "type": "single_choice",
+      "conceptId": "verb-drive",
+      "learningObjectiveIds": [
+        "use-past-participle"
+      ],
+      "difficulty": "advanced",
+      "tags": [
+        "past-participle",
+        "context",
+        "present-perfect"
+      ],
+      "instructionLanguage": "es",
+      "exerciseLanguage": "en",
+      "explanationLanguage": "es",
+      "prompt": "Dad has ___ this car before.",
+      "context": "Completa con el participio de drive.",
+      "explanation": "En esta estructura, después de have o has usamos el participio de drive: driven.",
+      "options": [
+        {
+          "id": "eng-iv-drive-participle-drove",
+          "text": "drove"
+        },
+        {
+          "id": "eng-iv-drive-participle-drived",
+          "text": "drived"
+        },
+        {
+          "id": "eng-iv-drive-participle-driven",
+          "text": "driven"
+        },
+        {
+          "id": "eng-iv-drive-participle-drive",
+          "text": "drive"
+        }
+      ],
+      "correctOptionId": "eng-iv-drive-participle-driven"
+    },
+    {
+      "id": "eng-iv-eat-participle",
+      "type": "single_choice",
+      "conceptId": "verb-eat",
+      "learningObjectiveIds": [
+        "use-past-participle"
+      ],
+      "difficulty": "advanced",
+      "tags": [
+        "past-participle",
+        "context",
+        "present-perfect"
+      ],
+      "instructionLanguage": "es",
+      "exerciseLanguage": "en",
+      "explanationLanguage": "es",
+      "prompt": "We have already ___ lunch.",
+      "context": "Completa con el participio de eat.",
+      "explanation": "En esta estructura, después de have o has usamos el participio de eat: eaten.",
+      "options": [
+        {
+          "id": "eng-iv-eat-participle-eated",
+          "text": "eated"
+        },
+        {
+          "id": "eng-iv-eat-participle-eat",
+          "text": "eat"
+        },
+        {
+          "id": "eng-iv-eat-participle-eaten",
+          "text": "eaten"
+        },
+        {
+          "id": "eng-iv-eat-participle-ate",
+          "text": "ate"
+        }
+      ],
+      "correctOptionId": "eng-iv-eat-participle-eaten"
+    },
+    {
+      "id": "eng-iv-fall-participle",
+      "type": "single_choice",
+      "conceptId": "verb-fall",
+      "learningObjectiveIds": [
+        "use-past-participle"
+      ],
+      "difficulty": "advanced",
+      "tags": [
+        "past-participle",
+        "context",
+        "present-perfect"
+      ],
+      "instructionLanguage": "es",
+      "exerciseLanguage": "en",
+      "explanationLanguage": "es",
+      "prompt": "The leaves have ___ from the tree.",
+      "context": "Completa con el participio de fall.",
+      "explanation": "En esta estructura, después de have o has usamos el participio de fall: fallen.",
+      "options": [
+        {
+          "id": "eng-iv-fall-participle-falled",
+          "text": "falled"
+        },
+        {
+          "id": "eng-iv-fall-participle-fall",
+          "text": "fall"
+        },
+        {
+          "id": "eng-iv-fall-participle-fell",
+          "text": "fell"
+        },
+        {
+          "id": "eng-iv-fall-participle-fallen",
+          "text": "fallen"
+        }
+      ],
+      "correctOptionId": "eng-iv-fall-participle-fallen"
+    },
+    {
+      "id": "eng-iv-fly-participle",
+      "type": "single_choice",
+      "conceptId": "verb-fly",
+      "learningObjectiveIds": [
+        "use-past-participle"
+      ],
+      "difficulty": "advanced",
+      "tags": [
+        "past-participle",
+        "context",
+        "present-perfect"
+      ],
+      "instructionLanguage": "es",
+      "exerciseLanguage": "en",
+      "explanationLanguage": "es",
+      "prompt": "Have you ever ___ in a plane?",
+      "context": "Completa con el participio de fly.",
+      "explanation": "En esta estructura, después de have o has usamos el participio de fly: flown.",
+      "options": [
+        {
+          "id": "eng-iv-fly-participle-flyed",
+          "text": "flyed"
+        },
+        {
+          "id": "eng-iv-fly-participle-flew",
+          "text": "flew"
+        },
+        {
+          "id": "eng-iv-fly-participle-flown",
+          "text": "flown"
+        },
+        {
+          "id": "eng-iv-fly-participle-fly",
+          "text": "fly"
+        }
+      ],
+      "correctOptionId": "eng-iv-fly-participle-flown"
+    },
+    {
+      "id": "eng-iv-forget-participle",
+      "type": "single_choice",
+      "conceptId": "verb-forget",
+      "learningObjectiveIds": [
+        "use-past-participle"
+      ],
+      "difficulty": "advanced",
+      "tags": [
+        "past-participle",
+        "context",
+        "present-perfect"
+      ],
+      "instructionLanguage": "es",
+      "exerciseLanguage": "en",
+      "explanationLanguage": "es",
+      "prompt": "I have ___ my password.",
+      "context": "Completa con el participio de forget.",
+      "explanation": "En esta estructura, después de have o has usamos el participio de forget: forgotten.",
+      "options": [
+        {
+          "id": "eng-iv-forget-participle-forgot",
+          "text": "forgot"
+        },
+        {
+          "id": "eng-iv-forget-participle-forgotten",
+          "text": "forgotten"
+        },
+        {
+          "id": "eng-iv-forget-participle-forget",
+          "text": "forget"
+        },
+        {
+          "id": "eng-iv-forget-participle-forgetted",
+          "text": "forgetted"
+        }
+      ],
+      "correctOptionId": "eng-iv-forget-participle-forgotten"
+    },
+    {
+      "id": "eng-iv-give-participle",
+      "type": "single_choice",
+      "conceptId": "verb-give",
+      "learningObjectiveIds": [
+        "use-past-participle"
+      ],
+      "difficulty": "advanced",
+      "tags": [
+        "past-participle",
+        "context",
+        "present-perfect"
+      ],
+      "instructionLanguage": "es",
+      "exerciseLanguage": "en",
+      "explanationLanguage": "es",
+      "prompt": "Mum has ___ me a new notebook.",
+      "context": "Completa con el participio de give.",
+      "explanation": "En esta estructura, después de have o has usamos el participio de give: given.",
+      "options": [
+        {
+          "id": "eng-iv-give-participle-given",
+          "text": "given"
+        },
+        {
+          "id": "eng-iv-give-participle-gave",
+          "text": "gave"
+        },
+        {
+          "id": "eng-iv-give-participle-give",
+          "text": "give"
+        },
+        {
+          "id": "eng-iv-give-participle-gived",
+          "text": "gived"
+        }
+      ],
+      "correctOptionId": "eng-iv-give-participle-given"
+    },
+    {
+      "id": "eng-iv-go-participle",
+      "type": "single_choice",
+      "conceptId": "verb-go",
+      "learningObjectiveIds": [
+        "use-past-participle"
+      ],
+      "difficulty": "advanced",
+      "tags": [
+        "past-participle",
+        "context",
+        "present-perfect"
+      ],
+      "instructionLanguage": "es",
+      "exerciseLanguage": "en",
+      "explanationLanguage": "es",
+      "prompt": "Tom has ___ to the library.",
+      "context": "Completa con el participio de go.",
+      "explanation": "En esta estructura, después de have o has usamos el participio de go: gone.",
+      "options": [
+        {
+          "id": "eng-iv-go-participle-went",
+          "text": "went"
+        },
+        {
+          "id": "eng-iv-go-participle-goed",
+          "text": "goed"
+        },
+        {
+          "id": "eng-iv-go-participle-gone",
+          "text": "gone"
+        },
+        {
+          "id": "eng-iv-go-participle-go",
+          "text": "go"
+        }
+      ],
+      "correctOptionId": "eng-iv-go-participle-gone"
+    },
+    {
+      "id": "eng-iv-know-participle",
+      "type": "single_choice",
+      "conceptId": "verb-know",
+      "learningObjectiveIds": [
+        "use-past-participle"
+      ],
+      "difficulty": "advanced",
+      "tags": [
+        "past-participle",
+        "context",
+        "present-perfect"
+      ],
+      "instructionLanguage": "es",
+      "exerciseLanguage": "en",
+      "explanationLanguage": "es",
+      "prompt": "I have ___ my best friend for three years.",
+      "context": "Completa con el participio de know.",
+      "explanation": "En esta estructura, después de have o has usamos el participio de know: known.",
+      "options": [
+        {
+          "id": "eng-iv-know-participle-known",
+          "text": "known"
+        },
+        {
+          "id": "eng-iv-know-participle-knew",
+          "text": "knew"
+        },
+        {
+          "id": "eng-iv-know-participle-knowed",
+          "text": "knowed"
+        },
+        {
+          "id": "eng-iv-know-participle-know",
+          "text": "know"
+        }
+      ],
+      "correctOptionId": "eng-iv-know-participle-known"
+    },
+    {
+      "id": "eng-iv-ride-participle",
+      "type": "single_choice",
+      "conceptId": "verb-ride",
+      "learningObjectiveIds": [
+        "use-past-participle"
+      ],
+      "difficulty": "advanced",
+      "tags": [
+        "past-participle",
+        "context",
+        "present-perfect"
+      ],
+      "instructionLanguage": "es",
+      "exerciseLanguage": "en",
+      "explanationLanguage": "es",
+      "prompt": "Have you ever ___ a horse?",
+      "context": "Completa con el participio de ride.",
+      "explanation": "En esta estructura, después de have o has usamos el participio de ride: ridden.",
+      "options": [
+        {
+          "id": "eng-iv-ride-participle-rode",
+          "text": "rode"
+        },
+        {
+          "id": "eng-iv-ride-participle-ridden",
+          "text": "ridden"
+        },
+        {
+          "id": "eng-iv-ride-participle-rided",
+          "text": "rided"
+        },
+        {
+          "id": "eng-iv-ride-participle-ride",
+          "text": "ride"
+        }
+      ],
+      "correctOptionId": "eng-iv-ride-participle-ridden"
+    },
+    {
+      "id": "eng-iv-see-participle",
+      "type": "single_choice",
+      "conceptId": "verb-see",
+      "learningObjectiveIds": [
+        "use-past-participle"
+      ],
+      "difficulty": "advanced",
+      "tags": [
+        "past-participle",
+        "context",
+        "present-perfect"
+      ],
+      "instructionLanguage": "es",
+      "exerciseLanguage": "en",
+      "explanationLanguage": "es",
+      "prompt": "I have ___ that film twice.",
+      "context": "Completa con el participio de see.",
+      "explanation": "En esta estructura, después de have o has usamos el participio de see: seen.",
+      "options": [
+        {
+          "id": "eng-iv-see-participle-seen",
+          "text": "seen"
+        },
+        {
+          "id": "eng-iv-see-participle-seed",
+          "text": "seed"
+        },
+        {
+          "id": "eng-iv-see-participle-see",
+          "text": "see"
+        },
+        {
+          "id": "eng-iv-see-participle-saw",
+          "text": "saw"
+        }
+      ],
+      "correctOptionId": "eng-iv-see-participle-seen"
+    },
+    {
+      "id": "eng-iv-sing-participle",
+      "type": "single_choice",
+      "conceptId": "verb-sing",
+      "learningObjectiveIds": [
+        "use-past-participle"
+      ],
+      "difficulty": "advanced",
+      "tags": [
+        "past-participle",
+        "context",
+        "present-perfect"
+      ],
+      "instructionLanguage": "es",
+      "exerciseLanguage": "en",
+      "explanationLanguage": "es",
+      "prompt": "We have ___ this song before.",
+      "context": "Completa con el participio de sing.",
+      "explanation": "En esta estructura, después de have o has usamos el participio de sing: sung.",
+      "options": [
+        {
+          "id": "eng-iv-sing-participle-sung",
+          "text": "sung"
+        },
+        {
+          "id": "eng-iv-sing-participle-sang",
+          "text": "sang"
+        },
+        {
+          "id": "eng-iv-sing-participle-sing",
+          "text": "sing"
+        },
+        {
+          "id": "eng-iv-sing-participle-singed",
+          "text": "singed"
+        }
+      ],
+      "correctOptionId": "eng-iv-sing-participle-sung"
+    },
+    {
+      "id": "eng-iv-speak-participle",
+      "type": "single_choice",
+      "conceptId": "verb-speak",
+      "learningObjectiveIds": [
+        "use-past-participle"
+      ],
+      "difficulty": "advanced",
+      "tags": [
+        "past-participle",
+        "context",
+        "present-perfect"
+      ],
+      "instructionLanguage": "es",
+      "exerciseLanguage": "en",
+      "explanationLanguage": "es",
+      "prompt": "She has ___ to the teacher.",
+      "context": "Completa con el participio de speak.",
+      "explanation": "En esta estructura, después de have o has usamos el participio de speak: spoken.",
+      "options": [
+        {
+          "id": "eng-iv-speak-participle-speaked",
+          "text": "speaked"
+        },
+        {
+          "id": "eng-iv-speak-participle-spoken",
+          "text": "spoken"
+        },
+        {
+          "id": "eng-iv-speak-participle-speak",
+          "text": "speak"
+        },
+        {
+          "id": "eng-iv-speak-participle-spoke",
+          "text": "spoke"
+        }
+      ],
+      "correctOptionId": "eng-iv-speak-participle-spoken"
+    },
+    {
+      "id": "eng-iv-swim-participle",
+      "type": "single_choice",
+      "conceptId": "verb-swim",
+      "learningObjectiveIds": [
+        "use-past-participle"
+      ],
+      "difficulty": "advanced",
+      "tags": [
+        "past-participle",
+        "context",
+        "present-perfect"
+      ],
+      "instructionLanguage": "es",
+      "exerciseLanguage": "en",
+      "explanationLanguage": "es",
+      "prompt": "Have you ever ___ in the sea?",
+      "context": "Completa con el participio de swim.",
+      "explanation": "En esta estructura, después de have o has usamos el participio de swim: swum.",
+      "options": [
+        {
+          "id": "eng-iv-swim-participle-swimmed",
+          "text": "swimmed"
+        },
+        {
+          "id": "eng-iv-swim-participle-swim",
+          "text": "swim"
+        },
+        {
+          "id": "eng-iv-swim-participle-swam",
+          "text": "swam"
+        },
+        {
+          "id": "eng-iv-swim-participle-swum",
+          "text": "swum"
+        }
+      ],
+      "correctOptionId": "eng-iv-swim-participle-swum"
+    },
+    {
+      "id": "eng-iv-take-participle",
+      "type": "single_choice",
+      "conceptId": "verb-take",
+      "learningObjectiveIds": [
+        "use-past-participle"
+      ],
+      "difficulty": "advanced",
+      "tags": [
+        "past-participle",
+        "context",
+        "present-perfect"
+      ],
+      "instructionLanguage": "es",
+      "exerciseLanguage": "en",
+      "explanationLanguage": "es",
+      "prompt": "I have ___ three photos today.",
+      "context": "Completa con el participio de take.",
+      "explanation": "En esta estructura, después de have o has usamos el participio de take: taken.",
+      "options": [
+        {
+          "id": "eng-iv-take-participle-taken",
+          "text": "taken"
+        },
+        {
+          "id": "eng-iv-take-participle-taked",
+          "text": "taked"
+        },
+        {
+          "id": "eng-iv-take-participle-took",
+          "text": "took"
+        },
+        {
+          "id": "eng-iv-take-participle-take",
+          "text": "take"
+        }
+      ],
+      "correctOptionId": "eng-iv-take-participle-taken"
+    },
+    {
+      "id": "eng-iv-wake-participle",
+      "type": "single_choice",
+      "conceptId": "verb-wake",
+      "learningObjectiveIds": [
+        "use-past-participle"
+      ],
+      "difficulty": "advanced",
+      "tags": [
+        "past-participle",
+        "context",
+        "present-perfect"
+      ],
+      "instructionLanguage": "es",
+      "exerciseLanguage": "en",
+      "explanationLanguage": "es",
+      "prompt": "The baby has just ___ up.",
+      "context": "Completa con el participio de wake.",
+      "explanation": "En esta estructura, después de have o has usamos el participio de wake: woken.",
+      "options": [
+        {
+          "id": "eng-iv-wake-participle-wake",
+          "text": "wake"
+        },
+        {
+          "id": "eng-iv-wake-participle-woken",
+          "text": "woken"
+        },
+        {
+          "id": "eng-iv-wake-participle-woke",
+          "text": "woke"
+        },
+        {
+          "id": "eng-iv-wake-participle-waking",
+          "text": "waking"
+        }
+      ],
+      "correctOptionId": "eng-iv-wake-participle-woken"
+    },
+    {
+      "id": "eng-iv-wear-participle",
+      "type": "single_choice",
+      "conceptId": "verb-wear",
+      "learningObjectiveIds": [
+        "use-past-participle"
+      ],
+      "difficulty": "advanced",
+      "tags": [
+        "past-participle",
+        "context",
+        "present-perfect"
+      ],
+      "instructionLanguage": "es",
+      "exerciseLanguage": "en",
+      "explanationLanguage": "es",
+      "prompt": "I have never ___ these shoes before.",
+      "context": "Completa con el participio de wear.",
+      "explanation": "En esta estructura, después de have o has usamos el participio de wear: worn.",
+      "options": [
+        {
+          "id": "eng-iv-wear-participle-worn",
+          "text": "worn"
+        },
+        {
+          "id": "eng-iv-wear-participle-wear",
+          "text": "wear"
+        },
+        {
+          "id": "eng-iv-wear-participle-weared",
+          "text": "weared"
+        },
+        {
+          "id": "eng-iv-wear-participle-wore",
+          "text": "wore"
+        }
+      ],
+      "correctOptionId": "eng-iv-wear-participle-worn"
+    },
+    {
+      "id": "eng-iv-write-participle",
+      "type": "single_choice",
+      "conceptId": "verb-write",
+      "learningObjectiveIds": [
+        "use-past-participle"
+      ],
+      "difficulty": "advanced",
+      "tags": [
+        "past-participle",
+        "context",
+        "present-perfect"
+      ],
+      "instructionLanguage": "es",
+      "exerciseLanguage": "en",
+      "explanationLanguage": "es",
+      "prompt": "I have ___ a short story.",
+      "context": "Completa con el participio de write.",
+      "explanation": "En esta estructura, después de have o has usamos el participio de write: written.",
+      "options": [
+        {
+          "id": "eng-iv-write-participle-written",
+          "text": "written"
+        },
+        {
+          "id": "eng-iv-write-participle-writed",
+          "text": "writed"
+        },
+        {
+          "id": "eng-iv-write-participle-write",
+          "text": "write"
+        },
+        {
+          "id": "eng-iv-write-participle-wrote",
+          "text": "wrote"
+        }
+      ],
+      "correctOptionId": "eng-iv-write-participle-written"
     }
   ]
 }

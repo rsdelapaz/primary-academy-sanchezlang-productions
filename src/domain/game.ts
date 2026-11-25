@@ -62,6 +62,16 @@ export interface GameSession {
   result: GameResult | null
 }
 
+export interface GameStats {
+  score: number
+  correctCount: number
+  answeredCount: number
+  totalQuestions: number
+  currentStreak: number
+  bestStreak: number
+  progressPercent: number
+}
+
 export interface CreateSessionInput {
   sessionId: string
   subjectId: string
@@ -80,7 +90,8 @@ export const DURATION_PRESETS = [
   { id: 'long', title: 'Larga', count: 20 },
 ] as const
 
-export const GAME_MODES = [{ id: 'classic' as const, title: 'Quiz clásico', exerciseTypes: ['single_choice'] as const }]
+export const GAME_MODES = [{ id: 'classic' as const, title: 'Reto Relámpago', exerciseTypes: ['single_choice'] as const }]
+export const QUICK_PLAY_COUNT = 10
 
 export function getPresetCount(preset: DurationPreset): number {
   const definition = DURATION_PRESETS.find(({ id }) => id === preset)
@@ -152,6 +163,30 @@ export function createGameSession(input: CreateSessionInput): GameSession {
 
 export function getCurrentQuestion(current: GameSession): SessionQuestion | undefined {
   return current.questions[current.currentQuestionIndex]
+}
+
+export function getGameStats(current: GameSession): GameStats {
+  let currentStreak = 0
+  let bestStreak = 0
+  let correctCount = 0
+  for (const answer of current.answers) {
+    if (answer.correct) {
+      currentStreak += 1
+      correctCount += 1
+      bestStreak = Math.max(bestStreak, currentStreak)
+    } else {
+      currentStreak = 0
+    }
+  }
+  return {
+    score: current.score,
+    correctCount,
+    answeredCount: current.answers.length,
+    totalQuestions: current.questions.length,
+    currentStreak,
+    bestStreak,
+    progressPercent: Math.round((current.answers.length / current.questions.length) * 100),
+  }
 }
 
 export function answerQuestion(

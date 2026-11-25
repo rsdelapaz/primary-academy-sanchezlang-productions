@@ -1,6 +1,7 @@
 <script setup lang="ts">
 import { computed, ref } from 'vue'
 import { RouterLink, useRoute, useRouter } from 'vue-router'
+import { getGameStats } from '../domain/game'
 import { contentService } from '../content/service'
 import { gameSession, restartActiveGame } from '../presentation/game-session'
 
@@ -9,6 +10,7 @@ const router = useRouter()
 const loading = ref(false)
 const error = ref('')
 const result = computed(() => gameSession.value?.result ?? null)
+const stats = computed(() => gameSession.value ? getGameStats(gameSession.value) : null)
 const percentage = computed(() => result.value?.totalQuestions
   ? Math.round((result.value.correctCount / result.value.totalQuestions) * 100)
   : 0)
@@ -52,7 +54,10 @@ async function restart() {
       <h1 id="results-title">
         {{ result.correctCount }} de {{ result.totalQuestions }} correctas
       </h1>
-      <p>{{ result.score }} puntos · {{ result.questionCount }} ejercicios</p>
+      <div class="result-stats">
+        <div class="metric"><span>⭐ Puntos</span><strong>{{ result.score }}</strong></div>
+        <div class="metric"><span>🔥 Mejor racha</span><strong>{{ stats?.bestStreak }}</strong></div>
+      </div>
       <p>{{ percentage >= 70 ? '¡Gran trabajo, explorador/a!' : 'Cada error te acerca a la respuesta. ¡Pruébalo otra vez!' }}</p>
       <p
         v-if="error"
@@ -61,20 +66,23 @@ async function restart() {
       >
         {{ error }}
       </p>
-      <div class="action-row">
-        <RouterLink
-          class="button secondary"
-          :to="{ name: 'review', params: route.params }"
-        >Revisar errores</RouterLink>
-        <button
-          class="button primary"
-          type="button"
-          :disabled="loading"
-          @click="restart"
-        >
-          {{ loading ? 'Preparando...' : 'Jugar otra vez' }}
-        </button>
-      </div>
+      <button
+        class="button primary replay-button"
+        type="button"
+        :disabled="loading"
+        @click="restart"
+      >
+        {{ loading ? 'Preparando...' : '¡Volver a jugar!' }}
+      </button>
+      <nav class="results-secondary-actions" aria-label="Otras opciones">
+        <RouterLink class="button secondary" :to="{ name: 'review', params: route.params }">
+          Revisar errores
+        </RouterLink>
+        <RouterLink class="button secondary" :to="{ name: 'choose-challenge', params: route.params }">
+          Elegir otro reto
+        </RouterLink>
+        <RouterLink class="text-link" :to="{ name: 'home' }">Ir al inicio</RouterLink>
+      </nav>
     </div>
   </section>
   <section

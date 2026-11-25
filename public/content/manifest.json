@@ -1,28 +1,16 @@
 {
   "schemaVersion": "1.0.0",
-  "contentVersion": "1.0.0",
+  "contentVersion": "1.1.0",
   "subjects": [
     {
       "id": "english",
-      "title": "Inglés · fixture técnico",
+      "title": "Inglés",
       "topics": [
         {
           "id": "irregular-verbs",
-          "title": "Verbos irregulares · fixture técnico",
+          "title": "Verbos irregulares",
           "packagePath": "content/packages/english-irregular-verbs.json",
-          "contentVersion": "0.1.0"
-        }
-      ]
-    },
-    {
-      "id": "mathematics",
-      "title": "Matemáticas · fixture técnico",
-      "topics": [
-        {
-          "id": "addition",
-          "title": "Sumas · fixture técnico",
-          "packagePath": "content/packages/mathematics-addition.json",
-          "contentVersion": "0.1.0"
+          "contentVersion": "1.0.0"
         }
       ]
     }

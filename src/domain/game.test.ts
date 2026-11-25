@@ -5,6 +5,7 @@ import {
   advanceQuestion,
   answerQuestion,
   createGameSession,
+  getGameStats,
   getCurrentQuestion,
   getEligibleExercises,
   getRankingKey,
@@ -172,9 +173,31 @@ describe('motor de juego independiente', () => {
       score: 400, correctCount: 4, totalQuestions: 5, difficulty: 'beginner',
       durationKind: 'short', contentVersion: '1.2.0', scoringVersion: '1',
     })
+
     expect(getRankingKey(session.result!)).toContain('"addition"')
     expect(getRankingKey({ ...session.result!, contentVersion: '1.2.1' })).not.toBe(getRankingKey(session.result!))
     expect(() => advanceQuestion(session)).toThrow(/completed/)
+  })
+
+  it('deriva puntuación, progreso y rachas de las respuestas sin multiplicadores', () => {
+    let session = create()
+    for (let index = 0; index < 3; index += 1) {
+      const current = getCurrentQuestion(session)!
+      const selected = index === 2
+        ? current.optionIds.find((id) => id !== current.exercise.correctOptionId)!
+        : current.exercise.correctOptionId
+      session = answerQuestion(session, current.exercise.id, selected)
+      if (index < 2) session = advanceQuestion(session)
+    }
+    expect(getGameStats(session)).toMatchObject({
+      score: 200,
+      correctCount: 2,
+      answeredCount: 3,
+      totalQuestions: 5,
+      currentStreak: 0,
+      bestStreak: 2,
+      progressPercent: 60,
+    })
   })
 
   it('abandona sin permitir modificar y reinicia conservando la configuración', () => {

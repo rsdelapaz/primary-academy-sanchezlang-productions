@@ -1,4 +1,4 @@
-# Primary Academy
+# RetoNautas
 
 Aplicación educativa ligera para practicar verbos irregulares en español e inglés.
 
