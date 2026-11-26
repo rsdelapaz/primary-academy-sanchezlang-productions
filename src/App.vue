@@ -10,6 +10,8 @@ const { activeTheme, themes } = useThemePreference()
 const currentTheme = computed(() => themes.find((theme) => theme.id === activeTheme.value) ?? themes[0])
 const currentYear = new Date().getFullYear()
 const copyrightDate = `${currentYear}-01-01`
+
+const brandLogoUrl = `${import.meta.env.BASE_URL}brand/retonautas-logo.svg`
 </script>
 
 <template>
@@ -23,10 +25,14 @@ const copyrightDate = `${currentYear}-01-01`
         to="/"
         aria-label="Ir al inicio"
       >
-        <span
-          class="brand-mark"
+        <img
+          class="brand-logo"
+          :src="brandLogoUrl"
+          alt=""
           aria-hidden="true"
-        >R</span>
+          width="40"
+          height="40"
+        />
         <span>RetoNautas</span>
       </RouterLink>
       <div class="topbar-controls">
