@@ -373,6 +373,44 @@ h1 {
   backdrop-filter: blur(12px);
 }
 .configuration-action-bar .start-game { width: min(100%, 640px); min-height: 58px; margin: 0; font-size: 19px; }
+.auto-advance-setting {
+  position: relative;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 14px;
+  min-height: 64px;
+  padding: 12px 14px;
+  margin-top: 18px;
+  border: 1px solid var(--color-border);
+  border-radius: var(--radius-control);
+  background: var(--color-surface);
+  cursor: pointer;
+}
+.auto-advance-setting-copy { min-width: 0; display: grid; gap: 4px; }
+.auto-advance-setting-copy small { color: var(--color-text-muted); font-size: 13px; }
+.auto-advance-setting input { position: absolute; width: 1px; height: 1px; opacity: 0; }
+.auto-advance-switch {
+  display: block;
+  flex: 0 0 52px;
+  height: 30px;
+  padding: 3px;
+  border: 1px solid var(--color-border);
+  border-radius: 999px;
+  background: var(--color-progress-track);
+}
+.auto-advance-switch::after {
+  content: '';
+  display: block;
+  width: 22px;
+  height: 22px;
+  border-radius: 50%;
+  background: var(--color-text-muted);
+  transition: transform .15s ease;
+}
+.auto-advance-setting input:checked + .auto-advance-switch { background: var(--color-primary); border-color: var(--color-primary); }
+.auto-advance-setting input:checked + .auto-advance-switch::after { transform: translateX(22px); background: var(--color-on-primary); }
+.auto-advance-setting input:focus-visible + .auto-advance-switch { outline: 3px solid var(--color-focus); outline-offset: 4px; }
 .configuration-note { margin: 0; padding: 11px 13px; border-radius: 12px; color: var(--color-text); background: color-mix(in srgb, var(--color-accent) 14%, var(--color-surface)); }
 .study-content-options { display: grid; gap: 10px; }
 .custom-count-choice { width: min(100%, 360px); }
@@ -711,7 +749,9 @@ h1 {
 .option:nth-child(4n + 2) { --option-color: var(--game-answer-2); }
 .option:nth-child(4n + 3) { --option-color: var(--game-answer-3); }
 .option:nth-child(4n + 4) { --option-color: var(--game-answer-4); }
-.option:hover:not(:disabled) { border-color: var(--option-color); transform: translateY(-2px); box-shadow: inset 5px 0 var(--option-color), 0 6px 0 color-mix(in srgb, var(--option-color) 28%, var(--color-border)); }
+@media (hover: hover) and (pointer: fine) {
+  .option:hover:not(:disabled) { border-color: var(--option-color); transform: translateY(-2px); box-shadow: inset 5px 0 var(--option-color), 0 6px 0 color-mix(in srgb, var(--option-color) 28%, var(--color-border)); }
+}
 .option:active:not(:disabled) { transform: translateY(1px) scale(.99); }
 .option-key {
   width: 36px;
@@ -726,6 +766,8 @@ h1 {
 }
 .option.correct { border-color: var(--color-success-text); color: var(--color-success-text); background: var(--color-success-surface); box-shadow: inset 5px 0 var(--color-success-text), 0 4px 0 color-mix(in srgb, var(--color-success-text) 24%, var(--color-border)); }
 .option.wrong { border-color: var(--color-error); color: var(--color-error-text); background: var(--color-error-surface); box-shadow: inset 5px 0 var(--color-error), 0 4px 0 color-mix(in srgb, var(--color-error) 24%, var(--color-border)); }
+.option-text { min-width: 0; overflow-wrap: anywhere; }
+.option.correct:disabled, .option.wrong:disabled { opacity: 1; }
 .option-state { max-width: 44%; margin-left: auto; font-size: 12px; text-align: right; overflow-wrap: anywhere; }
 .feedback {
   margin-top: 16px;
@@ -757,6 +799,7 @@ h1 {
   z-index: 30;
   top: calc(env(safe-area-inset-top, 0px) + 78px);
   left: 50%;
+  transform: translateX(-50%);
   width: min(440px, calc(100vw - 24px));
   min-height: 66px;
   display: flex;
@@ -1265,6 +1308,33 @@ h1 {
   .option-state { max-width: 40%; font-size: 10px; }
   .results-card { padding: 18px 14px; }
   .results-secondary-actions { grid-template-columns: minmax(0, 1fr); }
+}
+
+/* The fixed action bar is outside the isolated game-screen. Reserve its actual
+   height so explanations and chests can still be reached without obstruction. */
+.game-screen.has-advance-bar { padding-bottom: calc(24px + var(--game-advance-height, 152px)); }
+.game-screen .feedback, .game-treasure-panel { scroll-margin-block: 88px calc(var(--game-advance-height, 152px) + 16px); }
+.game-screen .feedback:focus-visible, .game-treasure-panel:focus-visible,
+.game-screen #question-title:focus-visible { outline: 3px solid var(--color-focus); outline-offset: 4px; }
+.app-shell:has(.game-screen) > .topbar {
+  background: var(--topbar-background);
+  backdrop-filter: blur(12px);
+}
+@media (max-width: 480px) {
+  /* Keep the optional setting discoverable above the fixed Play button. */
+  .configuration-screen:has(.auto-advance-setting) { padding-top: 8px; }
+  .configuration-screen:has(.auto-advance-setting) .back-link { min-height: 44px; margin-bottom: 2px; }
+  .configuration-screen:has(.auto-advance-setting) .configuration-heading { margin-bottom: 8px; gap: 0; }
+  .configuration-screen:has(.auto-advance-setting) .quick-setup-step { gap: 10px; }
+  .configuration-screen:has(.auto-advance-setting) .quick-setup-step .configuration-section h2 { margin-bottom: 8px; }
+  .auto-advance-setting { margin-top: 9px; padding: 9px 12px; }
+}
+@media (max-width: 759px) {
+  .game-question-card .option { display: grid; grid-template-columns: 36px minmax(0, 1fr); gap: 2px 12px; }
+  .game-question-card .option-state { grid-column: 2; max-width: none; margin-left: 0; text-align: left; font-size: 12px; }
+}
+@media (max-width: 360px) {
+  .game-question-card .option { grid-template-columns: 32px minmax(0, 1fr); }
 }
 
 @media (prefers-reduced-motion: reduce) {

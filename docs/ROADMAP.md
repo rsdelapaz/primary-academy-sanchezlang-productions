@@ -11,6 +11,8 @@
 - **PA-011 — Identidad visual:** Pop Adventure y Galaxy con componentes SVG originales, vistas tematizadas y firma corporativa en el footer.
 - **PA-011C — Usabilidad y arte editorial:** Home como menú de juego, acceso directo a configuración para materias de un tema, selección de tema cuando hay varios, cuatro WebP responsivos y configuración simplificada con disponibilidad explícita.
 
+- **PA-016 — Fluidez de partida:** acción de siguiente fija durante la corrección, autoavance opcional por partida, pausa para leer explicaciones y protección de cofres.
+
 ## Pendiente
 
 - Revisión editorial y sustitución/priorización de los bancos de contenido por dirección. PA-011 no modifica los paquetes.

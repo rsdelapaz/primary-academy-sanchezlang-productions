@@ -1,4 +1,4 @@
-import { shallowRef } from 'vue'
+import { ref, shallowRef } from 'vue'
 import { isGameExercise, type ContentPackage, type GameExercise } from '../domain/content'
 import {
   abandonGame,
@@ -17,6 +17,8 @@ import { selectGameQuestions } from '../application/question-selection'
 import { questionHistoryStore } from './question-history-storage'
 
 export const gameSession = shallowRef<GameSession | null>(null)
+// Playback is a presentation preference, not part of scoring or ranking.
+export const gameAutoAdvanceEnabled = ref(false)
 
 export function startGame(
   subjectId: string,
@@ -24,6 +26,7 @@ export function startGame(
   content: ContentPackage,
   modeId: GameModeId,
   configuration: GameConfiguration,
+  playback: { autoAdvance: boolean } = { autoAdvance: false },
 ): GameSession {
   const compatibleExercises = content.exercises.filter((exercise): exercise is GameExercise =>
     isGameExercise(exercise) && isGameModeCompatible(modeId, exercise.type),
@@ -45,6 +48,7 @@ export function startGame(
     configuration,
     exercises: selectedExercises,
   })
+  gameAutoAdvanceEnabled.value = playback.autoAdvance
   gameSession.value = next
   return next
 }
