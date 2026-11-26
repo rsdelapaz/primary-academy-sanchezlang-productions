@@ -1,0 +1,36 @@
+# AGENTS.md
+
+- Mantén TypeScript estricto y Vue 3 Composition API con `<script setup>`.
+- El dominio en `src/domain/` es TypeScript puro; no importa Vue, Router, DOM, storage ni contenidos concretos.
+- Separa Content Engine, Exercise Engine, Game Engine, scoring, presentación y persistencia.
+- El JSON versionado es el formato runtime; los esquemas y validadores son contrato. Datos externos siempre se validan desde `unknown`.
+- IDs estables e independientes del idioma; corrige por ID, no por posición visual.
+- Mezcla preguntas y opciones con Fisher-Yates sin mutar originales; aleatoriedad inyectable.
+- Iniciar o reiniciar genera una nueva distribución aleatoria; las opciones mantienen el orden durante toda la pregunta y los cambios de tema.
+- No fuerces posiciones distintas consecutivas: coincidencias entre distribuciones pueden ocurrir naturalmente.
+- Conserva pruebas deterministas de cuatro opciones para ambas modalidades recreativas, sin imponer que cambie la posición entre preguntas.
+- `single_choice` opera en juego y `flashcard` en autoestudio; no habilites otros tipos.
+- Preserva el contenido educativo suministrado por dirección; no lo regeneres ni elimines.
+- CSV queda para edición/intercambio futuro; no añadir aún importador, administración ni bancos masivos.
+- No añadir backend, Pinia, PWA, UI pesada o persistencia sin necesidad aprobada.
+- Mobile-first, 320 px mínimo, teclado/táctil y `prefers-reduced-motion`.
+- Interfaz en español; no recopilar datos personales infantiles ni secretos.
+- Skills locales: `.agents/skills/`; carga solo lo necesario y conserva atribución.
+- Master: si existe `docs/MASTER_REQUIREMENTS.md`, úsalo selectivamente sin duplicarlo.
+- Desarrollo experimental: implementar solo el hito solicitado; no añadir arquitectura especulativa.
+- Quality Gate por hitos: typecheck siempre; pruebas focalizadas de lógica modificada y smoke test de los flujos visuales afectados.
+- Evitar auditorías, cobertura, Lighthouse y ciclos completos de verificación salvo requisito explícito de un hito de producción.
+- Proteger el motor y los contenidos al iterar la presentación; los temas no cambian el estado de juego.
+- Comandos:
+  - `npm ci`
+  - `npm run dev`
+  - `npm run lint`
+  - `npm run typecheck`
+  - `npm run test`
+  - `npm run validate:content`
+  - `npm run check:domain`
+  - `npm run build`
+  - `npm run check:bundle`
+  - `npm run check`
+- `npm run check` integral se reserva para un hito de producción o una solicitud explícita.
+- No hagas commit, push, merge, despliegue ni cambios destructivos sin autorización.

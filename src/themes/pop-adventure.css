@@ -1,0 +1,34 @@
+.app-shell[data-theme="pop-adventure"] {
+  color-scheme: light;
+  --color-background: #FDF2FA;
+  --color-surface: #FFFFFF;
+  --color-surface-raised: #FFF9FE;
+  --color-text: #442454;
+  --color-text-muted: #70587E;
+  --color-primary: #803AB4;
+  --color-on-primary: #FFFFFF;
+  --color-secondary: #C04485;
+  --color-secondary-text: #A32F70;
+  --color-on-secondary: #FFFFFF;
+  --color-decorative: #D5BAF7;
+  --color-accent: #56D8C1;
+  --color-accent-secondary: #C04485;
+  --color-reward: #FFD77D;
+  --color-success: #18734F;
+  --color-success-text: #18734F;
+  --color-success-surface: #E8F7EF;
+  --color-error: #AD3952;
+  --color-error-text: #AD3952;
+  --color-error-surface: #FCE8EC;
+  --color-border: #E5D6EB;
+  --color-focus: #245D7A;
+  --color-progress-track: #EDE2F1;
+  --color-option-key: #F3E9F8;
+  --app-background:
+    radial-gradient(circle at 88% 12%, rgb(213 186 247 / 24%), transparent 26rem),
+    linear-gradient(145deg, #FDF2FA 0%, #FFF9FE 55%, #EDF9F8 100%);
+  --topbar-background: rgb(255 255 255 / 92%);
+  --shadow-card: 0 12px 30px rgb(68 36 84 / 9%);
+  --radius-card: 24px;
+  --radius-control: 16px;
+}

@@ -1,0 +1,35 @@
+.app-shell[data-theme="galaxy"] {
+  color-scheme: dark;
+  --color-background: #101C35;
+  --color-surface: #1F3353;
+  --color-surface-raised: #263D60;
+  --color-text: #F0F7FF;
+  --color-text-muted: #B9CBE3;
+  --color-primary: #62DBFF;
+  --color-on-primary: #101C35;
+  --color-secondary: #3478DB;
+  --color-secondary-text: #A6C8FF;
+  --color-on-secondary: #FFFFFF;
+  --color-decorative: #3478DB;
+  --color-accent: #A3E66B;
+  --color-accent-secondary: #FF9F43;
+  --color-reward: #FFD166;
+  --color-success: #18734F;
+  --color-success-text: #A3E66B;
+  --color-success-surface: #25453F;
+  --color-error: #AD3952;
+  --color-error-text: #FFD3DA;
+  --color-error-surface: #4B2B40;
+  --color-border: #3D5679;
+  --color-focus: #62DBFF;
+  --color-progress-track: #314969;
+  --color-option-key: #314969;
+  --app-background:
+    radial-gradient(circle at 12% 9%, rgb(52 120 219 / 26%), transparent 25rem),
+    radial-gradient(circle at 90% 30%, rgb(98 219 255 / 11%), transparent 24rem),
+    linear-gradient(145deg, #101C35 0%, #152744 60%, #101C35 100%);
+  --topbar-background: rgb(16 28 53 / 92%);
+  --shadow-card: 0 14px 34px rgb(4 12 28 / 30%);
+  --radius-card: 20px;
+  --radius-control: 14px;
+}
