@@ -6,6 +6,10 @@ const menu = ref<{ open: boolean } | null>(null)
 const error = ref('')
 const { activeTheme, themes, selectTheme } = useThemePreference()
 
+function themeIconUrl(themeId: ThemeId): string {
+  return `${import.meta.env.BASE_URL}brand/theme-${themeId}.svg`
+}
+
 async function chooseTheme(themeId: ThemeId) {
   error.value = ''
   try {
@@ -26,23 +30,19 @@ async function chooseTheme(themeId: ThemeId) {
       class="theme-trigger"
       aria-label="Cambiar tema visual"
     >
-      <span
+      <img
         class="theme-trigger-art"
-        :class="`theme-art-${activeTheme}`"
-        aria-hidden="true"
+        :src="themeIconUrl(activeTheme)"
+        alt=""
+        width="30"
+        height="30"
       >
-        <i
-          v-for="color in themes.find((theme) => theme.id === activeTheme)?.swatches.slice(1, 4)"
-          :key="color"
-          :style="{ backgroundColor: color }"
-        ></i>
-      </span>
-      <span>Tema</span>
+      <span>Mundo</span>
       <span class="theme-trigger-name">{{ themes.find((theme) => theme.id === activeTheme)?.name }}</span>
     </summary>
     <div class="theme-panel">
       <p class="theme-panel-title">
-        Elige tu aventura visual
+        Elige tu mundo
       </p>
       <button
         v-for="theme in themes"
@@ -54,31 +54,16 @@ async function chooseTheme(themeId: ThemeId) {
         :aria-label="`Usar tema ${theme.name}`"
         @click="chooseTheme(theme.id)"
       >
-        <span
+        <img
           class="theme-choice-art"
-          :class="`theme-art-${theme.id}`"
-          aria-hidden="true"
+          :src="themeIconUrl(theme.id)"
+          alt=""
+          width="56"
+          height="56"
         >
-          <i
-            v-for="color in theme.swatches.slice(1, 4)"
-            :key="color"
-            :style="{ backgroundColor: color }"
-          ></i>
-        </span>
         <span class="theme-choice-copy">
           <strong>{{ theme.name }}</strong>
           <small>{{ theme.description }}</small>
-          <small class="theme-motifs">{{ theme.motifs.join(' · ') }}</small>
-          <span
-            class="theme-swatches"
-            aria-hidden="true"
-          >
-            <i
-              v-for="color in theme.swatches"
-              :key="color"
-              :style="{ backgroundColor: color }"
-            ></i>
-          </span>
         </span>
         <span
           v-if="activeTheme === theme.id"

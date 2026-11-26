@@ -4,7 +4,7 @@ export const THEMES = [
   {
     id: 'pop-adventure',
     name: 'Pop Adventure',
-    description: 'Fantasía, música y amistad',
+    description: 'Magia y aventuras',
     artwork: 'magic-island',
     mascot: 'Lumi',
     motifs: ['Islas mágicas', 'estrellas', 'cristales'],
@@ -13,7 +13,7 @@ export const THEMES = [
   {
     id: 'galaxy',
     name: 'Galaxy',
-    description: 'Exploración, espacio y arcade',
+    description: 'Planetas y aventuras espaciales',
     artwork: 'space-robot',
     mascot: 'Orbit',
     motifs: ['Planetas', 'órbitas', 'robots'],

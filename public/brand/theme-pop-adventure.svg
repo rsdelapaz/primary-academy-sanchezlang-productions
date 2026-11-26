@@ -1,0 +1,23 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="96" height="96" viewBox="0 0 96 96" role="img" aria-labelledby="pop-title">
+  <title id="pop-title">Pop Adventure — varita mágica y estrellas</title>
+  <defs>
+    <linearGradient id="bg" x1="0" y1="0" x2="96" y2="96" gradientUnits="userSpaceOnUse">
+      <stop stop-color="#49217A"/>
+      <stop offset=".62" stop-color="#963D9F"/>
+      <stop offset="1" stop-color="#267D94"/>
+    </linearGradient>
+    <linearGradient id="magic" x1="43" y1="12" x2="75" y2="50" gradientUnits="userSpaceOnUse">
+      <stop stop-color="#FFF4AB"/>
+      <stop offset="1" stop-color="#FFB65C"/>
+    </linearGradient>
+  </defs>
+  <rect x="2" y="2" width="92" height="92" rx="22" fill="url(#bg)" stroke="#EDC8FF" stroke-width="3"/>
+  <path d="M19 64L48 35" stroke="#351A5D" stroke-width="14" stroke-linecap="round"/>
+  <path d="M19 64L48 35" stroke="#D8AEFF" stroke-width="10" stroke-linecap="round"/>
+  <path d="M21 62L29 54" stroke="#74F5E0" stroke-width="10" stroke-linecap="round"/>
+  <path d="M59 12L65 27 82 29 69 40 72 57 57 48 42 56 45 39 33 27 50 26Z" fill="url(#magic)" stroke="#4A226E" stroke-width="4" stroke-linejoin="round"/>
+  <path d="M59 22L62 32 72 33 64 39 66 45 57 40 50 44 52 36 45 31 55 31Z" fill="#FFF7D7"/>
+  <path d="M22 16L25 24 33 27 25 30 22 38 19 30 11 27 19 24Z" fill="#9CFFED" stroke="#542787" stroke-width="2" stroke-linejoin="round"/>
+  <path d="M76 61L79 69 87 72 79 75 76 83 73 75 65 72 73 69Z" fill="#FAC6FF" stroke="#55226D" stroke-width="2" stroke-linejoin="round"/>
+  <circle cx="43" cy="74" r="3" fill="#FDF1C8"/>
+</svg>

@@ -1,26 +1,21 @@
-<svg xmlns="http://www.w3.org/2000/svg" width="128" height="128" viewBox="0 0 128 128" role="img" aria-labelledby="title">
-  <title id="title">RetoNautas — brújula de aventura</title>
+<svg xmlns="http://www.w3.org/2000/svg" width="128" height="128" viewBox="0 0 128 128" role="img" aria-labelledby="brand-title">
+  <title id="brand-title">RetoNautas — R de retos y estrella de logro</title>
   <defs>
-    <linearGradient id="frame" x1="12" y1="12" x2="116" y2="116" gradientUnits="userSpaceOnUse">
-      <stop stop-color="#9CFAFF"/>
-      <stop offset=".48" stop-color="#43D4EE"/>
-      <stop offset="1" stop-color="#FFCB73"/>
+    <linearGradient id="shield" x1="12" y1="4" x2="104" y2="124" gradientUnits="userSpaceOnUse">
+      <stop stop-color="#263B73"/>
+      <stop offset="1" stop-color="#0A102C"/>
     </linearGradient>
-    <linearGradient id="core" x1="15" y1="9" x2="108" y2="120" gradientUnits="userSpaceOnUse">
-      <stop stop-color="#193C56"/>
-      <stop offset=".58" stop-color="#10223E"/>
-      <stop offset="1" stop-color="#080F24"/>
+    <linearGradient id="letter" x1="35" y1="24" x2="86" y2="101" gradientUnits="userSpaceOnUse">
+      <stop stop-color="#FFFFFF"/>
+      <stop offset="1" stop-color="#76DDFF"/>
     </linearGradient>
-    <linearGradient id="needle" x1="42" y1="92" x2="93" y2="27" gradientUnits="userSpaceOnUse">
-      <stop stop-color="#43D8F1"/>
-      <stop offset=".7" stop-color="#D4F9FF"/>
-      <stop offset="1" stop-color="#FFFFFF"/>
+    <linearGradient id="star" x1="79" y1="12" x2="110" y2="43" gradientUnits="userSpaceOnUse">
+      <stop stop-color="#FFF6BF"/>
+      <stop offset="1" stop-color="#FFB53B"/>
     </linearGradient>
   </defs>
-  <path d="M56 7Q64 3 72 7L107 27Q115 32 115 42V86Q115 96 107 101L72 121Q64 125 56 121L21 101Q13 96 13 86V42Q13 32 21 27Z" fill="url(#core)" stroke="url(#frame)" stroke-width="5"/>
-  <path d="M30 67A34 34 0 0 1 63 30M98 62A34 34 0 0 1 65 98" fill="none" stroke="#5ACFE9" stroke-width="6" stroke-linecap="round"/>
-  <path d="M96 31L75 83 61 68 39 88 51 57Z" fill="url(#needle)" stroke="#0C2037" stroke-width="3" stroke-linejoin="round"/>
-  <path d="M96 31L61 68 51 57Z" fill="#FFFFFF"/>
-  <path d="M36 96L48 84M45 101L53 92" fill="none" stroke="#FFCB73" stroke-width="5" stroke-linecap="round"/>
-  <path d="M98 14L101 21 108 24 101 27 98 34 95 27 88 24 95 21Z" fill="#FFD47C" stroke="#13253C" stroke-width="1.5" stroke-linejoin="round"/>
+  <path d="M20 10H108Q119 10 119 22V96Q119 105 111 110L72 124Q64 127 56 124L17 110Q9 105 9 96V22Q9 10 20 10Z" fill="url(#shield)" stroke="#5ED8FA" stroke-width="5" stroke-linejoin="round"/>
+  <path d="M27 29H67Q91 29 91 52Q91 70 74 76L93 101H70L52 77H47V101H27ZM47 46V61H65Q72 61 72 53Q72 46 65 46Z" fill="url(#letter)" stroke="#0A142D" stroke-width="2.5" stroke-linejoin="round"/>
+  <path d="M94 10L99 24 114 24 102 33 106 48 94 39 82 48 86 33 74 24 89 24Z" fill="url(#star)" stroke="#101631" stroke-width="3" stroke-linejoin="round"/>
+  <path d="M23 109L47 118" stroke="#FFCA61" stroke-width="5" stroke-linecap="round"/>
 </svg>

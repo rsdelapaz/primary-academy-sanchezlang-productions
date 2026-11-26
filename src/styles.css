@@ -1064,17 +1064,11 @@ h1 {
 .theme-trigger-name { display: none; }
 .theme-trigger-art,
 .theme-choice-art {
-  display: flex;
+  display: block;
   flex: 0 0 auto;
-  align-items: center;
-  justify-content: center;
-  gap: 4px;
-  overflow: hidden;
-  border-radius: 10px;
+  object-fit: contain;
 }
-.theme-trigger-art { width: 36px; height: 28px; }
-.theme-trigger-art i,
-.theme-choice-art i { width: 9px; height: 9px; border: 1px solid rgb(255 255 255 / 50%); border-radius: 50%; }
+.theme-trigger-art { width: 30px; height: 30px; }
 .theme-panel {
   position: absolute;
   z-index: 10;
@@ -1092,7 +1086,7 @@ h1 {
 .theme-choice {
   width: 100%;
   display: grid;
-  grid-template-columns: 54px minmax(0, 1fr) auto;
+  grid-template-columns: 56px minmax(0, 1fr) auto;
   align-items: center;
   gap: 10px;
   margin-top: 8px;
@@ -1104,14 +1098,9 @@ h1 {
   text-align: left;
 }
 .theme-choice.active { border-color: var(--color-primary); }
-.theme-choice-art { width: 54px; height: 50px; }
-.theme-art-pop-adventure { background: linear-gradient(135deg, #573071, #C04485 58%, #56D8C1); }
-.theme-art-galaxy { background: linear-gradient(135deg, #101C35, #3478DB 58%, #62DBFF); }
+.theme-choice-art { width: 56px; height: 56px; }
 .theme-choice-copy { min-width: 0; display: grid; gap: 2px; }
 .theme-choice-copy small { color: var(--color-text-muted); font-size: 11px; }
-.theme-choice-copy .theme-motifs { font-size: 10px; }
-.theme-swatches { display: flex; gap: 4px; margin-top: 4px; }
-.theme-swatches i { width: 15px; height: 15px; border: 1px solid var(--color-border); border-radius: 50%; }
 .theme-active-label { color: var(--color-secondary-text); font-size: 11px; font-weight: 900; }
 .theme-error { margin: 10px 3px 2px; font-size: 12px; }
 .sr-only {
@@ -1216,7 +1205,7 @@ h1 {
   .home-subject-copy strong { font-size: 18px; }
   .home-subject-copy > span { font-size: 11px; }
   .theme-choice { grid-template-columns: 48px minmax(0, 1fr); }
-  .theme-choice-art { width: 48px; height: 44px; }
+  .theme-choice-art { width: 48px; height: 48px; }
   .theme-active-label { grid-column: 2; }
   .configuration-heading h1 { font-size: clamp(30px, 9vw, 38px); }
   .configuration-section h2 { font-size: 16px; }
@@ -1265,7 +1254,7 @@ h1 {
   .brand-logo { width: 32px; height: 32px; flex-basis: 32px; }
   .topbar-controls { gap: 4px; }
   .theme-trigger { gap: 3px; padding-inline: 7px; }
-  .theme-trigger-art { width: 28px; }
+  .theme-trigger-art { width: 28px; height: 28px; }
   .theme-trigger > span:not(.theme-trigger-name):not(.theme-trigger-art) { display: none; }
   .setup-card-grid--two { grid-template-columns: minmax(0, 1fr); }
   .game-screen { padding-inline: 12px; }
