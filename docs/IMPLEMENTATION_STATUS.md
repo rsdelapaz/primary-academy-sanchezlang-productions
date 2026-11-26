@@ -1,31 +1,29 @@
-# Estado PA-002
+# Estado de implementación
 
-Estado: completado y verificado.
+## PA-011C — Usabilidad y dirección artística
 
-## Entregado
+Estado: implementación técnica y smoke tests completados; pendiente aceptación visual del director. No declarar aprobado hasta recibirla.
 
-- Motor puro TypeScript: Content contracts, Exercise Engine, Game Engine, scoring y resultados.
-- Catálogo JSON y paquetes versionados con JSON Schemas; validación Ajv común para runtime y CLI.
-- Navegación universal por IDs, presets 5/10/20 y cantidad personalizada limitada al banco disponible.
-- Dos asignaturas de fixtures técnicos, tipo `single_choice`; ningún contenido se considera aprobado.
-- Contrato editorial en `docs/CONTENT_FORMAT.md`, con ejemplos válidos e inválidos.
-- Sesión como fuente única; guardas de rutas, revisión y reinicio conservan configuración.
-- CI y workflow Pages manual ejecutan `npm run check` antes de publicar.
+### Entregado
 
-## Verificado
+- Skill `.agents/skills/child-game-ux/SKILL.md` y consulta obligatoria documentada en `AGENTS.md`.
+- Home «¿A qué jugamos?»: materias principales, autoestudio independiente y acceso directo a configuración cuando hay un único tema.
+- Configuración «¿Cómo jugamos?»: modalidad, respuesta, dificultad y duración separadas; combinaciones inviables se deshabilitan y explican sin reajustar otras elecciones.
+- Cuatro WebP editoriales para Pop Adventure/Galaxy, con variante móvil/escritorio; marca corporativa únicamente en el footer.
+- Sin cambios en `src/domain/` ni en los paquetes educativos: validación confirma 706 ejercicios.
 
-- `npm ci`: correcto, 0 vulnerabilidades.
-- `npm run check`: lint, typecheck, 18 pruebas, validación de contenido, frontera de dominio, build y presupuesto aprobados.
-- Dominio: 5 módulos sin imports de Vue ni contenidos concretos.
-- Contenido: 2 paquetes / 10 ejercicios válidos; el fixture inválido es rechazado.
-- Navegador: partida de 5 preguntas, 3 incorrectas, resultados (2/5), revisión y reinicio.
-- Rutas directas de juego/resultados sin sesión redirigen al inicio.
-- Responsive comprobado: viewport 320 px (pantalla 320 px) y escritorio 1280 px (pantalla de juego 760 px).
-- Bundle: inicio 83.8 KiB JS gzip, 1.9 KiB CSS gzip, 86.3 KiB transferencia estimada; distribución completa 277.5 KiB sin comprimir. Chunks JS diferidos 7.7 KiB gzip; paquetes 7.7 KiB sin comprimir.
+### Verificado
 
-## Límites aceptados
+- `npm run typecheck`, ESLint dirigido, build y `npm run check:bundle`: correctos.
+- Vitest focalizado: 2 archivos, 23 pruebas aprobadas. `validate:content`: 2 paquetes y 706 ejercicios válidos.
+- Navegador: selección, respuesta escrita, Misión del Tesoro y autoestudio; el cambio de tema conserva pregunta, texto escrito, opciones y tarjeta.
+- Viewports 320, 390, 768 y 1280 px: CTA visible y sin desbordamiento horizontal.
+- Carga inicial comprobada: un solo WebP del tema/viewport activo. Recursos: Pop desktop 174.8 KiB, Pop móvil 88.9 KiB, Galaxy desktop 178.8 KiB, Galaxy móvil 77.7 KiB.
+- Presupuesto medido con la variante de arte más pesada: JS inicial 95.6 KiB gzip, CSS 7.3 KiB gzip y transferencia estimada 282.6 KiB.
+- Capturas de portada y configuración en móvil/escritorio mostradas para revisión visual.
 
-- Sesión solo en memoria; recargar descarta el progreso.
-- Solo `single_choice` se ejecuta; los otros siete tipos están definidos y rechazados como no operativos.
-- Persistencia, proveedores de ranking, CSV y producción de contenido editorial quedan fuera de PA-002.
-- No se ejecutó despliegue.
+### Pendiente y límites
+
+- Aceptación visual del director; las capturas no la sustituyen.
+- El catálogo actual tiene un tema por materia; la rama de selección entre varios temas no pudo probarse con contenido real.
+- No existe `docs/MASTER_REQUIREMENTS.md`. Sin commit, push ni despliegue.

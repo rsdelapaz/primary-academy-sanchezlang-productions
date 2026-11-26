@@ -24,12 +24,45 @@
   --color-focus: #62DBFF;
   --color-progress-track: #314969;
   --color-option-key: #314969;
+  --game-answer-1: #62DBFF;
+  --game-answer-2: #A779FF;
+  --game-answer-3: #A3E66B;
+  --game-answer-4: #FF9F43;
+  --art-outline: #10233D;
+  --art-primary: #52D9F4;
+  --art-secondary: #A1E565;
+  --art-crystal: #A779FF;
+  --art-crystal-light: #D0B9FF;
+  --art-island: #263F64;
+  --art-land: #6FE4C2;
+  --art-water: #62DBFF;
+  --art-orb: #FF9F43;
+  --art-mascot: #8E65E8;
+  --art-mascot-face: #DFFBFF;
+  --art-mascot-eye: #101C35;
+  --art-mascot-accent: #A3E66B;
+  --art-star: #A3E66B;
+  --art-orbit: #62DBFF;
+  --art-planet: #FF9F43;
+  --art-planet-band: #A3E66B;
+  --art-robot: #3478DB;
+  --art-robot-screen: #C8F8FF;
+  --art-robot-light: #A3E66B;
+  --art-robot-eye: #101C35;
+  --art-robot-face: #101C35;
+  --art-book: #29476A;
+  --art-book-line: #72DFFA;
+  --art-bolt: #A3E66B;
+  --art-card-background: linear-gradient(135deg, #1B3555, #203C58);
+  --configuration-panel-background: linear-gradient(145deg, #213C61, #302C5D);
   --app-background:
     radial-gradient(circle at 12% 9%, rgb(52 120 219 / 26%), transparent 25rem),
     radial-gradient(circle at 90% 30%, rgb(98 219 255 / 11%), transparent 24rem),
+    radial-gradient(circle at 52% 92%, rgb(167 121 255 / 9%), transparent 24rem),
     linear-gradient(145deg, #101C35 0%, #152744 60%, #101C35 100%);
   --topbar-background: rgb(16 28 53 / 92%);
   --shadow-card: 0 14px 34px rgb(4 12 28 / 30%);
+  --shadow-playful: 0 14px 36px rgb(4 12 28 / 42%);
   --radius-card: 20px;
   --radius-control: 14px;
 }

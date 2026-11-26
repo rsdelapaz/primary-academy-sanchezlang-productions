@@ -4,17 +4,19 @@ export const THEMES = [
   {
     id: 'pop-adventure',
     name: 'Pop Adventure',
-    icon: '🦄',
     description: 'Fantasía, música y amistad',
-    motifs: ['✦', '♡', '♪'],
+    artwork: 'magic-island',
+    mascot: 'Lumi',
+    motifs: ['Islas mágicas', 'estrellas', 'cristales'],
     swatches: ['#FDF2FA', '#803AB4', '#C04485', '#56D8C1', '#FFD77D'],
   },
   {
     id: 'galaxy',
     name: 'Galaxy',
-    icon: '🚀',
     description: 'Exploración, espacio y arcade',
-    motifs: ['✦', '◉', '⚡'],
+    artwork: 'space-robot',
+    mascot: 'Orbit',
+    motifs: ['Planetas', 'órbitas', 'robots'],
     swatches: ['#101C35', '#1F3353', '#62DBFF', '#A3E66B', '#FF9F43'],
   },
 ] as const

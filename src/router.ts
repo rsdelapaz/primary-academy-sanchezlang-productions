@@ -6,10 +6,14 @@ import { guardStudyRoute } from './presentation/study-route-guard'
 
 export const router = createRouter({
   history: createWebHashHistory(),
+  scrollBehavior(to, from, savedPosition) {
+    if (savedPosition) return savedPosition
+    return to.name === from.name ? false : { left: 0, top: 0 }
+  },
   routes: [
     { path: '/', name: 'home', component: () => import('./views/HomeView.vue') },
     { path: '/configure/:subjectId?/:topicId?/:modeId?', name: 'choose-challenge', component: () => import('./views/ConfigurationView.vue') },
-    { path: '/subjects/:subjectId', name: 'subject', redirect: (to) => ({ name: 'choose-challenge', params: { subjectId: to.params.subjectId } }) },
+    { path: '/subjects/:subjectId', name: 'subject', component: () => import('./views/SubjectView.vue') },
     { path: '/subjects/:subjectId/topics/:topicId', name: 'topic', redirect: (to) => ({ name: 'choose-challenge', params: { subjectId: to.params.subjectId, topicId: to.params.topicId } }) },
     { path: '/subjects/:subjectId/topics/:topicId/modes', name: 'modes', redirect: (to) => ({ name: 'choose-challenge', params: { subjectId: to.params.subjectId, topicId: to.params.topicId } }) },
     { path: '/subjects/:subjectId/topics/:topicId/modes/:modeId/config', name: 'configuration', redirect: (to) => ({ name: 'choose-challenge', params: { subjectId: to.params.subjectId, topicId: to.params.topicId, modeId: to.params.modeId } }) },

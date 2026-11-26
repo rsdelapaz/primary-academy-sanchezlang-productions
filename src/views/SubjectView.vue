@@ -40,7 +40,7 @@ onMounted(() => { void load() })
         {{ subject.title }}
       </h1>
       <p class="lead">
-        Elige un tema para continuar.
+        ¿Qué tema quieres jugar?
       </p>
       <nav
         v-if="subject.topics.length"
@@ -57,7 +57,7 @@ onMounted(() => { void load() })
             class="topic-icon"
             aria-hidden="true"
           >✦</span>
-          <span><strong>{{ topic.title }}</strong><small>Contenido educativo</small></span>
+          <span><strong>{{ topic.title }}</strong><small>Elegir tema</small></span>
           <span aria-hidden="true">→</span>
         </RouterLink>
       </nav>
