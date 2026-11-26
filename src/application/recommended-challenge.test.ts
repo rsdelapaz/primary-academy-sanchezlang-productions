@@ -91,6 +91,7 @@ describe('recommended challenge', () => {
     expect(recommendation.subject.id).toBe('subject-b')
     expect(recommendation.configuration).toEqual({
       difficulty: 'beginner',
+      answerFormat: 'selection',
       duration: { kind: 'preset', preset: 'medium', questionCount: 10 },
     })
   })

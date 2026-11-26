@@ -1,6 +1,6 @@
 {
   "schemaVersion": "1.0.0",
-  "contentVersion": "1.0.0",
+  "contentVersion": "1.1.0",
   "subjectId": "mathematics",
   "topicId": "no-pierdas-el-equilibrio",
   "concepts": [
@@ -5943,6 +5943,2914 @@
         }
       ],
       "correctOptionId": "math-t2-combined-operations-08-o1"
+    },
+    {
+      "id": "math-t2-write-001",
+      "type": "typed_answer",
+      "conceptId": "mul-terms",
+      "learningObjectiveIds": [
+        "obj-mul-terms"
+      ],
+      "difficulty": "beginner",
+      "tags": [
+        "mul-terms",
+        "active-recall"
+      ],
+      "instructionLanguage": "es",
+      "exerciseLanguage": "es",
+      "explanationLanguage": "es",
+      "prompt": "En 9 × 7 = 63, ¿cómo se llama el resultado?",
+      "explanation": "63 es el producto; 9 y 7 son los factores.",
+      "context": "Escribe el nombre o término solicitado.",
+      "acceptedAnswers": [
+        "producto",
+        "el producto"
+      ],
+      "caseSensitive": false
+    },
+    {
+      "id": "math-t2-write-002",
+      "type": "typed_answer",
+      "conceptId": "mul-terms",
+      "learningObjectiveIds": [
+        "obj-mul-terms"
+      ],
+      "difficulty": "beginner",
+      "tags": [
+        "mul-terms",
+        "active-recall"
+      ],
+      "instructionLanguage": "es",
+      "exerciseLanguage": "es",
+      "explanationLanguage": "es",
+      "prompt": "¿Cómo se llama cada número que multiplicamos?",
+      "explanation": "Cada número que se multiplica es un factor.",
+      "context": "Escribe el nombre o término solicitado.",
+      "acceptedAnswers": [
+        "factor",
+        "un factor"
+      ],
+      "caseSensitive": false
+    },
+    {
+      "id": "math-t2-write-003",
+      "type": "typed_answer",
+      "conceptId": "commutative",
+      "learningObjectiveIds": [
+        "obj-commutative"
+      ],
+      "difficulty": "beginner",
+      "tags": [
+        "commutative",
+        "active-recall"
+      ],
+      "instructionLanguage": "es",
+      "exerciseLanguage": "es",
+      "explanationLanguage": "es",
+      "prompt": "¿Qué propiedad permite cambiar el orden de los factores?",
+      "explanation": "Cambiar el orden de los factores no cambia el producto.",
+      "context": "Escribe el nombre o término solicitado.",
+      "acceptedAnswers": [
+        "conmutativa",
+        "propiedad conmutativa",
+        "la propiedad conmutativa"
+      ],
+      "caseSensitive": false
+    },
+    {
+      "id": "math-t2-write-004",
+      "type": "typed_answer",
+      "conceptId": "associative",
+      "learningObjectiveIds": [
+        "obj-associative"
+      ],
+      "difficulty": "beginner",
+      "tags": [
+        "associative",
+        "active-recall"
+      ],
+      "instructionLanguage": "es",
+      "exerciseLanguage": "es",
+      "explanationLanguage": "es",
+      "prompt": "¿Qué propiedad permite reagrupar los factores sin cambiar el producto?",
+      "explanation": "Por ejemplo, (2 × 3) × 4 = 2 × (3 × 4).",
+      "context": "Escribe el nombre o término solicitado.",
+      "acceptedAnswers": [
+        "asociativa",
+        "propiedad asociativa",
+        "la propiedad asociativa"
+      ],
+      "caseSensitive": false
+    },
+    {
+      "id": "math-t2-write-005",
+      "type": "typed_answer",
+      "conceptId": "mul-1-digits",
+      "learningObjectiveIds": [
+        "obj-mul-1-digits"
+      ],
+      "difficulty": "beginner",
+      "tags": [
+        "mul-1-digits",
+        "active-recall"
+      ],
+      "instructionLanguage": "es",
+      "exerciseLanguage": "es",
+      "explanationLanguage": "es",
+      "prompt": "Calcula 34 × 6.",
+      "explanation": "34 × 6 = 204.",
+      "context": "Escribe solo el número, sin unidades.",
+      "acceptedAnswers": [
+        "204"
+      ],
+      "caseSensitive": false
+    },
+    {
+      "id": "math-t2-write-006",
+      "type": "typed_answer",
+      "conceptId": "mul-1-digits",
+      "learningObjectiveIds": [
+        "obj-mul-1-digits"
+      ],
+      "difficulty": "beginner",
+      "tags": [
+        "mul-1-digits",
+        "active-recall"
+      ],
+      "instructionLanguage": "es",
+      "exerciseLanguage": "es",
+      "explanationLanguage": "es",
+      "prompt": "Calcula 71 × 5.",
+      "explanation": "71 × 5 = 355.",
+      "context": "Escribe solo el número, sin unidades.",
+      "acceptedAnswers": [
+        "355"
+      ],
+      "caseSensitive": false
+    },
+    {
+      "id": "math-t2-write-007",
+      "type": "typed_answer",
+      "conceptId": "mul-1-digits",
+      "learningObjectiveIds": [
+        "obj-mul-1-digits"
+      ],
+      "difficulty": "beginner",
+      "tags": [
+        "mul-1-digits",
+        "active-recall"
+      ],
+      "instructionLanguage": "es",
+      "exerciseLanguage": "es",
+      "explanationLanguage": "es",
+      "prompt": "Calcula 82 × 9.",
+      "explanation": "82 × 9 = 738.",
+      "context": "Escribe solo el número, sin unidades.",
+      "acceptedAnswers": [
+        "738"
+      ],
+      "caseSensitive": false
+    },
+    {
+      "id": "math-t2-write-008",
+      "type": "typed_answer",
+      "conceptId": "mul-1-digits",
+      "learningObjectiveIds": [
+        "obj-mul-1-digits"
+      ],
+      "difficulty": "beginner",
+      "tags": [
+        "mul-1-digits",
+        "active-recall"
+      ],
+      "instructionLanguage": "es",
+      "exerciseLanguage": "es",
+      "explanationLanguage": "es",
+      "prompt": "Calcula 46 × 7.",
+      "explanation": "46 × 7 = 322.",
+      "context": "Escribe solo el número, sin unidades.",
+      "acceptedAnswers": [
+        "322"
+      ],
+      "caseSensitive": false
+    },
+    {
+      "id": "math-t2-write-009",
+      "type": "typed_answer",
+      "conceptId": "powers-ten",
+      "learningObjectiveIds": [
+        "obj-powers-ten"
+      ],
+      "difficulty": "beginner",
+      "tags": [
+        "powers-ten",
+        "active-recall"
+      ],
+      "instructionLanguage": "es",
+      "exerciseLanguage": "es",
+      "explanationLanguage": "es",
+      "prompt": "Escribe el valor de 10 elevado a 2.",
+      "explanation": "10 elevado a 2 es un 1 seguido de 2 ceros.",
+      "context": "Escribe solo el número, sin unidades.",
+      "acceptedAnswers": [
+        "100"
+      ],
+      "caseSensitive": false
+    },
+    {
+      "id": "math-t2-write-010",
+      "type": "typed_answer",
+      "conceptId": "powers-ten",
+      "learningObjectiveIds": [
+        "obj-powers-ten"
+      ],
+      "difficulty": "beginner",
+      "tags": [
+        "powers-ten",
+        "active-recall"
+      ],
+      "instructionLanguage": "es",
+      "exerciseLanguage": "es",
+      "explanationLanguage": "es",
+      "prompt": "Escribe el valor de 10 elevado a 3.",
+      "explanation": "10 elevado a 3 es un 1 seguido de 3 ceros.",
+      "context": "Escribe solo el número, sin unidades.",
+      "acceptedAnswers": [
+        "1000",
+        "1 000",
+        "1.000",
+        "1 000",
+        "1 000"
+      ],
+      "caseSensitive": false
+    },
+    {
+      "id": "math-t2-write-011",
+      "type": "typed_answer",
+      "conceptId": "powers-ten",
+      "learningObjectiveIds": [
+        "obj-powers-ten"
+      ],
+      "difficulty": "beginner",
+      "tags": [
+        "powers-ten",
+        "active-recall"
+      ],
+      "instructionLanguage": "es",
+      "exerciseLanguage": "es",
+      "explanationLanguage": "es",
+      "prompt": "Escribe el valor de 10 elevado a 4.",
+      "explanation": "10 elevado a 4 es un 1 seguido de 4 ceros.",
+      "context": "Escribe solo el número, sin unidades.",
+      "acceptedAnswers": [
+        "10000",
+        "10 000",
+        "10.000",
+        "10 000",
+        "10 000"
+      ],
+      "caseSensitive": false
+    },
+    {
+      "id": "math-t2-write-012",
+      "type": "typed_answer",
+      "conceptId": "power-terms",
+      "learningObjectiveIds": [
+        "obj-power-terms"
+      ],
+      "difficulty": "beginner",
+      "tags": [
+        "power-terms",
+        "active-recall"
+      ],
+      "instructionLanguage": "es",
+      "exerciseLanguage": "es",
+      "explanationLanguage": "es",
+      "prompt": "En 7⁴, ¿qué número es la base?",
+      "explanation": "La base es el factor que se repite; aquí, 7.",
+      "context": "Escribe solo el número, sin unidades.",
+      "acceptedAnswers": [
+        "7"
+      ],
+      "caseSensitive": false
+    },
+    {
+      "id": "math-t2-write-013",
+      "type": "typed_answer",
+      "conceptId": "power-terms",
+      "learningObjectiveIds": [
+        "obj-power-terms"
+      ],
+      "difficulty": "beginner",
+      "tags": [
+        "power-terms",
+        "active-recall"
+      ],
+      "instructionLanguage": "es",
+      "exerciseLanguage": "es",
+      "explanationLanguage": "es",
+      "prompt": "En 6³, ¿qué número es el exponente?",
+      "explanation": "El exponente indica cuántas veces aparece el factor: 3.",
+      "context": "Escribe solo el número, sin unidades.",
+      "acceptedAnswers": [
+        "3"
+      ],
+      "caseSensitive": false
+    },
+    {
+      "id": "math-t2-write-014",
+      "type": "typed_answer",
+      "conceptId": "div-1-digits",
+      "learningObjectiveIds": [
+        "obj-div-1-digits"
+      ],
+      "difficulty": "beginner",
+      "tags": [
+        "div-1-digits",
+        "active-recall"
+      ],
+      "instructionLanguage": "es",
+      "exerciseLanguage": "es",
+      "explanationLanguage": "es",
+      "prompt": "Calcula 78 ÷ 6.",
+      "explanation": "6 × 13 = 78.",
+      "context": "Escribe solo el número, sin unidades.",
+      "acceptedAnswers": [
+        "13"
+      ],
+      "caseSensitive": false
+    },
+    {
+      "id": "math-t2-write-015",
+      "type": "typed_answer",
+      "conceptId": "div-1-digits",
+      "learningObjectiveIds": [
+        "obj-div-1-digits"
+      ],
+      "difficulty": "beginner",
+      "tags": [
+        "div-1-digits",
+        "active-recall"
+      ],
+      "instructionLanguage": "es",
+      "exerciseLanguage": "es",
+      "explanationLanguage": "es",
+      "prompt": "Calcula 128 ÷ 8.",
+      "explanation": "8 × 16 = 128.",
+      "context": "Escribe solo el número, sin unidades.",
+      "acceptedAnswers": [
+        "16"
+      ],
+      "caseSensitive": false
+    },
+    {
+      "id": "math-t2-write-016",
+      "type": "typed_answer",
+      "conceptId": "div-1-digits",
+      "learningObjectiveIds": [
+        "obj-div-1-digits"
+      ],
+      "difficulty": "beginner",
+      "tags": [
+        "div-1-digits",
+        "active-recall"
+      ],
+      "instructionLanguage": "es",
+      "exerciseLanguage": "es",
+      "explanationLanguage": "es",
+      "prompt": "Calcula 133 ÷ 7.",
+      "explanation": "7 × 19 = 133.",
+      "context": "Escribe solo el número, sin unidades.",
+      "acceptedAnswers": [
+        "19"
+      ],
+      "caseSensitive": false
+    },
+    {
+      "id": "math-t2-write-017",
+      "type": "typed_answer",
+      "conceptId": "div-terms",
+      "learningObjectiveIds": [
+        "obj-div-terms"
+      ],
+      "difficulty": "beginner",
+      "tags": [
+        "div-terms",
+        "active-recall"
+      ],
+      "instructionLanguage": "es",
+      "exerciseLanguage": "es",
+      "explanationLanguage": "es",
+      "prompt": "En 81 ÷ 9 = 9, ¿cuál es el dividendo?",
+      "explanation": "El dividendo es el número que se divide: 81.",
+      "context": "Escribe solo el número, sin unidades.",
+      "acceptedAnswers": [
+        "81"
+      ],
+      "caseSensitive": false
+    },
+    {
+      "id": "math-t2-write-018",
+      "type": "typed_answer",
+      "conceptId": "horizontal-calc",
+      "learningObjectiveIds": [
+        "obj-horizontal-calc"
+      ],
+      "difficulty": "beginner",
+      "tags": [
+        "horizontal-calc",
+        "active-recall"
+      ],
+      "instructionLanguage": "es",
+      "exerciseLanguage": "es",
+      "explanationLanguage": "es",
+      "prompt": "Calcula mentalmente 95 − 37.",
+      "explanation": "95 − 40 + 3 = 58.",
+      "context": "Escribe solo el número, sin unidades.",
+      "acceptedAnswers": [
+        "58"
+      ],
+      "caseSensitive": false
+    },
+    {
+      "id": "math-t2-write-019",
+      "type": "typed_answer",
+      "conceptId": "word-problems",
+      "learningObjectiveIds": [
+        "obj-word-problems"
+      ],
+      "difficulty": "beginner",
+      "tags": [
+        "word-problems",
+        "active-recall"
+      ],
+      "instructionLanguage": "es",
+      "exerciseLanguage": "es",
+      "explanationLanguage": "es",
+      "prompt": "Hay 9 bolsas con 6 canicas en cada una. ¿Cuántas canicas hay en total?",
+      "explanation": "9 × 6 = 54 canicas.",
+      "context": "Escribe solo el número, sin unidades.",
+      "acceptedAnswers": [
+        "54"
+      ],
+      "caseSensitive": false
+    },
+    {
+      "id": "math-t2-write-020",
+      "type": "typed_answer",
+      "conceptId": "combined-operations",
+      "learningObjectiveIds": [
+        "obj-combined-operations"
+      ],
+      "difficulty": "beginner",
+      "tags": [
+        "combined-operations",
+        "active-recall"
+      ],
+      "instructionLanguage": "es",
+      "exerciseLanguage": "es",
+      "explanationLanguage": "es",
+      "prompt": "Calcula 9 + 6 × 4.",
+      "explanation": "Primero 6 × 4 = 24; después 9 + 24 = 33.",
+      "context": "Escribe solo el número, sin unidades.",
+      "acceptedAnswers": [
+        "33"
+      ],
+      "caseSensitive": false
+    },
+    {
+      "id": "math-t2-write-021",
+      "type": "typed_answer",
+      "conceptId": "mul-2-digits",
+      "learningObjectiveIds": [
+        "obj-mul-2-digits"
+      ],
+      "difficulty": "intermediate",
+      "tags": [
+        "mul-2-digits",
+        "active-recall"
+      ],
+      "instructionLanguage": "es",
+      "exerciseLanguage": "es",
+      "explanationLanguage": "es",
+      "prompt": "Calcula 43 × 27.",
+      "explanation": "43 × 20 + 43 × 7 = 1161.",
+      "context": "Escribe solo el número, sin unidades.",
+      "acceptedAnswers": [
+        "1161",
+        "1 161",
+        "1.161",
+        "1 161",
+        "1 161"
+      ],
+      "caseSensitive": false
+    },
+    {
+      "id": "math-t2-write-022",
+      "type": "typed_answer",
+      "conceptId": "mul-2-digits",
+      "learningObjectiveIds": [
+        "obj-mul-2-digits"
+      ],
+      "difficulty": "intermediate",
+      "tags": [
+        "mul-2-digits",
+        "active-recall"
+      ],
+      "instructionLanguage": "es",
+      "exerciseLanguage": "es",
+      "explanationLanguage": "es",
+      "prompt": "Calcula 68 × 34.",
+      "explanation": "68 × 30 + 68 × 4 = 2312.",
+      "context": "Escribe solo el número, sin unidades.",
+      "acceptedAnswers": [
+        "2312",
+        "2 312",
+        "2.312",
+        "2 312",
+        "2 312"
+      ],
+      "caseSensitive": false
+    },
+    {
+      "id": "math-t2-write-023",
+      "type": "typed_answer",
+      "conceptId": "mul-2-digits",
+      "learningObjectiveIds": [
+        "obj-mul-2-digits"
+      ],
+      "difficulty": "intermediate",
+      "tags": [
+        "mul-2-digits",
+        "active-recall"
+      ],
+      "instructionLanguage": "es",
+      "exerciseLanguage": "es",
+      "explanationLanguage": "es",
+      "prompt": "Calcula 125 × 26.",
+      "explanation": "125 × 20 + 125 × 6 = 3250.",
+      "context": "Escribe solo el número, sin unidades.",
+      "acceptedAnswers": [
+        "3250",
+        "3 250",
+        "3.250",
+        "3 250",
+        "3 250"
+      ],
+      "caseSensitive": false
+    },
+    {
+      "id": "math-t2-write-024",
+      "type": "typed_answer",
+      "conceptId": "mul-2-digits",
+      "learningObjectiveIds": [
+        "obj-mul-2-digits"
+      ],
+      "difficulty": "intermediate",
+      "tags": [
+        "mul-2-digits",
+        "active-recall"
+      ],
+      "instructionLanguage": "es",
+      "exerciseLanguage": "es",
+      "explanationLanguage": "es",
+      "prompt": "Calcula 207 × 48.",
+      "explanation": "207 × 40 + 207 × 8 = 9936.",
+      "context": "Escribe solo el número, sin unidades.",
+      "acceptedAnswers": [
+        "9936",
+        "9 936",
+        "9.936",
+        "9 936",
+        "9 936"
+      ],
+      "caseSensitive": false
+    },
+    {
+      "id": "math-t2-write-025",
+      "type": "typed_answer",
+      "conceptId": "mul-3-digits",
+      "learningObjectiveIds": [
+        "obj-mul-3-digits"
+      ],
+      "difficulty": "intermediate",
+      "tags": [
+        "mul-3-digits",
+        "active-recall"
+      ],
+      "instructionLanguage": "es",
+      "exerciseLanguage": "es",
+      "explanationLanguage": "es",
+      "prompt": "Calcula 6 × 247.",
+      "explanation": "6 × 247 = 1482.",
+      "context": "Escribe solo el número, sin unidades.",
+      "acceptedAnswers": [
+        "1482",
+        "1 482",
+        "1.482",
+        "1 482",
+        "1 482"
+      ],
+      "caseSensitive": false
+    },
+    {
+      "id": "math-t2-write-026",
+      "type": "typed_answer",
+      "conceptId": "mul-3-digits",
+      "learningObjectiveIds": [
+        "obj-mul-3-digits"
+      ],
+      "difficulty": "intermediate",
+      "tags": [
+        "mul-3-digits",
+        "active-recall"
+      ],
+      "instructionLanguage": "es",
+      "exerciseLanguage": "es",
+      "explanationLanguage": "es",
+      "prompt": "Calcula 8 × 316.",
+      "explanation": "8 × 316 = 2528.",
+      "context": "Escribe solo el número, sin unidades.",
+      "acceptedAnswers": [
+        "2528",
+        "2 528",
+        "2.528",
+        "2 528",
+        "2 528"
+      ],
+      "caseSensitive": false
+    },
+    {
+      "id": "math-t2-write-027",
+      "type": "typed_answer",
+      "conceptId": "distributive",
+      "learningObjectiveIds": [
+        "obj-distributive"
+      ],
+      "difficulty": "intermediate",
+      "tags": [
+        "distributive",
+        "active-recall"
+      ],
+      "instructionLanguage": "es",
+      "exerciseLanguage": "es",
+      "explanationLanguage": "es",
+      "prompt": "Calcula 7 × (20 + 4).",
+      "explanation": "7 × 20 + 7 × 4 = 140 + 28 = 168.",
+      "context": "Escribe solo el número, sin unidades.",
+      "acceptedAnswers": [
+        "168"
+      ],
+      "caseSensitive": false
+    },
+    {
+      "id": "math-t2-write-028",
+      "type": "typed_answer",
+      "conceptId": "distributive",
+      "learningObjectiveIds": [
+        "obj-distributive"
+      ],
+      "difficulty": "intermediate",
+      "tags": [
+        "distributive",
+        "active-recall"
+      ],
+      "instructionLanguage": "es",
+      "exerciseLanguage": "es",
+      "explanationLanguage": "es",
+      "prompt": "Calcula 9 × (30 + 6).",
+      "explanation": "9 × 30 + 9 × 6 = 270 + 54 = 324.",
+      "context": "Escribe solo el número, sin unidades.",
+      "acceptedAnswers": [
+        "324"
+      ],
+      "caseSensitive": false
+    },
+    {
+      "id": "math-t2-write-029",
+      "type": "typed_answer",
+      "conceptId": "associative",
+      "learningObjectiveIds": [
+        "obj-associative"
+      ],
+      "difficulty": "intermediate",
+      "tags": [
+        "associative",
+        "active-recall"
+      ],
+      "instructionLanguage": "es",
+      "exerciseLanguage": "es",
+      "explanationLanguage": "es",
+      "prompt": "Calcula (4 × 5) × 8.",
+      "explanation": "Puedes reagrupar: 4 × (5 × 8) = 160.",
+      "context": "Escribe solo el número, sin unidades.",
+      "acceptedAnswers": [
+        "160"
+      ],
+      "caseSensitive": false
+    },
+    {
+      "id": "math-t2-write-030",
+      "type": "typed_answer",
+      "conceptId": "associative",
+      "learningObjectiveIds": [
+        "obj-associative"
+      ],
+      "difficulty": "intermediate",
+      "tags": [
+        "associative",
+        "active-recall"
+      ],
+      "instructionLanguage": "es",
+      "exerciseLanguage": "es",
+      "explanationLanguage": "es",
+      "prompt": "Calcula (2 × 9) × 5.",
+      "explanation": "Puedes reagrupar: 2 × (9 × 5) = 90.",
+      "context": "Escribe solo el número, sin unidades.",
+      "acceptedAnswers": [
+        "90"
+      ],
+      "caseSensitive": false
+    },
+    {
+      "id": "math-t2-write-031",
+      "type": "typed_answer",
+      "conceptId": "decimal-powers",
+      "learningObjectiveIds": [
+        "obj-decimal-powers"
+      ],
+      "difficulty": "intermediate",
+      "tags": [
+        "decimal-powers",
+        "active-recall"
+      ],
+      "instructionLanguage": "es",
+      "exerciseLanguage": "es",
+      "explanationLanguage": "es",
+      "prompt": "¿Qué número es 6 × 10³ + 2 × 10² + 8 × 10¹?",
+      "explanation": "6000 + 200 + 80 = 6280.",
+      "context": "Escribe solo el número, sin unidades.",
+      "acceptedAnswers": [
+        "6280",
+        "6 280",
+        "6.280",
+        "6 280",
+        "6 280"
+      ],
+      "caseSensitive": false
+    },
+    {
+      "id": "math-t2-write-032",
+      "type": "typed_answer",
+      "conceptId": "decimal-powers",
+      "learningObjectiveIds": [
+        "obj-decimal-powers"
+      ],
+      "difficulty": "intermediate",
+      "tags": [
+        "decimal-powers",
+        "active-recall"
+      ],
+      "instructionLanguage": "es",
+      "exerciseLanguage": "es",
+      "explanationLanguage": "es",
+      "prompt": "¿Qué número es 3 × 10³ + 7 × 10² + 1 × 10¹?",
+      "explanation": "3000 + 700 + 10 = 3710.",
+      "context": "Escribe solo el número, sin unidades.",
+      "acceptedAnswers": [
+        "3710",
+        "3 710",
+        "3.710",
+        "3 710",
+        "3 710"
+      ],
+      "caseSensitive": false
+    },
+    {
+      "id": "math-t2-write-033",
+      "type": "typed_answer",
+      "conceptId": "horizontal-decomp",
+      "learningObjectiveIds": [
+        "obj-horizontal-decomp"
+      ],
+      "difficulty": "intermediate",
+      "tags": [
+        "horizontal-decomp",
+        "active-recall"
+      ],
+      "instructionLanguage": "es",
+      "exerciseLanguage": "es",
+      "explanationLanguage": "es",
+      "prompt": "Calcula mentalmente 49 × 6.",
+      "explanation": "(50 − 1) × 6 = 300 − 6 = 294.",
+      "context": "Escribe solo el número, sin unidades.",
+      "acceptedAnswers": [
+        "294"
+      ],
+      "caseSensitive": false
+    },
+    {
+      "id": "math-t2-write-034",
+      "type": "typed_answer",
+      "conceptId": "horizontal-decomp",
+      "learningObjectiveIds": [
+        "obj-horizontal-decomp"
+      ],
+      "difficulty": "intermediate",
+      "tags": [
+        "horizontal-decomp",
+        "active-recall"
+      ],
+      "instructionLanguage": "es",
+      "exerciseLanguage": "es",
+      "explanationLanguage": "es",
+      "prompt": "Calcula mentalmente 98 × 7.",
+      "explanation": "(99 − 1) × 7 = 693 − 7 = 686.",
+      "context": "Escribe solo el número, sin unidades.",
+      "acceptedAnswers": [
+        "686"
+      ],
+      "caseSensitive": false
+    },
+    {
+      "id": "math-t2-write-035",
+      "type": "typed_answer",
+      "conceptId": "div-2-digits",
+      "learningObjectiveIds": [
+        "obj-div-2-digits"
+      ],
+      "difficulty": "intermediate",
+      "tags": [
+        "div-2-digits",
+        "active-recall"
+      ],
+      "instructionLanguage": "es",
+      "exerciseLanguage": "es",
+      "explanationLanguage": "es",
+      "prompt": "Calcula 432 ÷ 24.",
+      "explanation": "24 × 18 = 432.",
+      "context": "Escribe solo el número, sin unidades.",
+      "acceptedAnswers": [
+        "18"
+      ],
+      "caseSensitive": false
+    },
+    {
+      "id": "math-t2-write-036",
+      "type": "typed_answer",
+      "conceptId": "div-2-digits",
+      "learningObjectiveIds": [
+        "obj-div-2-digits"
+      ],
+      "difficulty": "intermediate",
+      "tags": [
+        "div-2-digits",
+        "active-recall"
+      ],
+      "instructionLanguage": "es",
+      "exerciseLanguage": "es",
+      "explanationLanguage": "es",
+      "prompt": "Calcula 777 ÷ 37.",
+      "explanation": "37 × 21 = 777.",
+      "context": "Escribe solo el número, sin unidades.",
+      "acceptedAnswers": [
+        "21"
+      ],
+      "caseSensitive": false
+    },
+    {
+      "id": "math-t2-write-037",
+      "type": "typed_answer",
+      "conceptId": "division-check",
+      "learningObjectiveIds": [
+        "obj-division-check"
+      ],
+      "difficulty": "intermediate",
+      "tags": [
+        "division-check",
+        "active-recall"
+      ],
+      "instructionLanguage": "es",
+      "exerciseLanguage": "es",
+      "explanationLanguage": "es",
+      "prompt": "El divisor es 17, el cociente 24 y el resto 5. ¿Cuál es el dividendo?",
+      "explanation": "17 × 24 + 5 = 413; 5 es menor que 17.",
+      "context": "Escribe solo el número, sin unidades.",
+      "acceptedAnswers": [
+        "413"
+      ],
+      "caseSensitive": false
+    },
+    {
+      "id": "math-t2-write-038",
+      "type": "typed_answer",
+      "conceptId": "word-problems",
+      "learningObjectiveIds": [
+        "obj-word-problems"
+      ],
+      "difficulty": "intermediate",
+      "tags": [
+        "word-problems",
+        "active-recall"
+      ],
+      "instructionLanguage": "es",
+      "exerciseLanguage": "es",
+      "explanationLanguage": "es",
+      "prompt": "En 18 cajas hay 24 lápices por caja. Se reparten todos entre 9 clases por igual. ¿Cuántos recibe cada clase?",
+      "explanation": "18 × 24 = 432; 432 ÷ 9 = 48.",
+      "context": "Escribe solo el número, sin unidades.",
+      "acceptedAnswers": [
+        "48"
+      ],
+      "caseSensitive": false
+    },
+    {
+      "id": "math-t2-write-039",
+      "type": "typed_answer",
+      "conceptId": "combined-operations",
+      "learningObjectiveIds": [
+        "obj-combined-operations"
+      ],
+      "difficulty": "intermediate",
+      "tags": [
+        "combined-operations",
+        "active-recall"
+      ],
+      "instructionLanguage": "es",
+      "exerciseLanguage": "es",
+      "explanationLanguage": "es",
+      "prompt": "Calcula 72 ÷ 8 + 5 × 7 − 6.",
+      "explanation": "9 + 35 − 6 = 38.",
+      "context": "Escribe solo el número, sin unidades.",
+      "acceptedAnswers": [
+        "38"
+      ],
+      "caseSensitive": false
+    },
+    {
+      "id": "math-t2-write-040",
+      "type": "typed_answer",
+      "conceptId": "horizontal-calc",
+      "learningObjectiveIds": [
+        "obj-horizontal-calc"
+      ],
+      "difficulty": "intermediate",
+      "tags": [
+        "horizontal-calc",
+        "active-recall"
+      ],
+      "instructionLanguage": "es",
+      "exerciseLanguage": "es",
+      "explanationLanguage": "es",
+      "prompt": "Calcula mentalmente 399 + 287.",
+      "explanation": "400 + 287 − 1 = 686.",
+      "context": "Escribe solo el número, sin unidades.",
+      "acceptedAnswers": [
+        "686"
+      ],
+      "caseSensitive": false
+    },
+    {
+      "id": "math-t2-write-041",
+      "type": "typed_answer",
+      "conceptId": "mul-3-digits",
+      "learningObjectiveIds": [
+        "obj-mul-3-digits"
+      ],
+      "difficulty": "advanced",
+      "tags": [
+        "mul-3-digits",
+        "active-recall"
+      ],
+      "instructionLanguage": "es",
+      "exerciseLanguage": "es",
+      "explanationLanguage": "es",
+      "prompt": "Calcula 124 × 236.",
+      "explanation": "124 × 236 = 29264.",
+      "context": "Escribe solo el número, sin unidades.",
+      "acceptedAnswers": [
+        "29264",
+        "29 264",
+        "29.264",
+        "29 264",
+        "29 264"
+      ],
+      "caseSensitive": false
+    },
+    {
+      "id": "math-t2-write-042",
+      "type": "typed_answer",
+      "conceptId": "mul-3-digits",
+      "learningObjectiveIds": [
+        "obj-mul-3-digits"
+      ],
+      "difficulty": "advanced",
+      "tags": [
+        "mul-3-digits",
+        "active-recall"
+      ],
+      "instructionLanguage": "es",
+      "exerciseLanguage": "es",
+      "explanationLanguage": "es",
+      "prompt": "Calcula 305 × 142.",
+      "explanation": "305 × 142 = 43310.",
+      "context": "Escribe solo el número, sin unidades.",
+      "acceptedAnswers": [
+        "43310",
+        "43 310",
+        "43.310",
+        "43 310",
+        "43 310"
+      ],
+      "caseSensitive": false
+    },
+    {
+      "id": "math-t2-write-043",
+      "type": "typed_answer",
+      "conceptId": "mul-3-digits",
+      "learningObjectiveIds": [
+        "obj-mul-3-digits"
+      ],
+      "difficulty": "advanced",
+      "tags": [
+        "mul-3-digits",
+        "active-recall"
+      ],
+      "instructionLanguage": "es",
+      "exerciseLanguage": "es",
+      "explanationLanguage": "es",
+      "prompt": "Calcula 217 × 308.",
+      "explanation": "217 × 308 = 66836.",
+      "context": "Escribe solo el número, sin unidades.",
+      "acceptedAnswers": [
+        "66836",
+        "66 836",
+        "66.836",
+        "66 836",
+        "66 836"
+      ],
+      "caseSensitive": false
+    },
+    {
+      "id": "math-t2-write-044",
+      "type": "typed_answer",
+      "conceptId": "mul-3-digits",
+      "learningObjectiveIds": [
+        "obj-mul-3-digits"
+      ],
+      "difficulty": "advanced",
+      "tags": [
+        "mul-3-digits",
+        "active-recall"
+      ],
+      "instructionLanguage": "es",
+      "exerciseLanguage": "es",
+      "explanationLanguage": "es",
+      "prompt": "Calcula 189 × 427.",
+      "explanation": "189 × 427 = 80703.",
+      "context": "Escribe solo el número, sin unidades.",
+      "acceptedAnswers": [
+        "80703",
+        "80 703",
+        "80.703",
+        "80 703",
+        "80 703"
+      ],
+      "caseSensitive": false
+    },
+    {
+      "id": "math-t2-write-045",
+      "type": "typed_answer",
+      "conceptId": "div-3-digits",
+      "learningObjectiveIds": [
+        "obj-div-3-digits"
+      ],
+      "difficulty": "advanced",
+      "tags": [
+        "div-3-digits",
+        "active-recall"
+      ],
+      "instructionLanguage": "es",
+      "exerciseLanguage": "es",
+      "explanationLanguage": "es",
+      "prompt": "¿Cuál es el cociente entero de 3335 ÷ 123?",
+      "explanation": "3335 = 123 × 27 + 14.",
+      "context": "Escribe solo el número, sin unidades.",
+      "acceptedAnswers": [
+        "27"
+      ],
+      "caseSensitive": false
+    },
+    {
+      "id": "math-t2-write-046",
+      "type": "typed_answer",
+      "conceptId": "div-3-digits",
+      "learningObjectiveIds": [
+        "obj-div-3-digits"
+      ],
+      "difficulty": "advanced",
+      "tags": [
+        "div-3-digits",
+        "active-recall"
+      ],
+      "instructionLanguage": "es",
+      "exerciseLanguage": "es",
+      "explanationLanguage": "es",
+      "prompt": "¿Cuál es el resto de 3335 ÷ 123?",
+      "explanation": "3335 − 123 × 27 = 14; el resto es menor que el divisor.",
+      "context": "Escribe solo el número, sin unidades.",
+      "acceptedAnswers": [
+        "14"
+      ],
+      "caseSensitive": false
+    },
+    {
+      "id": "math-t2-write-047",
+      "type": "typed_answer",
+      "conceptId": "div-3-digits",
+      "learningObjectiveIds": [
+        "obj-div-3-digits"
+      ],
+      "difficulty": "advanced",
+      "tags": [
+        "div-3-digits",
+        "active-recall"
+      ],
+      "instructionLanguage": "es",
+      "exerciseLanguage": "es",
+      "explanationLanguage": "es",
+      "prompt": "¿Cuál es el cociente entero de 9747 ÷ 256?",
+      "explanation": "9747 = 256 × 38 + 19.",
+      "context": "Escribe solo el número, sin unidades.",
+      "acceptedAnswers": [
+        "38"
+      ],
+      "caseSensitive": false
+    },
+    {
+      "id": "math-t2-write-048",
+      "type": "typed_answer",
+      "conceptId": "div-3-digits",
+      "learningObjectiveIds": [
+        "obj-div-3-digits"
+      ],
+      "difficulty": "advanced",
+      "tags": [
+        "div-3-digits",
+        "active-recall"
+      ],
+      "instructionLanguage": "es",
+      "exerciseLanguage": "es",
+      "explanationLanguage": "es",
+      "prompt": "¿Cuál es el resto de 9747 ÷ 256?",
+      "explanation": "9747 − 256 × 38 = 19; el resto es menor que el divisor.",
+      "context": "Escribe solo el número, sin unidades.",
+      "acceptedAnswers": [
+        "19"
+      ],
+      "caseSensitive": false
+    },
+    {
+      "id": "math-t2-write-049",
+      "type": "typed_answer",
+      "conceptId": "div-3-digits",
+      "learningObjectiveIds": [
+        "obj-div-3-digits"
+      ],
+      "difficulty": "advanced",
+      "tags": [
+        "div-3-digits",
+        "active-recall"
+      ],
+      "instructionLanguage": "es",
+      "exerciseLanguage": "es",
+      "explanationLanguage": "es",
+      "prompt": "¿Cuál es el cociente entero de 12911 ÷ 305?",
+      "explanation": "12911 = 305 × 42 + 101.",
+      "context": "Escribe solo el número, sin unidades.",
+      "acceptedAnswers": [
+        "42"
+      ],
+      "caseSensitive": false
+    },
+    {
+      "id": "math-t2-write-050",
+      "type": "typed_answer",
+      "conceptId": "div-3-digits",
+      "learningObjectiveIds": [
+        "obj-div-3-digits"
+      ],
+      "difficulty": "advanced",
+      "tags": [
+        "div-3-digits",
+        "active-recall"
+      ],
+      "instructionLanguage": "es",
+      "exerciseLanguage": "es",
+      "explanationLanguage": "es",
+      "prompt": "¿Cuál es el resto de 12911 ÷ 305?",
+      "explanation": "12911 − 305 × 42 = 101; el resto es menor que el divisor.",
+      "context": "Escribe solo el número, sin unidades.",
+      "acceptedAnswers": [
+        "101"
+      ],
+      "caseSensitive": false
+    },
+    {
+      "id": "math-t2-write-051",
+      "type": "typed_answer",
+      "conceptId": "division-check",
+      "learningObjectiveIds": [
+        "obj-division-check"
+      ],
+      "difficulty": "advanced",
+      "tags": [
+        "division-check",
+        "active-recall"
+      ],
+      "instructionLanguage": "es",
+      "exerciseLanguage": "es",
+      "explanationLanguage": "es",
+      "prompt": "Una división tiene dividendo 3487, divisor 125 y cociente 27. ¿Cuál es el resto?",
+      "explanation": "3487 − 125 × 27 = 112, menor que 125.",
+      "context": "Escribe solo el número, sin unidades.",
+      "acceptedAnswers": [
+        "112"
+      ],
+      "caseSensitive": false
+    },
+    {
+      "id": "math-t2-write-052",
+      "type": "typed_answer",
+      "conceptId": "division-check",
+      "learningObjectiveIds": [
+        "obj-division-check"
+      ],
+      "difficulty": "advanced",
+      "tags": [
+        "division-check",
+        "active-recall"
+      ],
+      "instructionLanguage": "es",
+      "exerciseLanguage": "es",
+      "explanationLanguage": "es",
+      "prompt": "En una división por 46, el cociente es 83 y el resto 19. ¿Cuál es el dividendo?",
+      "explanation": "46 × 83 + 19 = 3837.",
+      "context": "Escribe solo el número, sin unidades.",
+      "acceptedAnswers": [
+        "3837",
+        "3 837",
+        "3.837",
+        "3 837",
+        "3 837"
+      ],
+      "caseSensitive": false
+    },
+    {
+      "id": "math-t2-write-053",
+      "type": "typed_answer",
+      "conceptId": "decimal-powers",
+      "learningObjectiveIds": [
+        "obj-decimal-powers"
+      ],
+      "difficulty": "advanced",
+      "tags": [
+        "decimal-powers",
+        "active-recall"
+      ],
+      "instructionLanguage": "es",
+      "exerciseLanguage": "es",
+      "explanationLanguage": "es",
+      "prompt": "¿Qué número representa 8 × 10⁵ + 4 × 10³ + 9 × 10⁰?",
+      "explanation": "800000 + 4000 + 9 = 804009; 10⁰ = 1.",
+      "context": "Escribe solo el número, sin unidades.",
+      "acceptedAnswers": [
+        "804009",
+        "804 009",
+        "804.009",
+        "804 009",
+        "804 009"
+      ],
+      "caseSensitive": false
+    },
+    {
+      "id": "math-t2-write-054",
+      "type": "typed_answer",
+      "conceptId": "powers-ten",
+      "learningObjectiveIds": [
+        "obj-powers-ten"
+      ],
+      "difficulty": "advanced",
+      "tags": [
+        "powers-ten",
+        "active-recall"
+      ],
+      "instructionLanguage": "es",
+      "exerciseLanguage": "es",
+      "explanationLanguage": "es",
+      "prompt": "¿Qué exponente falta en 10 elevado a ___ = 1 000 000?",
+      "explanation": "Un millón tiene seis ceros, por tanto es 10⁶.",
+      "context": "Escribe solo el número, sin unidades.",
+      "acceptedAnswers": [
+        "6"
+      ],
+      "caseSensitive": false
+    },
+    {
+      "id": "math-t2-write-055",
+      "type": "typed_answer",
+      "conceptId": "distributive",
+      "learningObjectiveIds": [
+        "obj-distributive"
+      ],
+      "difficulty": "advanced",
+      "tags": [
+        "distributive",
+        "active-recall"
+      ],
+      "instructionLanguage": "es",
+      "exerciseLanguage": "es",
+      "explanationLanguage": "es",
+      "prompt": "Calcula 26 × (100 − 3).",
+      "explanation": "2600 − 78 = 2522.",
+      "context": "Escribe solo el número, sin unidades.",
+      "acceptedAnswers": [
+        "2522",
+        "2 522",
+        "2.522",
+        "2 522",
+        "2 522"
+      ],
+      "caseSensitive": false
+    },
+    {
+      "id": "math-t2-write-056",
+      "type": "typed_answer",
+      "conceptId": "horizontal-decomp",
+      "learningObjectiveIds": [
+        "obj-horizontal-decomp"
+      ],
+      "difficulty": "advanced",
+      "tags": [
+        "horizontal-decomp",
+        "active-recall"
+      ],
+      "instructionLanguage": "es",
+      "exerciseLanguage": "es",
+      "explanationLanguage": "es",
+      "prompt": "Calcula mentalmente 125 × 48.",
+      "explanation": "125 × 8 × 6 = 1000 × 6 = 6000.",
+      "context": "Escribe solo el número, sin unidades.",
+      "acceptedAnswers": [
+        "6000",
+        "6 000",
+        "6.000",
+        "6 000",
+        "6 000"
+      ],
+      "caseSensitive": false
+    },
+    {
+      "id": "math-t2-write-057",
+      "type": "typed_answer",
+      "conceptId": "word-problems",
+      "learningObjectiveIds": [
+        "obj-word-problems"
+      ],
+      "difficulty": "advanced",
+      "tags": [
+        "word-problems",
+        "active-recall"
+      ],
+      "instructionLanguage": "es",
+      "exerciseLanguage": "es",
+      "explanationLanguage": "es",
+      "prompt": "Hay 368 alumnos y cada autobús tiene 48 plazas. ¿Cuántos autobuses se necesitan como mínimo?",
+      "explanation": "7 autobuses tienen 336 plazas; se necesita uno más.",
+      "context": "Escribe solo el número, sin unidades.",
+      "acceptedAnswers": [
+        "8"
+      ],
+      "caseSensitive": false
+    },
+    {
+      "id": "math-t2-write-058",
+      "type": "typed_answer",
+      "conceptId": "word-problems",
+      "learningObjectiveIds": [
+        "obj-word-problems"
+      ],
+      "difficulty": "advanced",
+      "tags": [
+        "word-problems",
+        "active-recall"
+      ],
+      "instructionLanguage": "es",
+      "exerciseLanguage": "es",
+      "explanationLanguage": "es",
+      "prompt": "Un colegio compra 24 cajas de 36 cuadernos. Dona 144 y reparte el resto entre 12 clases. ¿Cuántos cuadernos recibe cada clase?",
+      "explanation": "24 × 36 = 864; (864 − 144) ÷ 12 = 60.",
+      "context": "Escribe solo el número, sin unidades.",
+      "acceptedAnswers": [
+        "60"
+      ],
+      "caseSensitive": false
+    },
+    {
+      "id": "math-t2-write-059",
+      "type": "typed_answer",
+      "conceptId": "combined-operations",
+      "learningObjectiveIds": [
+        "obj-combined-operations"
+      ],
+      "difficulty": "advanced",
+      "tags": [
+        "combined-operations",
+        "active-recall"
+      ],
+      "instructionLanguage": "es",
+      "exerciseLanguage": "es",
+      "explanationLanguage": "es",
+      "prompt": "Calcula 96 ÷ (4 + 4) + 9 × 6 − 17.",
+      "explanation": "12 + 54 − 17 = 49.",
+      "context": "Escribe solo el número, sin unidades.",
+      "acceptedAnswers": [
+        "49"
+      ],
+      "caseSensitive": false
+    },
+    {
+      "id": "math-t2-write-060",
+      "type": "typed_answer",
+      "conceptId": "combined-operations",
+      "learningObjectiveIds": [
+        "obj-combined-operations"
+      ],
+      "difficulty": "advanced",
+      "tags": [
+        "combined-operations",
+        "active-recall"
+      ],
+      "instructionLanguage": "es",
+      "exerciseLanguage": "es",
+      "explanationLanguage": "es",
+      "prompt": "Calcula (45 − 21) × 5 ÷ 8 + 17.",
+      "explanation": "24 × 5 ÷ 8 + 17 = 120 ÷ 8 + 17 = 32.",
+      "context": "Escribe solo el número, sin unidades.",
+      "acceptedAnswers": [
+        "32"
+      ],
+      "caseSensitive": false
+    },
+    {
+      "id": "math-t2-card-concept-01",
+      "type": "flashcard",
+      "conceptId": "mul-terms",
+      "learningObjectiveIds": [
+        "obj-mul-terms"
+      ],
+      "difficulty": "beginner",
+      "tags": [
+        "mul-terms",
+        "study"
+      ],
+      "instructionLanguage": "es",
+      "exerciseLanguage": "es",
+      "explanationLanguage": "es",
+      "prompt": "¿Cómo se llaman los números que multiplicamos y su resultado?",
+      "explanation": "7 × 8 = 56: 7 y 8 son factores; 56 es el producto.",
+      "front": "¿Cómo se llaman los números que multiplicamos y su resultado?",
+      "back": "Factores y producto."
+    },
+    {
+      "id": "math-t2-card-concept-02",
+      "type": "flashcard",
+      "conceptId": "mul-1-digits",
+      "learningObjectiveIds": [
+        "obj-mul-1-digits"
+      ],
+      "difficulty": "beginner",
+      "tags": [
+        "mul-1-digits",
+        "study"
+      ],
+      "instructionLanguage": "es",
+      "exerciseLanguage": "es",
+      "explanationLanguage": "es",
+      "prompt": "¿Cómo puedes calcular 42 × 6 por partes?",
+      "explanation": "Descompón 42 en decenas y unidades.",
+      "front": "¿Cómo puedes calcular 42 × 6 por partes?",
+      "back": "40 × 6 + 2 × 6 = 252."
+    },
+    {
+      "id": "math-t2-card-concept-03",
+      "type": "flashcard",
+      "conceptId": "mul-2-digits",
+      "learningObjectiveIds": [
+        "obj-mul-2-digits"
+      ],
+      "difficulty": "intermediate",
+      "tags": [
+        "mul-2-digits",
+        "study"
+      ],
+      "instructionLanguage": "es",
+      "exerciseLanguage": "es",
+      "explanationLanguage": "es",
+      "prompt": "¿Cómo multiplicas por 23 usando la descomposición?",
+      "explanation": "Por ejemplo, 15 × 23 = 300 + 45 = 345.",
+      "front": "¿Cómo multiplicas por 23 usando la descomposición?",
+      "back": "Multiplica por 20 y por 3; suma los resultados."
+    },
+    {
+      "id": "math-t2-card-concept-04",
+      "type": "flashcard",
+      "conceptId": "mul-3-digits",
+      "learningObjectiveIds": [
+        "obj-mul-3-digits"
+      ],
+      "difficulty": "advanced",
+      "tags": [
+        "mul-3-digits",
+        "study"
+      ],
+      "instructionLanguage": "es",
+      "exerciseLanguage": "es",
+      "explanationLanguage": "es",
+      "prompt": "¿Cómo descompones 304 para multiplicar?",
+      "explanation": "El cero ocupa el lugar de las decenas; no aporta producto.",
+      "front": "¿Cómo descompones 304 para multiplicar?",
+      "back": "300 + 4."
+    },
+    {
+      "id": "math-t2-card-concept-05",
+      "type": "flashcard",
+      "conceptId": "commutative",
+      "learningObjectiveIds": [
+        "obj-commutative"
+      ],
+      "difficulty": "beginner",
+      "tags": [
+        "commutative",
+        "study"
+      ],
+      "instructionLanguage": "es",
+      "exerciseLanguage": "es",
+      "explanationLanguage": "es",
+      "prompt": "Propiedad conmutativa de la multiplicación",
+      "explanation": "Ejemplo: 4 × 9 = 9 × 4 = 36.",
+      "front": "Propiedad conmutativa de la multiplicación",
+      "back": "a × b = b × a."
+    },
+    {
+      "id": "math-t2-card-concept-06",
+      "type": "flashcard",
+      "conceptId": "associative",
+      "learningObjectiveIds": [
+        "obj-associative"
+      ],
+      "difficulty": "beginner",
+      "tags": [
+        "associative",
+        "study"
+      ],
+      "instructionLanguage": "es",
+      "exerciseLanguage": "es",
+      "explanationLanguage": "es",
+      "prompt": "Propiedad asociativa de la multiplicación",
+      "explanation": "Ejemplo: (2 × 3) × 5 = 2 × (3 × 5) = 30.",
+      "front": "Propiedad asociativa de la multiplicación",
+      "back": "(a × b) × c = a × (b × c)."
+    },
+    {
+      "id": "math-t2-card-concept-07",
+      "type": "flashcard",
+      "conceptId": "distributive",
+      "learningObjectiveIds": [
+        "obj-distributive"
+      ],
+      "difficulty": "intermediate",
+      "tags": [
+        "distributive",
+        "study"
+      ],
+      "instructionLanguage": "es",
+      "exerciseLanguage": "es",
+      "explanationLanguage": "es",
+      "prompt": "Propiedad distributiva respecto de una suma",
+      "explanation": "Ejemplo: 5 × (10 + 2) = 50 + 10 = 60.",
+      "front": "Propiedad distributiva respecto de una suma",
+      "back": "a × (b + c) = a × b + a × c."
+    },
+    {
+      "id": "math-t2-card-concept-08",
+      "type": "flashcard",
+      "conceptId": "power-terms",
+      "learningObjectiveIds": [
+        "obj-power-terms"
+      ],
+      "difficulty": "beginner",
+      "tags": [
+        "power-terms",
+        "study"
+      ],
+      "instructionLanguage": "es",
+      "exerciseLanguage": "es",
+      "explanationLanguage": "es",
+      "prompt": "En 3⁵, ¿cuál es la base y cuál el exponente?",
+      "explanation": "La potencia representa cinco factores iguales a 3.",
+      "front": "En 3⁵, ¿cuál es la base y cuál el exponente?",
+      "back": "Base: 3. Exponente: 5."
+    },
+    {
+      "id": "math-t2-card-concept-09",
+      "type": "flashcard",
+      "conceptId": "powers-ten",
+      "learningObjectiveIds": [
+        "obj-powers-ten"
+      ],
+      "difficulty": "beginner",
+      "tags": [
+        "powers-ten",
+        "study"
+      ],
+      "instructionLanguage": "es",
+      "exerciseLanguage": "es",
+      "explanationLanguage": "es",
+      "prompt": "¿Qué significa 10⁴?",
+      "explanation": "El exponente indica cuántos ceros siguen al 1.",
+      "front": "¿Qué significa 10⁴?",
+      "back": "10 × 10 × 10 × 10 = 10000."
+    },
+    {
+      "id": "math-t2-card-concept-10",
+      "type": "flashcard",
+      "conceptId": "decimal-powers",
+      "learningObjectiveIds": [
+        "obj-decimal-powers"
+      ],
+      "difficulty": "intermediate",
+      "tags": [
+        "decimal-powers",
+        "study"
+      ],
+      "instructionLanguage": "es",
+      "exerciseLanguage": "es",
+      "explanationLanguage": "es",
+      "prompt": "Descompón 6052 en potencias de diez.",
+      "explanation": "No hay centenas; 10⁰ = 1.",
+      "front": "Descompón 6052 en potencias de diez.",
+      "back": "6 × 10³ + 5 × 10¹ + 2 × 10⁰."
+    },
+    {
+      "id": "math-t2-card-concept-11",
+      "type": "flashcard",
+      "conceptId": "horizontal-decomp",
+      "learningObjectiveIds": [
+        "obj-horizontal-decomp"
+      ],
+      "difficulty": "intermediate",
+      "tags": [
+        "horizontal-decomp",
+        "study"
+      ],
+      "instructionLanguage": "es",
+      "exerciseLanguage": "es",
+      "explanationLanguage": "es",
+      "prompt": "¿Cómo calcular 99 × 8 rápidamente?",
+      "explanation": "Usa la distributiva respecto de la resta.",
+      "front": "¿Cómo calcular 99 × 8 rápidamente?",
+      "back": "100 × 8 − 8 = 792."
+    },
+    {
+      "id": "math-t2-card-concept-12",
+      "type": "flashcard",
+      "conceptId": "div-terms",
+      "learningObjectiveIds": [
+        "obj-div-terms"
+      ],
+      "difficulty": "beginner",
+      "tags": [
+        "div-terms",
+        "study"
+      ],
+      "instructionLanguage": "es",
+      "exerciseLanguage": "es",
+      "explanationLanguage": "es",
+      "prompt": "En 29 ÷ 4, cociente 7 y resto 1, ¿cuáles son los cuatro términos?",
+      "explanation": "29 = 4 × 7 + 1.",
+      "front": "En 29 ÷ 4, cociente 7 y resto 1, ¿cuáles son los cuatro términos?",
+      "back": "Dividendo: 29; divisor: 4; cociente: 7; resto: 1."
+    },
+    {
+      "id": "math-t2-card-concept-13",
+      "type": "flashcard",
+      "conceptId": "division-check",
+      "learningObjectiveIds": [
+        "obj-division-check"
+      ],
+      "difficulty": "intermediate",
+      "tags": [
+        "division-check",
+        "study"
+      ],
+      "instructionLanguage": "es",
+      "exerciseLanguage": "es",
+      "explanationLanguage": "es",
+      "prompt": "¿Cómo se comprueba una división con resto?",
+      "explanation": "El resto debe ser mayor o igual que cero y menor que el divisor.",
+      "front": "¿Cómo se comprueba una división con resto?",
+      "back": "Dividendo = divisor × cociente + resto."
+    },
+    {
+      "id": "math-t2-card-concept-14",
+      "type": "flashcard",
+      "conceptId": "div-1-digits",
+      "learningObjectiveIds": [
+        "obj-div-1-digits"
+      ],
+      "difficulty": "beginner",
+      "tags": [
+        "div-1-digits",
+        "study"
+      ],
+      "instructionLanguage": "es",
+      "exerciseLanguage": "es",
+      "explanationLanguage": "es",
+      "prompt": "¿Cómo compruebas 84 ÷ 7 = 12?",
+      "explanation": "La división es exacta.",
+      "front": "¿Cómo compruebas 84 ÷ 7 = 12?",
+      "back": "7 × 12 = 84."
+    },
+    {
+      "id": "math-t2-card-concept-15",
+      "type": "flashcard",
+      "conceptId": "div-2-digits",
+      "learningObjectiveIds": [
+        "obj-div-2-digits"
+      ],
+      "difficulty": "intermediate",
+      "tags": [
+        "div-2-digits",
+        "study"
+      ],
+      "instructionLanguage": "es",
+      "exerciseLanguage": "es",
+      "explanationLanguage": "es",
+      "prompt": "¿Cómo compruebas 375 ÷ 25 = 15?",
+      "explanation": "La división es exacta.",
+      "front": "¿Cómo compruebas 375 ÷ 25 = 15?",
+      "back": "25 × 15 = 375."
+    },
+    {
+      "id": "math-t2-card-concept-16",
+      "type": "flashcard",
+      "conceptId": "div-3-digits",
+      "learningObjectiveIds": [
+        "obj-div-3-digits"
+      ],
+      "difficulty": "advanced",
+      "tags": [
+        "div-3-digits",
+        "study"
+      ],
+      "instructionLanguage": "es",
+      "exerciseLanguage": "es",
+      "explanationLanguage": "es",
+      "prompt": "¿Qué condición debe cumplir el resto al dividir entre 125?",
+      "explanation": "Un resto de 125 permitiría aumentar el cociente.",
+      "front": "¿Qué condición debe cumplir el resto al dividir entre 125?",
+      "back": "Ser un entero entre 0 y 124."
+    },
+    {
+      "id": "math-t2-card-concept-17",
+      "type": "flashcard",
+      "conceptId": "horizontal-calc",
+      "learningObjectiveIds": [
+        "obj-horizontal-calc"
+      ],
+      "difficulty": "beginner",
+      "tags": [
+        "horizontal-calc",
+        "study"
+      ],
+      "instructionLanguage": "es",
+      "exerciseLanguage": "es",
+      "explanationLanguage": "es",
+      "prompt": "¿Cómo sumas 198 + 37 mentalmente?",
+      "explanation": "Compensa los dos que añadiste al redondear.",
+      "front": "¿Cómo sumas 198 + 37 mentalmente?",
+      "back": "200 + 37 − 2 = 235."
+    },
+    {
+      "id": "math-t2-card-concept-18",
+      "type": "flashcard",
+      "conceptId": "word-problems",
+      "learningObjectiveIds": [
+        "obj-word-problems"
+      ],
+      "difficulty": "intermediate",
+      "tags": [
+        "word-problems",
+        "study"
+      ],
+      "instructionLanguage": "es",
+      "exerciseLanguage": "es",
+      "explanationLanguage": "es",
+      "prompt": "Si necesitas transportar personas y sobran algunas al dividir entre las plazas de un vehículo, ¿qué haces?",
+      "explanation": "Si hay resto, ese grupo necesita otro vehículo.",
+      "front": "Si necesitas transportar personas y sobran algunas al dividir entre las plazas de un vehículo, ¿qué haces?",
+      "back": "Añadir un vehículo al cociente entero."
+    },
+    {
+      "id": "math-t2-card-concept-19",
+      "type": "flashcard",
+      "conceptId": "combined-operations",
+      "learningObjectiveIds": [
+        "obj-combined-operations"
+      ],
+      "difficulty": "advanced",
+      "tags": [
+        "combined-operations",
+        "study"
+      ],
+      "instructionLanguage": "es",
+      "exerciseLanguage": "es",
+      "explanationLanguage": "es",
+      "prompt": "¿En qué orden se resuelven operaciones combinadas?",
+      "explanation": "Las operaciones de igual prioridad se resuelven de izquierda a derecha.",
+      "front": "¿En qué orden se resuelven operaciones combinadas?",
+      "back": "Paréntesis; multiplicaciones y divisiones; sumas y restas."
+    },
+    {
+      "id": "math-t2-card-example-005",
+      "type": "flashcard",
+      "conceptId": "mul-1-digits",
+      "learningObjectiveIds": [
+        "obj-mul-1-digits"
+      ],
+      "difficulty": "beginner",
+      "tags": [
+        "mul-1-digits",
+        "study",
+        "example"
+      ],
+      "instructionLanguage": "es",
+      "exerciseLanguage": "es",
+      "explanationLanguage": "es",
+      "prompt": "Calcula 34 × 6.",
+      "explanation": "34 × 6 = 204.",
+      "front": "Calcula 34 × 6.",
+      "back": "204"
+    },
+    {
+      "id": "math-t2-card-example-006",
+      "type": "flashcard",
+      "conceptId": "mul-1-digits",
+      "learningObjectiveIds": [
+        "obj-mul-1-digits"
+      ],
+      "difficulty": "beginner",
+      "tags": [
+        "mul-1-digits",
+        "study",
+        "example"
+      ],
+      "instructionLanguage": "es",
+      "exerciseLanguage": "es",
+      "explanationLanguage": "es",
+      "prompt": "Calcula 71 × 5.",
+      "explanation": "71 × 5 = 355.",
+      "front": "Calcula 71 × 5.",
+      "back": "355"
+    },
+    {
+      "id": "math-t2-card-example-007",
+      "type": "flashcard",
+      "conceptId": "mul-1-digits",
+      "learningObjectiveIds": [
+        "obj-mul-1-digits"
+      ],
+      "difficulty": "beginner",
+      "tags": [
+        "mul-1-digits",
+        "study",
+        "example"
+      ],
+      "instructionLanguage": "es",
+      "exerciseLanguage": "es",
+      "explanationLanguage": "es",
+      "prompt": "Calcula 82 × 9.",
+      "explanation": "82 × 9 = 738.",
+      "front": "Calcula 82 × 9.",
+      "back": "738"
+    },
+    {
+      "id": "math-t2-card-example-008",
+      "type": "flashcard",
+      "conceptId": "mul-1-digits",
+      "learningObjectiveIds": [
+        "obj-mul-1-digits"
+      ],
+      "difficulty": "beginner",
+      "tags": [
+        "mul-1-digits",
+        "study",
+        "example"
+      ],
+      "instructionLanguage": "es",
+      "exerciseLanguage": "es",
+      "explanationLanguage": "es",
+      "prompt": "Calcula 46 × 7.",
+      "explanation": "46 × 7 = 322.",
+      "front": "Calcula 46 × 7.",
+      "back": "322"
+    },
+    {
+      "id": "math-t2-card-example-009",
+      "type": "flashcard",
+      "conceptId": "powers-ten",
+      "learningObjectiveIds": [
+        "obj-powers-ten"
+      ],
+      "difficulty": "beginner",
+      "tags": [
+        "powers-ten",
+        "study",
+        "example"
+      ],
+      "instructionLanguage": "es",
+      "exerciseLanguage": "es",
+      "explanationLanguage": "es",
+      "prompt": "Escribe el valor de 10 elevado a 2.",
+      "explanation": "10 elevado a 2 es un 1 seguido de 2 ceros.",
+      "front": "Escribe el valor de 10 elevado a 2.",
+      "back": "100"
+    },
+    {
+      "id": "math-t2-card-example-010",
+      "type": "flashcard",
+      "conceptId": "powers-ten",
+      "learningObjectiveIds": [
+        "obj-powers-ten"
+      ],
+      "difficulty": "beginner",
+      "tags": [
+        "powers-ten",
+        "study",
+        "example"
+      ],
+      "instructionLanguage": "es",
+      "exerciseLanguage": "es",
+      "explanationLanguage": "es",
+      "prompt": "Escribe el valor de 10 elevado a 3.",
+      "explanation": "10 elevado a 3 es un 1 seguido de 3 ceros.",
+      "front": "Escribe el valor de 10 elevado a 3.",
+      "back": "1000"
+    },
+    {
+      "id": "math-t2-card-example-011",
+      "type": "flashcard",
+      "conceptId": "powers-ten",
+      "learningObjectiveIds": [
+        "obj-powers-ten"
+      ],
+      "difficulty": "beginner",
+      "tags": [
+        "powers-ten",
+        "study",
+        "example"
+      ],
+      "instructionLanguage": "es",
+      "exerciseLanguage": "es",
+      "explanationLanguage": "es",
+      "prompt": "Escribe el valor de 10 elevado a 4.",
+      "explanation": "10 elevado a 4 es un 1 seguido de 4 ceros.",
+      "front": "Escribe el valor de 10 elevado a 4.",
+      "back": "10000"
+    },
+    {
+      "id": "math-t2-card-example-012",
+      "type": "flashcard",
+      "conceptId": "power-terms",
+      "learningObjectiveIds": [
+        "obj-power-terms"
+      ],
+      "difficulty": "beginner",
+      "tags": [
+        "power-terms",
+        "study",
+        "example"
+      ],
+      "instructionLanguage": "es",
+      "exerciseLanguage": "es",
+      "explanationLanguage": "es",
+      "prompt": "En 7⁴, ¿qué número es la base?",
+      "explanation": "La base es el factor que se repite; aquí, 7.",
+      "front": "En 7⁴, ¿qué número es la base?",
+      "back": "7"
+    },
+    {
+      "id": "math-t2-card-example-013",
+      "type": "flashcard",
+      "conceptId": "power-terms",
+      "learningObjectiveIds": [
+        "obj-power-terms"
+      ],
+      "difficulty": "beginner",
+      "tags": [
+        "power-terms",
+        "study",
+        "example"
+      ],
+      "instructionLanguage": "es",
+      "exerciseLanguage": "es",
+      "explanationLanguage": "es",
+      "prompt": "En 6³, ¿qué número es el exponente?",
+      "explanation": "El exponente indica cuántas veces aparece el factor: 3.",
+      "front": "En 6³, ¿qué número es el exponente?",
+      "back": "3"
+    },
+    {
+      "id": "math-t2-card-example-014",
+      "type": "flashcard",
+      "conceptId": "div-1-digits",
+      "learningObjectiveIds": [
+        "obj-div-1-digits"
+      ],
+      "difficulty": "beginner",
+      "tags": [
+        "div-1-digits",
+        "study",
+        "example"
+      ],
+      "instructionLanguage": "es",
+      "exerciseLanguage": "es",
+      "explanationLanguage": "es",
+      "prompt": "Calcula 78 ÷ 6.",
+      "explanation": "6 × 13 = 78.",
+      "front": "Calcula 78 ÷ 6.",
+      "back": "13"
+    },
+    {
+      "id": "math-t2-card-example-015",
+      "type": "flashcard",
+      "conceptId": "div-1-digits",
+      "learningObjectiveIds": [
+        "obj-div-1-digits"
+      ],
+      "difficulty": "beginner",
+      "tags": [
+        "div-1-digits",
+        "study",
+        "example"
+      ],
+      "instructionLanguage": "es",
+      "exerciseLanguage": "es",
+      "explanationLanguage": "es",
+      "prompt": "Calcula 128 ÷ 8.",
+      "explanation": "8 × 16 = 128.",
+      "front": "Calcula 128 ÷ 8.",
+      "back": "16"
+    },
+    {
+      "id": "math-t2-card-example-016",
+      "type": "flashcard",
+      "conceptId": "div-1-digits",
+      "learningObjectiveIds": [
+        "obj-div-1-digits"
+      ],
+      "difficulty": "beginner",
+      "tags": [
+        "div-1-digits",
+        "study",
+        "example"
+      ],
+      "instructionLanguage": "es",
+      "exerciseLanguage": "es",
+      "explanationLanguage": "es",
+      "prompt": "Calcula 133 ÷ 7.",
+      "explanation": "7 × 19 = 133.",
+      "front": "Calcula 133 ÷ 7.",
+      "back": "19"
+    },
+    {
+      "id": "math-t2-card-example-017",
+      "type": "flashcard",
+      "conceptId": "div-terms",
+      "learningObjectiveIds": [
+        "obj-div-terms"
+      ],
+      "difficulty": "beginner",
+      "tags": [
+        "div-terms",
+        "study",
+        "example"
+      ],
+      "instructionLanguage": "es",
+      "exerciseLanguage": "es",
+      "explanationLanguage": "es",
+      "prompt": "En 81 ÷ 9 = 9, ¿cuál es el dividendo?",
+      "explanation": "El dividendo es el número que se divide: 81.",
+      "front": "En 81 ÷ 9 = 9, ¿cuál es el dividendo?",
+      "back": "81"
+    },
+    {
+      "id": "math-t2-card-example-018",
+      "type": "flashcard",
+      "conceptId": "horizontal-calc",
+      "learningObjectiveIds": [
+        "obj-horizontal-calc"
+      ],
+      "difficulty": "beginner",
+      "tags": [
+        "horizontal-calc",
+        "study",
+        "example"
+      ],
+      "instructionLanguage": "es",
+      "exerciseLanguage": "es",
+      "explanationLanguage": "es",
+      "prompt": "Calcula mentalmente 95 − 37.",
+      "explanation": "95 − 40 + 3 = 58.",
+      "front": "Calcula mentalmente 95 − 37.",
+      "back": "58"
+    },
+    {
+      "id": "math-t2-card-example-019",
+      "type": "flashcard",
+      "conceptId": "word-problems",
+      "learningObjectiveIds": [
+        "obj-word-problems"
+      ],
+      "difficulty": "beginner",
+      "tags": [
+        "word-problems",
+        "study",
+        "example"
+      ],
+      "instructionLanguage": "es",
+      "exerciseLanguage": "es",
+      "explanationLanguage": "es",
+      "prompt": "Hay 9 bolsas con 6 canicas en cada una. ¿Cuántas canicas hay en total?",
+      "explanation": "9 × 6 = 54 canicas.",
+      "front": "Hay 9 bolsas con 6 canicas en cada una. ¿Cuántas canicas hay en total?",
+      "back": "54"
+    },
+    {
+      "id": "math-t2-card-example-020",
+      "type": "flashcard",
+      "conceptId": "combined-operations",
+      "learningObjectiveIds": [
+        "obj-combined-operations"
+      ],
+      "difficulty": "beginner",
+      "tags": [
+        "combined-operations",
+        "study",
+        "example"
+      ],
+      "instructionLanguage": "es",
+      "exerciseLanguage": "es",
+      "explanationLanguage": "es",
+      "prompt": "Calcula 9 + 6 × 4.",
+      "explanation": "Primero 6 × 4 = 24; después 9 + 24 = 33.",
+      "front": "Calcula 9 + 6 × 4.",
+      "back": "33"
+    },
+    {
+      "id": "math-t2-card-example-021",
+      "type": "flashcard",
+      "conceptId": "mul-2-digits",
+      "learningObjectiveIds": [
+        "obj-mul-2-digits"
+      ],
+      "difficulty": "intermediate",
+      "tags": [
+        "mul-2-digits",
+        "study",
+        "example"
+      ],
+      "instructionLanguage": "es",
+      "exerciseLanguage": "es",
+      "explanationLanguage": "es",
+      "prompt": "Calcula 43 × 27.",
+      "explanation": "43 × 20 + 43 × 7 = 1161.",
+      "front": "Calcula 43 × 27.",
+      "back": "1161"
+    },
+    {
+      "id": "math-t2-card-example-022",
+      "type": "flashcard",
+      "conceptId": "mul-2-digits",
+      "learningObjectiveIds": [
+        "obj-mul-2-digits"
+      ],
+      "difficulty": "intermediate",
+      "tags": [
+        "mul-2-digits",
+        "study",
+        "example"
+      ],
+      "instructionLanguage": "es",
+      "exerciseLanguage": "es",
+      "explanationLanguage": "es",
+      "prompt": "Calcula 68 × 34.",
+      "explanation": "68 × 30 + 68 × 4 = 2312.",
+      "front": "Calcula 68 × 34.",
+      "back": "2312"
+    },
+    {
+      "id": "math-t2-card-example-023",
+      "type": "flashcard",
+      "conceptId": "mul-2-digits",
+      "learningObjectiveIds": [
+        "obj-mul-2-digits"
+      ],
+      "difficulty": "intermediate",
+      "tags": [
+        "mul-2-digits",
+        "study",
+        "example"
+      ],
+      "instructionLanguage": "es",
+      "exerciseLanguage": "es",
+      "explanationLanguage": "es",
+      "prompt": "Calcula 125 × 26.",
+      "explanation": "125 × 20 + 125 × 6 = 3250.",
+      "front": "Calcula 125 × 26.",
+      "back": "3250"
+    },
+    {
+      "id": "math-t2-card-example-024",
+      "type": "flashcard",
+      "conceptId": "mul-2-digits",
+      "learningObjectiveIds": [
+        "obj-mul-2-digits"
+      ],
+      "difficulty": "intermediate",
+      "tags": [
+        "mul-2-digits",
+        "study",
+        "example"
+      ],
+      "instructionLanguage": "es",
+      "exerciseLanguage": "es",
+      "explanationLanguage": "es",
+      "prompt": "Calcula 207 × 48.",
+      "explanation": "207 × 40 + 207 × 8 = 9936.",
+      "front": "Calcula 207 × 48.",
+      "back": "9936"
+    },
+    {
+      "id": "math-t2-card-example-025",
+      "type": "flashcard",
+      "conceptId": "mul-3-digits",
+      "learningObjectiveIds": [
+        "obj-mul-3-digits"
+      ],
+      "difficulty": "intermediate",
+      "tags": [
+        "mul-3-digits",
+        "study",
+        "example"
+      ],
+      "instructionLanguage": "es",
+      "exerciseLanguage": "es",
+      "explanationLanguage": "es",
+      "prompt": "Calcula 6 × 247.",
+      "explanation": "6 × 247 = 1482.",
+      "front": "Calcula 6 × 247.",
+      "back": "1482"
+    },
+    {
+      "id": "math-t2-card-example-026",
+      "type": "flashcard",
+      "conceptId": "mul-3-digits",
+      "learningObjectiveIds": [
+        "obj-mul-3-digits"
+      ],
+      "difficulty": "intermediate",
+      "tags": [
+        "mul-3-digits",
+        "study",
+        "example"
+      ],
+      "instructionLanguage": "es",
+      "exerciseLanguage": "es",
+      "explanationLanguage": "es",
+      "prompt": "Calcula 8 × 316.",
+      "explanation": "8 × 316 = 2528.",
+      "front": "Calcula 8 × 316.",
+      "back": "2528"
+    },
+    {
+      "id": "math-t2-card-example-027",
+      "type": "flashcard",
+      "conceptId": "distributive",
+      "learningObjectiveIds": [
+        "obj-distributive"
+      ],
+      "difficulty": "intermediate",
+      "tags": [
+        "distributive",
+        "study",
+        "example"
+      ],
+      "instructionLanguage": "es",
+      "exerciseLanguage": "es",
+      "explanationLanguage": "es",
+      "prompt": "Calcula 7 × (20 + 4).",
+      "explanation": "7 × 20 + 7 × 4 = 140 + 28 = 168.",
+      "front": "Calcula 7 × (20 + 4).",
+      "back": "168"
+    },
+    {
+      "id": "math-t2-card-example-028",
+      "type": "flashcard",
+      "conceptId": "distributive",
+      "learningObjectiveIds": [
+        "obj-distributive"
+      ],
+      "difficulty": "intermediate",
+      "tags": [
+        "distributive",
+        "study",
+        "example"
+      ],
+      "instructionLanguage": "es",
+      "exerciseLanguage": "es",
+      "explanationLanguage": "es",
+      "prompt": "Calcula 9 × (30 + 6).",
+      "explanation": "9 × 30 + 9 × 6 = 270 + 54 = 324.",
+      "front": "Calcula 9 × (30 + 6).",
+      "back": "324"
+    },
+    {
+      "id": "math-t2-card-example-029",
+      "type": "flashcard",
+      "conceptId": "associative",
+      "learningObjectiveIds": [
+        "obj-associative"
+      ],
+      "difficulty": "intermediate",
+      "tags": [
+        "associative",
+        "study",
+        "example"
+      ],
+      "instructionLanguage": "es",
+      "exerciseLanguage": "es",
+      "explanationLanguage": "es",
+      "prompt": "Calcula (4 × 5) × 8.",
+      "explanation": "Puedes reagrupar: 4 × (5 × 8) = 160.",
+      "front": "Calcula (4 × 5) × 8.",
+      "back": "160"
+    },
+    {
+      "id": "math-t2-card-example-030",
+      "type": "flashcard",
+      "conceptId": "associative",
+      "learningObjectiveIds": [
+        "obj-associative"
+      ],
+      "difficulty": "intermediate",
+      "tags": [
+        "associative",
+        "study",
+        "example"
+      ],
+      "instructionLanguage": "es",
+      "exerciseLanguage": "es",
+      "explanationLanguage": "es",
+      "prompt": "Calcula (2 × 9) × 5.",
+      "explanation": "Puedes reagrupar: 2 × (9 × 5) = 90.",
+      "front": "Calcula (2 × 9) × 5.",
+      "back": "90"
+    },
+    {
+      "id": "math-t2-card-example-031",
+      "type": "flashcard",
+      "conceptId": "decimal-powers",
+      "learningObjectiveIds": [
+        "obj-decimal-powers"
+      ],
+      "difficulty": "intermediate",
+      "tags": [
+        "decimal-powers",
+        "study",
+        "example"
+      ],
+      "instructionLanguage": "es",
+      "exerciseLanguage": "es",
+      "explanationLanguage": "es",
+      "prompt": "¿Qué número es 6 × 10³ + 2 × 10² + 8 × 10¹?",
+      "explanation": "6000 + 200 + 80 = 6280.",
+      "front": "¿Qué número es 6 × 10³ + 2 × 10² + 8 × 10¹?",
+      "back": "6280"
+    },
+    {
+      "id": "math-t2-card-example-032",
+      "type": "flashcard",
+      "conceptId": "decimal-powers",
+      "learningObjectiveIds": [
+        "obj-decimal-powers"
+      ],
+      "difficulty": "intermediate",
+      "tags": [
+        "decimal-powers",
+        "study",
+        "example"
+      ],
+      "instructionLanguage": "es",
+      "exerciseLanguage": "es",
+      "explanationLanguage": "es",
+      "prompt": "¿Qué número es 3 × 10³ + 7 × 10² + 1 × 10¹?",
+      "explanation": "3000 + 700 + 10 = 3710.",
+      "front": "¿Qué número es 3 × 10³ + 7 × 10² + 1 × 10¹?",
+      "back": "3710"
+    },
+    {
+      "id": "math-t2-card-example-033",
+      "type": "flashcard",
+      "conceptId": "horizontal-decomp",
+      "learningObjectiveIds": [
+        "obj-horizontal-decomp"
+      ],
+      "difficulty": "intermediate",
+      "tags": [
+        "horizontal-decomp",
+        "study",
+        "example"
+      ],
+      "instructionLanguage": "es",
+      "exerciseLanguage": "es",
+      "explanationLanguage": "es",
+      "prompt": "Calcula mentalmente 49 × 6.",
+      "explanation": "(50 − 1) × 6 = 300 − 6 = 294.",
+      "front": "Calcula mentalmente 49 × 6.",
+      "back": "294"
+    },
+    {
+      "id": "math-t2-card-example-034",
+      "type": "flashcard",
+      "conceptId": "horizontal-decomp",
+      "learningObjectiveIds": [
+        "obj-horizontal-decomp"
+      ],
+      "difficulty": "intermediate",
+      "tags": [
+        "horizontal-decomp",
+        "study",
+        "example"
+      ],
+      "instructionLanguage": "es",
+      "exerciseLanguage": "es",
+      "explanationLanguage": "es",
+      "prompt": "Calcula mentalmente 98 × 7.",
+      "explanation": "(99 − 1) × 7 = 693 − 7 = 686.",
+      "front": "Calcula mentalmente 98 × 7.",
+      "back": "686"
+    },
+    {
+      "id": "math-t2-card-example-035",
+      "type": "flashcard",
+      "conceptId": "div-2-digits",
+      "learningObjectiveIds": [
+        "obj-div-2-digits"
+      ],
+      "difficulty": "intermediate",
+      "tags": [
+        "div-2-digits",
+        "study",
+        "example"
+      ],
+      "instructionLanguage": "es",
+      "exerciseLanguage": "es",
+      "explanationLanguage": "es",
+      "prompt": "Calcula 432 ÷ 24.",
+      "explanation": "24 × 18 = 432.",
+      "front": "Calcula 432 ÷ 24.",
+      "back": "18"
+    },
+    {
+      "id": "math-t2-card-example-036",
+      "type": "flashcard",
+      "conceptId": "div-2-digits",
+      "learningObjectiveIds": [
+        "obj-div-2-digits"
+      ],
+      "difficulty": "intermediate",
+      "tags": [
+        "div-2-digits",
+        "study",
+        "example"
+      ],
+      "instructionLanguage": "es",
+      "exerciseLanguage": "es",
+      "explanationLanguage": "es",
+      "prompt": "Calcula 777 ÷ 37.",
+      "explanation": "37 × 21 = 777.",
+      "front": "Calcula 777 ÷ 37.",
+      "back": "21"
+    },
+    {
+      "id": "math-t2-card-example-037",
+      "type": "flashcard",
+      "conceptId": "division-check",
+      "learningObjectiveIds": [
+        "obj-division-check"
+      ],
+      "difficulty": "intermediate",
+      "tags": [
+        "division-check",
+        "study",
+        "example"
+      ],
+      "instructionLanguage": "es",
+      "exerciseLanguage": "es",
+      "explanationLanguage": "es",
+      "prompt": "El divisor es 17, el cociente 24 y el resto 5. ¿Cuál es el dividendo?",
+      "explanation": "17 × 24 + 5 = 413; 5 es menor que 17.",
+      "front": "El divisor es 17, el cociente 24 y el resto 5. ¿Cuál es el dividendo?",
+      "back": "413"
+    },
+    {
+      "id": "math-t2-card-example-041",
+      "type": "flashcard",
+      "conceptId": "mul-3-digits",
+      "learningObjectiveIds": [
+        "obj-mul-3-digits"
+      ],
+      "difficulty": "advanced",
+      "tags": [
+        "mul-3-digits",
+        "study",
+        "example"
+      ],
+      "instructionLanguage": "es",
+      "exerciseLanguage": "es",
+      "explanationLanguage": "es",
+      "prompt": "Calcula 124 × 236.",
+      "explanation": "124 × 236 = 29264.",
+      "front": "Calcula 124 × 236.",
+      "back": "29264"
+    },
+    {
+      "id": "math-t2-card-example-042",
+      "type": "flashcard",
+      "conceptId": "mul-3-digits",
+      "learningObjectiveIds": [
+        "obj-mul-3-digits"
+      ],
+      "difficulty": "advanced",
+      "tags": [
+        "mul-3-digits",
+        "study",
+        "example"
+      ],
+      "instructionLanguage": "es",
+      "exerciseLanguage": "es",
+      "explanationLanguage": "es",
+      "prompt": "Calcula 305 × 142.",
+      "explanation": "305 × 142 = 43310.",
+      "front": "Calcula 305 × 142.",
+      "back": "43310"
+    },
+    {
+      "id": "math-t2-card-example-043",
+      "type": "flashcard",
+      "conceptId": "mul-3-digits",
+      "learningObjectiveIds": [
+        "obj-mul-3-digits"
+      ],
+      "difficulty": "advanced",
+      "tags": [
+        "mul-3-digits",
+        "study",
+        "example"
+      ],
+      "instructionLanguage": "es",
+      "exerciseLanguage": "es",
+      "explanationLanguage": "es",
+      "prompt": "Calcula 217 × 308.",
+      "explanation": "217 × 308 = 66836.",
+      "front": "Calcula 217 × 308.",
+      "back": "66836"
+    },
+    {
+      "id": "math-t2-card-example-044",
+      "type": "flashcard",
+      "conceptId": "mul-3-digits",
+      "learningObjectiveIds": [
+        "obj-mul-3-digits"
+      ],
+      "difficulty": "advanced",
+      "tags": [
+        "mul-3-digits",
+        "study",
+        "example"
+      ],
+      "instructionLanguage": "es",
+      "exerciseLanguage": "es",
+      "explanationLanguage": "es",
+      "prompt": "Calcula 189 × 427.",
+      "explanation": "189 × 427 = 80703.",
+      "front": "Calcula 189 × 427.",
+      "back": "80703"
+    },
+    {
+      "id": "math-t2-card-example-045",
+      "type": "flashcard",
+      "conceptId": "div-3-digits",
+      "learningObjectiveIds": [
+        "obj-div-3-digits"
+      ],
+      "difficulty": "advanced",
+      "tags": [
+        "div-3-digits",
+        "study",
+        "example"
+      ],
+      "instructionLanguage": "es",
+      "exerciseLanguage": "es",
+      "explanationLanguage": "es",
+      "prompt": "¿Cuál es el cociente entero de 3335 ÷ 123?",
+      "explanation": "3335 = 123 × 27 + 14.",
+      "front": "¿Cuál es el cociente entero de 3335 ÷ 123?",
+      "back": "27"
+    },
+    {
+      "id": "math-t2-card-example-046",
+      "type": "flashcard",
+      "conceptId": "div-3-digits",
+      "learningObjectiveIds": [
+        "obj-div-3-digits"
+      ],
+      "difficulty": "advanced",
+      "tags": [
+        "div-3-digits",
+        "study",
+        "example"
+      ],
+      "instructionLanguage": "es",
+      "exerciseLanguage": "es",
+      "explanationLanguage": "es",
+      "prompt": "¿Cuál es el resto de 3335 ÷ 123?",
+      "explanation": "3335 − 123 × 27 = 14; el resto es menor que el divisor.",
+      "front": "¿Cuál es el resto de 3335 ÷ 123?",
+      "back": "14"
+    },
+    {
+      "id": "math-t2-card-example-047",
+      "type": "flashcard",
+      "conceptId": "div-3-digits",
+      "learningObjectiveIds": [
+        "obj-div-3-digits"
+      ],
+      "difficulty": "advanced",
+      "tags": [
+        "div-3-digits",
+        "study",
+        "example"
+      ],
+      "instructionLanguage": "es",
+      "exerciseLanguage": "es",
+      "explanationLanguage": "es",
+      "prompt": "¿Cuál es el cociente entero de 9747 ÷ 256?",
+      "explanation": "9747 = 256 × 38 + 19.",
+      "front": "¿Cuál es el cociente entero de 9747 ÷ 256?",
+      "back": "38"
+    },
+    {
+      "id": "math-t2-card-example-048",
+      "type": "flashcard",
+      "conceptId": "div-3-digits",
+      "learningObjectiveIds": [
+        "obj-div-3-digits"
+      ],
+      "difficulty": "advanced",
+      "tags": [
+        "div-3-digits",
+        "study",
+        "example"
+      ],
+      "instructionLanguage": "es",
+      "exerciseLanguage": "es",
+      "explanationLanguage": "es",
+      "prompt": "¿Cuál es el resto de 9747 ÷ 256?",
+      "explanation": "9747 − 256 × 38 = 19; el resto es menor que el divisor.",
+      "front": "¿Cuál es el resto de 9747 ÷ 256?",
+      "back": "19"
+    },
+    {
+      "id": "math-t2-card-example-049",
+      "type": "flashcard",
+      "conceptId": "div-3-digits",
+      "learningObjectiveIds": [
+        "obj-div-3-digits"
+      ],
+      "difficulty": "advanced",
+      "tags": [
+        "div-3-digits",
+        "study",
+        "example"
+      ],
+      "instructionLanguage": "es",
+      "exerciseLanguage": "es",
+      "explanationLanguage": "es",
+      "prompt": "¿Cuál es el cociente entero de 12911 ÷ 305?",
+      "explanation": "12911 = 305 × 42 + 101.",
+      "front": "¿Cuál es el cociente entero de 12911 ÷ 305?",
+      "back": "42"
+    },
+    {
+      "id": "math-t2-card-example-050",
+      "type": "flashcard",
+      "conceptId": "div-3-digits",
+      "learningObjectiveIds": [
+        "obj-div-3-digits"
+      ],
+      "difficulty": "advanced",
+      "tags": [
+        "div-3-digits",
+        "study",
+        "example"
+      ],
+      "instructionLanguage": "es",
+      "exerciseLanguage": "es",
+      "explanationLanguage": "es",
+      "prompt": "¿Cuál es el resto de 12911 ÷ 305?",
+      "explanation": "12911 − 305 × 42 = 101; el resto es menor que el divisor.",
+      "front": "¿Cuál es el resto de 12911 ÷ 305?",
+      "back": "101"
+    },
+    {
+      "id": "math-t2-card-example-051",
+      "type": "flashcard",
+      "conceptId": "division-check",
+      "learningObjectiveIds": [
+        "obj-division-check"
+      ],
+      "difficulty": "advanced",
+      "tags": [
+        "division-check",
+        "study",
+        "example"
+      ],
+      "instructionLanguage": "es",
+      "exerciseLanguage": "es",
+      "explanationLanguage": "es",
+      "prompt": "Una división tiene dividendo 3487, divisor 125 y cociente 27. ¿Cuál es el resto?",
+      "explanation": "3487 − 125 × 27 = 112, menor que 125.",
+      "front": "Una división tiene dividendo 3487, divisor 125 y cociente 27. ¿Cuál es el resto?",
+      "back": "112"
+    },
+    {
+      "id": "math-t2-card-example-052",
+      "type": "flashcard",
+      "conceptId": "division-check",
+      "learningObjectiveIds": [
+        "obj-division-check"
+      ],
+      "difficulty": "advanced",
+      "tags": [
+        "division-check",
+        "study",
+        "example"
+      ],
+      "instructionLanguage": "es",
+      "exerciseLanguage": "es",
+      "explanationLanguage": "es",
+      "prompt": "En una división por 46, el cociente es 83 y el resto 19. ¿Cuál es el dividendo?",
+      "explanation": "46 × 83 + 19 = 3837.",
+      "front": "En una división por 46, el cociente es 83 y el resto 19. ¿Cuál es el dividendo?",
+      "back": "3837"
+    },
+    {
+      "id": "math-t2-card-example-053",
+      "type": "flashcard",
+      "conceptId": "decimal-powers",
+      "learningObjectiveIds": [
+        "obj-decimal-powers"
+      ],
+      "difficulty": "advanced",
+      "tags": [
+        "decimal-powers",
+        "study",
+        "example"
+      ],
+      "instructionLanguage": "es",
+      "exerciseLanguage": "es",
+      "explanationLanguage": "es",
+      "prompt": "¿Qué número representa 8 × 10⁵ + 4 × 10³ + 9 × 10⁰?",
+      "explanation": "800000 + 4000 + 9 = 804009; 10⁰ = 1.",
+      "front": "¿Qué número representa 8 × 10⁵ + 4 × 10³ + 9 × 10⁰?",
+      "back": "804009"
+    },
+    {
+      "id": "math-t2-card-example-054",
+      "type": "flashcard",
+      "conceptId": "powers-ten",
+      "learningObjectiveIds": [
+        "obj-powers-ten"
+      ],
+      "difficulty": "advanced",
+      "tags": [
+        "powers-ten",
+        "study",
+        "example"
+      ],
+      "instructionLanguage": "es",
+      "exerciseLanguage": "es",
+      "explanationLanguage": "es",
+      "prompt": "¿Qué exponente falta en 10 elevado a ___ = 1 000 000?",
+      "explanation": "Un millón tiene seis ceros, por tanto es 10⁶.",
+      "front": "¿Qué exponente falta en 10 elevado a ___ = 1 000 000?",
+      "back": "6"
+    },
+    {
+      "id": "math-t2-card-example-055",
+      "type": "flashcard",
+      "conceptId": "distributive",
+      "learningObjectiveIds": [
+        "obj-distributive"
+      ],
+      "difficulty": "advanced",
+      "tags": [
+        "distributive",
+        "study",
+        "example"
+      ],
+      "instructionLanguage": "es",
+      "exerciseLanguage": "es",
+      "explanationLanguage": "es",
+      "prompt": "Calcula 26 × (100 − 3).",
+      "explanation": "2600 − 78 = 2522.",
+      "front": "Calcula 26 × (100 − 3).",
+      "back": "2522"
+    },
+    {
+      "id": "math-t2-card-example-056",
+      "type": "flashcard",
+      "conceptId": "horizontal-decomp",
+      "learningObjectiveIds": [
+        "obj-horizontal-decomp"
+      ],
+      "difficulty": "advanced",
+      "tags": [
+        "horizontal-decomp",
+        "study",
+        "example"
+      ],
+      "instructionLanguage": "es",
+      "exerciseLanguage": "es",
+      "explanationLanguage": "es",
+      "prompt": "Calcula mentalmente 125 × 48.",
+      "explanation": "125 × 8 × 6 = 1000 × 6 = 6000.",
+      "front": "Calcula mentalmente 125 × 48.",
+      "back": "6000"
+    },
+    {
+      "id": "math-t2-card-example-057",
+      "type": "flashcard",
+      "conceptId": "word-problems",
+      "learningObjectiveIds": [
+        "obj-word-problems"
+      ],
+      "difficulty": "advanced",
+      "tags": [
+        "word-problems",
+        "study",
+        "example"
+      ],
+      "instructionLanguage": "es",
+      "exerciseLanguage": "es",
+      "explanationLanguage": "es",
+      "prompt": "Hay 368 alumnos y cada autobús tiene 48 plazas. ¿Cuántos autobuses se necesitan como mínimo?",
+      "explanation": "7 autobuses tienen 336 plazas; se necesita uno más.",
+      "front": "Hay 368 alumnos y cada autobús tiene 48 plazas. ¿Cuántos autobuses se necesitan como mínimo?",
+      "back": "8"
+    },
+    {
+      "id": "math-t2-card-distributive-quick",
+      "type": "flashcard",
+      "conceptId": "distributive",
+      "learningObjectiveIds": [
+        "obj-distributive"
+      ],
+      "difficulty": "beginner",
+      "tags": [
+        "distributive",
+        "study"
+      ],
+      "instructionLanguage": "es",
+      "exerciseLanguage": "es",
+      "explanationLanguage": "es",
+      "prompt": "¿Cuánto es 4 × (10 + 3)?",
+      "explanation": "4 × 10 + 4 × 3 = 40 + 12 = 52.",
+      "front": "¿Cuánto es 4 × (10 + 3)?",
+      "back": "52"
     }
   ]
 }
