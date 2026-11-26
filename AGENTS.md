@@ -2,25 +2,33 @@
 
 - Mantén TypeScript estricto y Vue 3 Composition API con `<script setup>`.
 - El dominio en `src/domain/` es TypeScript puro; no importa Vue, Router, DOM, storage ni contenidos concretos.
-- Separa Content Engine, Exercise Engine, Game Engine, scoring, presentación y persistencia.
+- Separa Content Engine, evaluación, Game Engine, StudySession y presentación; no dupliques motores.
 - El JSON versionado es el formato runtime; los esquemas y validadores son contrato. Datos externos siempre se validan desde `unknown`.
 - IDs estables e independientes del idioma; corrige por ID, no por posición visual.
 - Mezcla preguntas y opciones con Fisher-Yates sin mutar originales; aleatoriedad inyectable.
 - Iniciar o reiniciar genera una nueva distribución aleatoria; las opciones mantienen el orden durante toda la pregunta y los cambios de tema.
 - No fuerces posiciones distintas consecutivas: coincidencias entre distribuciones pueden ocurrir naturalmente.
 - Conserva pruebas deterministas de cuatro opciones para ambas modalidades recreativas, sin imponer que cambie la posición entre preguntas.
-- `single_choice` opera en juego y `flashcard` en autoestudio; no habilites otros tipos.
+- `single_choice` y `typed_answer` operan en juego; `flashcard`, en autoestudio. No habilites otros tipos.
 - Preserva el contenido educativo suministrado por dirección; no lo regeneres ni elimines.
+- Las modalidades recreativas comparten evaluación y sesión; los cofres son recreativos y no alteran la puntuación.
 - CSV queda para edición/intercambio futuro; no añadir aún importador, administración ni bancos masivos.
 - No añadir backend, Pinia, PWA, UI pesada o persistencia sin necesidad aprobada.
-- Mobile-first, 320 px mínimo, teclado/táctil y `prefers-reduced-motion`.
+- Mobile-first desde 320 px, navegación por teclado/táctil, foco visible y `prefers-reduced-motion`.
+- Mantén Pop Adventure y Galaxy disponibles para todos; usa tokens CSS y SVG ligeros, sin duplicar vistas ni alterar sesiones al cambiar tema.
 - Interfaz en español; no recopilar datos personales infantiles ni secretos.
 - Skills locales: `.agents/skills/`; carga solo lo necesario y conserva atribución.
+- Antes de modificar vistas infantiles, consulta `.agents/skills/child-game-ux/SKILL.md` y valida visualmente en móvil y escritorio.
+- RetoNautas es un videojuego educativo para edades 8–12, no un formulario decorado; conserva calidad visual y jugable durante toda la experiencia, no solo en portada.
+- Configuración recreativa: wizard modalidad > duración > dificultad; avanzar tras las dos primeras selecciones, permitir volver conservando elecciones y mostrar JUGAR en dificultad.
+- Mapeo único: Corta/Media/Larga = 5/10/20; Fácil = beginner + selection, Media = intermediate + mixed, Difícil = advanced + written. No mostrar selectores de formato, cantidad, dificultad variada, opciones avanzadas ni personalización; autoestudio no cambia.
+- Deshabilita combinaciones de juego sin ejercicios suficientes y explica alternativas sin revelar conteos del banco.
+- Portada: integrar header e ilustración, corregir `object-position` según viewport y evitar hueco antes del footer; mantener WebP existentes.
 - Master: si existe `docs/MASTER_REQUIREMENTS.md`, úsalo selectivamente sin duplicarlo.
 - Desarrollo experimental: implementar solo el hito solicitado; no añadir arquitectura especulativa.
 - Quality Gate por hitos: typecheck siempre; pruebas focalizadas de lógica modificada y smoke test de los flujos visuales afectados.
 - Evitar auditorías, cobertura, Lighthouse y ciclos completos de verificación salvo requisito explícito de un hito de producción.
-- Proteger el motor y los contenidos al iterar la presentación; los temas no cambian el estado de juego.
+- Proteger motor y contenidos al iterar la presentación; los temas no alteran la sesión ni el orden de las respuestas.
 - Comandos:
   - `npm ci`
   - `npm run dev`

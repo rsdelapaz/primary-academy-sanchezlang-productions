@@ -1,0 +1,19 @@
+# UX para juegos infantiles
+
+- Diseña para público general de 8 a 12 años; evita convenciones preescolares.
+- RetoNautas debe sentirse como un videojuego educativo en cada pantalla, no como un formulario académico decorado; mantén la calidad visual y jugable desde el inicio hasta los resultados.
+- Cada pantalla debe tener una intención principal y una acción prioritaria.
+- Evita decisiones redundantes y recorridos con pasos sin una decisión real.
+- Mantén el CTA principal visible, reconocible, navegable por teclado y táctil.
+- La configuración recreativa es un wizard de modalidad, duración y dificultad: avanza al elegir las dos primeras y permite volver sin perder elecciones.
+- Usa solo estos niveles: Fácil (beginner + selection), Media (intermediate + mixed) y Difícil (advanced + written). Duraciones: Corta (5), Media (10) y Larga (20).
+- No muestres en el flujo recreativo selector de formato, conteo de preguntas, dificultad variada, opciones avanzadas ni configuración personalizada. Mantén autoestudio independiente.
+- Deshabilita combinaciones sin contenido suficiente y explica una alternativa sin mostrar conteos internos.
+- No muestres conteos técnicos del banco, compatibilidad interna ni datos de implementación.
+- Presenta una experiencia de videojuego; evita formularios administrativos y paneles de estado innecesarios.
+- Usa exclusivamente ilustraciones y recursos artísticos originales suministrados o aprobados por dirección.
+- Optimiza recursos para el dispositivo; no sustituyas arte editorial por dibujos improvisados.
+- Integra el header con la portada ilustrada y ajusta `object-position` por viewport para evitar recortes importantes y huecos antes del footer.
+- Valida visualmente los recorridos afectados en móvil y escritorio, incluido 320 px.
+- Comprueba foco, contraste, texto legible, controles táctiles y cambios de tema sin alterar el juego.
+- Conserva el dominio, contenido y flujos existentes salvo que el incremento lo requiera explícitamente.

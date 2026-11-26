@@ -1,8 +1,9 @@
 <script setup lang="ts">
-import { computed, ref } from 'vue'
+import { computed, onMounted, ref, watch } from 'vue'
 import { RouterLink, useRoute, useRouter } from 'vue-router'
 import TreasureBoard from '../components/TreasureBoard.vue'
 import TypedAnswerInput from '../components/TypedAnswerInput.vue'
+import UniverseArtwork from '../components/UniverseArtwork.vue'
 import {
   getCurrentQuestion,
   getGameStats,
@@ -17,6 +18,8 @@ import {
   announceTreasureOpened,
   treasureRewardScene,
 } from '../presentation/game-feel'
+import { getQuestionHistoryKey } from '../application/question-selection'
+import { questionHistoryStore } from '../presentation/question-history-storage'
 
 const route = useRoute()
 const router = useRouter()
@@ -47,6 +50,27 @@ const options = computed(() => {
     text: question.exercise.options.find((option) => option.id === id)?.text ?? '',
   }))
 })
+const displayKey = computed(() => {
+  const game = gameSession.value
+  const question = current.value
+  return game && question
+    ? `${game.id}:${game.currentQuestionIndex}:${question.exercise.id}`
+    : ''
+})
+let lastRecordedDisplayKey = ''
+
+function recordDisplayedQuestion(): void {
+  const game = gameSession.value
+  const question = current.value
+  if (!game || !question || !displayKey.value || displayKey.value === lastRecordedDisplayKey) return
+  lastRecordedDisplayKey = displayKey.value
+  questionHistoryStore.recordShown(
+    getQuestionHistoryKey(game.subjectId, game.topicId, question.exercise),
+  )
+}
+
+onMounted(recordDisplayedQuestion)
+watch(displayKey, recordDisplayedQuestion, { flush: 'post' })
 
 function submitAnswer(response: GameAnswerResponse) {
   const question = current.value
@@ -130,28 +154,52 @@ function openChest(treasureId: TreasureId) {
     class="screen game-screen"
     aria-labelledby="question-title"
   >
+    <UniverseArtwork
+      class="game-artwash"
+      scene="lightning"
+      :variation="1"
+    />
     <div class="game-header">
-      <span>Pregunta {{ gameSession.currentQuestionIndex + 1 }} de {{ gameSession.questions.length }}</span>
+      <span class="game-stage-label">
+        <span aria-hidden="true">MISIÓN</span>
+        <strong>{{ String(gameSession.currentQuestionIndex + 1).padStart(2, '0') }}</strong>
+        <span aria-hidden="true">/ {{ String(gameSession.questions.length).padStart(2, '0') }}</span>
+        <span class="sr-only">Pregunta {{ gameSession.currentQuestionIndex + 1 }} de {{ gameSession.questions.length }}</span>
+      </span>
       <button
-        class="text-button"
+        class="game-exit-button"
         type="button"
         @click="requestAbandon"
       >
-        Abandonar
+        <span aria-hidden="true">↗</span> Salir
       </button>
     </div>
-    <div class="game-metrics" aria-label="Tu partida">
-      <div class="metric"><span>⭐ Puntos</span><strong>{{ stats?.score }}</strong></div>
-      <div class="metric"><span>🔥 Racha actual</span><strong>{{ stats?.currentStreak }}</strong></div>
+    <div
+      class="game-metrics"
+      aria-label="Tu partida"
+    >
+      <div class="metric metric-score">
+        <span>Puntos</span><strong>{{ stats?.score }}</strong>
+      </div>
+      <div class="metric metric-streak">
+        <span>Racha actual</span><strong>{{ stats?.currentStreak }}</strong>
+      </div>
     </div>
     <div
-      class="progress"
-      aria-hidden="true"
+      class="progress game-progress"
+      role="progressbar"
+      aria-label="Progreso del reto"
+      aria-valuemin="0"
+      aria-valuemax="100"
+      :aria-valuenow="stats?.progressPercent ?? 0"
+      :aria-valuetext="`${stats?.answeredCount ?? 0} de ${stats?.totalQuestions ?? 0} retos completados`"
     >
       <span :style="{ width: `${stats?.progressPercent ?? 0}%` }"></span>
     </div>
-    <p class="progress-label">{{ stats?.answeredCount }} de {{ stats?.totalQuestions }} retos completados</p>
-    <article class="card question-card">
+    <article
+      :key="current.exercise.id"
+      class="card question-card game-question-card"
+    >
       <p
         v-if="current.exercise.context"
         class="context"
@@ -237,7 +285,13 @@ function openChest(treasureId: TreasureId) {
       compact
       @open="openChest"
     />
-    <p v-if="treasureError" class="error" role="alert">{{ treasureError }}</p>
+    <p
+      v-if="treasureError"
+      class="error"
+      role="alert"
+    >
+      {{ treasureError }}
+    </p>
   </section>
   <section
     v-else
@@ -249,14 +303,29 @@ function openChest(treasureId: TreasureId) {
       :to="{ name: 'home' }"
     >Ir al inicio</RouterLink>
   </section>
-  <dialog ref="abandonDialog" class="confirm-dialog" aria-labelledby="abandon-title">
-    <h2 id="abandon-title">¿Quieres salir del reto?</h2>
+  <dialog
+    ref="abandonDialog"
+    class="confirm-dialog"
+    aria-labelledby="abandon-title"
+  >
+    <h2 id="abandon-title">
+      ¿Quieres salir del reto?
+    </h2>
     <p>La partida actual se cerrará. Puedes volver a empezar cuando quieras.</p>
     <div class="confirm-actions">
-      <button class="button secondary" type="button" autofocus @click="abandonDialog?.close()">
+      <button
+        class="button secondary"
+        type="button"
+        autofocus
+        @click="abandonDialog?.close()"
+      >
         Seguir jugando
       </button>
-      <button class="button primary" type="button" @click="abandon">
+      <button
+        class="button primary"
+        type="button"
+        @click="abandon"
+      >
         Salir al inicio
       </button>
     </div>

@@ -92,19 +92,26 @@ onUnmounted(() => {
       correct: activeEvent.kind === 'answer' && activeEvent.correct,
       incorrect: activeEvent.kind === 'answer' && !activeEvent.correct,
       finished: activeEvent.kind === 'finish',
+      'streak-milestone': activeEvent.kind === 'answer' && activeEvent.streakMilestone,
     }"
     role="status"
     aria-live="polite"
     aria-atomic="true"
   >
-    <span class="game-feel-mark" aria-hidden="true">
+    <span
+      class="game-feel-mark"
+      aria-hidden="true"
+    >
       {{ activeEvent.kind === 'finish' ? '★' : activeEvent.kind === 'answer' && activeEvent.correct ? '✓' : '↻' }}
     </span>
     <span class="game-feel-copy">
       <strong>{{ eventTitle }}</strong>
       <span>{{ eventDetail }}</span>
     </span>
-    <strong v-if="activeEvent.kind === 'answer' && activeEvent.correct" class="game-feel-points">
+    <strong
+      v-if="activeEvent.kind === 'answer' && activeEvent.correct"
+      class="game-feel-points"
+    >
       +{{ activeEvent.points }}
     </strong>
     <TreasureArt
@@ -121,12 +128,30 @@ onUnmounted(() => {
     aria-labelledby="treasure-reward-title"
     @cancel.prevent="revealReward"
   >
-    <div v-if="reward" class="treasure-reward-content">
-      <p class="eyebrow">¡Cofre abierto!</p>
-      <div class="reward-stage" :class="{ revealed: rewardRevealed }" aria-hidden="true">
-        <TreasureArt class="reward-chest-closed" kind="closed-chest" />
-        <TreasureArt class="reward-chest-open" kind="open-chest" />
-        <TreasureArt class="reward-item-art" :kind="reward.treasureId" />
+    <div
+      v-if="reward"
+      class="treasure-reward-content"
+    >
+      <p class="eyebrow">
+        ¡Cofre abierto!
+      </p>
+      <div
+        class="reward-stage"
+        :class="{ revealed: rewardRevealed }"
+        aria-hidden="true"
+      >
+        <TreasureArt
+          class="reward-chest-closed"
+          kind="closed-chest"
+        />
+        <TreasureArt
+          class="reward-chest-open"
+          kind="open-chest"
+        />
+        <TreasureArt
+          class="reward-item-art"
+          :kind="reward.treasureId"
+        />
       </div>
       <h2 id="treasure-reward-title">
         {{ rewardRevealed ? reward.title : '¿Qué habrá dentro?' }}

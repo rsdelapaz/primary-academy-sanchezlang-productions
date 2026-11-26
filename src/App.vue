@@ -8,20 +8,31 @@ import { useThemePreference } from './presentation/theme-preference'
 
 const { activeTheme, themes } = useThemePreference()
 const currentTheme = computed(() => themes.find((theme) => theme.id === activeTheme.value) ?? themes[0])
+const currentYear = new Date().getFullYear()
+const copyrightDate = `${currentYear}-01-01`
+
+const brandLogoUrl = `${import.meta.env.BASE_URL}brand/retonautas-logo.svg`
 </script>
 
 <template>
-  <div class="app-shell" :data-theme="activeTheme">
+  <div
+    class="app-shell"
+    :data-theme="activeTheme"
+  >
     <header class="topbar">
       <RouterLink
         class="brand"
         to="/"
         aria-label="Ir al inicio"
       >
-        <span
-          class="brand-mark"
+        <img
+          class="brand-logo"
+          :src="brandLogoUrl"
+          alt=""
           aria-hidden="true"
-        >R</span>
+          width="40"
+          height="40"
+        />
         <span>RetoNautas</span>
       </RouterLink>
       <div class="topbar-controls">
@@ -32,7 +43,18 @@ const currentTheme = computed(() => themes.find((theme) => theme.id === activeTh
     <main>
       <RouterView />
     </main>
+    <footer class="app-footer">
+      <p>© <time :datetime="copyrightDate">{{ currentYear }}</time> Sánchez Lang Productions</p>
+      <details class="credits">
+        <summary>Créditos</summary>
+        <p>RetoNautas es una experiencia educativa de Primary Academy.</p>
+        <p>Ilustraciones originales suministradas por dirección.</p>
+      </details>
+    </footer>
     <GameFeelLayer />
-    <span class="sr-only" aria-live="polite">{{ currentTheme.name }}</span>
+    <span
+      class="sr-only"
+      aria-live="polite"
+    >{{ currentTheme.name }}</span>
   </div>
 </template>

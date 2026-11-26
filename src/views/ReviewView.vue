@@ -41,7 +41,7 @@ const errors = computed(() => {
 
 <template>
   <section
-    class="screen"
+    class="screen review-screen"
     aria-labelledby="review-title"
   >
     <RouterLink

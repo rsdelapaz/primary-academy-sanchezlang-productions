@@ -39,6 +39,9 @@ function transferSize(path) {
 const allFiles = filesUnder(dist)
 const jsFiles = allFiles.filter((file) => file.endsWith('.js'))
 const cssFiles = allFiles.filter((file) => file.endsWith('.css'))
+const graphicFiles = allFiles.filter((file) => /\.(?:svg|webp|avif|png|jpe?g)$/i.test(file))
+const vectorFiles = graphicFiles.filter((file) => file.endsWith('.svg'))
+const rasterFiles = graphicFiles.filter((file) => !file.endsWith('.svg'))
 const initialJs = [...initialFiles].filter((file) => file.endsWith('.js'))
 const initialCss = [...initialFiles].filter((file) => file.endsWith('.css'))
 const initialJsGzip = initialJs.reduce((total, file) => total + gzipSync(readFileSync(join(dist, file))).byteLength, 0)
@@ -49,11 +52,25 @@ const fullCssGzip = cssFiles.reduce((total, file) => total + gzipSync(readFileSy
 const contentFiles = allFiles.filter((file) => file.includes(`${join(dist, 'content')}`))
 const contentRaw = contentFiles.reduce((total, file) => total + statSync(file).size, 0)
 const fullDistribution = allFiles.reduce((total, file) => total + statSync(file).size, 0)
+const rasterRaw = rasterFiles.reduce((total, file) => total + statSync(file).size, 0)
+const vectorGzip = vectorFiles.reduce((total, file) => total + gzipSync(readFileSync(file)).byteLength, 0)
+const artworkDirectory = join(dist, 'art')
+const artworkFiles = filesUnder(artworkDirectory)
+const initialArtworkBytes = artworkFiles.reduce(
+  (largest, file) => Math.max(largest, statSync(file).size),
+  0,
+)
+const initialTransferWithArtwork = initialTransfer + initialArtworkBytes
 
 const limits = { js: 150 * 1024, css: 35 * 1024, transfer: 350 * 1024 }
 const format = (bytes) => `${(bytes / 1024).toFixed(1)} KiB`
-console.log(`Inicial (grafo estático de Vite): JS ${format(initialJsGzip)} gzip; CSS ${format(initialCssGzip)} gzip; recursos ${format(initialTransfer)} estimados con gzip para HTML/JS/CSS/JSON/SVG.`)
+console.log(`Inicial (incluye la variante de arte más pesada): JS ${format(initialJsGzip)} gzip; CSS ${format(initialCssGzip)} gzip; transferencia estimada ${format(initialTransferWithArtwork)}.`)
 console.log(`Distribución completa: JS ${format(fullJsGzip)} gzip (${format(fullJsGzip - initialJsGzip)} diferidos); CSS ${format(fullCssGzip)} gzip; paquetes educativos ${format(contentRaw)} sin comprimir; total ${format(fullDistribution)} sin comprimir.`)
-if (initialJsGzip > limits.js || initialCssGzip > limits.css || initialTransfer > limits.transfer) {
+console.log(`Recursos gráficos: ${graphicFiles.length} archivos; raster (WebP/AVIF/PNG/JPEG) ${format(rasterRaw)} sin comprimir; SVG ${format(vectorGzip)} gzip.`)
+for (const file of artworkFiles) {
+  const relativePath = file.replaceAll('\\', '/').replace(/^dist\//, '')
+  console.log(`Arte inicial ${relativePath}: ${format(statSync(file).size)} sin comprimir.`)
+}
+if (initialJsGzip > limits.js || initialCssGzip > limits.css || initialTransferWithArtwork > limits.transfer) {
   throw new Error('El peso inicial supera el presupuesto configurado.')
 }

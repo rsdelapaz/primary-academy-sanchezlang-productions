@@ -13,6 +13,8 @@ import {
 } from '../domain/game'
 import { isGameModeCompatible } from '../domain/game-modes'
 import { openTreasure as openTreasureInDomain, type TreasureId } from '../domain/treasure'
+import { selectGameQuestions } from '../application/question-selection'
+import { questionHistoryStore } from './question-history-storage'
 
 export const gameSession = shallowRef<GameSession | null>(null)
 
@@ -23,6 +25,17 @@ export function startGame(
   modeId: GameModeId,
   configuration: GameConfiguration,
 ): GameSession {
+  const compatibleExercises = content.exercises.filter((exercise): exercise is GameExercise =>
+    isGameExercise(exercise) && isGameModeCompatible(modeId, exercise.type),
+  )
+  const selectedExercises = selectGameQuestions({
+    subjectId,
+    topicId,
+    modeId,
+    configuration,
+    exercises: compatibleExercises,
+    history: questionHistoryStore.read(),
+  })
   const next = createGameSession({
     sessionId: crypto.randomUUID(),
     subjectId,
@@ -30,9 +43,7 @@ export function startGame(
     contentVersion: content.contentVersion,
     modeId,
     configuration,
-    exercises: content.exercises.filter((exercise): exercise is GameExercise =>
-      isGameExercise(exercise) && isGameModeCompatible(modeId, exercise.type),
-    ),
+    exercises: selectedExercises,
   })
   gameSession.value = next
   return next
@@ -64,7 +75,16 @@ export function openActiveTreasure(treasureId: TreasureId): GameSession {
 
 export function restartActiveGame(exercises: readonly GameExercise[]): GameSession {
   if (!gameSession.value) throw new Error('No hay una sesión anterior que reiniciar.')
-  const next = restartGame(gameSession.value, exercises, crypto.randomUUID())
+  const previous = gameSession.value
+  const selectedExercises = selectGameQuestions({
+    subjectId: previous.subjectId,
+    topicId: previous.topicId,
+    modeId: previous.modeId,
+    configuration: previous.configuration,
+    exercises,
+    history: questionHistoryStore.read(),
+  })
+  const next = restartGame(previous, selectedExercises, crypto.randomUUID())
   gameSession.value = next
   return next
 }
