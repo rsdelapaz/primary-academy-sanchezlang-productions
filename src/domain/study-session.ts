@@ -13,6 +13,7 @@ export interface StudyCardProgress {
   exercise: FlashcardExercise
   presentations: number
   outcome: StudyCardOutcome | null
+  lastRating: StudyCardOutcome | null
 }
 
 export interface StudySession {
@@ -21,6 +22,7 @@ export interface StudySession {
   topicId: string
   contentVersion: string
   configuration: ActivityConfiguration
+  originalConfiguration?: ActivityConfiguration
   status: 'active' | 'completed'
   phase: StudyPhase
   cards: StudyCardProgress[]
@@ -46,6 +48,7 @@ export interface CreateStudySessionInput {
 export interface StudyStats {
   rememberedCount: number
   pendingCount: number
+  unreviewedCount: number
   completedCount: number
   totalCards: number
   repetitionCount: number
@@ -86,6 +89,7 @@ export function createStudySession(input: CreateStudySessionInput): StudySession
     exercise: copyFlashcard(exercise),
     presentations: index === 0 ? 1 : 0,
     outcome: null,
+    lastRating: null,
   }))
 
   return {
@@ -115,13 +119,14 @@ export function getCurrentStudyCard(session: StudySession): StudyCardProgress | 
 }
 
 export function getStudyStats(session: StudySession): StudyStats {
-  const rememberedCount = session.cards.filter(({ outcome }) => outcome === 'remembered').length
-  const pendingCount = session.cards.filter(({ outcome }) => outcome === 'pending-review').length
+  const rememberedCount = session.cards.filter(({ lastRating }) => lastRating === 'remembered').length
+  const pendingCount = session.cards.filter(({ lastRating }) => lastRating === 'pending-review').length
   const completedCount = rememberedCount + pendingCount
   return {
     rememberedCount,
     pendingCount,
     completedCount,
+    unreviewedCount: session.cards.length - completedCount,
     totalCards: session.cards.length,
     repetitionCount: session.repetitionCount,
     progressPercent: Math.round((completedCount / session.cards.length) * 100),
@@ -148,16 +153,13 @@ export function rateStudyCard(
     throw new Error('La tarjeta actual no coincide con la cola de estudio.')
   }
 
-  let cards = session.cards
-  let queue = session.queue.slice(1)
-  if (remembered || current.presentations >= MAX_STUDY_CARD_PRESENTATIONS) {
-    const outcome: StudyCardOutcome = remembered ? 'remembered' : 'pending-review'
-    cards = session.cards.map((card) => card.exercise.id === current.exercise.id
-      ? { ...card, outcome }
-      : card)
-  } else {
-    queue = [...queue, current.exercise.id]
-  }
+  const lastRating: StudyCardOutcome = remembered ? 'remembered' : 'pending-review'
+  const terminal = remembered || current.presentations >= MAX_STUDY_CARD_PRESENTATIONS
+  const cards = session.cards.map((card) => card.exercise.id === current.exercise.id
+    ? { ...card, lastRating, outcome: terminal ? lastRating : null }
+    : card)
+  const queue = session.queue.slice(1)
+  if (!terminal) queue.push(current.exercise.id)
 
   return selectNextCard(session, cards, queue, finishedAt)
 }
@@ -193,11 +195,46 @@ export function restartStudySession(
     subjectId: previous.subjectId,
     topicId: previous.topicId,
     contentVersion: previous.contentVersion,
-    configuration: previous.configuration,
+    configuration: previous.originalConfiguration ?? previous.configuration,
     flashcards,
     random,
     startedAt,
   })
+}
+
+/** Start a new round containing only cards not yet rated as remembered. */
+export function reviewPendingStudySession(
+  previous: StudySession,
+  sessionId: string,
+  random?: RandomSource,
+  startedAt?: string,
+): StudySession {
+  if (previous.status !== 'completed') throw new Error('Termina el estudio antes de repasar.')
+  const flashcards = previous.cards
+    .filter(({ lastRating }) => lastRating !== 'remembered')
+    .map(({ exercise }) => exercise)
+  if (!flashcards.length) throw new Error('No quedan tarjetas para repasar.')
+  const originalConfiguration = previous.originalConfiguration ?? previous.configuration
+  const retry = createStudySession({
+    sessionId,
+    subjectId: previous.subjectId,
+    topicId: previous.topicId,
+    contentVersion: previous.contentVersion,
+    configuration: {
+      ...previous.configuration,
+      duration: { kind: 'custom', questionCount: flashcards.length },
+    },
+    flashcards,
+    random,
+    startedAt,
+  })
+  return {
+    ...retry,
+    originalConfiguration: {
+      ...originalConfiguration,
+      duration: { ...originalConfiguration.duration },
+    },
+  }
 }
 
 function selectNextCard(

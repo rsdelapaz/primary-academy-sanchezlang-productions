@@ -1,32 +1,64 @@
 <script setup lang="ts">
-import { computed, ref } from 'vue'
+import '../study-experience.css'
+import { computed, nextTick, onMounted, ref, shallowRef } from 'vue'
 import { RouterLink } from 'vue-router'
-import UniverseArtwork from '../components/UniverseArtwork.vue'
-import { isFlashcardExercise } from '../domain/content'
-import {
-  getCurrentStudyCard,
-  getStudyStats,
-  MAX_STUDY_CARD_PRESENTATIONS,
-} from '../domain/study-session'
+import SubjectGlyph from '../components/SubjectGlyph.vue'
+import { isFlashcardExercise, type ContentManifest } from '../domain/content'
+import { getCurrentStudyCard, getStudyStats } from '../domain/study-session'
 import { contentService } from '../content/service'
 import {
   finishActiveStudy,
   rateActiveStudyCard,
   restartActiveStudy,
+  reviewPendingActiveStudy,
   revealActiveStudyCard,
   studySession,
 } from '../presentation/study-session'
 
 const loading = ref(false)
 const error = ref('')
+const catalog = shallowRef<ContentManifest | null>(null)
+const cardHeading = ref<InstanceType<typeof globalThis.HTMLHeadingElement> | null>(null)
+const answerHeading = ref<InstanceType<typeof globalThis.HTMLHeadingElement> | null>(null)
+const summaryHeading = ref<InstanceType<typeof globalThis.HTMLHeadingElement> | null>(null)
 const session = computed(() => studySession.value)
 const currentCard = computed(() => session.value ? getCurrentStudyCard(session.value) : undefined)
 const stats = computed(() => session.value ? getStudyStats(session.value) : null)
+const subject = computed(() => catalog.value?.subjects.find(({ id }) => id === session.value?.subjectId))
+const topic = computed(() => subject.value?.topics.find(({ id }) => id === session.value?.topicId))
+const pendingReviewCount = computed(() => (stats.value?.pendingCount ?? 0) + (stats.value?.unreviewedCount ?? 0))
+const explanation = computed(() => {
+  const card = currentCard.value?.exercise
+  if (!card || card.explanation.trim() === card.back.trim()) return ''
+  return card.explanation.trim()
+})
 
-function reveal() {
+onMounted(async () => {
+  try {
+    catalog.value = await contentService.loadManifest()
+  } catch {
+    // The selected cards are already loaded; keep studying if catalog metadata is unavailable.
+  }
+})
+
+async function focusStudyContent() {
+  await nextTick()
+  const target = session.value?.status === 'completed' ? summaryHeading.value : cardHeading.value
+  target?.focus({ preventScroll: true })
+  if (target && (target.getBoundingClientRect().top < 90 || target.getBoundingClientRect().bottom > globalThis.innerHeight - 110)) {
+    target.scrollIntoView({ block: 'start', behavior: 'instant' })
+  }
+}
+
+async function reveal() {
   error.value = ''
   try {
     revealActiveStudyCard()
+    await nextTick()
+    answerHeading.value?.focus({ preventScroll: true })
+    if (answerHeading.value && answerHeading.value.getBoundingClientRect().bottom > globalThis.innerHeight - 125) {
+      answerHeading.value.scrollIntoView({ block: 'center', behavior: 'instant' })
+    }
   } catch (caught) {
     error.value = caught instanceof Error ? caught.message : 'No se pudo revelar la tarjeta.'
   }
@@ -36,6 +68,7 @@ function rate(remembered: boolean) {
   error.value = ''
   try {
     rateActiveStudyCard(remembered)
+    void focusStudyContent()
   } catch (caught) {
     error.value = caught instanceof Error ? caught.message : 'No se pudo guardar la autoevaluación.'
   }
@@ -45,8 +78,19 @@ function finish() {
   error.value = ''
   try {
     finishActiveStudy()
+    void focusStudyContent()
   } catch (caught) {
     error.value = caught instanceof Error ? caught.message : 'No se pudo terminar el estudio.'
+  }
+}
+
+function reviewPending() {
+  error.value = ''
+  try {
+    reviewPendingActiveStudy()
+    void focusStudyContent()
+  } catch (caught) {
+    error.value = caught instanceof Error ? caught.message : 'No se pudo preparar el repaso.'
   }
 }
 
@@ -56,12 +100,13 @@ async function restart() {
   loading.value = true
   error.value = ''
   try {
-    const catalog = await contentService.loadManifest()
-    const subject = catalog.subjects.find(({ id }) => id === previous.subjectId)
-    const topic = subject?.topics.find(({ id }) => id === previous.topicId)
-    if (!subject || !topic) throw new Error('El contenido original ya no está en el catálogo.')
-    const content = await contentService.loadPackage(subject, topic)
+    const manifest = await contentService.loadManifest()
+    const currentSubject = manifest.subjects.find(({ id }) => id === previous.subjectId)
+    const currentTopic = currentSubject?.topics.find(({ id }) => id === previous.topicId)
+    if (!currentSubject || !currentTopic) throw new Error('El contenido original ya no está en el catálogo.')
+    const content = await contentService.loadPackage(currentSubject, currentTopic)
     restartActiveStudy(content.exercises.filter(isFlashcardExercise))
+    void focusStudyContent()
   } catch (caught) {
     error.value = caught instanceof Error ? caught.message : 'No se pudo reiniciar el estudio.'
   } finally {
@@ -74,27 +119,38 @@ async function restart() {
   <section
     v-if="session && stats"
     class="screen study-screen"
+    :class="{ 'study-active': session.status === 'active' }"
     aria-labelledby="study-title"
   >
     <header class="study-heading">
-      <p class="eyebrow">
-        Área de autoestudio
-      </p>
+      <div class="study-heading-row">
+        <div class="study-topic-label">
+          <SubjectGlyph :subject-id="session.subjectId" />
+          <span>{{ subject?.title ?? 'Autoestudio' }}<span v-if="topic"> · {{ topic.title }}</span></span>
+        </div>
+        <button
+          v-if="session.status === 'active'"
+          class="study-finish"
+          type="button"
+          @click="finish"
+        >
+          Terminar
+        </button>
+      </div>
       <h1 id="study-title">
-        {{ session.phase === 'completed' ? '¡Buen repaso!' : 'Tarjetas de memoria' }}
+        {{ session.status === 'completed' ? 'Resumen de estudio' : 'Tarjetas de memoria' }}
       </h1>
-      <p>Aprende a tu ritmo: revela cada respuesta y decide si la recordabas.</p>
     </header>
 
     <div class="study-progress">
       <div class="study-progress-heading">
-        <strong v-if="session.status === 'active'">Tarjeta {{ stats.completedCount + 1 }} de {{ stats.totalCards }}</strong>
-        <strong v-else>Sesión completada</strong>
+        <strong>{{ stats.completedCount }} de {{ stats.totalCards }} tarjetas revisadas</strong>
         <span>{{ stats.progressPercent }}%</span>
       </div>
       <div
         class="progress"
         role="progressbar"
+        aria-label="Tarjetas revisadas"
         :aria-valuenow="stats.progressPercent"
         aria-valuemin="0"
         aria-valuemax="100"
@@ -106,104 +162,156 @@ async function restart() {
     <div
       class="study-metrics"
       aria-label="Resumen del estudio"
+      aria-live="polite"
     >
-      <div class="metric">
-        <span>Recordadas</span><strong>{{ stats.rememberedCount }}</strong>
+      <div class="study-stat study-stat--remembered">
+        <strong>{{ stats.rememberedCount }}</strong><span>Recordadas</span>
       </div>
-      <div class="metric">
-        <span>Pendientes</span><strong>{{ stats.pendingCount }}</strong>
+      <div class="study-stat study-stat--review">
+        <strong>{{ stats.pendingCount }}</strong><span>Para repasar</span>
       </div>
-      <div class="metric">
-        <span>Repeticiones</span><strong>{{ stats.repetitionCount }}</strong>
+      <div class="study-stat">
+        <strong>{{ stats.unreviewedCount }}</strong><span>Sin revisar</span>
       </div>
     </div>
 
-    <article
-      v-if="session.status === 'active' && currentCard"
-      class="study-card card"
-      aria-live="polite"
-    >
-      <UniverseArtwork
-        class="study-card-art"
-        scene="study"
-      />
-      <p class="study-card-index">
-        Presentación {{ currentCard.presentations }} de {{ MAX_STUDY_CARD_PRESENTATIONS }}
-      </p>
-      <div class="study-card-content">
-        <p class="eyebrow">
-          {{ session.phase === 'front' ? 'Anverso' : 'Reverso' }}
+    <template v-if="session.status === 'active' && currentCard">
+      <article
+        class="study-paper"
+        :class="{ 'study-paper--revealed': session.phase === 'back' }"
+      >
+        <div class="study-paper-top">
+          <span>{{ currentCard.presentations > 1 ? '↻ Volvemos a esta tarjeta' : 'PREGUNTA' }}</span>
+          <span v-if="session.phase === 'front'">Recuerda</span>
+          <span v-else>Comprueba</span>
+        </div>
+        <h2
+          ref="cardHeading"
+          class="study-question"
+          tabindex="-1"
+        >
+          {{ currentCard.exercise.front }}
+        </h2>
+        <p
+          v-if="session.phase === 'front'"
+          class="study-paper-hint"
+        >
+          Piensa la respuesta antes de descubrirla.
         </p>
-        <h2>{{ session.phase === 'front' ? currentCard.exercise.front : currentCard.exercise.back }}</h2>
-      </div>
-      <button
-        v-if="session.phase === 'front'"
-        class="button primary study-reveal"
-        type="button"
-        @click="reveal"
-      >
-        Revelar respuesta
-      </button>
-      <div
-        v-else
-        class="study-rating-actions"
-        role="group"
-        aria-label="¿Cómo te fue?"
-      >
-        <button
-          class="button secondary"
-          type="button"
-          @click="rate(true)"
+        <div
+          v-else
+          class="study-answer"
         >
-          ✓ Lo recordaba
-        </button>
-        <button
-          class="button primary"
-          type="button"
-          @click="rate(false)"
-        >
-          ↻ Necesito repasar
-        </button>
+          <p class="study-answer-label">
+            Respuesta
+          </p>
+          <h3
+            ref="answerHeading"
+            tabindex="-1"
+          >
+            {{ currentCard.exercise.back }}
+          </h3>
+          <div
+            v-if="explanation"
+            class="study-explanation"
+          >
+            <strong>Recuerda</strong>
+            <p>{{ explanation }}</p>
+          </div>
+        </div>
+      </article>
+
+      <div class="study-action-bar">
+        <div class="study-action-inner">
+          <button
+            v-if="session.phase === 'front'"
+            class="button primary study-reveal"
+            type="button"
+            @click="reveal"
+          >
+            Mostrar respuesta
+          </button>
+          <template v-else>
+            <p class="study-rating-label">
+              ¿La recordabas antes de verla?
+            </p>
+            <div
+              class="study-rating-actions"
+              role="group"
+              aria-label="¿La recordabas?"
+            >
+              <button
+                class="button study-review"
+                type="button"
+                @click="rate(false)"
+              >
+                <span aria-hidden="true">↻</span> Necesito repasar
+              </button>
+              <button
+                class="button study-remembered"
+                type="button"
+                @click="rate(true)"
+              >
+                <span aria-hidden="true">✓</span> Lo sabía
+              </button>
+            </div>
+          </template>
+        </div>
       </div>
-    </article>
+    </template>
 
     <section
       v-else
-      class="card study-results"
+      class="study-paper study-summary"
       aria-labelledby="study-results-title"
     >
-      <h2 id="study-results-title">
-        {{ session.endedEarly ? 'Estudio terminado antes de tiempo' : 'Resumen de tu sesión' }}
+      <span
+        class="study-summary-icon"
+        aria-hidden="true"
+      >{{ pendingReviewCount ? '↻' : '✓' }}</span>
+      <h2
+        id="study-results-title"
+        ref="summaryHeading"
+        tabindex="-1"
+      >
+        {{ session.endedEarly ? 'Tu repaso, a tu ritmo' : pendingReviewCount ? 'Un paso más' : '¡Las recordaste todas!' }}
       </h2>
-      <p v-if="session.endedEarly">
-        Las tarjetas restantes quedan pendientes para otro repaso, sin penalización.
+      <p v-if="pendingReviewCount">
+        {{ session.endedEarly ? 'Puedes retomar las tarjetas que faltan.' : 'Vuelve a las tarjetas que más te han costado.' }}
       </p>
       <p v-else>
-        ¡Has completado el repaso de esta sesión!
+        Has recordado todas las tarjetas de esta sesión. ¡Buen trabajo!
       </p>
-      <dl>
-        <div><dt>Tarjetas recordadas</dt><dd>{{ stats.rememberedCount }}</dd></div>
-        <div><dt>Pendientes de repaso</dt><dd>{{ stats.pendingCount }}</dd></div>
-        <div><dt>Repeticiones realizadas</dt><dd>{{ stats.repetitionCount }}</dd></div>
-      </dl>
       <button
-        class="button primary study-restart"
+        v-if="pendingReviewCount"
+        class="button study-summary-primary"
+        type="button"
+        :disabled="loading"
+        @click="reviewPending"
+      >
+        Repasar pendientes ({{ pendingReviewCount }}) →
+      </button>
+      <button
+        class="button"
+        :class="pendingReviewCount ? 'study-summary-secondary' : 'study-summary-primary'"
         type="button"
         :disabled="loading"
         @click="restart"
       >
-        {{ loading ? 'Preparando...' : 'Volver a estudiar' }}
+        {{ loading ? 'Preparando...' : 'Nueva sesión' }}
       </button>
       <RouterLink
-        class="button secondary"
+        class="button study-summary-secondary"
         :to="{ name: 'choose-challenge', query: { experience: 'study' } }"
       >
-        Elegir otro contenido
+        Elegir otro tema
       </RouterLink>
       <RouterLink
-        class="text-link"
+        class="study-summary-home"
         :to="{ name: 'home' }"
-      >Ir al inicio</RouterLink>
+      >
+        Volver al inicio
+      </RouterLink>
     </section>
 
     <p
@@ -213,14 +321,6 @@ async function restart() {
     >
       {{ error }}
     </p>
-    <button
-      v-if="session.status === 'active'"
-      class="text-button study-finish"
-      type="button"
-      @click="finish"
-    >
-      Terminar estudio
-    </button>
   </section>
   <section
     v-else

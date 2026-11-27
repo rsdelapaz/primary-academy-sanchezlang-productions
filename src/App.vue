@@ -13,10 +13,11 @@ const { activeTheme, themes, focusMode } = useThemePreference()
 const currentTheme = computed(() => themes.find((theme) => theme.id === activeTheme.value) ?? themes[0])
 const route = useRoute()
 const activeScene = computed(() => route.name === 'home' ? 'hero' : route.name === 'play' ? 'game' : route.name === 'results' ? 'victory' : route.name === 'choose-challenge' && route.query.experience !== 'study' ? 'setup' : null)
+const isStudy = computed(() => route.name === 'study' || (route.name === 'choose-challenge' && route.query.experience === 'study'))
 const currentYear = new Date().getFullYear()
 const copyrightDate = `${currentYear}-01-01`
 
-const brandLogoUrl = computed(() => activeScene.value && !focusMode.value
+const brandLogoUrl = computed(() => (activeScene.value || isStudy.value) && !focusMode.value
   ? activeTheme.value === 'galaxy' ? galaxyBrand : popBrand
   : `${import.meta.env.BASE_URL}brand/retonautas-logo.svg`)
 </script>
