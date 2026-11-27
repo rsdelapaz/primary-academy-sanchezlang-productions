@@ -2,7 +2,7 @@
 import { computed } from 'vue'
 import type { ThemeId } from '../presentation/theme-preference'
 
-const props = defineProps<{ scene: 'game' | 'victory' | 'setup' | 'hero'; theme: ThemeId }>()
+const props = defineProps<{ scene: 'game' | 'victory' | 'setup' | 'hero' | 'academy'; theme: ThemeId }>()
 const artworkScene = computed(() => props.scene === 'setup' ? 'game' : props.scene)
 const url = computed(() => `${import.meta.env.BASE_URL}art/${props.theme}-${artworkScene.value}`)
 </script>

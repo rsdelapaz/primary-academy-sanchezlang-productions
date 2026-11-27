@@ -26,6 +26,7 @@ const result = computed(() => gameSession.value?.result ?? null)
 const stats = computed(() => gameSession.value ? getGameStats(gameSession.value) : null)
 const tier = computed(() => getVictoryTier(result.value?.correctCount ?? 0, result.value?.totalQuestions ?? 0))
 const perfect = computed(() => tier.value === 'perfect')
+const trainingCount = computed(() => (result.value?.totalQuestions ?? 0) - (result.value?.correctCount ?? 0))
 const resultTitle = computed(() => VICTORY_TITLES[tier.value])
 const achievement = ref<GameAchievement | null>(null)
 const animatedScore = ref(0)
@@ -41,6 +42,7 @@ watch(result, (value) => {
 }, { immediate: true })
 
 let scoreFrame = 0
+let disposed = false
 watch([result, focusMode], ([value]) => {
   if (scoreFrame) globalThis.cancelAnimationFrame(scoreFrame)
   if (!value) {
@@ -74,19 +76,22 @@ onMounted(async () => {
 })
 
 onUnmounted(() => {
+  disposed = true
   if (scoreFrame) globalThis.cancelAnimationFrame(scoreFrame)
 })
 
 async function restart() {
-  if (!gameSession.value) return
+  const previous = gameSession.value
+  if (!previous || loading.value) return
   loading.value = true
   error.value = ''
   try {
     const catalog = await contentService.loadManifest()
-    const subject = catalog.subjects.find(({ id }) => id === gameSession.value?.subjectId)
-    const topic = subject?.topics.find(({ id }) => id === gameSession.value?.topicId)
+    const subject = catalog.subjects.find(({ id }) => id === previous.subjectId)
+    const topic = subject?.topics.find(({ id }) => id === previous.topicId)
     if (!subject || !topic) throw new Error('El contenido original ya no está en el catálogo.')
     const content = await contentService.loadPackage(subject, topic)
+    if (disposed || route.name !== 'results' || gameSession.value?.id !== previous.id) return
     restartActiveGame(content.exercises.filter(isGameExercise))
     await router.push({ name: 'play', params: route.params })
   } catch (caught) {
@@ -171,7 +176,7 @@ function openChest(treasureId: TreasureId) {
           v-else
           class="victory-message"
         >
-          {{ tier === 'epic' ? '¡Estuviste muy cerca de una misión perfecta!' : 'Cada respuesta te ayuda a aprender. Puedes repasar tus errores.' }}
+          {{ trainingCount === 1 ? 'Tienes 1 reto para entrenar. Tu puntuación está a salvo.' : trainingCount > 1 ? `Tienes ${trainingCount} retos para entrenar. Tu puntuación está a salvo.` : '¡Has resuelto todos los retos de esta misión!' }}
         </p>
       </div>
     </div>
@@ -201,7 +206,13 @@ function openChest(treasureId: TreasureId) {
       >
         {{ error }}
       </p>
+      <RouterLink
+        v-if="trainingCount > 0"
+        class="button primary victory-replay"
+        :to="{ name: 'review', params: route.params }"
+      >Entrenar mis errores <span aria-hidden="true">→</span></RouterLink>
       <button
+        v-else
         class="button primary victory-replay"
         type="button"
         :disabled="loading"
@@ -213,10 +224,14 @@ function openChest(treasureId: TreasureId) {
         class="victory-links"
         aria-label="Otras opciones"
       >
-        <RouterLink
-          v-if="!perfect"
-          :to="{ name: 'review', params: route.params }"
-        >Revisar errores</RouterLink>
+        <button
+          v-if="trainingCount > 0"
+          type="button"
+          :disabled="loading"
+          @click="restart"
+        >
+          {{ loading ? 'Preparando...' : 'Siguiente misión' }}
+        </button>
         <button
           type="button"
           @click="collection?.show()"

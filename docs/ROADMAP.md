@@ -15,6 +15,8 @@
 
 - **PA-017 — Experiencia épica:** escenarios originales de juego y victoria por mundo, HUD, feedback y resultado coherentes, Focus opcional y colección local de recompensas reales. Pendiente aceptación de dirección.
 
+- **PA-021 — Sala de entrenamiento:** academia tematizada con revisión y práctica voluntaria de errores, selección de variantes compatibles y resumen separado del juego. Pendiente aceptación de dirección.
+
 ## Pendiente
 
 - Revisión editorial y sustitución/priorización de los bancos de contenido por dirección. PA-011 no modifica los paquetes.

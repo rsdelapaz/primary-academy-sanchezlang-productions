@@ -13,7 +13,7 @@ import { useThemePreference } from './presentation/theme-preference'
 const { activeTheme, themes, focusMode } = useThemePreference()
 const currentTheme = computed(() => themes.find((theme) => theme.id === activeTheme.value) ?? themes[0])
 const route = useRoute()
-const activeScene = computed(() => route.name === 'home' ? 'hero' : route.name === 'play' ? 'game' : route.name === 'results' ? 'victory' : route.name === 'choose-challenge' && route.query.experience !== 'study' ? 'setup' : null)
+const activeScene = computed(() => route.name === 'home' ? 'hero' : route.name === 'play' ? 'game' : route.name === 'results' ? 'victory' : route.name === 'review' ? 'academy' : route.name === 'choose-challenge' && route.query.experience !== 'study' ? 'setup' : null)
 const isStudy = computed(() => route.name === 'study' || (route.name === 'choose-challenge' && route.query.experience === 'study'))
 const currentYear = new Date().getFullYear()
 const creditsDialog = ref<InstanceType<typeof CreditsDialog> | null>(null)
@@ -29,7 +29,7 @@ const brandLogoUrl = computed(() => (activeScene.value || isStudy.value) && !foc
     class="app-shell"
     :data-theme="activeTheme"
     :data-focus="focusMode"
-    :class="{ 'is-immersive': activeScene && !focusMode, 'is-victory': activeScene === 'victory', 'is-play': activeScene === 'game', 'is-setup': activeScene === 'setup', 'is-home': activeScene === 'hero' }"
+    :class="{ 'is-immersive': activeScene && !focusMode, 'is-victory': activeScene === 'victory', 'is-play': activeScene === 'game', 'is-setup': activeScene === 'setup', 'is-home': activeScene === 'hero', 'is-academy': activeScene === 'academy' }"
   >
     <EpicBackdrop
       v-if="activeScene && !focusMode"

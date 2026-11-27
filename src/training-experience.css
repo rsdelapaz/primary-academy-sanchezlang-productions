@@ -1,0 +1,583 @@
+/* PA-021: an academy for deliberate practice, not another scored mission.
+   Keep the reading surface opaque, the native controls operable and the
+   action area in document flow. The worlds supply the palette and frames. */
+.academy-screen {
+  --academy-space: clamp(12px, 2vw, 20px);
+  --academy-panel-cut: 22px;
+  width: min(100%, 1040px);
+  max-width: none;
+  display: grid;
+  align-content: start;
+  gap: var(--academy-space);
+  padding: clamp(16px, 2.5vw, 32px) clamp(14px, 3vw, 28px) 32px;
+  line-height: 1.45;
+}
+
+.academy-header {
+  display: grid;
+  align-items: center;
+  justify-items: center;
+  gap: 4px 16px;
+  text-align: center;
+}
+.academy-header .eyebrow {
+  margin: 0;
+  font-size: 12px;
+  letter-spacing: .13em;
+}
+.academy-header h1 {
+  margin: 0;
+  font-size: clamp(30px, 5vw, 56px);
+  font-weight: 900;
+  line-height: 1.08;
+  letter-spacing: -.035em;
+  text-wrap: balance;
+}
+.academy-intro {
+  max-width: 65ch;
+  margin: 2px 0 0;
+  color: var(--color-text-muted);
+  font-size: clamp(14px, 1.6vw, 17px);
+  font-weight: 600;
+  text-wrap: pretty;
+}
+.academy-exit {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  min-height: 48px;
+  padding: 8px 14px;
+  border: 1px solid var(--color-border);
+  border-radius: var(--radius-control);
+  color: var(--color-text);
+  background: var(--color-surface);
+  text-decoration: none;
+  font-size: 14px;
+  font-weight: 800;
+}
+.academy-progress {
+  display: grid;
+  grid-template-columns: minmax(0, 1fr) auto;
+  align-items: center;
+  gap: 8px 12px;
+  min-width: 0;
+  padding: 11px 16px;
+  border: 1px solid var(--color-border);
+  border-radius: var(--radius-control);
+  background: var(--color-surface);
+}
+.academy-progress-caption {
+  min-width: 0;
+  display: flex;
+  flex-wrap: wrap;
+  align-items: baseline;
+  gap: 2px 8px;
+  color: var(--color-text-muted);
+  font-size: 14px;
+  font-weight: 700;
+}
+.academy-progress-caption strong { color: var(--color-text); }
+.academy-progress-track {
+  display: block;
+  grid-column: 1 / -1;
+  width: 100%;
+  height: 10px;
+  border: 0;
+  border-radius: 99px;
+  overflow: hidden;
+  background: var(--color-progress-track);
+  color: var(--color-primary);
+  accent-color: var(--color-primary);
+  order: 2;
+}
+.academy-progress-track::-webkit-progress-bar { border-radius: 99px; background: var(--color-progress-track); }
+.academy-progress-track::-webkit-progress-value { border-radius: 99px; background: var(--progress-complete, var(--color-primary)); }
+.academy-progress-track::-moz-progress-bar { border-radius: 99px; background: var(--progress-complete, var(--color-primary)); }
+.academy-counter {
+  grid-column: 2;
+  justify-self: end;
+  margin: 0;
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  color: var(--color-secondary-text);
+  font-size: 14px;
+  font-weight: 850;
+  font-variant-numeric: tabular-nums;
+}
+.academy-counter::before, .academy-phase::before {
+  content: '';
+  flex: 0 0 auto;
+  width: 8px;
+  aspect-ratio: 1;
+  transform: rotate(45deg);
+  border: 1px solid currentColor;
+  background: currentColor;
+}
+.academy-card {
+  min-width: 0;
+  display: grid;
+  align-content: start;
+  gap: var(--academy-space);
+  padding: clamp(18px, 3.5vw, 36px);
+  overflow-wrap: anywhere;
+}
+.academy-phase {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  justify-self: center;
+  gap: 9px;
+  max-width: 100%;
+  margin: 0;
+  padding: 5px 10px;
+  border: 1px solid var(--color-border);
+  border-radius: 999px;
+  color: var(--color-secondary-text);
+  background: var(--color-surface-raised);
+  text-align: center;
+  font-size: 12px;
+  font-weight: 850;
+  letter-spacing: .055em;
+  text-transform: uppercase;
+}
+.academy-context {
+  max-width: 64ch;
+  justify-self: center;
+  color: var(--color-text-muted);
+  margin: 0;
+  text-align: center;
+  font-size: clamp(14px, 1.6vw, 17px);
+  font-weight: 650;
+}
+.academy-question {
+  max-width: 42ch;
+  justify-self: center;
+  margin: 0;
+  color: var(--color-text);
+  text-align: center;
+  text-wrap: pretty;
+  font-size: clamp(22px, 3.5vw, 38px);
+  line-height: 1.25;
+  font-weight: 800;
+  letter-spacing: -.018em;
+}
+.academy-answer-pair {
+  display: grid;
+  grid-template-columns: 1fr;
+  gap: 10px;
+  margin: 2px 0;
+}
+.academy-answer:only-child { grid-column: 1 / -1; }
+.academy-answer {
+  min-width: 0;
+  display: grid;
+  grid-template-columns: minmax(0, 1fr);
+  gap: 4px;
+  padding: 13px 16px;
+  border: 1px solid var(--color-border);
+  border-inline-start-width: 4px;
+  border-radius: 12px;
+  color: var(--color-text);
+  background: var(--color-surface-raised);
+}
+.academy-answer--own {
+  border-inline-start-color: var(--color-error);
+  background: var(--color-error-surface);
+  color: var(--color-error-text);
+}
+.academy-answer--correct {
+  border-inline-start-color: var(--color-success-text);
+  background: var(--color-success-surface);
+  color: var(--color-success-text);
+}
+.academy-answer-label {
+  font-size: 13px;
+  font-weight: 850;
+  line-height: 1.25;
+}
+.academy-answer-value {
+  margin: 0;
+  font-size: clamp(18px, 2.5vw, 25px);
+  font-weight: 800;
+  line-height: 1.3;
+  white-space: pre-wrap;
+}
+.academy-explanation {
+  min-width: 0;
+  margin: 0;
+  padding: 12px 16px;
+  border-inline-start: 3px solid var(--color-primary);
+  border-radius: 8px;
+  color: var(--color-text);
+  background: var(--color-surface-raised);
+  font-size: clamp(15px, 1.6vw, 17px);
+  line-height: 1.55;
+  text-wrap: pretty;
+}
+.academy-form {
+  display: grid;
+  min-width: 0;
+  gap: 12px;
+}
+.academy-options {
+  min-inline-size: 0;
+  display: grid;
+  grid-template-columns: minmax(0, 1fr);
+  gap: 10px;
+  border: 0;
+  padding: 0;
+  margin: 0;
+}
+.academy-options legend:not(.sr-only) {
+  padding: 0 0 8px;
+  color: var(--color-text-muted);
+  font-size: 14px;
+  font-weight: 700;
+}
+.academy-option {
+  min-width: 0;
+  min-height: 56px;
+  position: relative;
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  padding: 10px 12px;
+  border: 2px solid var(--color-border);
+  border-radius: var(--radius-control);
+  background: var(--color-surface-raised);
+  color: var(--color-text);
+  text-align: left;
+  font-size: clamp(16px, 2vw, 19px);
+  font-weight: 750;
+  cursor: pointer;
+}
+.academy-option input[type="radio"] {
+  /* Keep the real radio visible: arrows, space, screen readers and contrast
+     work even without :has() or custom glyph support. The label is the target. */
+  flex: 0 0 19px;
+  margin: 0;
+  width: 19px;
+  height: 19px;
+  accent-color: var(--color-primary);
+}
+.academy-option > span[aria-hidden="true"] {
+  display: grid;
+  place-items: center;
+  flex: 0 0 30px;
+  min-height: 30px;
+  border-radius: 6px;
+  color: var(--color-text);
+  background: var(--color-option-key);
+  font-size: 15px;
+  font-weight: 850;
+}
+.academy-option > span:not([aria-hidden="true"]) { min-width: 0; }
+.academy-option.selected, .academy-option:has(input:checked) {
+  border-color: var(--color-primary);
+  box-shadow: inset 0 0 0 1px var(--color-primary);
+}
+.academy-option:hover { border-color: var(--color-secondary-text); }
+.academy-option:focus-within {
+  outline: 3px solid var(--color-focus);
+  outline-offset: 3px;
+}
+.academy-typed {
+  min-width: 0;
+  display: grid;
+  gap: 8px;
+  font-weight: 750;
+}
+.academy-typed label { color: var(--color-text-muted); }
+:is(input.academy-typed, .academy-typed input) {
+  display: block;
+  min-width: 0;
+  width: 100%;
+  min-height: 58px;
+  padding: 10px 14px;
+  border: 2px solid var(--color-border);
+  border-radius: var(--radius-control);
+  background: var(--color-surface-raised);
+  color: var(--color-text);
+  font-size: 22px;
+  font-weight: 700;
+}
+.academy-feedback > h2 {
+  margin: 0;
+  text-align: center;
+  font-size: clamp(24px, 3.8vw, 36px);
+  line-height: 1.2;
+  font-weight: 850;
+  text-wrap: balance;
+}
+.academy-feedback--correct { border-color: var(--color-success-text); }
+.academy-feedback--correct > h2 { color: var(--color-success-text); }
+.academy-feedback--incorrect { border-color: var(--color-error); }
+.academy-feedback--correct .academy-phase {
+  background: var(--color-success-surface);
+  border-color: var(--color-success-text);
+  color: var(--color-success-text);
+}
+.academy-feedback--correct .academy-phase::before {
+  content: '✓';
+  width: auto;
+  aspect-ratio: auto;
+  border: 0;
+  transform: none;
+  background: transparent;
+}
+.academy-feedback--incorrect .academy-phase {
+  background: var(--color-error-surface);
+  border-color: var(--color-error);
+  color: var(--color-error-text);
+}
+.academy-feedback--incorrect .academy-phase::before {
+  content: '↻';
+  width: auto;
+  aspect-ratio: auto;
+  border: 0;
+  transform: none;
+  background: transparent;
+}
+.academy-feedback--correct .academy-answer--own {
+  border-inline-start-color: var(--color-success-text);
+  color: var(--color-success-text);
+  background: var(--color-success-surface);
+}
+.academy-summary, .academy-empty, .academy-loading, .academy-unavailable {
+  text-align: center;
+  justify-items: center;
+}
+.academy-summary h2, .academy-empty h2, .academy-unavailable h2, .academy-loading h2 {
+  max-width: 34ch;
+  margin: 0;
+  font-size: clamp(24px, 4vw, 40px);
+  line-height: 1.2;
+  letter-spacing: -.025em;
+  text-wrap: balance;
+}
+.academy-summary > p:not(.academy-phase), .academy-empty > p:not(.academy-phase), .academy-unavailable > p, .academy-loading > p {
+  max-width: 52ch;
+  margin: 0;
+  color: var(--color-text-muted);
+  font-size: 16px;
+  text-wrap: pretty;
+}
+.academy-summary-stats {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(min(120px, 100%), 1fr));
+  width: min(100%, 720px);
+  margin: 4px 0;
+  gap: 10px;
+}
+.academy-stat {
+  min-width: 0;
+  display: grid;
+  align-content: center;
+  justify-items: center;
+  gap: 4px;
+  min-height: 86px;
+  padding: 10px;
+  border: 1px solid var(--color-border);
+  border-radius: 12px;
+  background: var(--color-surface-raised);
+  color: var(--color-text-muted);
+  font-size: 13px;
+  font-weight: 750;
+}
+.academy-stat :is(strong, dd) {
+  color: var(--color-primary);
+  font-size: clamp(24px, 4vw, 34px);
+  font-weight: 900;
+  line-height: 1.1;
+  margin: 0;
+  font-variant-numeric: tabular-nums;
+}
+.academy-stat dt { margin: 0; }
+.academy-actions {
+  /* Sticky rather than a fixed overlay: keep its own space in the layout
+     and maintain a reachable CTA while the question/feedback scrolls. */
+  position: sticky;
+  bottom: 0;
+  z-index: 3;
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  justify-content: center;
+  gap: 10px;
+  min-width: 0;
+  padding: 10px 12px max(14px, env(safe-area-inset-bottom, 0px));
+  border: 1px solid var(--color-border);
+  border-radius: var(--radius-control);
+  background: var(--color-surface);
+  box-shadow: var(--shadow-card);
+}
+.academy-actions > .button {
+  flex: 0 1 210px;
+  min-width: 0;
+  min-height: 50px;
+  margin: 0;
+  text-align: center;
+  line-height: 1.2;
+}
+.academy-actions .academy-cta {
+  flex: 1 1 320px;
+  min-width: 0;
+  max-width: 520px;
+  min-height: 56px;
+  font-size: clamp(17px, 2vw, 20px);
+  font-weight: 900;
+}
+.academy-screen :is(button, a, input, [tabindex]):focus-visible {
+  outline: 3px solid var(--color-focus);
+  outline-offset: 3px;
+}
+.academy-screen :is(.academy-question, .academy-answer, .academy-explanation, .academy-option, .academy-typed, input) {
+  scroll-margin-block: 100px 140px;
+}
+
+.academy-question .prompt-emphasis { color: var(--color-secondary-text); font-weight: 900; }
+.is-immersive .academy-question .prompt-emphasis { color: var(--emphasis-ink); }
+
+/* Illustrated worlds: reuse the nine-slice frames and existing epic tokens.
+   The decorative clip never applies to the actual DOM control/hit rectangle. */
+.is-immersive .academy-header :is(h1, .eyebrow, .academy-intro) {
+  text-shadow: 0 2px 4px var(--epic-shadow), 0 2px 12px var(--epic-shadow);
+}
+.is-immersive .academy-header h1 { color: var(--emphasis-ink); }
+.is-immersive[data-theme="pop-adventure"] .academy-header h1 { font-family: Georgia, Cambria, serif; }
+.is-immersive .academy-card {
+  position: relative;
+  isolation: isolate;
+  border: 0;
+  border-radius: 0;
+  background: transparent;
+  box-shadow: none;
+}
+.is-immersive .academy-card::before,
+.is-immersive .academy-card::after {
+  content: '';
+  position: absolute;
+  inset: 0;
+  pointer-events: none;
+}
+.is-immersive .academy-card::before {
+  z-index: -1;
+  inset: 1px;
+  background: var(--panel-fill);
+  clip-path: polygon(var(--academy-panel-cut) 0, calc(100% - var(--academy-panel-cut)) 0, 100% var(--academy-panel-cut), 100% calc(100% - var(--academy-panel-cut)), calc(100% - var(--academy-panel-cut)) 100%, var(--academy-panel-cut) 100%, 0 calc(100% - var(--academy-panel-cut)), 0 var(--academy-panel-cut));
+}
+.is-immersive .academy-card::after {
+  border: 1px solid transparent;
+  border-image: var(--panel-frame) 68 / 38px stretch;
+}
+.is-immersive .academy-progress, .is-immersive .academy-actions { background: var(--epic-panel); }
+.is-immersive .academy-phase, .is-immersive .academy-counter { color: var(--epic-gold); }
+.is-immersive .academy-feedback--correct .academy-phase { color: var(--color-success-text); }
+.is-immersive .academy-feedback--incorrect .academy-phase { color: var(--color-error-text); }
+.is-immersive .academy-option { background: var(--epic-answer); }
+.is-immersive .academy-option.selected, .is-immersive .academy-option:has(input:checked) { background: var(--epic-answer-light); }
+.is-immersive .academy-cta {
+  position: relative;
+  isolation: isolate;
+  border: 0;
+  border-radius: 0;
+  background: none;
+  box-shadow: none;
+  color: var(--color-on-primary);
+}
+.is-immersive .academy-cta::before, .is-immersive .academy-cta::after {
+  content: '';
+  position: absolute;
+  inset: 0;
+  pointer-events: none;
+}
+.is-immersive .academy-cta::before {
+  z-index: -1;
+  inset: 1px;
+  background: linear-gradient(180deg, color-mix(in srgb, var(--epic-cta) 66%, white), var(--epic-cta) 45%);
+  clip-path: polygon(12px 0, calc(100% - 12px) 0, 100% 12px, 100% calc(100% - 12px), calc(100% - 12px) 100%, 12px 100%, 0 calc(100% - 12px), 0 12px);
+}
+.is-immersive .academy-cta::after {
+  border: 1px solid transparent;
+  border-image: var(--control-frame) 40 / 25px stretch;
+}
+[data-focus="true"] .academy-screen :is(.academy-card, .academy-actions, .button) {
+  box-shadow: none;
+  transition: none;
+}
+[data-focus="true"] .academy-screen .button:hover { transform: none; }
+[data-focus="true"] .academy-phase::before, [data-focus="true"] .academy-counter::before {
+  background: transparent;
+}
+
+@media (min-width: 650px) {
+  .academy-answer-pair, .academy-options { grid-template-columns: repeat(2, minmax(0, 1fr)); }
+}
+@media (max-width: 649px) {
+  .academy-screen { --academy-panel-cut: 12px; gap: 12px; padding: 10px 12px 24px; }
+  .academy-header h1 { font-size: clamp(26px, 7vw, 36px); }
+  .academy-intro { font-size: 14px; }
+  .academy-progress { padding: 9px 12px; gap: 6px 9px; }
+  .academy-progress-caption, .academy-counter { font-size: 13px; }
+  .academy-card { gap: 12px; padding: 16px; }
+  .academy-phase { font-size: 11px; }
+  .academy-question { font-size: clamp(21px, 5.8vw, 30px); }
+  .academy-answer { padding: 9px 12px; }
+  .academy-explanation { padding: 10px 12px; font-size: 15px; }
+  .academy-options { gap: 8px; }
+  .academy-option { min-height: 54px; gap: 8px; padding: 9px 10px; }
+  .academy-actions { padding: 8px 9px max(12px, env(safe-area-inset-bottom, 0px)); gap: 8px; }
+  .academy-actions > .button { flex: 1 1 100px; min-height: 50px; padding-inline: 9px; }
+  .academy-actions .academy-cta { flex: 2 1 150px; font-size: 17px; min-height: 54px; }
+  .academy-actions .button:only-child { max-width: none; flex-basis: 100%; }
+  .academy-stat { min-height: 74px; padding: 8px 6px; }
+  .is-immersive .academy-card::after { border-image-width: 24px; }
+}
+/* Compact layouts never reduce the tap target or truncate a question.
+   Preserve the note about no points/pressure. The redundant eyebrow and
+   long intro become visually hidden (but stay available to screen readers). */
+@media (max-height: 650px) {
+  .academy-screen { --academy-space: 9px; gap: 9px; padding-block: 8px 20px; }
+  .academy-header { gap: 2px; }
+  .academy-header h1 { font-size: clamp(26px, 4vw, 36px); }
+  .academy-header :is(.eyebrow, .academy-intro-description),
+  .academy-feedback > .academy-phase {
+    position: absolute;
+    width: 1px;
+    height: 1px;
+    padding: 0;
+    overflow: hidden;
+    clip-path: inset(50%);
+    white-space: nowrap;
+  }
+  .academy-intro { margin-top: 1px; line-height: 1.35; }
+  .academy-progress { gap: 5px 9px; padding-block: 7px; }
+  .academy-progress-caption { column-gap: 5px; row-gap: 0; line-height: 1.25; }
+  .academy-counter { gap: 6px; line-height: 1.25; }
+  .academy-progress-track { height: 8px; }
+  .academy-card { gap: 9px; padding-block: 14px; }
+  .academy-phase { padding-block: 4px; }
+  .academy-answer-pair, .academy-options { grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 8px; }
+  .academy-answer { padding: 9px 10px; }
+  .academy-explanation { padding-block: 9px; }
+  .academy-feedback > h2 { font-size: clamp(22px, 3vw, 28px); }
+}
+@media (max-height: 650px) and (max-width: 479px) {
+  /* Native radio + label already distinguish choices. Omit the purely
+     decorative letter in compact grids to leave room for the answer. */
+  .academy-option > span.academy-option-letter { display: none; }
+}
+/* On short landscape viewports the fixed chrome would occupy a large fraction
+   of the reading area. Let it scroll away; the academy actions stay sticky. */
+@media (max-height: 430px) {
+  .app-shell:has(.academy-screen) > .topbar { position: relative; }
+  .academy-screen :is(.academy-question, .academy-answer, .academy-explanation, .academy-option, .academy-typed, input) { scroll-margin-block-start: 12px; }
+}
+@media (prefers-reduced-motion: reduce) {
+  .academy-screen *, .academy-screen *::before, .academy-screen *::after {
+    animation: none !important;
+    transition: none !important;
+    scroll-behavior: auto !important;
+  }
+}
