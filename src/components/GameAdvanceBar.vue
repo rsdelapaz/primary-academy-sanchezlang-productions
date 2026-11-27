@@ -11,6 +11,8 @@ const props = defineProps<{
   correct: boolean
   correction: string
   correctionLanguage: string
+  summary: string
+  summaryLanguage: string
 }>()
 
 const emit = defineEmits<{
@@ -81,6 +83,11 @@ defineExpose({
             <span :lang="correctionLanguage">{{ correction }}</span>
           </span>
         </strong>
+        <span
+          v-if="correct && summary"
+          class="advance-summary"
+          :lang="summaryLanguage"
+        >{{ summary }}</span>
         <div
           v-if="advanceStatus"
           class="advance-status"
@@ -104,7 +111,9 @@ defineExpose({
           type="button"
           :disabled="disabled"
           @click="emit('showExplanation')"
-        >Ver explicación</button>
+        >
+          Ver explicación
+        </button>
       </div>
       <div class="advance-actions">
         <button

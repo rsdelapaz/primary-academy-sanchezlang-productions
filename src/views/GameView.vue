@@ -4,7 +4,6 @@ import { onBeforeRouteLeave, RouterLink, useRoute, useRouter } from 'vue-router'
 import GameAdvanceBar from '../components/GameAdvanceBar.vue'
 import TreasureBoard from '../components/TreasureBoard.vue'
 import TypedAnswerInput from '../components/TypedAnswerInput.vue'
-import UniverseArtwork from '../components/UniverseArtwork.vue'
 import {
   getCurrentQuestion,
   getGameStats,
@@ -56,6 +55,16 @@ const correction = computed(() => {
     ? question.exercise.acceptedAnswers[0] ?? ''
     : question.exercise.options.find(({ id }) => id === question.exercise.correctOptionId)?.text ?? ''
 })
+const feedbackSummary = computed(() => {
+  const explanation = current.value?.exercise.explanation ?? ''
+  return answered.value && currentAnswer.value?.correct && explanation.length <= 65 && !explanation.includes('\n') ? explanation : ''
+})
+const progressSteps = computed(() => gameSession.value?.questions.map((question, index) => {
+  const answer = gameSession.value?.answers.find(({ exerciseId }) => exerciseId === question.exercise.id)
+  const status = answer ? (answer.correct ? 'correct' : 'attempted') :
+    index === gameSession.value?.currentQuestionIndex ? 'current' : 'pending'
+  return { id: question.exercise.id, status }
+}) ?? [])
 const selectedOptionId = computed(() => {
   const answer = currentAnswer.value
   return answer?.type === 'single_choice' ? answer.selectedOptionId : null
@@ -261,51 +270,66 @@ function openChest(treasureId: TreasureId) {
     :style="{ '--game-advance-height': barHeight + 'px' }"
     aria-labelledby="question-title"
   >
-    <UniverseArtwork
-      class="game-artwash"
-      scene="lightning"
-      :variation="1"
-    />
-    <div class="game-header">
-      <span class="game-stage-label">
-        <span aria-hidden="true">MISIÓN</span>
-        <strong>{{ String(gameSession.currentQuestionIndex + 1).padStart(2, '0') }}</strong>
-        <span aria-hidden="true">/ {{ String(gameSession.questions.length).padStart(2, '0') }}</span>
-        <span class="sr-only">Pregunta {{ gameSession.currentQuestionIndex + 1 }} de {{ gameSession.questions.length }}</span>
-      </span>
-      <button
-        class="game-exit-button"
-        type="button"
-        @click="requestAbandon"
+    <div class="game-hud">
+      <div class="game-header">
+        <span class="game-stage-label">
+          <span aria-hidden="true">MISIÓN</span>
+          <strong>{{ String(gameSession.currentQuestionIndex + 1).padStart(2, '0') }}</strong>
+          <span aria-hidden="true">/ {{ String(gameSession.questions.length).padStart(2, '0') }}</span>
+          <span class="sr-only">Pregunta {{ gameSession.currentQuestionIndex + 1 }} de {{ gameSession.questions.length }}</span>
+        </span>
+        <button
+          class="game-exit-button"
+          type="button"
+          @click="requestAbandon"
+        >
+          <span aria-hidden="true">↗</span> Salir
+        </button>
+      </div>
+      <div
+        class="game-metrics"
+        aria-label="Tu partida"
       >
-        <span aria-hidden="true">↗</span> Salir
-      </button>
-    </div>
-    <div
-      class="game-metrics"
-      aria-label="Tu partida"
-    >
-      <div class="metric metric-score">
-        <span>Puntos</span><strong>{{ stats?.score }}</strong>
+        <div class="metric metric-score">
+          <span>Puntos</span><strong>{{ stats?.score }}</strong>
+          <span
+            v-if="answered && currentAnswer?.correct"
+            :key="displayKey"
+            class="score-gain"
+            aria-hidden="true"
+          >+{{ currentAnswer.points }}</span>
+        </div>
+        <div class="metric metric-streak">
+          <span>Racha</span><strong>{{ stats?.currentStreak }}</strong>
+          <span
+            v-if="answered && currentAnswer?.correct && [3, 5, 10, 20].includes(stats?.currentStreak ?? 0)"
+            :key="displayKey"
+            class="streak-banner"
+            aria-hidden="true"
+          >¡Racha de {{ stats?.currentStreak }}!</span>
+        </div>
       </div>
-      <div class="metric metric-streak">
-        <span>Racha actual</span><strong>{{ stats?.currentStreak }}</strong>
+      <div
+        class="game-progress-steps"
+        role="progressbar"
+        aria-label="Progreso del reto"
+        aria-valuemin="0"
+        :aria-valuemax="stats?.totalQuestions ?? 1"
+        :aria-valuenow="stats?.answeredCount ?? 0"
+        :aria-valuetext="`${stats?.answeredCount ?? 0} de ${stats?.totalQuestions ?? 0} retos completados`"
+      >
+        <span
+          v-for="step in progressSteps"
+          :key="step.id"
+          :class="`progress-step ${step.status}`"
+          aria-hidden="true"
+        >{{ step.status === 'correct' ? '✓' : step.status === 'attempted' ? '·' : '' }}</span>
       </div>
-    </div>
-    <div
-      class="progress game-progress"
-      role="progressbar"
-      aria-label="Progreso del reto"
-      aria-valuemin="0"
-      aria-valuemax="100"
-      :aria-valuenow="stats?.progressPercent ?? 0"
-      :aria-valuetext="`${stats?.answeredCount ?? 0} de ${stats?.totalQuestions ?? 0} retos completados`"
-    >
-      <span :style="{ width: `${stats?.progressPercent ?? 0}%` }"></span>
     </div>
     <article
       :key="current.exercise.id"
       class="card question-card game-question-card"
+      :class="{ 'question-correct': answered && currentAnswer?.correct, 'question-answered': answered }"
     >
       <p
         v-if="current.exercise.context"
@@ -349,13 +373,19 @@ function openChest(treasureId: TreasureId) {
             :lang="current.exercise.exerciseLanguage"
           >{{ option.text }}</span>
           <span
-            v-if="answered && current.type === 'single_choice' && option.id === current.exercise.correctOptionId"
-            class="option-state"
-          ><span aria-hidden="true">✓ </span>Respuesta correcta</span>
+            class="option-indicator"
+            aria-hidden="true"
+          >
+            {{ answered && option.id === current.exercise.correctOptionId ? '✓' : answered && option.id === selectedOptionId ? '×' : '' }}
+          </span>
+          <span
+            v-if="answered && option.id === current.exercise.correctOptionId"
+            class="sr-only"
+          >Respuesta correcta</span>
           <span
             v-else-if="answered && option.id === selectedOptionId"
-            class="option-state"
-          ><span aria-hidden="true">× </span>Tu respuesta</span>
+            class="sr-only"
+          >Tu respuesta</span>
         </button>
       </div>
       <TypedAnswerInput
@@ -377,7 +407,9 @@ function openChest(treasureId: TreasureId) {
           <p><strong>Tu respuesta:</strong> <span class="submitted-answer">{{ currentAnswer.submittedAnswer }}</span></p>
           <p><strong>Respuesta aceptada:</strong> {{ current.exercise.acceptedAnswers.join(' / ') }}</p>
         </template>
-        <p :lang="current.exercise.explanationLanguage">{{ current.exercise.explanation }}</p>
+        <p :lang="current.exercise.explanationLanguage">
+          {{ current.exercise.explanation }}
+        </p>
       </div>
       <p
         v-if="error"
@@ -430,6 +462,8 @@ function openChest(treasureId: TreasureId) {
     :disabled="advancing || blockedByDialog"
     :correct="currentAnswer?.correct ?? false"
     :correction="correction"
+    :summary="feedbackSummary"
+    :summary-language="current.exercise.explanationLanguage"
     :correction-language="current.exercise.exerciseLanguage"
     @next="nextQuestion()"
     @toggle-pause="toggleAdvancePause"

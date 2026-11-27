@@ -87,3 +87,16 @@ describe('local game records', () => {
     expect(unavailable.record(result('memory', 250, 3)).personalBest).toBe(250)
   })
 })
+
+describe('local collection', () => {
+  it('migrates pre-collection progress and stores only unique opened treasures', () => {
+    const storage = new MemoryStorage()
+    storage.value = JSON.stringify({ version: 1, bestScores: {}, perfectBadges: ['older-perfect'], processed: {} })
+    const store = createLocalGameRecordsStore(() => storage)
+    expect(store.getCollection()).toEqual({ perfect: true, treasures: [] })
+    store.recordTreasure('star-crystal')
+    store.recordTreasure('star-crystal')
+    const reloaded = createLocalGameRecordsStore(() => storage)
+    expect(reloaded.getCollection()).toEqual({ perfect: true, treasures: ['star-crystal'] })
+  })
+})

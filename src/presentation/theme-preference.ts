@@ -26,6 +26,8 @@ export type ThemeId = (typeof THEMES)[number]['id']
 const DEFAULT_THEME: ThemeId = 'pop-adventure'
 const STORAGE_KEY = 'retonautas.visual-theme'
 const activeTheme = ref<ThemeId>(DEFAULT_THEME)
+const FOCUS_STORAGE_KEY = 'retonautas.focus-mode'
+const focusMode = ref(false)
 const stylesheets = import.meta.glob('../themes/*.css')
 const loadedStyles = new Set<ThemeId>()
 
@@ -58,6 +60,11 @@ function savePreference(themeId: ThemeId): void {
 }
 
 export async function initializeTheme(): Promise<void> {
+  try {
+    focusMode.value = globalThis.localStorage?.getItem(FOCUS_STORAGE_KEY) === 'true'
+  } catch {
+    focusMode.value = false
+  }
   const preference = readPreference()
   let selectedTheme = isThemeId(preference) ? preference : DEFAULT_THEME
   try {
@@ -76,6 +83,15 @@ export async function selectTheme(themeId: ThemeId): Promise<void> {
   savePreference(themeId)
 }
 
+export function setFocusMode(enabled: boolean): void {
+  focusMode.value = enabled
+  try {
+    globalThis.localStorage?.setItem(FOCUS_STORAGE_KEY, String(enabled))
+  } catch {
+    // La preferencia sigue activa en memoria.
+  }
+}
+
 export function useThemePreference() {
-  return { activeTheme, themes: THEMES, selectTheme }
+  return { activeTheme, themes: THEMES, selectTheme, focusMode, setFocusMode }
 }

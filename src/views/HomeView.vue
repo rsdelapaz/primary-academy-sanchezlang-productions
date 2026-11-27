@@ -2,11 +2,13 @@
 import { computed, onMounted, onUnmounted, ref } from 'vue'
 import { RouterLink } from 'vue-router'
 import type { ContentSubject } from '../domain/content'
+import CollectionDialog from '../components/CollectionDialog.vue'
 import SubjectGlyph from '../components/SubjectGlyph.vue'
 import { useThemePreference, type ThemeId } from '../presentation/theme-preference'
 import { useCatalog } from '../presentation/catalog'
 
-const { activeTheme } = useThemePreference()
+const { activeTheme, focusMode } = useThemePreference()
+const collection = ref<{ show: () => void } | null>(null)
 const { manifest, loading, error, loadManifest } = useCatalog()
 const mobileViewport = ref(
   typeof globalThis.matchMedia === 'function' && globalThis.matchMedia('(max-width: 759px)').matches,
@@ -69,6 +71,7 @@ function subjectTarget(subject: ContentSubject) {
   >
     <div class="home-stage">
       <picture
+        v-if="!focusMode"
         class="home-artwork"
         aria-hidden="true"
       >
@@ -170,7 +173,15 @@ function subjectTarget(subject: ContentSubject) {
             aria-hidden="true"
           >→</span>
         </RouterLink>
+        <button
+          class="home-collection-link"
+          type="button"
+          @click="collection?.show()"
+        >
+          <span aria-hidden="true">✦</span> Mi colección
+        </button>
       </div>
     </div>
+    <CollectionDialog ref="collection" />
   </section>
 </template>

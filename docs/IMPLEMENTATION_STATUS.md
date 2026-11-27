@@ -35,3 +35,11 @@ Estado: implementación técnica y smoke tests completados; pendiente aceptació
 - Aceptación visual del director; las capturas no la sustituyen.
 - El catálogo actual tiene un tema por materia; la rama de selección entre varios temas no pudo probarse con contenido real.
 - No existe `docs/MASTER_REQUIREMENTS.md`. Sin commit, push ni despliegue.
+
+## PA-017 — Experiencia épica
+
+- Galaxy y Pop Adventure: escenarios originales de partida y victoria; ocho WebP responsivos (cuatro escenas), sin interfaces o texto incrustados. HUD unificado, tarjetas, respuestas y feedback integrados en ambos mundos. Área de respuestas estable; avance fijo.
+- Resultado: cuatro mensajes según precisión exacta; insignia solo al acertar todo, récord por configuración existente y puntuación real. Repetir inicia una nueva sesión con la configuración anterior. Colección de insignia y tres tesoros realmente abiertos, persistida localmente, con migración compatible de récords.
+- Focus: preferencia independiente del mundo, sin escenario raster ni efectos decorativos de puntos/rachas y contador instantáneo. Conserva los controles, el audio elegido y las reglas de juego.
+- Sin cambios de contenido, motor de dominio, dependencias, validadores, scoring ni backend. Pendiente aceptación por dirección y pruebas en dispositivos físicos.
+- Quality gate ejecutado: 97 pruebas, 2 paquetes/1384 ejercicios; frontera del dominio intacta. Presupuesto inicial estimado <350 KiB; nuevas escenas de 59–181 KiB por variante.

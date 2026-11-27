@@ -4,7 +4,7 @@ import { useThemePreference, type ThemeId } from '../presentation/theme-preferen
 
 const menu = ref<{ open: boolean } | null>(null)
 const error = ref('')
-const { activeTheme, themes, selectTheme } = useThemePreference()
+const { activeTheme, themes, selectTheme, focusMode, setFocusMode } = useThemePreference()
 
 function themeIconUrl(themeId: ThemeId): string {
   return `${import.meta.env.BASE_URL}brand/theme-${themeId}.svg`
@@ -37,7 +37,7 @@ async function chooseTheme(themeId: ThemeId) {
         width="30"
         height="30"
       >
-      <span>Mundo</span>
+      <span>{{ focusMode ? 'Focus ·' : 'Mundo' }}</span>
       <span class="theme-trigger-name">{{ themes.find((theme) => theme.id === activeTheme)?.name }}</span>
     </summary>
     <div class="theme-panel">
@@ -69,6 +69,21 @@ async function chooseTheme(themeId: ThemeId) {
           v-if="activeTheme === theme.id"
           class="theme-active-label"
         >✓ Activo</span>
+      </button>
+      <button
+        class="focus-mode-choice"
+        type="button"
+        role="switch"
+        :aria-checked="focusMode"
+        aria-label="Modo Focus"
+        @click="setFocusMode(!focusMode)"
+      >
+        <span><strong>Modo Focus</strong><small>Sin escenarios ni efectos decorativos.</small></span>
+        <span
+          class="focus-mode-switch"
+          :class="{ enabled: focusMode }"
+          aria-hidden="true"
+        ></span>
       </button>
       <p
         v-if="error"

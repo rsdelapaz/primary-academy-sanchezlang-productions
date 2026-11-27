@@ -14,6 +14,7 @@ import {
 import { isGameModeCompatible } from '../domain/game-modes'
 import { openTreasure as openTreasureInDomain, type TreasureId } from '../domain/treasure'
 import { selectGameQuestions } from '../application/question-selection'
+import { localGameRecordsStore } from './local-game-records'
 import { questionHistoryStore } from './question-history-storage'
 
 export const gameSession = shallowRef<GameSession | null>(null)
@@ -74,6 +75,7 @@ export function abandonActiveGame(): GameSession {
 export function openActiveTreasure(treasureId: TreasureId): GameSession {
   if (!gameSession.value) throw new Error('No hay una sesión activa.')
   gameSession.value = openTreasureInDomain(gameSession.value, treasureId)
+  localGameRecordsStore.recordTreasure(treasureId)
   return gameSession.value
 }
 
