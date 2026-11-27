@@ -276,14 +276,27 @@
   --world-ink: #eaf8ff;
   --world-muted: #c1d8e7;
   --world-active: #55e9ff;
+  --world-panel-cut: 20px;
   width: min(490px, calc(100vw - 24px));
   padding: 19px;
   border: 1px solid transparent;
   border-radius: 0;
   background: var(--world-fill);
   color: var(--world-ink);
-  box-shadow: 0 10px 34px #000b;
+  /* Match the 68-unit nine-slice frame scaled to 36px: the corners
+     must reveal the scene instead of the old rectangular fill/shadow. */
+  box-shadow: none;
   border-image: var(--world-panel-frame) 68 / 36px stretch;
+  clip-path: polygon(
+    var(--world-panel-cut) 0,
+    calc(100% - var(--world-panel-cut)) 0,
+    100% var(--world-panel-cut),
+    100% calc(100% - var(--world-panel-cut)),
+    calc(100% - var(--world-panel-cut)) 100%,
+    var(--world-panel-cut) 100%,
+    0 calc(100% - var(--world-panel-cut)),
+    0 var(--world-panel-cut)
+  );
 }
 [data-theme="pop-adventure"][data-focus="false"] .theme-panel {
   --world-panel-frame: url('./assets/epic/pop-panel.svg');
@@ -292,6 +305,7 @@
   --world-ink: #fff5e8;
   --world-muted: #e6d2f1;
   --world-active: #f3a0ff;
+  --world-panel-cut: 23px;
 }
 [data-focus="false"] .theme-panel-title {
   margin: 1px 3px 14px;
