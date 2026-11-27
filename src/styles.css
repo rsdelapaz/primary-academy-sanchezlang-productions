@@ -280,8 +280,6 @@ h1 {
   font-size: 12px;
 }
 .app-footer p { margin: 0; }
-.credits summary { min-height: 40px; display: inline-flex; align-items: center; cursor: pointer; color: var(--color-secondary-text); font-weight: 850; }
-.credits p { max-width: 38ch; margin: 4px 0; }
 .back-link {
   display: inline-block;
   min-height: 48px;

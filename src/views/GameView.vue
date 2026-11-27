@@ -21,6 +21,7 @@ import {
 import { getQuestionHistoryKey } from '../application/question-selection'
 import { localGameRecordsStore } from '../presentation/local-game-records'
 import { questionHistoryStore } from '../presentation/question-history-storage'
+import { creditsOpen } from '../presentation/credits-visibility'
 import { createAutoAdvance, type AutoAdvanceState } from '../presentation/auto-advance'
 
 import { promptSegments } from '../presentation/prompt-presentation'
@@ -96,7 +97,7 @@ const availableTreasures = computed(() => answered.value && gameSession.value &&
   ? getAvailableTreasureIds(treasureState.value, gameSession.value.questions.length)
   : [])
 const blockedByTreasure = computed(() => Boolean(feedbackKey.value && offerKey.value === feedbackKey.value && availableTreasures.value.length))
-const blockedByDialog = computed(() => abandonDialogOpen.value || vaultOpen.value || Boolean(treasureRewardScene.value))
+const blockedByDialog = computed(() => creditsOpen.value || abandonDialogOpen.value || vaultOpen.value || Boolean(treasureRewardScene.value))
 const timerBlocked = computed(() =>
   pausedByPlayer.value || pageHidden.value || blockedByDialog.value || blockedByTreasure.value || advancing.value,
 )

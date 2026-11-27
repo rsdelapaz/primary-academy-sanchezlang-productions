@@ -1,0 +1,129 @@
+/* Credits remain a stable footer action; the dialog owns all editorial content. */
+.credits-button {
+  min-height: 44px;
+  padding: 6px 12px;
+  border: 0;
+  background: none;
+  color: var(--color-secondary-text);
+  font-weight: 850;
+  text-decoration: underline;
+  text-underline-offset: 4px;
+}
+.is-immersive .credits-button { color: #fff; text-shadow: inherit; }
+.credits-button:hover { color: var(--color-primary); }
+
+.credits-dialog {
+  width: min(740px, calc(100vw - 24px));
+  max-width: calc(100vw - 24px);
+  max-height: calc(100dvh - 24px);
+  padding: 0;
+  overflow: auto;
+  overscroll-behavior: contain;
+  border: 1px solid var(--color-border);
+  border-radius: var(--radius-card);
+  background: var(--color-surface);
+  color: var(--color-text);
+  box-shadow: var(--shadow-card);
+}
+.credits-dialog::backdrop { background: #050714bc; }
+.credits-shell { padding: clamp(16px, 4vw, 36px); display: grid; gap: clamp(18px, 3vw, 28px); }
+.credits-heading { display: flex; align-items: center; justify-content: center; gap: 14px; }
+.credits-heading h2 {
+  margin: 0;
+  font-size: 14px;
+  text-transform: uppercase;
+  letter-spacing: .17em;
+  color: var(--color-secondary-text);
+}
+.credits-rule { flex: 1; max-width: 140px; height: 1px; background: var(--color-border); }
+.credits-content { display: grid; grid-template-columns: 1fr 1.08fr; gap: 28px; align-items: center; }
+.credits-identity { text-align: center; min-width: 0; display: grid; justify-items: center; gap: 6px; }
+.credits-emblem { display: block; width: 112px; height: 112px; object-fit: contain; }
+.credits-wordmark { margin: 0; font-weight: 950; font-size: clamp(32px, 5.5vw, 48px); letter-spacing: -.045em; line-height: 1.06; }
+.credits-tagline { margin: 4px 0 0; font-size: 14px; line-height: 1.45; color: var(--color-text-muted); max-width: 24ch; }
+.credits-team { margin: 0; min-width: 0; display: grid; gap: 13px; text-align: left; }
+.credits-team > div { padding: 0 0 13px; border-bottom: 1px solid var(--color-border); }
+.credits-team > div:last-child { border: 0; padding-bottom: 0; }
+.credits-team dt { margin: 0 0 4px; color: var(--color-secondary-text); font-size: 11px; font-weight: 800; letter-spacing: .075em; text-transform: uppercase; }
+.credits-team dd { margin: 0; font-size: clamp(15px, 2.5vw, 19px); font-weight: 750; line-height: 1.3; overflow-wrap: anywhere; }
+.credits-team .credits-detail { color: var(--color-text-muted); font-size: 12px; font-weight: 400; margin-top: 4px; line-height: 1.45; }
+.credits-signoff { display: grid; justify-items: center; gap: 12px; padding-top: 15px; border-top: 1px solid var(--color-border); }
+.credits-signoff p { margin: 0; font-size: 12px; color: var(--color-text-muted); text-align: center; }
+.credits-return { min-height: 50px; width: min(100%, 340px); }
+.credits-return:focus-visible, .credits-button:focus-visible { outline-offset: 3px; }
+
+.app-shell[data-theme="galaxy"][data-focus="false"] .credits-dialog {
+  --credits-frame: url('./assets/epic/galaxy-panel.svg');
+  --credits-control: url('./assets/epic/galaxy-control.svg');
+  --credits-material: radial-gradient(ellipse at 25% 35%, #18455a 0%, #0c2030 42%, #081724 100%);
+  --credits-button-fill: linear-gradient(180deg, #155e7b, #0a2a3b 48%, #10465d);
+  --credits-glow: #45dffa52;
+  --credits-gold: #ffe4a1;
+}
+.app-shell[data-theme="pop-adventure"][data-focus="false"] .credits-dialog {
+  --credits-frame: url('./assets/epic/pop-panel.svg');
+  --credits-control: url('./assets/epic/pop-control.svg');
+  --credits-material: radial-gradient(ellipse at 25% 35%, #4f2d52 0%, #2e1932 42%, #1b101f 100%);
+  --credits-button-fill: linear-gradient(180deg, #6b4871, #31213f 48%, #492e50);
+  --credits-glow: #f771dd45;
+  --credits-gold: #ffe5a5;
+}
+.app-shell[data-focus="false"] .credits-dialog {
+  color: #fff6df;
+  background: var(--credits-material);
+  border: 1px solid transparent;
+  border-radius: 0;
+  border-image: var(--credits-frame) 68 / 40px stretch;
+  clip-path: polygon(21px 0, calc(100% - 21px) 0, 100% 21px, 100% calc(100% - 21px), calc(100% - 21px) 100%, 21px 100%, 0 calc(100% - 21px), 0 21px);
+  box-shadow: none;
+}
+.app-shell[data-focus="false"] .credits-heading h2,
+.app-shell[data-focus="false"] .credits-team dt { color: var(--credits-gold); }
+.app-shell[data-focus="false"] .credits-tagline,
+.app-shell[data-focus="false"] .credits-detail,
+.app-shell[data-focus="false"] .credits-signoff p { color: #ddd7e2; }
+.app-shell[data-focus="false"] .credits-rule { background: linear-gradient(90deg, transparent, var(--credits-gold), transparent); }
+.app-shell[data-focus="false"] .credits-team > div,
+.app-shell[data-focus="false"] .credits-signoff { border-color: #ddbf773b; }
+.app-shell[data-focus="false"] .credits-emblem { filter: drop-shadow(0 0 22px var(--credits-glow)) drop-shadow(0 5px 5px #0009); }
+.app-shell[data-focus="false"] .credits-wordmark { color: var(--credits-gold); text-shadow: 0 3px 4px #000b; }
+.app-shell[data-theme="pop-adventure"][data-focus="false"] .credits-wordmark { font-family: Georgia, Cambria, serif; letter-spacing: -.03em; }
+.app-shell[data-theme="galaxy"][data-focus="false"] .credits-wordmark { font-style: italic; }
+.app-shell[data-focus="false"] .credits-return {
+  border: 1px solid transparent;
+  border-radius: 0;
+  border-image: var(--credits-control) 40 / 22px stretch;
+  color: #fffaed;
+  font-weight: 850;
+  background: var(--credits-button-fill);
+  box-shadow: none;
+  clip-path: polygon(11px 0, calc(100% - 11px) 0, 100% 11px, 100% calc(100% - 11px), calc(100% - 11px) 100%, 11px 100%, 0 calc(100% - 11px), 0 11px);
+}
+.app-shell[data-focus="false"] .credits-return:focus-visible { outline-offset: -6px; }
+.app-shell[data-focus="false"] .credits-return:hover { filter: brightness(1.16); }
+
+@media (max-width: 580px) {
+  .credits-shell { padding: 20px; gap: 16px; }
+  .credits-content { grid-template-columns: 1fr; gap: 17px; }
+  .credits-emblem { width: 64px; height: 64px; }
+  .credits-wordmark { font-size: 34px; }
+  .credits-tagline { max-width: none; font-size: 13px; margin-top: 0; }
+  .credits-team { gap: 10px; }
+  .credits-team > div { padding-bottom: 10px; }
+  .credits-team dd { font-size: 16px; }
+  .credits-signoff { padding-top: 10px; gap: 8px; }
+}
+
+/* The fixed play/next action remains above the footer; scroll to reveal
+   credits when desired instead of placing a secondary action over it. */
+.app-shell:has(.configuration-action-bar) > .app-footer {
+  margin-bottom: calc(144px + env(safe-area-inset-bottom, 0px));
+}
+.app-shell:has(.game-screen.has-advance-bar) > .app-footer {
+  margin-bottom: calc(136px + env(safe-area-inset-bottom, 0px));
+}
+@media (max-width: 719px) {
+  .app-shell:has(.game-screen.has-advance-bar) > .app-footer {
+    margin-bottom: calc(220px + env(safe-area-inset-bottom, 0px));
+  }
+}

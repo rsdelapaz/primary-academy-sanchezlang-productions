@@ -7,6 +7,7 @@ import WizardChoiceCard from '../components/WizardChoiceCard.vue'
 import WizardGlyph from '../components/WizardGlyph.vue'
 import { getModeCardPresentation } from '../presentation/mode-card'
 import { createAutoAdvance, type AutoAdvanceState } from '../presentation/auto-advance'
+import { creditsOpen } from '../presentation/credits-visibility'
 import { useThemePreference } from '../presentation/theme-preference'
 import {
   isFlashcardExercise,
@@ -72,7 +73,7 @@ const countdownRunning = computed(() => startCountdown.value.status === 'running
 const startController = createAutoAdvance({
   onTick: (state) => { startCountdown.value = state },
   onAdvance: () => {
-    if (globalThis.document.visibilityState === 'visible' && route.name === 'choose-challenge' && canStart.value) void begin()
+    if (!creditsOpen.value && globalThis.document.visibilityState === 'visible' && route.name === 'choose-challenge' && canStart.value) void begin()
   },
 })
 const setupSteps = ['Modalidad', 'Duración', 'Dificultad'] as const
@@ -453,6 +454,7 @@ watch(setupStep, () => {
   })
 })
 watch([activeTheme, focusMode, autoAdvance, () => route.fullPath], cancelAutoStart)
+watch(creditsOpen, (open) => { if (open) cancelAutoStart() })
 watch(canStart, (available) => { if (!available) cancelAutoStart() })
 onBeforeRouteLeave(() => { cancelAutoStart() })
 onMounted(() => {

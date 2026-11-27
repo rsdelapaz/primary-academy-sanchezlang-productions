@@ -7,6 +7,7 @@ import './epic-experience.css'
 import './epic-chrome.css'
 import './wizard.css'
 import './home-world.css'
+import './credits.css'
 
 await initializeTheme()
 
