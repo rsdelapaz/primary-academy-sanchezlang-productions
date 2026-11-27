@@ -313,14 +313,6 @@
 [data-focus="true"] .score-gain, [data-focus="true"] .streak-banner { display: none; }
 [data-focus="true"] .game-question-card, [data-focus="true"] .feedback { animation: none; }
 [data-focus="true"] .progress-step.current { box-shadow: none; }
-[data-focus="true"] .home-stage-shade { display: none; }
-[data-focus="true"] .home-stage {
-  min-height: 420px;
-  background: var(--app-background);
-  color: var(--color-text);
-}
-.home-collection-link { min-height: 44px; padding: 6px 22px; border: 1px solid #a4b8d1; color: #fff; background: #10192de0; border-radius: 10px; font-size: 14px; font-weight: 800; }
-[data-focus="true"] .home-collection-link { background: var(--color-surface); color: var(--color-text); border-color: var(--color-border); }
 .focus-mode-choice {
   width: 100%; display: flex; align-items: center; justify-content: space-between; gap: 12px;
   text-align: left; min-height: 64px; padding: 10px; border: 1px solid var(--color-border);

@@ -11,22 +11,39 @@ defineProps<{
     aria-hidden="true"
     focusable="false"
   >
-    <template v-if="subjectId === 'english'">
-      <text
-        x="2"
-        y="34"
-        class="subject-glyph-letters"
-      >A</text>
+    <svg
+      v-if="subjectId === 'english'"
+      x="2"
+      y="9"
+      width="60"
+      height="30"
+      viewBox="0 0 60 30"
+      overflow="hidden"
+    >
       <path
-        d="M25 24h14m-5-5 5 5-5 5"
-        class="subject-glyph-line"
+        fill="#012169"
+        d="M0 0h60v30H0z"
       />
-      <text
-        x="42"
-        y="34"
-        class="subject-glyph-letters"
-      >Z</text>
-    </template>
+      <path
+        stroke="#fff"
+        stroke-width="6"
+        d="m0 0 60 30M60 0 0 30"
+      />
+      <path
+        fill="#c8102e"
+        d="M0 0v2.24l24.52 12.26h4.48L0 0Zm60 0h-4.48L31 12.26v2.24L60 0ZM60 30v-2.24L35.48 15.5H31L60 30ZM0 30h4.48L29 17.74V15.5L0 30Z"
+      />
+      <path
+        stroke="#fff"
+        stroke-width="10"
+        d="M30 0v30M0 15h60"
+      />
+      <path
+        stroke="#c8102e"
+        stroke-width="6"
+        d="M30 0v30M0 15h60"
+      />
+    </svg>
     <template v-else-if="subjectId === 'mathematics'">
       <text
         x="2"
@@ -40,7 +57,7 @@ defineProps<{
     </template>
     <path
       v-else
-      d="M10 12h44M10 24h44M10 36h44"
+      d="M6 10Q20 5 32 14Q44 5 58 10V38Q44 34 32 42Q20 34 6 38ZM32 14V42"
       class="subject-glyph-line"
     />
   </svg>

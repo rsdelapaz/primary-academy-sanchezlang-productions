@@ -13,6 +13,7 @@
 - Presenta una experiencia de videojuego; evita formularios administrativos y paneles de estado innecesarios.
 - Usa exclusivamente ilustraciones y recursos artísticos originales suministrados o aprobados por dirección.
 - Optimiza recursos para el dispositivo; no sustituyas arte editorial por dibujos improvisados.
+- Diferencia materias mediante símbolos semánticos, no únicamente colores: Union Jack para Inglés, operaciones para Matemáticas y libro/escritura para una futura Lengua. Las vistas se derivan del catálogo y conservan icono neutro si falta arte.
 - Integra el header con la portada ilustrada y ajusta `object-position` por viewport para evitar recortes importantes y huecos antes del footer.
 - Valida visualmente los recorridos afectados en móvil y escritorio, incluido 320 px.
 - Comprueba foco, contraste, texto legible, controles táctiles y cambios de tema sin alterar el juego.

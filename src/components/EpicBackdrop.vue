@@ -2,7 +2,7 @@
 import { computed } from 'vue'
 import type { ThemeId } from '../presentation/theme-preference'
 
-const props = defineProps<{ scene: 'game' | 'victory' | 'setup'; theme: ThemeId }>()
+const props = defineProps<{ scene: 'game' | 'victory' | 'setup' | 'hero'; theme: ThemeId }>()
 const artworkScene = computed(() => props.scene === 'setup' ? 'game' : props.scene)
 const url = computed(() => `${import.meta.env.BASE_URL}art/${props.theme}-${artworkScene.value}`)
 </script>
@@ -24,6 +24,7 @@ const url = computed(() => `${import.meta.env.BASE_URL}art/${props.theme}-${artw
         alt=""
         width="1600"
         height="900"
+        :fetchpriority="scene === 'hero' ? 'high' : undefined"
         decoding="async"
       >
     </picture>

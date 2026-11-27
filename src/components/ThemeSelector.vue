@@ -1,8 +1,10 @@
 <script setup lang="ts">
-import { ref } from 'vue'
+import { onMounted, onUnmounted, ref } from 'vue'
 import { useThemePreference, type ThemeId } from '../presentation/theme-preference'
 
-const menu = ref<{ open: boolean } | null>(null)
+const menu = ref<InstanceType<typeof globalThis.HTMLDetailsElement> | null>(null)
+const trigger = ref<InstanceType<typeof globalThis.HTMLElement> | null>(null)
+const menuOpen = ref(false)
 const error = ref('')
 const { activeTheme, themes, selectTheme, focusMode, setFocusMode } = useThemePreference()
 
@@ -10,11 +12,30 @@ function themeIconUrl(themeId: ThemeId): string {
   return `${import.meta.env.BASE_URL}brand/theme-${themeId}.svg`
 }
 
+function themePreviewUrl(themeId: ThemeId): string {
+  return `${import.meta.env.BASE_URL}art/worlds/${themeId}.webp`
+}
+
+function closeMenu(restoreFocus = false) {
+  if (menu.value) menu.value.open = false
+  menuOpen.value = false
+  if (restoreFocus) trigger.value?.focus()
+}
+
+function dismissOnOutsidePress(event: InstanceType<typeof globalThis.PointerEvent>) {
+  if (menu.value?.open && event.target instanceof globalThis.Node && !menu.value.contains(event.target)) {
+    closeMenu()
+  }
+}
+
+onMounted(() => globalThis.document.addEventListener('pointerdown', dismissOnOutsidePress))
+onUnmounted(() => globalThis.document.removeEventListener('pointerdown', dismissOnOutsidePress))
+
 async function chooseTheme(themeId: ThemeId) {
   error.value = ''
   try {
     await selectTheme(themeId)
-    if (menu.value) menu.value.open = false
+    closeMenu(true)
   } catch (caught) {
     error.value = caught instanceof Error ? caught.message : 'No se pudo cambiar el tema.'
   }
@@ -25,8 +46,11 @@ async function chooseTheme(themeId: ThemeId) {
   <details
     ref="menu"
     class="theme-selector"
+    @toggle="menuOpen = menu?.open ?? false"
+    @keydown.esc="closeMenu(true)"
   >
     <summary
+      ref="trigger"
       class="theme-trigger"
       aria-label="Cambiar tema visual"
     >
@@ -49,12 +73,23 @@ async function chooseTheme(themeId: ThemeId) {
         :key="theme.id"
         class="theme-choice"
         :class="{ active: activeTheme === theme.id }"
+        :data-world="theme.id"
         type="button"
         :aria-pressed="activeTheme === theme.id"
         :aria-label="`Usar tema ${theme.name}`"
         @click="chooseTheme(theme.id)"
       >
         <img
+          v-if="menuOpen && !focusMode"
+          class="theme-choice-preview"
+          :src="themePreviewUrl(theme.id)"
+          alt=""
+          width="230"
+          height="126"
+          decoding="async"
+        >
+        <img
+          v-else
           class="theme-choice-art"
           :src="themeIconUrl(theme.id)"
           alt=""
@@ -64,11 +99,11 @@ async function chooseTheme(themeId: ThemeId) {
         <span class="theme-choice-copy">
           <strong>{{ theme.name }}</strong>
           <small>{{ theme.description }}</small>
+          <span
+            v-if="activeTheme === theme.id"
+            class="theme-active-label"
+          >✓ Activo</span>
         </span>
-        <span
-          v-if="activeTheme === theme.id"
-          class="theme-active-label"
-        >✓ Activo</span>
       </button>
       <button
         class="focus-mode-choice"

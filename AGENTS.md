@@ -25,6 +25,7 @@
 - Dirección evalúa cada propuesta del usuario: aprobar, modificar o rechazar con justificación de valor, impacto en usabilidad, seguridad, rendimiento y esfuerzo; no implementar por complacencia. PA-017 aprobado es el estándar artístico y los bocetos aprobados son criterio de aceptación.
 - Mapeo único: Corta/Media/Larga = 5/10/20; Fácil = beginner + selection, Media = intermediate + mixed, Difícil = advanced + written. No mostrar selectores de formato, cantidad, dificultad variada, opciones avanzadas ni personalización; autoestudio no cambia.
 - Deshabilita combinaciones de juego sin ejercicios suficientes y explica alternativas sin revelar conteos del banco.
+- Cada materia tiene una identidad temática distinguible que no depende únicamente del color: Inglés usa la Union Jack, Matemáticas símbolos de operaciones; para una futura Lengua, libro/escritura sin bandera británica. Tarjetas derivadas del catálogo, con icono neutral de reserva y arte opcional por mundo.
 - Portada: integrar header e ilustración, corregir `object-position` según viewport y evitar hueco antes del footer; mantener WebP existentes.
 - Master: si existe `docs/MASTER_REQUIREMENTS.md`, úsalo selectivamente sin duplicarlo.
 - Desarrollo experimental: implementar solo el hito solicitado; no añadir arquitectura especulativa.

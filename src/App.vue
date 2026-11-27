@@ -12,7 +12,7 @@ import { useThemePreference } from './presentation/theme-preference'
 const { activeTheme, themes, focusMode } = useThemePreference()
 const currentTheme = computed(() => themes.find((theme) => theme.id === activeTheme.value) ?? themes[0])
 const route = useRoute()
-const activeScene = computed(() => route.name === 'play' ? 'game' : route.name === 'results' ? 'victory' : route.name === 'choose-challenge' && route.query.experience !== 'study' ? 'setup' : null)
+const activeScene = computed(() => route.name === 'home' ? 'hero' : route.name === 'play' ? 'game' : route.name === 'results' ? 'victory' : route.name === 'choose-challenge' && route.query.experience !== 'study' ? 'setup' : null)
 const currentYear = new Date().getFullYear()
 const copyrightDate = `${currentYear}-01-01`
 
@@ -26,7 +26,7 @@ const brandLogoUrl = computed(() => activeScene.value && !focusMode.value
     class="app-shell"
     :data-theme="activeTheme"
     :data-focus="focusMode"
-    :class="{ 'is-immersive': activeScene && !focusMode, 'is-victory': activeScene === 'victory', 'is-play': activeScene === 'game', 'is-setup': activeScene === 'setup' }"
+    :class="{ 'is-immersive': activeScene && !focusMode, 'is-victory': activeScene === 'victory', 'is-play': activeScene === 'game', 'is-setup': activeScene === 'setup', 'is-home': activeScene === 'hero' }"
   >
     <EpicBackdrop
       v-if="activeScene && !focusMode"

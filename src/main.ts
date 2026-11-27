@@ -6,6 +6,7 @@ import './styles.css'
 import './epic-experience.css'
 import './epic-chrome.css'
 import './wizard.css'
+import './home-world.css'
 
 await initializeTheme()
 
