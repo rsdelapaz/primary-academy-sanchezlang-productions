@@ -81,7 +81,6 @@
   border: 1px solid var(--color-border);
 }
 .is-immersive .app-footer { color: #e0e9f4; background: #091020d9; border-color: transparent; }
-.is-immersive .app-footer summary { color: #e0e9f4; }
 .is-immersive .game-feel-toast, [data-focus="true"] .game-feel-toast { display: none; }
 
 /* One compact HUD, not a dashboard made of unrelated cards. */

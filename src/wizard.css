@@ -39,7 +39,12 @@
   flex: 0 0 28px;
   border-radius: 50%;
   border: 1px solid currentColor;
-  font-variant-numeric: tabular-nums;
+}
+/* Vector glyphs stay centered without relying on platform font metrics. */
+.wizard-step-number svg {
+  display: block;
+  width: 78%;
+  height: 78%;
 }
 .wizard-stepper li.current .wizard-step-number { color: var(--color-on-primary); background: var(--color-primary); font-weight: 900; }
 .wizard-panel { padding: 12px 0; display: grid; gap: 16px; }

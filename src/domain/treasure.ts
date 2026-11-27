@@ -27,6 +27,13 @@ export function getTreasureCost(treasureId: TreasureId, questionCount: number): 
   return questionCount - firstCost - secondCost
 }
 
+/** Affordable, unopened chests; the same rule drives the route and feedback offer. */
+export function getAvailableTreasureIds(state: TreasureModeState, questionCount: number): TreasureId[] {
+  return TREASURE_CHESTS.slice(0, Math.min(TREASURE_CHESTS.length, questionCount))
+    .filter(({ id }) => !state.openedTreasures.includes(id) && state.keysAvailable >= getTreasureCost(id, questionCount))
+    .map(({ id }) => id)
+}
+
 export function openTreasure(session: GameSession, treasureId: TreasureId): GameSession {
   const modeState = session.modeState
   if (modeState.modeId !== 'treasure') throw new Error('Esta partida no tiene cofres del tesoro.')

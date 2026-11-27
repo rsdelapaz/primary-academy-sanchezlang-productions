@@ -77,3 +77,29 @@ Estado: implementación técnica y smoke tests completados; pendiente aceptació
 - Favicon: adaptación del escudo R dorado aprobado a `public/favicon.ico`, optimizado para pestañas (16, 24, 32, 48, 64 px, 7,1 KiB). Se conserva el título y la referencia HTML existente.
 - Verificación: typecheck, ESLint focalizado, seis pruebas de metadatos de materias, build y presupuesto ampliado para incluir la suma real de las tarjetas, favicon, CSS de mundo e iconos. Transferencia inicial estimada 337,3 KiB (límite 350 KiB); no hay nuevas dependencias ni cambios de dominio o contenidos. Smoke tests Chromium 320/390/768/1280/1672 px, ambos mundos, Focus, menú, colección, autoestudio y navegación a configuración/partida. Pendiente validación en dispositivos físicos y aceptación de dirección.
 - Prueba adicional del catálogo: se simularon Lengua y Ciencias naturales exclusivamente mediante interceptación de la respuesta HTTP del manifiesto en Chromium. Cuatro tarjetas, fallback vectorial y rejilla sin desbordamiento horizontal comprobados a 320 y 1672 px; el manifiesto de producción no se modificó.
+
+## PA-019 — Cuaderno de estudio premium (27/11/2026)
+
+**Decisión de dirección:** el autoestudio debe ser una experiencia académica tranquila y diferenciada del juego, con la misma identidad RetoNautas. Sin escenarios raster, temporizadores, puntajes ni animaciones decorativas.
+
+- Preparación en una pantalla: materias semánticas derivadas del catálogo (Union Jack, operaciones y fallback neutro), tema cuando hay varios, 5/10/20 tarjetas y CTA único. Por defecto todos los niveles y 10 tarjetas cuando hay contenido suficiente; selección de nivel y cantidad personalizada plegadas. Se conservan validaciones de disponibilidad.
+- Tarjetas de memoria de lectura: papel claro, pregunta conservada al descubrir la respuesta y explicación del contenido original, controles «Necesito repasar»/«Lo sabía» y foco lógico. Las acciones permanecen visibles en móvil/tablet incluso con contenido largo. Galaxy, Pop Adventure y Focus siguen siendo independientes de la sesión.
+- El progreso cuenta tarjetas autoevaluadas únicas. Una tarjeta no recordada queda inmediatamente «Para repasar», una no evaluada «Sin revisar». Se mantiene el límite de tres presentaciones por tarjeta en la ronda; terminar antes no marca lo no revisado como revisado.
+- El resumen ofrece repaso exacto de las tarjetas no recordadas o no revisadas, preservando contenido y versión. Nueva sesión vuelve a seleccionar del banco con la configuración original, incluso tras repasar un subconjunto. Sin persistencia ni repetición espaciada entre días (fuera de este hito).
+- Validación: typecheck, 10 pruebas focalizadas, ESLint focalizado, build, presupuesto inicial 337,8 KiB (límite 350 KiB), smoke tests Chromium en ambos mundos y Focus, escritorio 1440 px, tablet 768 px, móviles 320/390 px; incluyendo pregunta, respuesta, calificación, cierre temprano, selección exacta y nueva sesión. Pendiente aceptación en dispositivos físicos. No se han modificado bancos de preguntas ni dependencias.
+
+## PA-020 — Misión del Tesoro: ruta, cámara y colección (27/11/2026)
+
+- Se conserva la lógica de llaves, costes, puntuación, identificadores de tesoros y colecciones locales. No hay azar, compras, vidas ni tareas adicionales para conseguir recompensas.
+- Ruta ilustrada durante la partida y en resultados; tres estados legibles (faltan llaves, disponible y conseguido). La acción «Abrir cofres» está accesible desde la barra de respuesta fija, también en móvil.
+- Cámara compartida: seleccionar el cofre, conocer su coste, guardar llaves y seguir; escena de descubrimiento con cofre abierto, reliquia protagonista, progreso real y acceso a la misma colección. Distingue una adquisición nueva de una ya guardada.
+- La colección de portada y resultados comparte las tarjetas con la galería de la revelación. Las reliquias no descubiertas son reconocibles; se conserva la insignia de misión perfecta.
+- Avance automático: concede una pausa de elección al desbloquear un cofre por primera vez en la sesión; no interrumpe de nuevo por una oferta que ya se mostró. Los diálogos suspenden el temporizador. El niño puede continuar sin abrir cofres.
+- Diez ilustraciones originales generadas para RetoNautas, aisladas y comprimidas a WebP transparente (448 × 448, 465 366 bytes entre los dos mundos). Solo se solicita el mundo activo y Focus mantiene los SVG sin descargar las ilustraciones. Respeta reducción de movimiento, sin vídeo ni dependencias nuevas.
+- Validación: `npm run check` completo, 118 pruebas, 2 paquetes/1384 ejercicios válidos, frontera de dominio y presupuesto inicial de 342,1 KiB (máximo 350 KiB). Pruebas Chromium de portada/colección, apertura durante el juego y resultados, avance automático, navegación y Focus; Galaxy y Pop Adventure a 1440, 768, 390 y 320 px en las combinaciones probadas. Pendiente validación en Safari/iPad y dispositivos físicos por dirección. Los minijuegos quedan fuera de este hito hasta observar la recepción del modo actual.
+
+### PA-020 — Acabado editorial de créditos (27/11/2026)
+
+- Sustituye la expansión del pie de página por un diálogo nativo temático: escudo propio, identidad de RetoNautas, producción, proyecto educativo y atribución artística. Focus mantiene la versión simple. Reutiliza el arte vectorial existente, sin recursos raster nuevos.
+- El cierre devuelve el foco al botón que lo abrió; Escape también cierra. Abrir los créditos cancela el inicio automático del wizard y suspende el avance automático cuando hay una partida activa; no modifica su contenido ni puntuación.
+- Verificación: typecheck, ESLint de archivos modificados, 12 pruebas de avance automático, build y presupuesto inicial (344,0 KiB / 350 KiB); diálogo inspeccionado en ambos mundos, 1440/768/390/320 px y Focus, cierre por teclado y botón. Se reserva espacio al final de las pantallas con barras de acción fijas para que estas no oculten el acceso a créditos.

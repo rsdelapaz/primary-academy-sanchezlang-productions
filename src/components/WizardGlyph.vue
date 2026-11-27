@@ -174,6 +174,110 @@ const ring = `${id}-ring`
         fill="#fff2c3"
       />
     </g>
+    <!-- Difficulty is a climb: a gentle hill, a rocky ascent, a high summit.
+         The silhouettes and summit heights communicate the challenge without
+         relying on colour or implying a time limit. -->
+    <g v-else-if="props.kind === 'difficulty'">
+      <g
+        v-if="props.level === 1"
+        class="difficulty-hill"
+      >
+        <path
+          d="M18 84Q38 79 55 64Q70 51 90 51Q111 51 128 68L162 84Z"
+          :fill="`url(#${energy})`"
+          :stroke="`url(#${gold})`"
+          stroke-width="2.5"
+          stroke-linejoin="round"
+        />
+        <path
+          d="M18 84Q38 79 55 64Q70 51 90 51Q79 61 74 71L65 84Z"
+          fill="#fff"
+          opacity=".25"
+        />
+        <path
+          d="M43 82Q72 75 90 53"
+          fill="none"
+          stroke="#ffedb1"
+          stroke-width="3"
+          stroke-linecap="round"
+        />
+      </g>
+      <g v-else-if="props.level === 2">
+        <path
+          d="M18 84L48 59L62 67L91 36L119 65L137 57L162 84Z"
+          :fill="`url(#${energy})`"
+          :stroke="`url(#${gold})`"
+          stroke-width="2.5"
+          stroke-linejoin="round"
+        />
+        <path
+          d="M62 67L91 36L80 64L89 70L75 84H48Z"
+          fill="#fff"
+          opacity=".25"
+        />
+        <path
+          d="M91 36L119 65L137 57L162 84H121L100 65Z"
+          fill="#061426"
+          opacity=".24"
+        />
+        <path
+          d="M40 82L77 72L65 66L91 38"
+          fill="none"
+          stroke="#ffedb1"
+          stroke-width="3"
+          stroke-linecap="round"
+          stroke-linejoin="round"
+        />
+      </g>
+      <g v-else>
+        <path
+          d="M17 84L40 58L52 64L90 19L117 52L131 43L163 84Z"
+          :fill="`url(#${energy})`"
+          :stroke="`url(#${gold})`"
+          stroke-width="2.5"
+          stroke-linejoin="round"
+        />
+        <path
+          d="M52 64L90 19L74 51L88 56L73 84H39Z"
+          fill="#fff"
+          opacity=".28"
+        />
+        <path
+          d="M90 19L117 52L131 43L163 84H113L104 65L90 49Z"
+          fill="#061426"
+          opacity=".26"
+        />
+        <path
+          d="M76 36L90 19L104 36L95 31L88 39L83 32Z"
+          fill="#fff6d5"
+          opacity=".92"
+        />
+        <path
+          d="M37 82L83 72L62 64L98 53L80 45L90 22"
+          fill="none"
+          stroke="#ffedb1"
+          stroke-width="3"
+          stroke-linecap="round"
+          stroke-linejoin="round"
+        />
+      </g>
+      <g :transform="`translate(${props.level === 2 ? 91 : 90} ${props.level === 1 ? 51 : props.level === 2 ? 36 : 19})`">
+        <path
+          d="M0 0V-17"
+          fill="none"
+          stroke="#fff2b4"
+          stroke-width="2.8"
+          stroke-linecap="round"
+        />
+        <path
+          d="M0-17H20L15-11L20-5H0Z"
+          :fill="`url(#${gold})`"
+          stroke="#fff3ca"
+          stroke-width="1"
+          stroke-linejoin="round"
+        />
+      </g>
+    </g>
     <g v-else>
       <g
         v-for="index in props.kind === 'mode' ? 1 : props.level"

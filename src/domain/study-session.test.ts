@@ -7,6 +7,7 @@ import {
   getStudyStats,
   rateStudyCard,
   restartStudySession,
+  reviewPendingStudySession,
   revealStudyCard,
 } from './study-session'
 
@@ -105,6 +106,7 @@ describe('sesiones de autoestudio', () => {
     const remainingId = session.queue[1]
 
     session = revealAndRate(session, false)
+    expect(getStudyStats(session)).toMatchObject({ rememberedCount: 0, pendingCount: 1, unreviewedCount: 1, progressPercent: 50 })
     expect(getCurrentStudyCard(session)?.exercise.id).toBe(remainingId)
     session = revealAndRate(session, true)
     expect(getCurrentStudyCard(session)?.exercise.id).toBe(firstId)
@@ -125,9 +127,10 @@ describe('sesiones de autoestudio', () => {
     expect(completed.endedEarly).toBe(true)
     expect(getStudyStats(completed)).toMatchObject({
       rememberedCount: 0,
-      pendingCount: 3,
-      completedCount: 3,
-      progressPercent: 100,
+      pendingCount: 0,
+      unreviewedCount: 3,
+      completedCount: 0,
+      progressPercent: 0,
     })
     expect(() => revealStudyCard(completed)).toThrow(/ya ha terminado/)
 
@@ -142,6 +145,40 @@ describe('sesiones de autoestudio', () => {
     expect(restarted.status).toBe('active')
     expect(restarted.cards.every(({ outcome, presentations }) => outcome === null && presentations <= 1)).toBe(true)
     expect(restarted.repetitionCount).toBe(0)
+  })
+
+  it('repasa exactamente las no recordadas y las no revisadas, sin modificar la sesión anterior', () => {
+    let session = createStudy(4)
+    const remembered = session.currentCardId
+    session = revealAndRate(session, true)
+    session = revealAndRate(session, false)
+    expect(() => reviewPendingStudySession(session, 'pending')).toThrow(/Termina/)
+    session = finishStudySession(session)
+    const previous = JSON.stringify(session)
+    expect(getStudyStats(session)).toMatchObject({
+      rememberedCount: 1, pendingCount: 1, unreviewedCount: 2, progressPercent: 50,
+    })
+    const retry = reviewPendingStudySession(session, 'pending', () => 0.6)
+    expect(retry.cards.map(({ exercise }) => exercise.id).sort()).toEqual(
+      session.cards.map(({ exercise }) => exercise.id).filter((id) => id !== remembered).sort(),
+    )
+    expect(retry.configuration.duration).toEqual({ kind: 'custom', questionCount: 3 })
+    expect(retry.contentVersion).toBe(session.contentVersion)
+    expect(getStudyStats(retry)).toMatchObject({ unreviewedCount: 3, progressPercent: 0 })
+    expect(JSON.stringify(session)).toBe(previous)
+    const retryCompleted = finishStudySession(retry)
+    const fresh = restartStudySession(retryCompleted, flashcards, 'new-session', () => 0.6)
+    expect(fresh.configuration).toEqual(session.configuration)
+    expect(fresh.cards).toHaveLength(4)
+  })
+
+  it('actualiza la última autoevaluación sin contar una tarjeta dos veces', () => {
+    let session = createStudy(1)
+    session = revealAndRate(session, false)
+    expect(getStudyStats(session)).toMatchObject({ pendingCount: 1, completedCount: 1, progressPercent: 100 })
+    session = revealAndRate(session, true)
+    expect(getStudyStats(session)).toMatchObject({ rememberedCount: 1, pendingCount: 0, completedCount: 1 })
+    expect(() => reviewPendingStudySession(session, 'empty')).toThrow(/No quedan/)
   })
 
   it('rechaza duración fuera del banco, IDs duplicados y aleatoriedad inválida', () => {

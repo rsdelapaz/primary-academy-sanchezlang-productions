@@ -4,6 +4,7 @@ import {
   finishStudySession,
   rateStudyCard,
   restartStudySession,
+  reviewPendingStudySession,
   revealStudyCard,
   type StudySession,
 } from '../domain/study-session'
@@ -53,6 +54,11 @@ export function restartActiveStudy(flashcards: readonly FlashcardExercise[]): St
   const next = restartStudySession(session, flashcards, crypto.randomUUID())
   studySession.value = next
   return next
+}
+
+export function reviewPendingActiveStudy(): StudySession {
+  studySession.value = reviewPendingStudySession(requireStudySession(), crypto.randomUUID())
+  return studySession.value
 }
 
 function requireStudySession(): StudySession {

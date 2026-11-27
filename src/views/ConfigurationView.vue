@@ -1,10 +1,13 @@
 <script setup lang="ts">
+import '../study-experience.css'
 import { computed, nextTick, onBeforeUnmount, onMounted, ref, shallowRef, watch } from 'vue'
 import { onBeforeRouteLeave, RouterLink, useRoute, useRouter } from 'vue-router'
+import SubjectGlyph from '../components/SubjectGlyph.vue'
 import WizardChoiceCard from '../components/WizardChoiceCard.vue'
 import WizardGlyph from '../components/WizardGlyph.vue'
 import { getModeCardPresentation } from '../presentation/mode-card'
 import { createAutoAdvance, type AutoAdvanceState } from '../presentation/auto-advance'
+import { creditsOpen } from '../presentation/credits-visibility'
 import { useThemePreference } from '../presentation/theme-preference'
 import {
   isFlashcardExercise,
@@ -51,7 +54,7 @@ const subjectId = ref('')
 const topicId = ref('')
 const experience = ref<Experience>('play')
 const modeId = ref<GameModeId | null>(null)
-const difficulty = ref<DifficultyFilter>('intermediate')
+const difficulty = ref<DifficultyFilter>('all')
 const duration = ref<DurationPreset | 'custom'>('medium')
 const customCount = ref(QUICK_PLAY_COUNT)
 const setupStep = ref<1 | 2 | 3>(1)
@@ -70,7 +73,7 @@ const countdownRunning = computed(() => startCountdown.value.status === 'running
 const startController = createAutoAdvance({
   onTick: (state) => { startCountdown.value = state },
   onAdvance: () => {
-    if (globalThis.document.visibilityState === 'visible' && route.name === 'choose-challenge' && canStart.value) void begin()
+    if (!creditsOpen.value && globalThis.document.visibilityState === 'visible' && route.name === 'choose-challenge' && canStart.value) void begin()
   },
 })
 const setupSteps = ['Modalidad', 'Duración', 'Dificultad'] as const
@@ -103,11 +106,11 @@ function handleChromeInteraction(event: InstanceType<typeof globalThis.PointerEv
   if (countdownRunning.value && event.target instanceof globalThis.Element && event.target.closest('.topbar')) cancelAutoStart()
 }
 
-const difficultyOptions: { id: DifficultyFilter; title: string; description: string }[] = [
-  { id: 'beginner', title: 'Fácil', description: 'Para entrar en ritmo.' },
-  { id: 'intermediate', title: 'Normal', description: 'Un reto equilibrado.' },
-  { id: 'advanced', title: 'Difícil', description: 'Para poner a prueba tus ideas.' },
-  { id: 'all', title: 'Variada', description: 'Preguntas de varios niveles.' },
+const difficultyOptions: { id: DifficultyFilter; title: string }[] = [
+  { id: 'all', title: 'Todos los niveles' },
+  { id: 'beginner', title: 'Fácil' },
+  { id: 'intermediate', title: 'Media' },
+  { id: 'advanced', title: 'Difícil' },
 ]
 const quickDurationOptions: { id: DurationPreset; title: string; description: string; level: number }[] = [
   { id: 'short', title: 'Corta', description: 'Una partida rápida.', level: 1 },
@@ -121,8 +124,8 @@ const quickDifficultyOptions: {
   level: number
 }[] = [
   { id: 'easy', title: 'Fácil', description: 'Para empezar.', level: 1 },
-  { id: 'medium', title: 'Media', description: 'Reto medio.', level: 2 },
-  { id: 'hard', title: 'Difícil', description: 'Para expertos.', level: 3 },
+  { id: 'medium', title: 'Media', description: 'Un reto mayor.', level: 2 },
+  { id: 'hard', title: 'Difícil', description: 'Un gran desafío.', level: 3 },
 ]
 
 const selectedSubject = computed(() => manifest.value?.subjects.find(({ id }) => id === subjectId.value) ?? null)
@@ -132,12 +135,12 @@ const isLoading = computed(() => loadingCatalog.value || loadingBank.value)
 const flashcardExercises = computed(() => content.value?.exercises.filter(isFlashcardExercise) ?? [])
 const availableCount = computed(() => getEligibleExercises(flashcardExercises.value, difficulty.value).length)
 const selectedCount = computed(() => duration.value === 'custom' ? customCount.value : getPresetCount(duration.value))
-const activityNoun = computed(() => 'tarjetas')
+const studyLevelLabel = computed(() => difficultyOptions.find(({ id }) => id === difficulty.value)?.title)
 const configurationMessage = computed(() => {
   if (isLoading.value || experience.value !== 'study') return ''
   return isStudyDurationAvailable(selectedCount.value)
     ? ''
-    : 'No hay suficientes tarjetas para esta combinación. Prueba con menos preguntas o dificultad variada.'
+    : 'No hay suficientes tarjetas para esta combinación. Elige menos tarjetas o todos los niveles.'
 })
 const wizardMessage = computed(() => {
   if (isLoading.value || experience.value !== 'play') return ''
@@ -232,10 +235,7 @@ function isModeAvailable(mode: GameModeId): boolean {
 
 function applyStudyDefaults() {
   if (experience.value !== 'study') return
-  const levels: DifficultyFilter[] = ['intermediate', 'beginner', 'all', 'advanced']
-  difficulty.value = levels.find((level) =>
-    getEligibleExercises(flashcardExercises.value, level).length > 0,
-  ) ?? 'all'
+  difficulty.value = 'all'
 
   const preferredDuration = DURATION_PRESETS.find(({ id }) =>
     id === 'medium' && isStudyDurationAvailable(10),
@@ -360,6 +360,15 @@ function goToPreviousSetupStep() {
 function selectStudyDifficulty(value: DifficultyFilter) {
   if (!isStudyDifficultyAvailable(value)) return
   difficulty.value = value
+  if (!isStudyDurationAvailable(selectedCount.value)) {
+    const fallback = [...DURATION_PRESETS].reverse().find(({ count }) => count <= availableCount.value && count <= selectedCount.value)
+      ?? DURATION_PRESETS.find(({ count }) => count <= availableCount.value)
+    if (fallback) duration.value = fallback.id
+    else {
+      duration.value = 'custom'
+      customCount.value = Math.max(1, Math.min(QUICK_PLAY_COUNT, availableCount.value))
+    }
+  }
 }
 
 function selectStudyDuration(value: DurationPreset | 'custom') {
@@ -445,6 +454,7 @@ watch(setupStep, () => {
   })
 })
 watch([activeTheme, focusMode, autoAdvance, () => route.fullPath], cancelAutoStart)
+watch(creditsOpen, (open) => { if (open) cancelAutoStart() })
 watch(canStart, (available) => { if (!available) cancelAutoStart() })
 onBeforeRouteLeave(() => { cancelAutoStart() })
 onMounted(() => {
@@ -464,14 +474,14 @@ onBeforeUnmount(() => {
 <template>
   <section
     class="screen configuration-screen"
-    :class="{ 'wizard-screen': experience === 'play', 'wizard-final-step': experience === 'play' && setupStep === 3 }"
+    :class="{ 'study-setup': experience === 'study', 'wizard-screen': experience === 'play', 'wizard-final-step': experience === 'play' && setupStep === 3 }"
     aria-labelledby="configuration-title"
   >
     <RouterLink
       class="back-link"
       :to="{ name: 'home' }"
     >
-      ← Volver a materias
+      {{ experience === 'study' ? '← Inicio' : '← Volver a materias' }}
     </RouterLink>
 
     <p
@@ -501,13 +511,22 @@ onBeforeUnmount(() => {
           v-if="experience === 'study'"
           class="eyebrow"
         >
-          Autoestudio
+          Cuaderno de estudio
         </p>
         <h1 id="configuration-title">
           {{ experience === 'study' ? '¿Qué vas a estudiar?' : '¿Cómo jugamos?' }}
         </h1>
-        <p class="configuration-topic">
-          {{ experience === 'play' ? selectedSubject.title + ' · ' : '' }}{{ selectedTopic.title }}
+        <p
+          v-if="experience === 'play'"
+          class="configuration-topic"
+        >
+          {{ selectedSubject.title }} · {{ selectedTopic.title }}
+        </p>
+        <p
+          v-else
+          class="study-subtitle"
+        >
+          Entrena tu memoria a tu ritmo, sin puntos ni cronómetro.
         </p>
       </header>
 
@@ -516,25 +535,35 @@ onBeforeUnmount(() => {
         @submit.prevent="begin"
       >
         <section
-          v-if="experience === 'study' && manifest && manifest.subjects.length > 1"
+          v-if="experience === 'study' && manifest"
           class="configuration-section"
           aria-labelledby="study-subject-title"
         >
           <h2 id="study-subject-title">
             Materia
           </h2>
-          <div class="setup-card-grid setup-card-grid--subjects">
+          <div class="study-subjects">
             <button
               v-for="subject in manifest.subjects"
               :key="subject.id"
-              class="configuration-card"
+              class="configuration-card study-subject"
               :class="{ active: subjectId === subject.id }"
               type="button"
               :aria-pressed="subjectId === subject.id"
               :disabled="loadingBank"
               @click="selectSubject(subject)"
             >
-              {{ subject.title }}
+              <SubjectGlyph :subject-id="subject.id" />
+              <span>
+                <strong>{{ subject.title }}</strong>
+                <small v-if="subject.topics.length === 1">{{ subject.topics[0].title }}</small>
+                <small v-else>Elige un tema</small>
+              </span>
+              <span
+                v-if="subjectId === subject.id"
+                class="study-selected-mark"
+                aria-hidden="true"
+              >✓</span>
             </button>
           </div>
         </section>
@@ -575,7 +604,47 @@ onBeforeUnmount(() => {
                 :class="{ current: setupStep === index + 1, completed: setupStep > index + 1 }"
                 :aria-current="setupStep === index + 1 ? 'step' : undefined"
               >
-                <span class="wizard-step-number">{{ setupStep > index + 1 ? '✓' : index + 1 }}</span>
+                <span
+                  class="wizard-step-number"
+                  aria-hidden="true"
+                >
+                  <svg
+                    viewBox="0 0 20 20"
+                    fill="none"
+                    stroke="currentColor"
+                    stroke-width="2.6"
+                    stroke-linecap="round"
+                    stroke-linejoin="round"
+                    focusable="false"
+                  >
+                    <path
+                      v-if="setupStep > index + 1"
+                      d="M4.5 10.1 8 13.6 15.5 6.4"
+                    />
+                    <path
+                      v-else-if="index === 0"
+                      d="M6.5 6.5 10 3.5V16.5M6.5 16.5h7"
+                    />
+                    <path
+                      v-else-if="index === 1"
+                      d="M5.5 6.7C5.5 4.7 7.3 3.5 10 3.5s4.5 1.3 4.5 3.6c0 3.4-5.6 5-9 9.4h9"
+                    />
+                    <path
+                      v-else-if="index === 2"
+                      d="M5.5 5.1C6.9 3.8 8.2 3.5 10 3.5c2.7 0 4.5 1.4 4.5 3.5 0 1.8-1.6 3-3.7 3 2.1 0 3.7 1.1 3.7 3.1 0 2.1-1.8 3.4-4.5 3.4-2.1 0-3.5-.7-4.5-1.8"
+                    />
+                    <text
+                      v-else
+                      x="10"
+                      y="10"
+                      text-anchor="middle"
+                      dominant-baseline="central"
+                      fill="currentColor"
+                      stroke="none"
+                    >{{ index + 1 }}</text>
+                  </svg>
+                </span>
+                <span class="sr-only">Paso {{ index + 1 }}{{ setupStep > index + 1 ? ', completado' : '' }}: </span>
                 <span>{{ label }}</span>
               </li>
             </ol>
@@ -745,38 +814,10 @@ onBeforeUnmount(() => {
         <template v-else>
           <section
             class="configuration-section"
-            aria-labelledby="study-difficulty-title"
-          >
-            <h2 id="study-difficulty-title">
-              Dificultad
-            </h2>
-            <div
-              class="setup-card-grid setup-card-grid--four"
-              role="group"
-              aria-label="Elige la dificultad"
-            >
-              <button
-                v-for="option in difficultyOptions"
-                :key="option.id"
-                class="configuration-card difficulty-choice"
-                :class="{ active: difficulty === option.id }"
-                type="button"
-                :aria-pressed="difficulty === option.id"
-                :disabled="loadingBank || !isStudyDifficultyAvailable(option.id)"
-                @click="selectStudyDifficulty(option.id)"
-              >
-                <strong>{{ option.title }}</strong>
-                <small>{{ option.description }}</small>
-              </button>
-            </div>
-          </section>
-
-          <section
-            class="configuration-section"
             aria-labelledby="study-duration-title"
           >
             <h2 id="study-duration-title">
-              Número de preguntas
+              ¿Cuántas tarjetas?
             </h2>
             <div
               class="setup-card-grid setup-card-grid--three"
@@ -794,21 +835,44 @@ onBeforeUnmount(() => {
                 @click="selectStudyDuration(preset.id)"
               >
                 <strong>{{ preset.count }}</strong>
-                <small>Preguntas</small>
+                <small>Tarjetas</small>
               </button>
             </div>
           </section>
 
-          <details class="advanced-options">
+          <details class="study-settings">
             <summary>
-              Más opciones
+              <span>Ajustar nivel y cantidad</span>
+              <small>{{ studyLevelLabel }} · {{ selectedCount }} tarjetas</small>
             </summary>
-            <div class="advanced-options-content">
+            <div class="study-settings-body">
+              <p class="field-label">
+                Nivel de estudio
+              </p>
+              <div
+                class="study-levels"
+                role="group"
+                aria-label="Nivel de estudio"
+              >
+                <button
+                  v-for="option in difficultyOptions"
+                  :key="option.id"
+                  class="configuration-card"
+                  :class="{ active: difficulty === option.id }"
+                  type="button"
+                  :aria-pressed="difficulty === option.id"
+                  :disabled="loadingBank || !isStudyDifficultyAvailable(option.id)"
+                  @click="selectStudyDifficulty(option.id)"
+                >
+                  {{ option.title }}
+                </button>
+              </div>
               <button
                 class="configuration-card custom-count-choice"
                 :class="{ active: duration === 'custom' }"
                 type="button"
                 :aria-pressed="duration === 'custom'"
+                :disabled="availableCount === 0"
                 @click="selectStudyDuration('custom')"
               >
                 Cantidad personalizada
@@ -816,20 +880,18 @@ onBeforeUnmount(() => {
               <label
                 v-if="duration === 'custom'"
                 class="field-label"
-                for="custom-count"
               >
-                Número de {{ activityNoun }}
+                Número de tarjetas
+                <input
+                  v-model.number="customCount"
+                  class="select-control"
+                  type="number"
+                  min="1"
+                  :max="availableCount"
+                  step="1"
+                  inputmode="numeric"
+                >
               </label>
-              <input
-                v-if="duration === 'custom'"
-                id="custom-count"
-                v-model.number="customCount"
-                class="select-control"
-                type="number"
-                min="1"
-                step="1"
-                inputmode="numeric"
-              >
             </div>
           </details>
 
@@ -841,13 +903,13 @@ onBeforeUnmount(() => {
             {{ configurationMessage }}
           </p>
 
-          <div class="configuration-action-bar">
+          <div class="study-setup-action">
             <button
-              class="button primary start-game"
+              class="button primary"
               type="submit"
-              :disabled="!canStart"
+              :disabled="!canStart || starting"
             >
-              ¡ESTUDIAR!
+              Empezar a estudiar →
             </button>
           </div>
         </template>

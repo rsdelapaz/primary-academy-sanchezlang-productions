@@ -26,6 +26,7 @@ export type GameFeelEvent =
 export interface TreasureRewardScene {
   id: number
   treasureId: TreasureId
+  isNew: boolean
 }
 
 export const gameFeelEvent = shallowRef<GameFeelEvent | null>(null)
@@ -64,8 +65,8 @@ export function announceGameFinished(result: {
   playSoundEffect('finish')
 }
 
-export function announceTreasureOpened(treasureId: TreasureId): void {
-  treasureRewardScene.value = { id: ++eventId, treasureId }
+export function announceTreasureOpened(treasureId: TreasureId, isNew: boolean): void {
+  treasureRewardScene.value = { id: ++eventId, treasureId, isNew }
   playSoundEffect('chest')
 }
 
