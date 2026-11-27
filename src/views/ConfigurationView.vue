@@ -604,7 +604,47 @@ onBeforeUnmount(() => {
                 :class="{ current: setupStep === index + 1, completed: setupStep > index + 1 }"
                 :aria-current="setupStep === index + 1 ? 'step' : undefined"
               >
-                <span class="wizard-step-number">{{ setupStep > index + 1 ? '✓' : index + 1 }}</span>
+                <span
+                  class="wizard-step-number"
+                  aria-hidden="true"
+                >
+                  <svg
+                    viewBox="0 0 20 20"
+                    fill="none"
+                    stroke="currentColor"
+                    stroke-width="2.6"
+                    stroke-linecap="round"
+                    stroke-linejoin="round"
+                    focusable="false"
+                  >
+                    <path
+                      v-if="setupStep > index + 1"
+                      d="M4.5 10.1 8 13.6 15.5 6.4"
+                    />
+                    <path
+                      v-else-if="index === 0"
+                      d="M6.5 6.5 10 3.5V16.5M6.5 16.5h7"
+                    />
+                    <path
+                      v-else-if="index === 1"
+                      d="M5.5 6.7C5.5 4.7 7.3 3.5 10 3.5s4.5 1.3 4.5 3.6c0 3.4-5.6 5-9 9.4h9"
+                    />
+                    <path
+                      v-else-if="index === 2"
+                      d="M5.5 5.1C6.9 3.8 8.2 3.5 10 3.5c2.7 0 4.5 1.4 4.5 3.5 0 1.8-1.6 3-3.7 3 2.1 0 3.7 1.1 3.7 3.1 0 2.1-1.8 3.4-4.5 3.4-2.1 0-3.5-.7-4.5-1.8"
+                    />
+                    <text
+                      v-else
+                      x="10"
+                      y="10"
+                      text-anchor="middle"
+                      dominant-baseline="central"
+                      fill="currentColor"
+                      stroke="none"
+                    >{{ index + 1 }}</text>
+                  </svg>
+                </span>
+                <span class="sr-only">Paso {{ index + 1 }}{{ setupStep > index + 1 ? ', completado' : '' }}: </span>
                 <span>{{ label }}</span>
               </li>
             </ol>
