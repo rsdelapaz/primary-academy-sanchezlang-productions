@@ -1,5 +1,13 @@
 # Estado de implementación
 
+## PA-016 — Fluidez de partida (mobile first)
+
+- Manual por defecto; avance automático opcional al elegir dificultad; se conserva al repetir partida.
+- CTA fijo al responder (incluido «Ver resultados» en la última pregunta), con zona segura y sin reducir la altura de las respuestas. Las explicaciones largas pueden consultarse de forma voluntaria.
+- Autoavance tras 3 s de acierto o 8 s de error; pausa al leer la explicación, ocultar la página, confirmar salida o disponer de cofres. Se puede adelantar manualmente o reanudar cuando corresponda.
+- Controlador de temporización independiente de Vue y del dominio; se cancela al salir o cambiar de pregunta. Sin cambios de puntuación, contenido, reglas o dependencias.
+- Verificación: `npm run check` (86 pruebas, 2 paquetes y 1384 ejercicios, presupuesto de bundle cumplido). Pendiente aceptación en dispositivos físicos por dirección.
+
 ## PA-011C — Usabilidad y dirección artística
 
 Estado: implementación técnica y smoke tests completados; pendiente aceptación visual del director. No declarar aprobado hasta recibirla.

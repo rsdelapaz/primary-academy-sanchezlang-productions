@@ -1,6 +1,7 @@
 <script setup lang="ts">
-import { computed, onMounted, ref, watch } from 'vue'
-import { RouterLink, useRoute, useRouter } from 'vue-router'
+import { computed, nextTick, onBeforeUnmount, onMounted, ref, watch } from 'vue'
+import { onBeforeRouteLeave, RouterLink, useRoute, useRouter } from 'vue-router'
+import GameAdvanceBar from '../components/GameAdvanceBar.vue'
 import TreasureBoard from '../components/TreasureBoard.vue'
 import TypedAnswerInput from '../components/TypedAnswerInput.vue'
 import UniverseArtwork from '../components/UniverseArtwork.vue'
@@ -10,8 +11,8 @@ import {
   type GameAnswerResponse,
   type SessionAnswer,
 } from '../domain/game'
-import type { TreasureId } from '../domain/treasure'
-import { abandonActiveGame, advanceActiveQuestion, answerActiveQuestion, gameSession, openActiveTreasure } from '../presentation/game-session'
+import { getTreasureCost, TREASURE_CHESTS, type TreasureId } from '../domain/treasure'
+import { abandonActiveGame, advanceActiveQuestion, answerActiveQuestion, gameAutoAdvanceEnabled, gameSession, openActiveTreasure } from '../presentation/game-session'
 import {
   announceGameAnswer,
   announceGameFinished,
@@ -20,14 +21,24 @@ import {
 } from '../presentation/game-feel'
 import { getQuestionHistoryKey } from '../application/question-selection'
 import { questionHistoryStore } from '../presentation/question-history-storage'
+import { createAutoAdvance, type AutoAdvanceState } from '../presentation/auto-advance'
 
 const route = useRoute()
 const router = useRouter()
 const error = ref('')
 const treasureError = ref('')
-const abandonDialog = ref<{ showModal: () => void; close: () => void } | null>(null)
+const abandonDialog = ref<InstanceType<typeof globalThis.HTMLDialogElement> | null>(null)
+const abandonDialogOpen = ref(false)
+const pageHidden = ref(globalThis.document.hidden)
+const pausedByPlayer = ref(false)
+const advancing = ref(false)
+const barHeight = ref(152)
+const advanceBar = ref<{ focusNext: () => void } | null>(null)
+const questionTitle = ref<InstanceType<typeof globalThis.HTMLHeadingElement> | null>(null)
+const feedbackPanel = ref<InstanceType<typeof globalThis.HTMLElement> | null>(null)
+const treasurePanel = ref<InstanceType<typeof globalThis.HTMLElement> | null>(null)
 const current = computed(() => gameSession.value ? getCurrentQuestion(gameSession.value) : undefined)
-const answered = computed(() => gameSession.value?.phase === 'feedback')
+const answered = computed(() => gameSession.value?.status === 'active' && gameSession.value.phase === 'feedback')
 const stats = computed(() => gameSession.value ? getGameStats(gameSession.value) : null)
 const treasureState = computed(() => gameSession.value?.modeState.modeId === 'treasure'
   ? gameSession.value.modeState
@@ -37,6 +48,13 @@ const currentAnswer = computed<SessionAnswer | undefined>(() => {
   const question = current.value
   if (!game || !question || !answered.value) return undefined
   return game.answers.find((answer) => answer.exerciseId === question.exercise.id)
+})
+const correction = computed(() => {
+  const question = current.value
+  if (!question || currentAnswer.value?.correct) return ''
+  return question.type === 'typed_answer'
+    ? question.exercise.acceptedAnswers[0] ?? ''
+    : question.exercise.options.find(({ id }) => id === question.exercise.correctOptionId)?.text ?? ''
 })
 const selectedOptionId = computed(() => {
   const answer = currentAnswer.value
@@ -57,6 +75,71 @@ const displayKey = computed(() => {
     ? `${game.id}:${game.currentQuestionIndex}:${question.exercise.id}`
     : ''
 })
+const feedbackKey = computed(() => answered.value ? displayKey.value : null)
+const blockedByTreasure = computed(() => {
+  const session = gameSession.value
+  const treasure = treasureState.value
+  if (!answered.value || !session || !treasure) return false
+  return TREASURE_CHESTS.slice(0, Math.min(TREASURE_CHESTS.length, session.questions.length))
+    .some(({ id }) => !treasure.openedTreasures.includes(id) &&
+      treasure.keysAvailable >= getTreasureCost(id, session.questions.length))
+})
+const blockedByDialog = computed(() => abandonDialogOpen.value || Boolean(treasureRewardScene.value))
+const timerBlocked = computed(() =>
+  pausedByPlayer.value || pageHidden.value || blockedByDialog.value || blockedByTreasure.value || advancing.value,
+)
+const autoAdvanceState = ref<AutoAdvanceState>({
+  status: 'idle',
+  feedbackKey: null,
+  remainingMs: 0,
+  remainingSeconds: 0,
+})
+const autoAdvance = createAutoAdvance({
+  onTick: (state) => { autoAdvanceState.value = state },
+  onAdvance: (key) => {
+    if (!timerBlocked.value && !globalThis.document.hidden && gameAutoAdvanceEnabled.value) void nextQuestion(key)
+  },
+})
+
+watch(feedbackKey, (key) => {
+  pausedByPlayer.value = false
+  if (key) void nextTick(() => {
+    if (feedbackKey.value === key) advanceBar.value?.focusNext()
+  })
+}, { flush: 'sync' })
+
+watch([feedbackKey, gameAutoAdvanceEnabled, timerBlocked, currentAnswer], () => {
+  autoAdvance.update({
+    feedbackKey: feedbackKey.value,
+    enabled: gameAutoAdvanceEnabled.value,
+    blocked: timerBlocked.value,
+    delayMs: currentAnswer.value?.correct ? 3000 : 8000,
+  })
+}, { immediate: true })
+
+function syncVisibility() {
+  pageHidden.value = globalThis.document.hidden
+}
+
+function toggleAdvancePause() {
+  pausedByPlayer.value = !pausedByPlayer.value
+}
+
+function showExplanation() {
+  if (gameAutoAdvanceEnabled.value) pausedByPlayer.value = true
+  scrollToPanel(feedbackPanel.value)
+}
+
+function scrollToPanel(panel: InstanceType<typeof globalThis.HTMLElement> | null) {
+  panel?.focus({ preventScroll: true })
+  panel?.scrollIntoView({ block: 'center', behavior: 'auto' })
+}
+
+function focusQuestion() {
+  globalThis.scrollTo({ top: 0, left: 0, behavior: 'auto' })
+  questionTitle.value?.focus({ preventScroll: true })
+}
+
 let lastRecordedDisplayKey = ''
 
 function recordDisplayedQuestion(): void {
@@ -69,8 +152,21 @@ function recordDisplayedQuestion(): void {
   )
 }
 
-onMounted(recordDisplayedQuestion)
-watch(displayKey, recordDisplayedQuestion, { flush: 'post' })
+onMounted(() => {
+  recordDisplayedQuestion()
+  syncVisibility()
+  globalThis.document.addEventListener('visibilitychange', syncVisibility)
+  focusQuestion()
+})
+watch(displayKey, (key, previous) => {
+  recordDisplayedQuestion()
+  if (key && key !== previous && gameSession.value?.status === 'active') focusQuestion()
+}, { flush: 'post' })
+onBeforeRouteLeave(() => { autoAdvance.cancel() })
+onBeforeUnmount(() => {
+  autoAdvance.dispose()
+  globalThis.document.removeEventListener('visibilitychange', syncVisibility)
+})
 
 function submitAnswer(response: GameAnswerResponse) {
   const question = current.value
@@ -104,8 +200,12 @@ function submitWrittenAnswer(text: string) {
   submitAnswer({ type: 'typed_answer', text })
 }
 
-async function nextQuestion() {
+async function nextQuestion(expectedKey = feedbackKey.value) {
+  if (!expectedKey || expectedKey !== feedbackKey.value || advancing.value || blockedByDialog.value) return
+  autoAdvance.cancel()
+  advancing.value = true
   try {
+    error.value = ''
     const updated = advanceActiveQuestion()
     if (updated.status === 'completed') {
       if (updated.result) {
@@ -119,11 +219,14 @@ async function nextQuestion() {
     }
   } catch (caught) {
     error.value = caught instanceof Error ? caught.message : 'No se pudo avanzar.'
+  } finally {
+    advancing.value = false
   }
 }
 
 async function abandon() {
   try {
+    autoAdvance.cancel()
     abandonActiveGame()
     abandonDialog.value?.close()
     await router.replace({ name: 'home' })
@@ -133,7 +236,9 @@ async function abandon() {
 }
 
 function requestAbandon() {
-  abandonDialog.value?.showModal()
+  if (!abandonDialog.value) return
+  abandonDialogOpen.value = true
+  abandonDialog.value.showModal()
 }
 
 function openChest(treasureId: TreasureId) {
@@ -152,6 +257,8 @@ function openChest(treasureId: TreasureId) {
   <section
     v-if="gameSession && current"
     class="screen game-screen"
+    :class="{ 'has-advance-bar': answered }"
+    :style="{ '--game-advance-height': barHeight + 'px' }"
     aria-labelledby="question-title"
   >
     <UniverseArtwork
@@ -206,7 +313,12 @@ function openChest(treasureId: TreasureId) {
       >
         {{ current.exercise.context }}
       </p>
-      <h1 id="question-title">
+      <h1
+        id="question-title"
+        ref="questionTitle"
+        tabindex="-1"
+        :lang="current.exercise.exerciseLanguage"
+      >
         {{ current.exercise.prompt }}
       </h1>
       <div
@@ -232,7 +344,10 @@ function openChest(treasureId: TreasureId) {
             class="option-key"
             aria-hidden="true"
           >{{ String.fromCharCode(65 + index) }}</span>
-          {{ option.text }}
+          <span
+            class="option-text"
+            :lang="current.exercise.exerciseLanguage"
+          >{{ option.text }}</span>
           <span
             v-if="answered && current.type === 'single_choice' && option.id === current.exercise.correctOptionId"
             class="option-state"
@@ -251,8 +366,10 @@ function openChest(treasureId: TreasureId) {
       />
       <div
         v-if="answered"
+        ref="feedbackPanel"
         class="feedback"
         :class="{ success: currentAnswer?.correct }"
+        tabindex="-1"
         role="status"
       >
         <strong>{{ currentAnswer?.correct ? '¡Muy bien! Sigue explorando.' : 'Casi lo tienes. Aprende con este detalle.' }}</strong>
@@ -260,14 +377,7 @@ function openChest(treasureId: TreasureId) {
           <p><strong>Tu respuesta:</strong> <span class="submitted-answer">{{ currentAnswer.submittedAnswer }}</span></p>
           <p><strong>Respuesta aceptada:</strong> {{ current.exercise.acceptedAnswers.join(' / ') }}</p>
         </template>
-        <p>{{ current.exercise.explanation }}</p>
-        <button
-          class="button primary"
-          type="button"
-          @click="nextQuestion"
-        >
-          {{ gameSession.currentQuestionIndex + 1 === gameSession.questions.length ? 'Ver resultados' : 'Siguiente' }}
-        </button>
+        <p :lang="current.exercise.explanationLanguage">{{ current.exercise.explanation }}</p>
       </div>
       <p
         v-if="error"
@@ -277,14 +387,20 @@ function openChest(treasureId: TreasureId) {
         {{ error }}
       </p>
     </article>
-    <TreasureBoard
+    <div
       v-if="treasureState"
-      :state="treasureState"
-      :question-count="gameSession.questions.length"
-      :can-open="gameSession.phase === 'feedback'"
-      compact
-      @open="openChest"
-    />
+      ref="treasurePanel"
+      class="game-treasure-panel"
+      tabindex="-1"
+    >
+      <TreasureBoard
+        :state="treasureState"
+        :question-count="gameSession.questions.length"
+        :can-open="answered"
+        compact
+        @open="openChest"
+      />
+    </div>
     <p
       v-if="treasureError"
       class="error"
@@ -303,10 +419,29 @@ function openChest(treasureId: TreasureId) {
       :to="{ name: 'home' }"
     >Ir al inicio</RouterLink>
   </section>
+  <GameAdvanceBar
+    v-if="gameSession && current && answered"
+    ref="advanceBar"
+    :automatic="gameAutoAdvanceEnabled && autoAdvanceState.status !== 'finished'"
+    :seconds="autoAdvanceState.remainingSeconds"
+    :paused="pausedByPlayer || pageHidden || blockedByDialog"
+    :blocked-by-treasure="blockedByTreasure"
+    :final-question="gameSession.currentQuestionIndex + 1 === gameSession.questions.length"
+    :disabled="advancing || blockedByDialog"
+    :correct="currentAnswer?.correct ?? false"
+    :correction="correction"
+    :correction-language="current.exercise.exerciseLanguage"
+    @next="nextQuestion()"
+    @toggle-pause="toggleAdvancePause"
+    @height="barHeight = $event"
+    @show-treasures="scrollToPanel(treasurePanel)"
+    @show-explanation="showExplanation"
+  />
   <dialog
     ref="abandonDialog"
     class="confirm-dialog"
     aria-labelledby="abandon-title"
+    @close="abandonDialogOpen = false"
   >
     <h2 id="abandon-title">
       ¿Quieres salir del reto?

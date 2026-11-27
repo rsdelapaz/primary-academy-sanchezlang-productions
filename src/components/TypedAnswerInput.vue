@@ -1,5 +1,5 @@
 <script setup lang="ts">
-import { onBeforeUnmount, ref } from 'vue'
+import { onBeforeUnmount, ref, watch } from 'vue'
 
 const props = defineProps<{ disabled: boolean }>()
 const emit = defineEmits<{ submit: [answer: string] }>()
@@ -21,9 +21,15 @@ function keepFormVisible() {
 }
 
 function submit() {
-  if (answer.value.trim() && !props.disabled) emit('submit', answer.value)
+  if (answer.value.trim() && !props.disabled) {
+    globalThis.clearTimeout(scrollTimer)
+    emit('submit', answer.value)
+  }
 }
 
+watch(() => props.disabled, (disabled) => {
+  if (disabled) globalThis.clearTimeout(scrollTimer)
+})
 onBeforeUnmount(() => globalThis.clearTimeout(scrollTimer))
 </script>
 

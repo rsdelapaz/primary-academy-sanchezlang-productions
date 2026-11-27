@@ -52,6 +52,7 @@ const customCount = ref(QUICK_PLAY_COUNT)
 const setupStep = ref<1 | 2 | 3>(1)
 const setupDuration = ref<DurationPreset | null>(null)
 const setupDifficulty = ref<QuickSetupDifficulty | null>(null)
+const autoAdvance = ref(false)
 let bankRequest = 0
 
 const difficultyOptions: { id: DifficultyFilter; title: string; description: string }[] = [
@@ -314,6 +315,7 @@ async function initialize() {
     setupStep.value = 1
     setupDuration.value = null
     setupDifficulty.value = null
+    autoAdvance.value = false
     await loadSelectedBank(true)
     await syncRoute()
   } catch (caught) {
@@ -348,7 +350,7 @@ async function begin() {
         duration: gameDuration,
         difficulty: gameDifficulty,
       })
-      startGame(subject.id, topic.id, bank, mode.id, configuration)
+      startGame(subject.id, topic.id, bank, mode.id, configuration, { autoAdvance: autoAdvance.value })
       await router.push({
         name: 'play',
         params: { subjectId: subject.id, topicId: topic.id, modeId: mode.id },
@@ -508,6 +510,7 @@ onMounted(() => { void initialize() })
                     kind="closed-chest"
                   />
                   <strong>{{ mode.id === 'treasure' ? 'Tesoro' : 'Relámpago' }}</strong>
+                  <small>{{ mode.id === 'treasure' ? 'Gana llaves y abre cofres.' : 'Suma puntos con tus aciertos.' }}</small>
                 </button>
               </div>
             </section>
@@ -559,6 +562,22 @@ onMounted(() => { void initialize() })
                   <small>{{ level.description }}</small>
                 </button>
               </div>
+              <label class="auto-advance-setting">
+                <span class="auto-advance-setting-copy">
+                  <strong>Avance automático</strong>
+                  <small>La partida avanza sola.</small>
+                </span>
+                <input
+                  v-model="autoAdvance"
+                  type="checkbox"
+                  role="switch"
+                  aria-label="Avanzar automáticamente"
+                />
+                <span
+                  class="auto-advance-switch"
+                  aria-hidden="true"
+                ></span>
+              </label>
             </section>
           </section>
 
