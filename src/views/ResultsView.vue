@@ -134,6 +134,8 @@ function openChest(treasureId: TreasureId) {
         />
       </div>
       <div class="victory-report">
+        <span class="game-frame-crest game-frame-crest--top" aria-hidden="true"></span>
+        <span class="game-frame-crest game-frame-crest--bottom" aria-hidden="true"></span>
         <p
           v-if="achievement?.newPersonalRecord"
           class="victory-record"

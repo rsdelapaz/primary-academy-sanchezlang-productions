@@ -22,6 +22,8 @@ import { getQuestionHistoryKey } from '../application/question-selection'
 import { questionHistoryStore } from '../presentation/question-history-storage'
 import { createAutoAdvance, type AutoAdvanceState } from '../presentation/auto-advance'
 
+import { promptSegments } from '../presentation/prompt-presentation'
+
 const route = useRoute()
 const router = useRouter()
 const error = ref('')
@@ -37,6 +39,7 @@ const questionTitle = ref<InstanceType<typeof globalThis.HTMLHeadingElement> | n
 const feedbackPanel = ref<InstanceType<typeof globalThis.HTMLElement> | null>(null)
 const treasurePanel = ref<InstanceType<typeof globalThis.HTMLElement> | null>(null)
 const current = computed(() => gameSession.value ? getCurrentQuestion(gameSession.value) : undefined)
+const questionSegments = computed(() => promptSegments(current.value?.exercise.prompt ?? ''))
 const answered = computed(() => gameSession.value?.status === 'active' && gameSession.value.phase === 'feedback')
 const stats = computed(() => gameSession.value ? getGameStats(gameSession.value) : null)
 const treasureState = computed(() => gameSession.value?.modeState.modeId === 'treasure'
@@ -283,7 +286,8 @@ function openChest(treasureId: TreasureId) {
           type="button"
           @click="requestAbandon"
         >
-          <span aria-hidden="true">↗</span> Salir
+          <svg class="exit-icon" viewBox="0 0 24 24" aria-hidden="true" focusable="false"><path d="M10 4H4v16h6m-1-8h12m-5-5 5 5-5 5" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg>
+          Salir
         </button>
       </div>
       <div
@@ -311,6 +315,7 @@ function openChest(treasureId: TreasureId) {
       </div>
       <div
         class="game-progress-steps"
+        :class="{ 'progress-long': progressSteps.length > 10 }"
         role="progressbar"
         aria-label="Progreso del reto"
         aria-valuemin="0"
@@ -331,6 +336,8 @@ function openChest(treasureId: TreasureId) {
       class="card question-card game-question-card"
       :class="{ 'question-correct': answered && currentAnswer?.correct, 'question-answered': answered }"
     >
+      <span class="game-frame-crest game-frame-crest--top" aria-hidden="true"></span>
+      <span class="game-frame-crest game-frame-crest--bottom" aria-hidden="true"></span>
       <p
         v-if="current.exercise.context"
         class="context"
@@ -343,7 +350,11 @@ function openChest(treasureId: TreasureId) {
         tabindex="-1"
         :lang="current.exercise.exerciseLanguage"
       >
-        {{ current.exercise.prompt }}
+        <span
+          v-for="(segment, index) in questionSegments"
+          :key="index"
+          :class="{ 'prompt-emphasis': segment.emphasized }"
+        >{{ segment.text }}</span>
       </h1>
       <div
         v-if="current.type === 'single_choice'"

@@ -1,0 +1,23 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="360" height="260" viewBox="0 0 360 260">
+<defs><linearGradient id="metal" x1="0" y1="0" x2="1" y2="1"><stop stop-color="#a1ebf5"/><stop offset=".3" stop-color="#345c70"/><stop offset=".5" stop-color="#0c2637"/><stop offset=".72" stop-color="#57ddec"/><stop offset="1" stop-color="#0d415d"/></linearGradient>
+<linearGradient id="light" x1="0" y1="0" x2="1" y2="1"><stop stop-color="#e4ffff"/><stop offset=".55" stop-color="#20c9ed"/><stop offset="1" stop-color="#63ecff"/></linearGradient></defs>
+<path d="M39 3H321L357 39V221L321 257H39L3 221V39Z" fill="none" stroke="#020c15" stroke-width="6"/>
+ <path d="M39 3H321L357 39V221L321 257H39L3 221V39Z" fill="none" stroke="url(#metal)" stroke-width="4"/>
+ <path d="M42 9H318L351 42V218L318 251H42L9 218V42Z" fill="none" stroke="#426776" stroke-width="1.4"/>
+ <path d="M56 3H304M56 257H304" stroke="#c2edee" stroke-width="1.5"/>
+ <path d="M3 75V185M357 75V185" stroke="#28b1d3" stroke-width="1"/>
+ <g><path d="M3 88V40L39 3H92" fill="none" stroke="#ffcf77" stroke-width="3" stroke-linecap="square"/>
+ <path d="M10 40 40 10H83" fill="none" stroke="#41daef" stroke-width="1.5"/>
+ <path d="M41 5H73" stroke="#fff5b2" stroke-width="2.6"/>
+ <path d="M3 50V65" stroke="#fff2b0" stroke-width="2.7"/></g><g transform="translate(360 0) scale(-1 1)"><path d="M3 88V40L39 3H92" fill="none" stroke="#ffcf77" stroke-width="3" stroke-linecap="square"/>
+ <path d="M10 40 40 10H83" fill="none" stroke="#41daef" stroke-width="1.5"/>
+ <path d="M41 5H73" stroke="#fff5b2" stroke-width="2.6"/>
+ <path d="M3 50V65" stroke="#fff2b0" stroke-width="2.7"/></g>
+ <g transform="translate(0 260) scale(1 -1)"><path d="M3 88V40L39 3H92" fill="none" stroke="#ffcf77" stroke-width="3" stroke-linecap="square"/>
+ <path d="M10 40 40 10H83" fill="none" stroke="#41daef" stroke-width="1.5"/>
+ <path d="M41 5H73" stroke="#fff5b2" stroke-width="2.6"/>
+ <path d="M3 50V65" stroke="#fff2b0" stroke-width="2.7"/></g><g transform="translate(360 260) scale(-1 -1)"><path d="M3 88V40L39 3H92" fill="none" stroke="#ffcf77" stroke-width="3" stroke-linecap="square"/>
+ <path d="M10 40 40 10H83" fill="none" stroke="#41daef" stroke-width="1.5"/>
+ <path d="M41 5H73" stroke="#fff5b2" stroke-width="2.6"/>
+ <path d="M3 50V65" stroke="#fff2b0" stroke-width="2.7"/></g>
+</svg>

@@ -2,6 +2,8 @@
 import { computed } from 'vue'
 import { RouterLink, RouterView, useRoute } from 'vue-router'
 import EpicBackdrop from './components/EpicBackdrop.vue'
+import galaxyBrand from './assets/epic/galaxy-brand.svg'
+import popBrand from './assets/epic/pop-brand.svg'
 import GameFeelLayer from './components/GameFeelLayer.vue'
 import SoundToggle from './components/SoundToggle.vue'
 import ThemeSelector from './components/ThemeSelector.vue'
@@ -14,7 +16,9 @@ const activeScene = computed(() => route.name === 'play' ? 'game' : route.name =
 const currentYear = new Date().getFullYear()
 const copyrightDate = `${currentYear}-01-01`
 
-const brandLogoUrl = `${import.meta.env.BASE_URL}brand/retonautas-logo.svg`
+const brandLogoUrl = computed(() => activeScene.value && !focusMode.value
+  ? activeTheme.value === 'galaxy' ? galaxyBrand : popBrand
+  : `${import.meta.env.BASE_URL}brand/retonautas-logo.svg`)
 </script>
 
 <template>

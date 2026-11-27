@@ -43,3 +43,10 @@ Estado: implementación técnica y smoke tests completados; pendiente aceptació
 - Focus: preferencia independiente del mundo, sin escenario raster ni efectos decorativos de puntos/rachas y contador instantáneo. Conserva los controles, el audio elegido y las reglas de juego.
 - Sin cambios de contenido, motor de dominio, dependencias, validadores, scoring ni backend. Pendiente aceptación por dirección y pruebas en dispositivos físicos.
 - Quality gate ejecutado: 97 pruebas, 2 paquetes/1384 ejercicios; frontera del dominio intacta. Presupuesto inicial estimado <350 KiB; nuevas escenas de 59–181 KiB por variante.
+
+### PA-017 — Acabado artístico de los bocetos
+
+- Marcos vectoriales originales de nueve cortes, con bordes luminosos y materiales propios de cada mundo. Pop Adventure incorpora biseles metálicos dorados y cristales; Galaxy, superficies de consola y energía cian. Logotipos temáticos en juego y resultado, no un nuevo sistema de logotipos para la aplicación.
+- HUD con indicadores circulares, métricas doradas, jerarquía tipográfica y palabra entre comillas destacada sin alterar la pregunta. Se conserva el árbol semántico de controles, áreas táctiles y foco de teclado; las capas ornamentales no capturan eventos.
+- Conserva el arte WebP existente y el modo Focus sin escenas o marcos ornamentales. No introduce dependencias ni recursos raster adicionales.
+- Validación: 103 pruebas y 1384 ejercicios válidos; transferencia inicial estimada 301,2 KiB (límite 350 KiB). Partidas completas, resultado y repetición verificados en Chromium con viewports 320, 390, 1672 y 2048 px. Pendiente prueba en dispositivos físicos y aceptación visual.
