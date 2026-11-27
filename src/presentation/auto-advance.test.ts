@@ -38,7 +38,7 @@ describe('automatic feedback advance', () => {
     vi.useRealTimers()
   })
 
-  it.each([3000, 8000] as const)('advances exactly once after %i ms', (delayMs) => {
+  it.each([3000, 5000, 8000] as const)('advances exactly once after %i ms', (delayMs) => {
     const controller = setup()
     controller.update({ delayMs })
     expect(controller.getState()).toMatchObject({

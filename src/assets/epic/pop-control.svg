@@ -1,0 +1,27 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="240" height="110" viewBox="0 0 240 110">
+<defs><linearGradient id="gold" x1="0" y1="0" x2=".8" y2="1">
+<stop stop-color="#fff1a9"/><stop offset=".13" stop-color="#ffe4a2"/><stop offset=".27" stop-color="#a3682d"/><stop offset=".47" stop-color="#553018"/><stop offset=".62" stop-color="#f9c655"/><stop offset=".75" stop-color="#fff7c4"/><stop offset=".88" stop-color="#a76c27"/><stop offset="1" stop-color="#ffdb80"/></linearGradient>
+<linearGradient id="dark" x1="0" y1="0" x2=".7" y2="1"><stop stop-color="#59341c"/><stop offset=".25" stop-color="#c49048"/><stop offset=".52" stop-color="#1c1014"/><stop offset="1" stop-color="#8e5723"/></linearGradient>
+<linearGradient id="gem" x1="0" y1="0" x2="1" y2="1"><stop stop-color="#fff0ff"/><stop offset=".22" stop-color="#ed61ff"/><stop offset=".46" stop-color="#a900ee"/><stop offset=".75" stop-color="#4c127d"/><stop offset="1" stop-color="#240f46"/></linearGradient>
+<linearGradient id="aqua" x1="0" y1="0" x2="1" y2="1"><stop stop-color="#e5ffff"/><stop offset=".35" stop-color="#59ffe9"/><stop offset=".7" stop-color="#0794bb"/><stop offset="1" stop-color="#102d6e"/></linearGradient></defs>
+<path d="M24 2H216L238 24V86L216 108H24L2 86V24Z" fill="none" stroke="#170d1a" stroke-width="4"/>
+ <path d="M24 2H216L238 24V86L216 108H24L2 86V24Z" fill="none" stroke="url(#gold)" stroke-width="3" stroke-linejoin="bevel"/>
+ <path d="M26 6H214L234 26V84L214 104H26L6 84V26Z" fill="none" stroke="url(#dark)" stroke-width="4" stroke-linejoin="bevel"/>
+ <path d="M26 6H214L234 26V84L214 104H26L6 84V26Z" fill="none" stroke="#f1d691" stroke-width="1"/>
+ <path d="M28 11H212L229 28V82L212 99H28L11 82V28Z" fill="none" stroke="#8b638e" stroke-width="1" opacity=".85"/>
+ <path d="M37 2H203M37 108H203" stroke="#fff0ab" stroke-width="1.5"/>
+ <g><path d="M24 5H40L29 11 11 29 5 40V24Z" fill="url(#dark)"/>
+ <path d="M24 6 28 7 7 28 6 24Z" fill="url(#aqua)" stroke="#8fffe8" stroke-width=".8"/>
+ <path d="M11 27 27 11 44 11M11 56V44" fill="none" stroke="#55365c" stroke-width="1.5"/>
+ <path d="M4 24 24 4" stroke="#fffbc9" stroke-width="1.2"/></g><g transform="translate(240 0) scale(-1 1)"><path d="M24 5H40L29 11 11 29 5 40V24Z" fill="url(#dark)"/>
+ <path d="M24 6 28 7 7 28 6 24Z" fill="url(#aqua)" stroke="#8fffe8" stroke-width=".8"/>
+ <path d="M11 27 27 11 44 11M11 56V44" fill="none" stroke="#55365c" stroke-width="1.5"/>
+ <path d="M4 24 24 4" stroke="#fffbc9" stroke-width="1.2"/></g>
+ <g transform="translate(0 110) scale(1 -1)"><path d="M24 5H40L29 11 11 29 5 40V24Z" fill="url(#dark)"/>
+ <path d="M24 6 28 7 7 28 6 24Z" fill="url(#aqua)" stroke="#8fffe8" stroke-width=".8"/>
+ <path d="M11 27 27 11 44 11M11 56V44" fill="none" stroke="#55365c" stroke-width="1.5"/>
+ <path d="M4 24 24 4" stroke="#fffbc9" stroke-width="1.2"/></g><g transform="translate(240 110) scale(-1 -1)"><path d="M24 5H40L29 11 11 29 5 40V24Z" fill="url(#dark)"/>
+ <path d="M24 6 28 7 7 28 6 24Z" fill="url(#aqua)" stroke="#8fffe8" stroke-width=".8"/>
+ <path d="M11 27 27 11 44 11M11 56V44" fill="none" stroke="#55365c" stroke-width="1.5"/>
+ <path d="M4 24 24 4" stroke="#fffbc9" stroke-width="1.2"/></g>
+</svg>

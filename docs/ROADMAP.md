@@ -13,11 +13,13 @@
 
 - **PA-016 — Fluidez de partida:** acción de siguiente fija durante la corrección, autoavance opcional por partida, pausa para leer explicaciones y protección de cofres.
 
+- **PA-017 — Experiencia épica:** escenarios originales de juego y victoria por mundo, HUD, feedback y resultado coherentes, Focus opcional y colección local de recompensas reales. Pendiente aceptación de dirección.
+
 ## Pendiente
 
 - Revisión editorial y sustitución/priorización de los bancos de contenido por dirección. PA-011 no modifica los paquetes.
 - Futuros formatos de ejercicio o modalidades solo tras definir su necesidad, contrato y pruebas; no habilitar tipos ya descritos pero no implementados.
-- Persistencia de progreso, perfiles, clasificación, administración, backend, multijugador, repetición espaciada o PWA quedan fuera de alcance y requieren autorización/diseño propio.
+- Persistencia de progreso en servidor, perfiles, clasificación, administración, backend, multijugador, repetición espaciada o PWA quedan fuera de alcance y requieren autorización/diseño propio.
 - Importador CSV solo si se aprueba como herramienta editorial; JSON versionado sigue siendo el contrato de ejecución.
 - Aceptación visual del director para PA-011C; las capturas y verificaciones técnicas no sustituyen esa aprobación.
 

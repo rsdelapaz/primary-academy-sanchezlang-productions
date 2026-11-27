@@ -13,7 +13,12 @@
 - Presenta una experiencia de videojuego; evita formularios administrativos y paneles de estado innecesarios.
 - Usa exclusivamente ilustraciones y recursos artísticos originales suministrados o aprobados por dirección.
 - Optimiza recursos para el dispositivo; no sustituyas arte editorial por dibujos improvisados.
+- Diferencia materias mediante símbolos semánticos, no únicamente colores: Union Jack para Inglés, operaciones para Matemáticas y libro/escritura para una futura Lengua. Las vistas se derivan del catálogo y conservan icono neutro si falta arte.
 - Integra el header con la portada ilustrada y ajusta `object-position` por viewport para evitar recortes importantes y huecos antes del footer.
 - Valida visualmente los recorridos afectados en móvil y escritorio, incluido 320 px.
 - Comprueba foco, contraste, texto legible, controles táctiles y cambios de tema sin alterar el juego.
 - Conserva el dominio, contenido y flujos existentes salvo que el incremento lo requiera explícitamente.
+- En partida y resultado, Galaxy y Pop Adventure comparten exactamente el mismo HUD, árbol de controles y lógica; la ambientación es arte original sin texto incrustado. Escenarios WebP por viewport y estado, cargar solo el que se muestra.
+- Focus es una preferencia global independiente del mundo; no añade un paso al wizard ni modifica contenido, puntuación, selección, avance automático o sesiones. Sin fondos raster ni animaciones decorativas.
+- Recompensas y estadísticas representan hechos del motor. Distingue 100 % de otros resultados sin penalizar ni crear falsas recompensas. Colección local, no ranking ni perfil.
+- Comprueba que las acciones fijas sean realmente pulsables (incluidas capas/footer) y que responder no reduzca el tamaño de las opciones. En pantallas pequeñas permite scroll de contenido largo, pero nunca lo exijas para avanzar.

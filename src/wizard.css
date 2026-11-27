@@ -1,0 +1,342 @@
+/* PA-017 wizard: one adaptive menu, one catalog, theme chrome as decoration.
+   No raster artwork or extra effects in Focus. */
+.wizard-screen { width: min(100%, 960px); padding-bottom: 36px; }
+.wizard-screen.wizard-final-step { padding-bottom: calc(150px + env(safe-area-inset-bottom, 0px)); }
+.wizard-screen .configuration-heading { text-align: center; justify-items: center; gap: 4px; margin-bottom: 18px; }
+.wizard-screen .configuration-topic { margin: 0; font-weight: 700; color: var(--color-text-muted); }
+.wizard-screen .quick-setup-step { width: 100%; gap: 18px; }
+.wizard-stepper {
+  list-style: none;
+  width: min(100%, 810px);
+  padding: 0;
+  margin: 0 auto;
+  display: grid;
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+  gap: 6px;
+}
+.wizard-stepper li {
+  position: relative;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 8px;
+  min-height: 44px;
+  padding: 6px 4px;
+  border: 1px solid var(--color-border);
+  border-radius: 8px;
+  background: var(--color-surface);
+  color: var(--color-text-muted);
+  font-weight: 750;
+  font-size: clamp(13px, 1.45vw, 19px);
+}
+.wizard-stepper li.current { border-color: var(--color-primary); color: var(--color-text); background: var(--color-surface-raised); }
+.wizard-stepper li.completed { color: var(--color-success-text); border-color: var(--color-success-text); }
+.wizard-step-number {
+  display: grid;
+  place-items: center;
+  width: 28px;
+  height: 28px;
+  flex: 0 0 28px;
+  border-radius: 50%;
+  border: 1px solid currentColor;
+  font-variant-numeric: tabular-nums;
+}
+.wizard-stepper li.current .wizard-step-number { color: var(--color-on-primary); background: var(--color-primary); font-weight: 900; }
+.wizard-panel { padding: 12px 0; display: grid; gap: 16px; }
+.wizard-panel h2 { font-size: clamp(22px, 2.1vw, 34px); text-align: center; margin: 0; line-height: 1.15; }
+.wizard-panel h2:focus { outline: none; }
+.wizard-mode-grid, .wizard-level-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(min(100%, 255px), 1fr));
+  gap: 16px;
+  align-items: stretch;
+}
+.wizard-level-grid { grid-template-columns: repeat(3, minmax(0, 1fr)); }
+.wizard-choice {
+  display: grid;
+  grid-template-rows: auto 1fr;
+  align-content: stretch;
+  align-items: stretch;
+  justify-items: stretch;
+  padding: 0;
+  gap: 0;
+  text-align: center;
+  min-height: 94px;
+  overflow-wrap: anywhere;
+}
+.wizard-choice-visual { display: flex; justify-content: center; align-items: center; overflow: hidden; min-width: 0; }
+.wizard-choice-visual:empty { display: none; }
+.wizard-choice-copy {
+  min-width: 0;
+  display: grid;
+  align-content: center;
+  justify-items: center;
+  gap: 5px;
+  padding: 13px 10px;
+}
+.wizard-choice strong { font-size: clamp(19px, 2.45vw, 37px); line-height: 1.15; }
+.wizard-choice small { font-size: clamp(13px, 1.3vw, 19px); font-weight: 550; line-height: 1.3; }
+.wizard-choice-arrow { margin-inline-start: .38em; color: var(--color-primary); font-weight: 900; }
+.wizard-mode-art { width: 100%; aspect-ratio: 1.8; height: auto; display: block; object-fit: cover; }
+.wizard-glyph { width: min(100%, 196px); height: auto; display: block; }
+.wizard-choice:disabled { opacity: .5; }
+.wizard-choice:focus-visible, .wizard-screen :is(.back-link, .quick-setup-back, .start-game, .wizard-cancel-start):focus-visible {
+  outline: 3px solid var(--color-focus);
+  outline-offset: 4px;
+}
+.wizard-panel .auto-advance-setting { margin: 0; }
+.wizard-panel .quick-setup-back { justify-self: start; margin: 0; }
+.wizard-start-controls {
+  width: min(100%, 680px);
+  display: grid;
+  justify-items: stretch;
+  gap: 5px;
+}
+.wizard-start-controls .start-game { width: 100%; min-height: 54px; }
+.wizard-countdown {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 10px;
+  padding: 0 4px;
+  font-size: 15px;
+  font-weight: 700;
+}
+.wizard-countdown strong { color: var(--color-primary); font-variant-numeric: tabular-nums; }
+.wizard-cancel-start { min-height: 44px; padding: 6px 14px; }
+
+/* Shared PA-017 material and vector frames from epic-chrome.css. */
+.app-shell.is-immersive.is-setup .wizard-screen {
+  width: min(100%, 1440px);
+  padding-top: 8px;
+  position: relative;
+}
+.is-setup.is-immersive .wizard-screen .configuration-heading {
+  color: #fff;
+  text-shadow: 0 2px 4px #000, 0 4px 18px #000b;
+  margin-bottom: 20px;
+}
+.is-setup.is-immersive .wizard-screen h1 {
+  font-size: clamp(36px, 4.2vw, 66px);
+  font-weight: 850;
+  letter-spacing: -.035em;
+  margin: 4px 0;
+}
+.is-setup.is-immersive .configuration-topic { font-size: clamp(17px, 1.6vw, 27px); color: var(--caption-ink); }
+.is-setup.is-immersive[data-theme="pop-adventure"] .wizard-screen :is(h1, h2, .wizard-choice strong) {
+  font-family: Georgia, Cambria, serif;
+  letter-spacing: -.02em;
+  font-weight: 700;
+}
+.is-setup.is-immersive[data-theme="pop-adventure"] {
+  --wizard-gem-light: #fce3ff;
+  --wizard-gem-dark: #7e289b;
+}
+.is-setup.is-immersive .wizard-stepper { gap: 0; }
+.is-setup.is-immersive .wizard-stepper li {
+  min-height: 52px;
+  border: 0;
+  background: none;
+  isolation: isolate;
+  font-size: clamp(15px, 1.55vw, 22px);
+  --step-shape: polygon(0 0, calc(100% - 15px) 0, 100% 50%, calc(100% - 15px) 100%, 0 100%, 15px 50%);
+}
+.is-setup.is-immersive .wizard-stepper li::before,
+.is-setup.is-immersive .wizard-stepper li::after {
+  content: '';
+  position: absolute;
+  inset: 0;
+  z-index: -1;
+  clip-path: var(--step-shape);
+  background: linear-gradient(125deg, #fee4a0, var(--frame-glow) 43%, #cf9d53);
+  pointer-events: none;
+}
+.is-setup.is-immersive .wizard-stepper li::after { inset: 2px; background: var(--hud-fill); }
+.is-setup.is-immersive .wizard-stepper li.current::before { background: #ffe59c; }
+.is-setup.is-immersive .wizard-stepper li.current::after { background: var(--control-fill); }
+.is-setup.is-immersive .wizard-stepper li.current { color: white; filter: drop-shadow(0 0 5px color-mix(in srgb, var(--frame-glow) 65%, transparent)); }
+.is-setup.is-immersive .wizard-stepper li.current .wizard-step-number { background: var(--metric-ink); color: #21110f; }
+.is-setup.is-immersive .wizard-stepper li.completed .wizard-step-number { color: var(--progress-complete); }
+.is-setup.is-immersive .wizard-screen .quick-setup-step { width: min(100%, 1160px); gap: clamp(14px, 3vh, 30px); }
+.app-shell.is-immersive .wizard-panel {
+  padding: clamp(24px, 3vw, 42px);
+  gap: clamp(16px, 2vh, 25px);
+}
+.is-setup.is-immersive .wizard-panel h2 { color: var(--caption-ink); }
+.is-setup.is-immersive .wizard-choice {
+  --control-width: 28px;
+  --control-cut: 19px;
+  --control-material: var(--hud-fill);
+  color: #fff;
+  min-height: 130px;
+  padding: 4px;
+}
+.is-setup.is-immersive .wizard-choice-copy {
+  padding: clamp(12px, 1.8vw, 29px) 10px;
+  background: var(--control-fill);
+  border-top: 1px solid color-mix(in srgb, var(--metric-ink) 70%, var(--frame-glow));
+  clip-path: polygon(0 0, 100% 0, 100% calc(100% - 13px), calc(100% - 13px) 100%, 13px 100%, 0 calc(100% - 13px));
+}
+.is-setup.is-immersive .wizard-choice-visual {
+  position: relative;
+  clip-path: polygon(17px 0, calc(100% - 17px) 0, 100% 17px, 100% 100%, 0 100%, 0 17px);
+  background: radial-gradient(ellipse at center, color-mix(in srgb, var(--frame-glow) 13%, var(--color-surface)), var(--color-surface));
+}
+.is-setup.is-immersive .wizard-mode-art { max-height: clamp(150px, 29vh, 300px); }
+.is-setup.is-immersive .wizard-level-grid .wizard-glyph { width: min(90%, 220px); margin-block: 12px; }
+.is-setup.is-immersive .wizard-choice-arrow { color: var(--metric-ink); }
+.is-setup.is-immersive .wizard-choice:hover:not(:disabled), .is-setup.is-immersive .wizard-choice.active {
+  background: transparent;
+  filter: drop-shadow(0 0 6px color-mix(in srgb, var(--frame-glow) 70%, transparent));
+}
+.is-setup.is-immersive .wizard-choice:hover:not(:disabled) .wizard-choice-copy,
+.is-setup.is-immersive .wizard-choice.active .wizard-choice-copy {
+  background: linear-gradient(180deg, color-mix(in srgb, var(--frame-glow) 23%, var(--color-surface)), var(--color-surface));
+}
+.is-setup.is-immersive .wizard-screen :is(.back-link, .quick-setup-back, .wizard-cancel-start) {
+  --control-cut: 12px;
+  --control-width: 20px;
+  --control-material: var(--hud-fill);
+  color: #fff;
+  display: inline-flex;
+  align-items: center;
+  width: fit-content;
+  min-height: 44px;
+  padding: 9px 20px;
+  text-decoration: none;
+  font-weight: 750;
+}
+.is-setup.is-immersive .wizard-screen .start-game {
+  --control-material: linear-gradient(180deg, #b9f7ff, #5ae5ff 30%, #219bc7 80%, #61d8ff);
+  color: #091e32;
+  font-size: clamp(20px, 2vw, 27px);
+  font-weight: 900;
+}
+.is-setup.is-immersive[data-theme="pop-adventure"] .wizard-screen .start-game {
+  --control-material: linear-gradient(180deg, #ffe7ff, #e6b5ff 30%, #b65cde 80%, #dca6f2);
+  color: #2c123a;
+}
+.is-setup.is-immersive .wizard-screen .configuration-action-bar {
+  background: linear-gradient(0deg, #090b17f5, #10162be8);
+  border-top: 1px solid var(--metric-ink);
+  backdrop-filter: none;
+}
+.is-setup.is-immersive .wizard-panel .auto-advance-setting { background: var(--hud-fill); color: #fff; }
+.is-setup.is-immersive .wizard-countdown strong { color: var(--metric-ink); }
+.wizard-screen .error { max-width: 760px; margin-inline: auto; }
+.wizard-screen .configuration-note { max-width: 1160px; margin-inline: auto; }
+
+@media (min-width: 1200px) {
+  .app-shell.is-immersive.is-setup .wizard-screen { width: min(91vw, 1440px); padding-inline: 22px; }
+  .is-setup.is-immersive .wizard-screen > .back-link { position: absolute; top: 18px; left: 22px; font-size: 18px; }
+  .is-setup.is-immersive .wizard-screen .configuration-heading { padding-inline: 250px; }
+}
+@media (min-width: 760px) and (max-height: 760px) {
+  .is-setup.is-immersive .wizard-screen h1 { font-size: clamp(32px, 3.2vw, 48px); }
+  .is-setup.is-immersive .wizard-screen .configuration-heading { margin-bottom: 12px; }
+  .is-setup.is-immersive .wizard-screen .quick-setup-step { gap: 14px; }
+  .app-shell.is-immersive .wizard-panel { padding: 23px 28px; gap: 14px; }
+  .is-setup.is-immersive .wizard-choice-copy { padding: 12px 10px; }
+  .is-setup.is-immersive .wizard-mode-art { max-height: 24vh; }
+  .is-setup.is-immersive .wizard-level-grid .wizard-glyph { max-height: 94px; margin-block: 3px; }
+}
+@media (max-width: 759px) {
+  .wizard-screen { padding: 8px 12px 24px; }
+  .wizard-screen.wizard-final-step { padding-bottom: calc(155px + env(safe-area-inset-bottom, 0px)); }
+  .wizard-screen .back-link { margin-bottom: 8px; }
+  .wizard-screen .configuration-heading { margin-bottom: 12px; }
+  .wizard-screen .configuration-heading h1 { font-size: clamp(29px, 7.2vw, 38px); }
+  .wizard-screen .configuration-topic { font-size: 15px; }
+  .wizard-screen .quick-setup-step { gap: 12px; }
+  .wizard-panel { gap: 12px; }
+  .wizard-stepper li { gap: 4px; font-size: 12px; }
+  .wizard-step-number { width: 22px; height: 22px; flex-basis: 22px; }
+  .is-setup.is-immersive .wizard-stepper li { --step-shape: polygon(0 0, calc(100% - 7px) 0, 100% 50%, calc(100% - 7px) 100%, 0 100%, 7px 50%); min-height: 44px; font-size: 12px; }
+  .is-setup.is-immersive .wizard-screen .configuration-heading { margin-bottom: 12px; }
+  .is-setup.is-immersive .wizard-screen h1 { font-size: clamp(30px, 8vw, 40px); }
+  .is-setup.is-immersive .configuration-topic { font-size: 15px; }
+  .is-setup.is-immersive .wizard-screen .quick-setup-step { gap: 15px; }
+  .app-shell.is-immersive .wizard-panel { --panel-width: 32px; --panel-cut: 22px; padding: 18px 12px 20px; gap: 12px; }
+  .is-setup.is-immersive .wizard-choice-copy { padding: 9px 6px; }
+  .wizard-choice strong { font-size: clamp(19px, 5vw, 25px); }
+  .wizard-choice small { font-size: 13px; }
+  .wizard-level-grid { gap: 8px; }
+  .is-setup.is-immersive .wizard-level-grid .wizard-glyph { max-height: 70px; margin-block: 4px; }
+  .is-setup.is-immersive .wizard-level-grid .wizard-choice { min-height: 115px; --control-width: 17px; --control-cut: 11px; }
+  .is-setup.is-immersive .wizard-panel .quick-setup-back { font-size: 14px; }
+  .is-setup.is-immersive .wizard-screen > .back-link { font-size: 14px; }
+}
+@media (max-width: 559px) {
+  .wizard-mode-grid { grid-template-columns: 1fr; gap: 10px; }
+  .is-setup.is-immersive .wizard-mode-card { grid-template-columns: minmax(94px, 40%) minmax(0, 1fr); grid-template-rows: 1fr; align-items: stretch; min-height: 110px; --control-width: 22px; --control-cut: 13px; }
+  .is-setup.is-immersive .wizard-mode-card .wizard-choice-visual { clip-path: polygon(12px 0, 100% 0, 100% 100%, 12px 100%, 0 calc(100% - 12px), 0 12px); }
+  .is-setup.is-immersive .wizard-mode-art { height: 100%; min-height: 102px; max-height: 130px; object-fit: cover; }
+  .is-setup.is-immersive .wizard-mode-card .wizard-choice-copy { border-top: 0; clip-path: none; }
+  .wizard-mode-card .wizard-glyph { max-height: 100px; }
+  .wizard-level-grid { grid-template-columns: 1fr; }
+  .is-setup.is-immersive .wizard-level-grid .wizard-choice {
+    grid-template-columns: minmax(80px, 32%) minmax(0, 1fr);
+    grid-template-rows: 1fr;
+    min-height: 76px;
+  }
+  .is-setup.is-immersive .wizard-level-grid .wizard-choice-visual { clip-path: none; }
+  .is-setup.is-immersive .wizard-level-grid .wizard-choice-copy { border-top: 0; clip-path: none; }
+  .wizard-screen .auto-advance-setting { min-height: 64px; padding: 8px 10px; }
+  .wizard-screen .auto-advance-setting-copy small { font-size: 12px; }
+  .wizard-countdown { font-size: 14px; }
+  .wizard-cancel-start { min-height: 44px; }
+}
+/* Text-only choices when Focus suppresses the visual slot. */
+[data-focus="true"] .wizard-choice { grid-template-rows: 1fr; }
+[data-focus="true"] .wizard-choice-visual { display: none; }
+/* The final choice keeps the setting and the back action clear of the dock. */
+@media (min-width: 760px) {
+  .app-shell.is-immersive.is-setup > .topbar { min-height: 84px; }
+  .is-setup.is-immersive .wizard-screen .configuration-heading { margin-bottom: 15px; }
+  .is-setup.is-immersive .wizard-screen .quick-setup-step { gap: clamp(14px, 2.3vh, 23px); }
+  .app-shell.is-immersive .wizard-panel { padding: clamp(22px, 2.3vw, 35px); }
+  .is-setup.is-immersive .wizard-final-step .wizard-panel { padding: 24px 30px; gap: 15px; }
+  .is-setup.is-immersive .wizard-final-step .wizard-glyph { max-height: 108px; margin-block: 3px; }
+  .is-setup.is-immersive .wizard-final-step .wizard-choice-copy { padding-block: 14px; }
+}
+@media (min-width: 760px) and (max-height: 760px) {
+  .app-shell.is-immersive.is-setup > .topbar { min-height: 68px; }
+  .is-setup.is-immersive .wizard-screen .configuration-heading { margin-bottom: 10px; }
+  .is-setup.is-immersive .wizard-screen .quick-setup-step { gap: 12px; }
+  .app-shell.is-immersive .wizard-panel { padding: 22px 26px; }
+  .is-setup.is-immersive .wizard-final-step .wizard-panel { padding: 18px 24px; gap: 10px; }
+  .is-setup.is-immersive .wizard-final-step .wizard-glyph { max-height: 75px; }
+  .is-setup.is-immersive .wizard-final-step .wizard-choice-copy { padding-block: 10px; }
+  .is-setup.is-immersive .wizard-final-step .wizard-choice strong { font-size: 24px; }
+  .is-setup.is-immersive .wizard-final-step .wizard-choice small { font-size: 15px; }
+}
+@media (max-width: 559px) and (max-height: 660px) {
+  /* On compact phones, all three levels are selectable before the dock.
+     The optional setting and back action remain reachable by normal scroll. */
+  .wizard-level-grid { grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 6px; }
+  .is-setup.is-immersive .wizard-level-grid .wizard-choice {
+    grid-template-columns: minmax(0, 1fr);
+    grid-template-rows: 44px 1fr;
+    min-height: 112px;
+    padding: 3px;
+  }
+  .is-setup.is-immersive .wizard-level-grid .wizard-choice-visual { clip-path: polygon(9px 0, calc(100% - 9px) 0, 100% 9px, 100% 100%, 0 100%, 0 9px); }
+  .is-setup.is-immersive .wizard-level-grid .wizard-glyph { max-height: 43px; margin: 0; }
+  .wizard-level-grid .wizard-choice-copy { padding: 5px 2px; }
+  .wizard-level-grid .wizard-choice strong { font-size: 17px; }
+  .wizard-level-grid .wizard-choice small { font-size: 12px; }
+  .wizard-level-grid .wizard-choice-arrow { display: none; }
+  .wizard-level-grid .wizard-choice { min-height: 94px; }
+}
+@media (max-width: 559px) and (max-height: 660px) {
+  .is-setup.is-immersive .wizard-screen .configuration-heading { margin-bottom: 8px; }
+  .is-setup.is-immersive .wizard-screen > .back-link { margin-bottom: 3px; }
+  .is-setup.is-immersive .wizard-screen h1 { font-size: 29px; }
+  .is-setup.is-immersive .wizard-screen .quick-setup-step { gap: 12px; }
+  .app-shell.is-immersive .wizard-final-step .wizard-panel { padding: 14px 10px 18px; gap: 8px; }
+  .is-setup.is-immersive .wizard-level-grid .wizard-choice { min-height: 101px; grid-template-rows: 38px 1fr; }
+  .is-setup.is-immersive .wizard-level-grid .wizard-choice-copy { padding: 6px 3px; }
+  .is-setup.is-immersive .wizard-level-grid .wizard-glyph { max-height: 38px; }
+  .is-setup.is-immersive .wizard-screen .configuration-action-bar { background: #0c1426; }
+  .is-setup.is-immersive[data-theme="pop-adventure"] .wizard-screen .configuration-action-bar { background: #21152d; }
+}

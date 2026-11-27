@@ -7,8 +7,10 @@ import {
   treasureRewardScene,
   type GameFeelEvent,
 } from '../presentation/game-feel'
+import { useThemePreference } from '../presentation/theme-preference'
 import { TREASURE_REWARDS } from '../presentation/treasure-rewards'
 
+const { focusMode } = useThemePreference()
 const activeEvent = ref<GameFeelEvent | null>(null)
 const rewardDialog = ref<{ open: boolean; showModal: () => void; close: () => void } | null>(null)
 const continueButton = ref<{ focus: () => void } | null>(null)
@@ -56,7 +58,7 @@ watch(treasureRewardScene, async (scene) => {
   await nextTick()
   if (treasureRewardScene.value?.id !== scene.id || !rewardDialog.value) return
   if (!rewardDialog.value.open) rewardDialog.value.showModal()
-  if (globalThis.matchMedia('(prefers-reduced-motion: reduce)').matches) {
+  if (focusMode.value || globalThis.matchMedia('(prefers-reduced-motion: reduce)').matches) {
     revealReward()
     return
   }

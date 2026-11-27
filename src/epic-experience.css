@@ -1,0 +1,419 @@
+/* PA-017: the scene is decoration only; every game control remains real DOM.
+   Focus uses the same controls, geometry and contrast without raster artwork. */
+.epic-backdrop {
+  position: fixed;
+  inset: 0;
+  overflow: hidden;
+  pointer-events: none;
+  z-index: 0;
+  background: #101a30;
+}
+.epic-backdrop picture, .epic-backdrop img {
+  display: block;
+  width: 100%;
+  height: 100%;
+}
+.epic-backdrop img { object-fit: cover; object-position: center; }
+.epic-backdrop::after {
+  content: "";
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(180deg, #080e20aa, #080e2020 24%, #080e2020 62%, #080e20d9);
+}
+.epic-backdrop--victory::after {
+  background: linear-gradient(180deg, #080e2099, #080e2010 27%, #080e2010 55%, #080e20e0 100%);
+}
+.app-shell[data-theme].is-immersive {
+  position: relative;
+  isolation: isolate;
+  color-scheme: dark;
+  --color-text: #f6faff;
+  --color-text-muted: #c3d4e8;
+  --color-secondary-text: #bcefff;
+  --color-surface: #0b192d;
+  --color-surface-raised: #132840;
+  --color-border: #526e8b;
+  --color-option-key: #254a65;
+  --color-primary: #72e5ff;
+  --color-on-primary: #071c32;
+  --color-success-surface: #103e32;
+  --color-success-text: #a1ffd1;
+  --color-error: #ff8297;
+  --color-error-surface: #472130;
+  --color-error-text: #ffd1d9;
+  --color-focus: #ffdc86;
+  --epic-line: #70cbeb;
+  --epic-gold: #ffdc86;
+  --epic-panel: #0b192df5;
+  --epic-answer: #132e43;
+  --epic-answer-light: #22445b;
+  --epic-shadow: #040b18;
+  --epic-cta: #60dcff;
+}
+.app-shell[data-theme="pop-adventure"].is-immersive {
+  --color-text: #fff8ff;
+  --color-text-muted: #e4cde9;
+  --color-secondary-text: #f3d3ff;
+  --color-surface: #241431;
+  --color-surface-raised: #3d2451;
+  --color-border: #9876ad;
+  --color-option-key: #603771;
+  --color-primary: #e5a5ff;
+  --color-on-primary: #291035;
+  --color-success-surface: #173d35;
+  --color-success-text: #a1ffd1;
+  --epic-line: #dda8ff;
+  --epic-panel: #261533f7;
+  --epic-answer: #40234e;
+  --epic-answer-light: #643777;
+  --epic-shadow: #170c24;
+  --epic-cta: #e2a0ff;
+}
+.app-shell.is-immersive > main, .app-shell.is-immersive > .app-footer { position: relative; z-index: 1; }
+.app-shell.is-immersive > .topbar {
+  background: linear-gradient(180deg, #090e20e8, #090e2080);
+  border-bottom: 0;
+  backdrop-filter: none;
+}
+.is-immersive .topbar-controls { background: transparent; border: 0; box-shadow: none; padding: 0; }
+.is-immersive .theme-trigger, .is-immersive .sound-toggle {
+  background: var(--epic-panel);
+  border: 1px solid var(--color-border);
+}
+.is-immersive .app-footer { color: #e0e9f4; background: #091020d9; border-color: transparent; }
+.is-immersive .app-footer summary { color: #e0e9f4; }
+.is-immersive .game-feel-toast, [data-focus="true"] .game-feel-toast { display: none; }
+
+/* One compact HUD, not a dashboard made of unrelated cards. */
+.game-screen { width: min(100%, 1110px); overflow: visible; }
+.game-hud {
+  display: grid;
+  grid-template-columns: auto minmax(0, 1fr) minmax(95px, .8fr) auto;
+  gap: 12px;
+  align-items: center;
+  padding: 10px 14px;
+  margin-bottom: 18px;
+  border: 1px solid var(--color-border);
+  border-radius: 12px;
+  background: var(--color-surface);
+}
+.game-header { display: contents; }
+.game-hud .game-stage-label { grid-area: 1 / 1; border: 0; background: transparent; padding: 0 5px; min-height: 44px; }
+.game-hud .game-exit-button { grid-area: 1 / 4; min-height: 44px; }
+.game-hud .game-metrics { grid-area: 1 / 2; display: flex; min-width: 0; gap: 0; margin: 0; }
+.game-hud .metric {
+  position: relative;
+  display: flex;
+  flex: 1;
+  justify-content: space-between;
+  align-items: center;
+  gap: 8px;
+  min-height: 44px;
+  padding: 5px 13px;
+  border: 0;
+  border-left: 1px solid var(--color-border);
+  border-radius: 0;
+  background: transparent;
+  box-shadow: none;
+}
+.game-hud .metric strong { font-size: clamp(23px, 2.4vw, 31px); color: var(--color-text); font-variant-numeric: tabular-nums; }
+.game-hud .metric-streak strong { color: var(--color-accent-secondary); }
+.is-immersive .game-hud .metric-streak strong { color: var(--epic-gold); }
+.game-progress-steps { grid-area: 1 / 3; display: flex; min-width: 0; align-items: center; gap: 5px; }
+.progress-step {
+  display: grid;
+  place-items: center;
+  flex: 1 1 0;
+  min-width: 0;
+  max-width: 25px;
+  height: 14px;
+  border: 1px solid var(--color-border);
+  border-radius: 5px;
+  color: var(--color-text);
+  background: var(--color-surface-raised);
+  font-size: 10px;
+  font-weight: 900;
+}
+.progress-step.current { border-color: var(--color-primary); background: var(--color-primary); box-shadow: 0 0 8px var(--color-primary); }
+.progress-step.correct { border-color: var(--color-success-text); background: var(--color-success-surface); color: var(--color-success-text); }
+.progress-step.attempted { border-color: var(--color-error); background: var(--color-error-surface); color: var(--color-error-text); }
+.score-gain, .streak-banner {
+  position: absolute;
+  top: -13px;
+  right: 6px;
+  z-index: 2;
+  padding: 2px 7px;
+  border: 1px solid var(--color-success-text);
+  border-radius: 6px;
+  color: var(--color-success-text);
+  background: var(--color-success-surface);
+  font-size: 13px;
+  font-weight: 900;
+  white-space: nowrap;
+  pointer-events: none;
+  animation: epic-score-rise .85s ease-out both;
+}
+.streak-banner { border-color: var(--color-reward); background: var(--color-surface); color: var(--color-text); }
+@keyframes epic-score-rise { from { opacity: 0; transform: translateY(8px); } 22% { opacity: 1; transform: translateY(-4px); } to { opacity: 1; transform: translateY(0); } }
+.is-immersive .game-hud {
+  border-color: var(--epic-line);
+  background: var(--epic-panel);
+  box-shadow: 0 4px 18px #0008, inset 0 1px 0 #ffffff20;
+}
+/* Frames are ornamental; focus outlines and hit areas are never clipped. */
+.is-immersive .game-question-card, .is-immersive .victory-report {
+  position: relative;
+  border: 1px solid var(--epic-line);
+  border-radius: 12px;
+  background: linear-gradient(150deg, #ffffff08, transparent 35%), var(--epic-panel);
+  box-shadow: 0 14px 40px #0008, inset 0 0 0 4px var(--epic-shadow), inset 0 0 0 5px #ffffff14;
+}
+.is-immersive .game-question-card::before, .is-immersive .victory-report::before {
+  content: "";
+  position: absolute;
+  inset: -2px;
+  border: 3px solid var(--epic-gold);
+  border-radius: 12px;
+  clip-path: polygon(0 0, 12% 0, 12% 5%, 4% 5%, 4% 20%, 0 20%, 0 80%, 4% 80%, 4% 95%, 12% 95%, 12% 100%, 88% 100%, 88% 95%, 96% 95%, 96% 80%, 100% 80%, 100% 20%, 96% 20%, 96% 5%, 88% 5%, 88% 0);
+  pointer-events: none;
+}
+.game-question-card { padding: clamp(18px, 3.8vw, 38px); }
+.game-question-card h1 { max-width: 100%; text-align: center; font-size: clamp(28px, 4vw, 48px); overflow-wrap: anywhere; }
+.game-question-card .context { text-align: center; font-size: clamp(12px, 1.4vw, 16px); }
+.game-question-card .options { margin-top: 30px; gap: 15px; }
+.game-question-card .option {
+  display: grid;
+  grid-template-columns: 38px minmax(0, 1fr) 25px;
+  gap: 8px;
+  min-height: 78px;
+  font-size: clamp(18px, 2.5vw, 26px);
+  padding: 10px 14px;
+  border-radius: 9px;
+}
+.option-indicator { font-size: 24px; font-weight: 950; text-align: center; line-height: 1; }
+.is-immersive .game-question-card .option:not(.correct):not(.wrong) {
+  --option-color: var(--epic-line);
+  border-color: var(--epic-line);
+  background: linear-gradient(150deg, var(--epic-answer-light), var(--epic-answer) 65%);
+  box-shadow: 0 5px 0 var(--epic-shadow), inset 0 1px 0 #ffffff40;
+}
+.is-immersive .option-key { border-radius: 5px; border: 1px solid #ffffff48; font-size: 18px; }
+.is-immersive .game-question-card .option.correct { border: 2px solid #8dffbb; box-shadow: 0 0 16px #a1ffd13b, inset 0 0 16px #a1ffd124; }
+.is-immersive .game-question-card .option.wrong { border: 2px solid #ff8297; box-shadow: inset 0 0 10px #ff829733; }
+.game-question-card .option:disabled:not(.correct):not(.wrong) { opacity: .75; }
+.is-immersive .game-question-card .option:not(:disabled):hover { filter: brightness(1.17); }
+.is-immersive .question-correct { border-color: var(--color-success-text); }
+.is-immersive .game-question-card .feedback { font-size: 15px; }
+.is-immersive .game-question-card .feedback p { margin-bottom: 0; }
+.is-immersive .treasure-board {
+  background: var(--epic-panel);
+  border: 1px solid var(--color-border);
+  box-shadow: 0 6px 18px #0005;
+}
+.is-immersive .game-advance-bar {
+  border: 0;
+  background: transparent;
+  box-shadow: none;
+  pointer-events: none;
+}
+.is-immersive .game-advance-bar .advance-inner {
+  background: var(--epic-panel);
+  border: 1px solid var(--epic-line);
+  box-shadow: 0 8px 30px #000b, inset 0 0 0 3px var(--epic-shadow);
+  border-radius: 12px;
+  padding: 9px 14px;
+  pointer-events: auto;
+}
+.advance-summary { max-width: 100%; color: var(--color-text-muted); font-size: 13px; overflow-wrap: anywhere; }
+.is-immersive .next-action, .is-immersive .victory-replay {
+  border: 1px solid var(--epic-line);
+  border-radius: 8px;
+  color: var(--color-on-primary);
+  background: linear-gradient(180deg, #fff8, transparent 45%), var(--epic-cta);
+  box-shadow: 0 4px 0 #060d1f, 0 0 16px color-mix(in srgb, var(--epic-cta) 38%, transparent);
+  font-weight: 950;
+}
+
+/* A victory is a scene; the report is the only opaque panel. */
+.epic-results { width: min(100%, 1200px); padding-block: 18px 28px; }
+.victory-heading { text-align: center; margin-bottom: 18px; }
+.victory-heading h1 {
+  margin: 6px 0;
+  font-size: clamp(34px, 5.4vw, 70px);
+  font-weight: 950;
+  text-transform: uppercase;
+  letter-spacing: -.035em;
+}
+.is-immersive .victory-heading h1 {
+  color: var(--epic-gold);
+  text-shadow: 0 4px 0 #532e1855, 0 5px 18px #000b;
+}
+.victory-heading p { margin: 4px 0; color: var(--color-text-muted); font-weight: 750; }
+.is-immersive .victory-heading p { text-shadow: 0 1px 6px #000; }
+.victory-layout { display: grid; grid-template-columns: minmax(0, 1fr) minmax(0, 1fr); gap: clamp(12px, 3vw, 40px); align-items: center; }
+.victory-art-space { min-height: 340px; display: grid; place-items: center; }
+.victory-report {
+  text-align: center;
+  padding: clamp(14px, 3vw, 28px);
+  background: var(--color-surface);
+  border: 1px solid var(--color-border);
+  border-radius: 14px;
+}
+.victory-record {
+  display: block;
+  color: var(--color-secondary-text);
+  border: 1px solid var(--color-border);
+  border-radius: 6px;
+  padding: 8px 10px;
+  margin: 0 0 12px;
+  font-size: 14px;
+  font-weight: 900;
+}
+.is-immersive .victory-record {
+  color: #271604;
+  border-color: var(--epic-gold);
+  background: linear-gradient(100deg, #b37f30, #ffe39c 22%, #ffedb9 80%, #b37f30);
+}
+.victory-score { display: grid; justify-items: center; gap: 0; margin: 0 0 10px; }
+.victory-score strong {
+  color: var(--color-secondary-text);
+  font-size: clamp(56px, 7vw, 94px);
+  line-height: 1;
+  letter-spacing: -.055em;
+  font-variant-numeric: tabular-nums;
+  font-weight: 950;
+}
+.is-immersive .victory-score strong { color: var(--epic-gold); text-shadow: 0 3px 0 #7e501b, 0 0 18px #ffe2a044; }
+.victory-score > span:not(.sr-only) { text-transform: uppercase; letter-spacing: .16em; font-size: 13px; font-weight: 900; color: var(--color-text-muted); }
+.victory-stats { display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 6px; margin: 12px 0; }
+.victory-stats > div { min-width: 0; padding: 10px 4px; border: 1px solid var(--color-border); border-radius: 8px; background: var(--color-surface-raised); }
+.victory-stats dt { color: var(--color-text-muted); font-size: 12px; font-weight: 800; }
+.victory-stats dd { margin: 4px 0 0; color: var(--color-text); font-size: clamp(22px, 3vw, 30px); font-weight: 950; font-variant-numeric: tabular-nums; }
+.victory-achievement { display: flex; align-items: center; justify-content: center; gap: 8px; border: 1px solid var(--color-border); border-radius: 8px; padding: 6px; }
+.victory-achievement svg { width: 58px; height: 58px; flex: 0 0 58px; }
+.victory-achievement span { display: grid; text-align: left; }
+.victory-achievement small { color: var(--color-text-muted); font-size: 11px; }
+.victory-achievement strong { color: var(--color-secondary-text); }
+.victory-message { margin: 12px 0 0; color: var(--color-text-muted); font-weight: 700; }
+.victory-treasures { max-width: 760px; margin: 18px auto 0; }
+.victory-actions { display: grid; justify-items: center; gap: 12px; margin-top: 20px; }
+.victory-replay { width: min(100%, 400px); min-height: 61px; font-size: 22px; }
+.victory-links { display: flex; flex-wrap: wrap; justify-content: center; gap: 6px; }
+.victory-links a, .victory-links button {
+  display: inline-flex; align-items: center; justify-content: center;
+  min-height: 44px; padding: 8px 15px; border: 1px solid var(--color-border);
+  border-radius: 8px; color: var(--color-text); background: var(--color-surface);
+  text-decoration: none; font-size: 14px; font-weight: 800;
+}
+.is-immersive .victory-links a, .is-immersive .victory-links button { background: var(--epic-panel); }
+[data-focus="true"] .victory-layout { grid-template-columns: minmax(0, 1fr); max-width: 600px; margin-inline: auto; }
+[data-focus="true"] .victory-art-space { min-height: 0; }
+[data-focus="true"] .victory-art-space:empty { display: none; }
+[data-focus="true"] .victory-art-space svg { width: 120px; height: 120px; }
+[data-focus="true"] .score-gain, [data-focus="true"] .streak-banner { display: none; }
+[data-focus="true"] .game-question-card, [data-focus="true"] .feedback { animation: none; }
+[data-focus="true"] .progress-step.current { box-shadow: none; }
+.focus-mode-choice {
+  width: 100%; display: flex; align-items: center; justify-content: space-between; gap: 12px;
+  text-align: left; min-height: 64px; padding: 10px; border: 1px solid var(--color-border);
+  border-radius: 10px; background: var(--color-surface); color: var(--color-text);
+}
+.focus-mode-choice span:first-child { display: grid; gap: 3px; }
+.focus-mode-choice small { color: var(--color-text-muted); font-size: 11px; }
+.focus-mode-switch { flex: 0 0 44px; height: 25px; border-radius: 20px; border: 1px solid var(--color-border); background: var(--color-surface-raised); padding: 3px; display: flex; align-items: center; }
+.focus-mode-switch::after { content: ""; width: 17px; height: 17px; border-radius: 50%; background: var(--color-text-muted); }
+.focus-mode-switch.enabled { justify-content: flex-end; background: var(--color-primary); }
+.focus-mode-switch.enabled::after { background: var(--color-on-primary); }
+.collection-dialog { width: min(calc(100% - 24px), 570px); max-height: 92svh; overflow: auto; }
+.collection-dialog h2 { margin: 0; font-size: 28px; }
+.collection-subtitle, .collection-count { color: var(--color-text-muted); font-size: 13px; }
+.collection-count { font-weight: 800; }
+.collection-grid { display: grid; grid-template-columns: repeat(2,minmax(0,1fr)); gap: 10px; margin-block: 15px; }
+.collection-grid article { display: grid; justify-items: center; align-content: start; gap: 5px; text-align: center; padding: 10px 5px; border: 1px solid var(--color-border); border-radius: 10px; background: var(--color-surface-raised); overflow-wrap: anywhere; }
+.collection-grid article svg { width: 78px; height: 78px; }
+.collection-grid article small { color: var(--color-text-muted); font-size: 11px; }
+.collection-locked svg { filter: grayscale(1); opacity: .48; }
+.collection-close { width: 100%; }
+
+@media (max-width: 759px) {
+  .game-screen { padding: 10px 12px 24px; }
+  .game-hud { grid-template-columns: minmax(0, 1fr) auto; gap: 4px 8px; padding: 6px 10px 10px; margin-bottom: 12px; }
+  .game-hud .game-stage-label { grid-area: 1 / 1; justify-self: start; }
+  .game-hud .game-exit-button { grid-area: 1 / 2; }
+  .game-hud .game-metrics { grid-area: 2 / 1 / 3 / 3; gap: 7px; }
+  .game-hud .metric { min-height: 44px; padding: 3px 8px; border-left: 0; border-top: 1px solid var(--color-border); }
+  .game-progress-steps { grid-area: 3 / 1 / 4 / 3; gap: 3px; }
+  .progress-step { height: 9px; max-width: none; font-size: 0; border-radius: 3px; }
+  .game-question-card { padding: 18px 13px; }
+  .game-question-card h1 { font-size: clamp(25px, 6.8vw, 34px); line-height: 1.12; }
+  .game-question-card .options { margin-top: 18px; gap: 10px; grid-template-columns: 1fr; }
+  .game-question-card .option { min-height: 66px; padding: 9px 10px; grid-template-columns: 34px minmax(0,1fr) 22px; font-size: 19px; }
+  .game-question-card .option-key { width: 34px; height: 34px; }
+  .is-immersive .game-advance-bar { padding-inline: 8px; }
+  .is-immersive .game-advance-bar .advance-inner { padding: 7px 10px; }
+  .advance-summary { display: none; }
+  .epic-backdrop--victory picture { height: clamp(260px, 57svh, 480px); }
+  .epic-backdrop--victory img { object-position: center 43%; }
+  .epic-backdrop--victory::after { background: linear-gradient(180deg, #080e2059 0, transparent 25%, #101a30 55%); }
+  .epic-results { padding: 10px 12px 94px; }
+  .victory-heading { margin-bottom: 5px; }
+  .victory-heading h1 { font-size: clamp(28px, 7vw, 40px); }
+  .victory-heading p { font-size: 13px; }
+  .victory-layout { grid-template-columns: 1fr; gap: 6px; }
+  .victory-art-space { min-height: clamp(112px, 24svh, 210px); }
+  .victory-report { padding: 13px; }
+  .victory-score strong { font-size: 60px; }
+  .victory-stats { margin-block: 8px; }
+  .victory-stats > div { padding: 7px 3px; }
+  .victory-achievement svg { width: 44px; height: 44px; flex-basis: 44px; }
+  .victory-actions { margin-top: 12px; }
+  .victory-replay {
+    position: fixed;
+    bottom: max(11px, env(safe-area-inset-bottom, 0px));
+    left: 12px; right: 12px; width: auto;
+    z-index: 4; min-height: 54px; font-size: 19px;
+  }
+  .victory-links a, .victory-links button { padding-inline: 10px; }
+}
+@media (max-width: 360px) {
+  .game-question-card .option { grid-template-columns: 32px minmax(0,1fr) 22px; }
+  .game-question-card .option-key { width: 32px; height: 32px; }
+  .game-hud .metric { gap: 5px; }
+  .epic-results .victory-heading h1 { font-size: 27px; }
+}
+@media (prefers-reduced-motion: reduce) {
+  .score-gain, .streak-banner { animation: none; }
+}
+
+/* The fixed advance/replay controls live inside main. The footer must never
+   intercept them, even when the current page is shorter than the viewport. */
+.app-shell.is-immersive > main { z-index: 2; }
+.app-shell.is-immersive:has(.game-screen) .topbar-controls,
+.app-shell.is-immersive:has(.results-screen) .topbar-controls {
+  padding: 0; background: transparent; border: 0; box-shadow: none;
+}
+.is-immersive .game-question-card::before, .is-immersive .victory-report::before {
+  border: 0;
+  clip-path: none;
+  border-radius: 0;
+  inset: -2px;
+  background:
+    linear-gradient(var(--epic-gold), var(--epic-gold)) left top / 48px 3px no-repeat,
+    linear-gradient(var(--epic-gold), var(--epic-gold)) left top / 3px 30px no-repeat,
+    linear-gradient(var(--epic-gold), var(--epic-gold)) right top / 48px 3px no-repeat,
+    linear-gradient(var(--epic-gold), var(--epic-gold)) right top / 3px 30px no-repeat,
+    linear-gradient(var(--epic-gold), var(--epic-gold)) left bottom / 48px 3px no-repeat,
+    linear-gradient(var(--epic-gold), var(--epic-gold)) left bottom / 3px 30px no-repeat,
+    linear-gradient(var(--epic-gold), var(--epic-gold)) right bottom / 48px 3px no-repeat,
+    linear-gradient(var(--epic-gold), var(--epic-gold)) right bottom / 3px 30px no-repeat;
+}
+.app-shell.is-immersive .game-advance-bar { background: transparent; border: 0; box-shadow: none; }
+.is-immersive .game-advance-bar .advance-inner { background: var(--color-surface); }
+@media (max-width: 759px) {
+  .epic-backdrop--victory picture { transform: translateY(40px); }
+  .epic-backdrop--victory::after {
+    background: linear-gradient(180deg, #080e20c9 0, #080e2080 15%, transparent 28%, #101a30 66%);
+  }
+  .is-immersive .victory-heading h1 { text-shadow: 0 2px 8px #080d19, 0 4px 0 #532e1855; }
+  .app-shell.is-victory > .app-footer { padding-bottom: 78px; }
+}

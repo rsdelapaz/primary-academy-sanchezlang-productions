@@ -1,0 +1,485 @@
+/* PA-017 art polish: nine-sliced vector chrome.
+   The frame never clips the semantic control, hit area or focus outline. */
+.app-shell[data-theme].is-immersive {
+  --panel-frame: url('./assets/epic/galaxy-panel.svg');
+  --control-frame: url('./assets/epic/galaxy-control.svg');
+  --panel-fill: radial-gradient(ellipse at 50% 0, #153b52 0, #0c1e2d 42%, #081622 100%);
+  --control-fill: linear-gradient(180deg, #126382 0%, #143e54 12%, #0a293b 48%, #0a2231 82%, #115777 100%);
+  --hud-fill: linear-gradient(180deg, #143c50 0%, #0a1726 24%, #091726 78%, #135168 100%);
+  --caption-ink: #c5d7e9;
+  --emphasis-ink: #fff09a;
+  --metric-ink: #ffcc59;
+  --current-orb: #ffce50;
+  --frame-glow: #44e6f7;
+  --progress-complete: #2edff1;
+  --chrome-button-cut: 14px;
+  --chrome-panel-cut: 35px;
+}
+.app-shell[data-theme="pop-adventure"].is-immersive {
+  --panel-frame: url('./assets/epic/pop-panel.svg');
+  --control-frame: url('./assets/epic/pop-control.svg');
+  --panel-fill: radial-gradient(ellipse at 50% 0, #432441 0, #2a172d 39%, #1d101e 100%);
+  --control-fill: linear-gradient(180deg, #68466f 0%, #4a3150 15%, #35223f 47%, #20162c 87%, #3b2446 100%);
+  --hud-fill: linear-gradient(180deg, #67435f 0%, #29172d 18%, #1f1529 78%, #54354d 100%);
+  --caption-ink: #fff4e4;
+  --emphasis-ink: #ffda68;
+  --metric-ink: #ffda68;
+  --current-orb: #e85bff;
+  --frame-glow: #ed64f7;
+  --progress-complete: #44e7e7;
+}
+.game-frame-crest { display: none; }
+
+/* Let the illustrated world breathe; the contrast belongs to the UI, not a
+   permanent dark overlay. In portrait the top gradient supports legibility. */
+.is-immersive .epic-backdrop--game::after {
+  background: linear-gradient(180deg, #080b2290 0%, #080b2210 17%, transparent 37%, transparent 76%, #080b2250 100%);
+}
+.app-shell.is-immersive > .topbar {
+  background: linear-gradient(180deg, #070913a0, #07091310 80%, transparent);
+}
+.is-immersive .app-footer {
+  background: transparent;
+  color: #fff;
+  text-shadow: 0 1px 3px #02050b, 0 2px 10px #02050b;
+  border: 0;
+}
+.is-immersive .app-footer summary { color: #fff; }
+.is-immersive .brand {
+  color: #fff;
+  text-shadow: 0 2px 4px #05080c, 0 3px 12px #000;
+}
+.is-immersive[data-theme="pop-adventure"] .brand {
+  font-family: Georgia, Cambria, serif;
+  color: #fff4d9;
+  letter-spacing: -.025em;
+}
+.is-immersive[data-theme="galaxy"] .brand { font-style: italic; }
+.is-immersive .brand-logo { filter: drop-shadow(0 3px 3px #0009); }
+
+/* Frame composition: inner decoration lives on pseudo-elements; the native
+   control stays rectangular for safe focus, touch and dynamic content. */
+.app-shell.is-immersive .game-question-card,
+.app-shell.is-immersive .victory-report,
+.app-shell.is-immersive .wizard-panel {
+  --panel-slice: 68;
+  --panel-width: 54px;
+  --panel-cut: var(--chrome-panel-cut);
+  position: relative;
+  isolation: isolate;
+  border: 0;
+  border-radius: 0;
+  background: none;
+  box-shadow: none;
+}
+.app-shell.is-immersive .game-question-card::before,
+.app-shell.is-immersive .victory-report::before,
+.app-shell.is-immersive .wizard-panel::before {
+  content: '';
+  position: absolute;
+  z-index: -1;
+  inset: 1px;
+  border: 0;
+  border-radius: 0;
+  clip-path: polygon(var(--panel-cut) 0, calc(100% - var(--panel-cut)) 0, 100% var(--panel-cut), 100% calc(100% - var(--panel-cut)), calc(100% - var(--panel-cut)) 100%, var(--panel-cut) 100%, 0 calc(100% - var(--panel-cut)), 0 var(--panel-cut));
+  background: var(--panel-fill);
+  pointer-events: none;
+}
+.app-shell.is-immersive .game-question-card::after,
+.app-shell.is-immersive .victory-report::after,
+.app-shell.is-immersive .wizard-panel::after {
+  content: '';
+  position: absolute;
+  inset: 0;
+  z-index: 0;
+  border: 1px solid transparent;
+  border-image-source: var(--panel-frame);
+  border-image-slice: var(--panel-slice);
+  border-image-width: var(--panel-width);
+  border-image-repeat: stretch;
+  filter: drop-shadow(0 1px 2px #000) drop-shadow(0 0 4px color-mix(in srgb, var(--frame-glow) 27%, transparent));
+  pointer-events: none;
+}
+.app-shell[data-theme="pop-adventure"].is-immersive .game-frame-crest {
+  position: absolute;
+  z-index: 2;
+  display: block;
+  left: 50%;
+  width: clamp(96px, 12vw, 180px);
+  height: auto;
+  aspect-ratio: 160 / 57;
+  background-position: center;
+  background-repeat: no-repeat;
+  background-size: contain;
+  filter: drop-shadow(0 2px 3px #090510);
+  pointer-events: none;
+}
+.game-frame-crest--top {
+  top: 0;
+  transform: translate(-50%, -47%);
+  background-image: url('./assets/epic/pop-crest-aqua.svg');
+}
+.game-frame-crest--bottom {
+  bottom: 0;
+  transform: translate(-50%, 47%);
+  background-image: url('./assets/epic/pop-crest-violet.svg');
+}
+
+/* Reuse the two vector frames for controls, HUD and action bar. */
+.app-shell.is-immersive :is(.game-hud, .sound-toggle, .theme-trigger, .game-exit-button, .victory-replay),
+.app-shell.is-immersive .game-question-card .option,
+.app-shell.is-immersive .game-advance-bar .advance-inner,
+.app-shell.is-immersive .game-advance-bar .next-action,
+.app-shell.is-immersive .typed-answer-submit,
+.app-shell.is-immersive .victory-links :is(a, button),
+.app-shell.is-immersive .wizard-screen :is(.wizard-choice, .back-link, .quick-setup-back, .start-game, .wizard-cancel-start) {
+  --control-cut: var(--chrome-button-cut);
+  --control-width: 25px;
+  --control-material: var(--control-fill);
+  position: relative;
+  isolation: isolate;
+  border: 0;
+  border-radius: 0;
+  background: none;
+  box-shadow: none;
+}
+.app-shell.is-immersive :is(.game-hud, .sound-toggle, .theme-trigger, .game-exit-button, .victory-replay, .game-question-card .option, .game-advance-bar .advance-inner, .game-advance-bar .next-action, .typed-answer-submit, .victory-links a, .victory-links button, .wizard-choice, .wizard-screen .back-link, .quick-setup-back, .wizard-screen .start-game, .wizard-cancel-start)::before,
+.app-shell.is-immersive :is(.game-hud, .sound-toggle, .theme-trigger, .game-exit-button, .victory-replay, .game-question-card .option, .game-advance-bar .advance-inner, .game-advance-bar .next-action, .typed-answer-submit, .victory-links a, .victory-links button, .wizard-choice, .wizard-screen .back-link, .quick-setup-back, .wizard-screen .start-game, .wizard-cancel-start)::after {
+  content: '';
+  position: absolute;
+  inset: 0;
+  pointer-events: none;
+}
+.app-shell.is-immersive :is(.game-hud, .sound-toggle, .theme-trigger, .game-exit-button, .victory-replay, .game-question-card .option, .game-advance-bar .advance-inner, .game-advance-bar .next-action, .typed-answer-submit, .victory-links a, .victory-links button, .wizard-choice, .wizard-screen .back-link, .quick-setup-back, .wizard-screen .start-game, .wizard-cancel-start)::before {
+  z-index: -1;
+  inset: 1px;
+  background: var(--control-material);
+  clip-path: polygon(var(--control-cut) 0, calc(100% - var(--control-cut)) 0, 100% var(--control-cut), 100% calc(100% - var(--control-cut)), calc(100% - var(--control-cut)) 100%, var(--control-cut) 100%, 0 calc(100% - var(--control-cut)), 0 var(--control-cut));
+}
+.app-shell.is-immersive :is(.game-hud, .sound-toggle, .theme-trigger, .game-exit-button, .victory-replay, .game-question-card .option, .game-advance-bar .advance-inner, .game-advance-bar .next-action, .typed-answer-submit, .victory-links a, .victory-links button, .wizard-choice, .wizard-screen .back-link, .quick-setup-back, .wizard-screen .start-game, .wizard-cancel-start)::after {
+  z-index: 0;
+  border: 1px solid transparent;
+  border-image-source: var(--control-frame);
+  border-image-slice: 40;
+  border-image-width: var(--control-width);
+  border-image-repeat: stretch;
+  filter: drop-shadow(0 2px 2px #05080c99);
+}
+.app-shell.is-immersive .game-question-card .option:not(.correct):not(.wrong),
+.app-shell.is-immersive .game-question-card .option:is(.correct,.wrong) {
+  border: 0;
+  border-radius: 0;
+  background: none;
+  box-shadow: none;
+}
+.app-shell.is-immersive .game-question-card .option.correct {
+  --control-material: linear-gradient(180deg, #276c55, #103a30 35%, #0b302b 73%, #176756);
+  color: #c5ffe5;
+}
+.app-shell.is-immersive .game-question-card .option.wrong {
+  --control-material: linear-gradient(180deg, #6b303e, #3e1829 35%, #331825 73%, #632533);
+  color: #ffdce1;
+}
+.app-shell.is-immersive .game-question-card .option.correct::after { filter: drop-shadow(0 0 5px #70ff99); }
+.app-shell.is-immersive .game-question-card .option.wrong::after { filter: drop-shadow(0 0 4px #ff7397); }
+.app-shell.is-immersive .game-question-card .option:disabled:not(.correct):not(.wrong) { opacity: .65; }
+.app-shell.is-immersive :is(.game-question-card .option, .sound-toggle, .theme-trigger, .game-exit-button, .next-action, .victory-replay):focus-visible {
+  outline: 3px solid #fff3a6;
+  outline-offset: 4px;
+}
+
+/* Elevate typography and hierarchy; never reword the educational content. */
+.is-immersive .game-question-card .context {
+  color: var(--caption-ink);
+  font-size: clamp(16px, 1.55vw, 28px);
+  font-weight: 600;
+  text-wrap: balance;
+}
+.is-immersive .game-question-card h1 {
+  font-size: clamp(28px, 2.9vw, 56px);
+  line-height: 1.13;
+  font-weight: 850;
+  letter-spacing: -.021em;
+  text-wrap: balance;
+  text-shadow: 0 2px 2px #0006;
+}
+.is-immersive[data-theme="pop-adventure"] .game-question-card :is(h1, .context) {
+  font-family: Georgia, Cambria, serif;
+  letter-spacing: -.025em;
+}
+.is-immersive[data-theme="pop-adventure"] .game-question-card h1 { font-weight: 700; }
+.is-immersive[data-theme="pop-adventure"] .game-question-card .context { font-weight: 400; }
+.is-immersive .prompt-emphasis { color: var(--emphasis-ink); }
+.is-immersive .option-key {
+  width: auto;
+  height: auto;
+  min-width: 1.1em;
+  flex: 0 0 auto;
+  color: inherit;
+  border: 0;
+  border-radius: 0;
+  background: transparent;
+  font: inherit;
+  font-weight: 900;
+}
+.is-immersive .option-text { font-weight: 850; }
+.is-immersive .option-indicator { color: inherit; }
+.is-immersive .option:disabled:not(.correct):not(.wrong) .option-indicator { opacity: 0; }
+
+/* The segmented HUD is a single in-world instrument. */
+.app-shell.is-immersive .game-hud {
+  --control-material: var(--hud-fill);
+  padding: 8px 20px;
+  gap: 16px;
+  grid-template-columns: minmax(145px, .9fr) minmax(250px, 1.55fr) minmax(130px, 1.1fr) auto;
+}
+.is-immersive .game-hud .game-stage-label {
+  min-width: 0;
+  font-weight: 850;
+  white-space: nowrap;
+  gap: 5px;
+  font-size: clamp(17px, 1.5vw, 25px);
+}
+.is-immersive .game-stage-label > span:first-child,
+.is-immersive .game-hud .metric > span:first-child {
+  font-size: clamp(16px, 1.35vw, 23px);
+  text-transform: uppercase;
+  letter-spacing: 0;
+  font-weight: 800;
+  color: var(--color-text);
+}
+.is-immersive .game-stage-label strong,
+.is-immersive .game-hud .metric strong,
+.is-immersive .game-stage-label > span:nth-child(3) {
+  color: var(--metric-ink);
+  font-size: clamp(21px, 1.9vw, 32px);
+  font-weight: 900;
+  font-variant-numeric: tabular-nums;
+}
+.is-immersive .game-hud .metric {
+  padding-inline: 14px;
+  border-left: 1px solid color-mix(in srgb, var(--metric-ink) 55%, #324754);
+  justify-content: center;
+  gap: 12px;
+}
+.app-shell.is-immersive .game-exit-button {
+  --control-cut: 10px;
+  --control-width: 18px;
+  --control-material: linear-gradient(180deg, #ffffff14, #0003), var(--hud-fill);
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 8px;
+  min-height: 44px;
+  padding-inline: 19px;
+  font-size: clamp(15px, 1.35vw, 23px);
+  color: #fff;
+}
+.exit-icon { width: 20px; height: 20px; flex: 0 0 20px; }
+.is-immersive .exit-icon { color: var(--metric-ink); }
+.is-immersive .game-progress-steps { justify-content: center; gap: clamp(4px, .65vw, 11px); }
+.is-immersive .game-progress-steps.progress-long { gap: 3px; }
+.is-immersive .progress-step {
+  position: relative;
+  flex: 0 1 31px;
+  width: 100%;
+  min-width: 0;
+  max-width: 35px;
+  height: auto;
+  aspect-ratio: 1;
+  border: 2px solid #648294;
+  border-radius: 50%;
+  background: #080f1b;
+  color: #071926;
+  font-size: clamp(10px, 1.2vw, 17px);
+  font-weight: 950;
+  line-height: 1;
+}
+.is-immersive[data-theme="pop-adventure"] .progress-step { border-color: #b18464; background: #1e1425; }
+.is-immersive .progress-step:not(:last-child)::after {
+  content: '';
+  position: absolute;
+  z-index: -1;
+  width: clamp(4px, .65vw, 11px);
+  height: 2px;
+  top: calc(50% - 1px);
+  left: calc(100% + 2px);
+  background: #6b7a88;
+}
+.is-immersive .progress-long .progress-step:not(:last-child)::after { width: 3px; }
+.is-immersive .progress-step.correct {
+  border-color: #d3ffff;
+  background: var(--progress-complete);
+  color: #052632;
+  box-shadow: 0 0 7px #1be8e9;
+}
+.is-immersive .progress-step.correct:not(:last-child)::after { background: var(--progress-complete); box-shadow: 0 0 4px var(--progress-complete); }
+.is-immersive .progress-step.current {
+  background: radial-gradient(circle, #fff7c6 16%, var(--current-orb) 40%, #4d2761 60%, #1c1528 80%);
+  border-color: #fff4d6;
+  box-shadow: 0 0 12px var(--current-orb), inset 0 0 0 2px var(--current-orb);
+}
+.is-immersive .progress-step.attempted { border-color: #ff9eab; color: #ffd5db; background: #522733; }
+.is-immersive .progress-long .progress-step { font-size: 0; border-width: 1px; }
+.is-immersive .score-gain, .is-immersive .streak-banner { top: -22px; }
+
+/* Action and status controls carry the same metal language; they remain fixed
+   by GameAdvanceBar, rather than being baked into the question artwork. */
+.app-shell.is-immersive :is(.sound-toggle, .theme-trigger, .victory-links a, .victory-links button) {
+  --control-width: 17px;
+  --control-cut: 10px;
+  --control-material: var(--hud-fill);
+  padding-inline: 17px;
+  min-height: 44px;
+  font-weight: 750;
+}
+.is-immersive .game-advance-bar .advance-inner {
+  --control-material: var(--hud-fill);
+  padding: 13px 22px;
+}
+.app-shell.is-immersive .game-advance-bar .next-action,
+.app-shell.is-immersive .victory-replay,
+.app-shell.is-immersive .typed-answer-submit {
+  --control-material: linear-gradient(180deg, #c6faff, #65e7ff 25%, #2098c5 62%, #36b8e5);
+  color: #071b2a;
+  font-weight: 900;
+}
+.app-shell[data-theme="pop-adventure"].is-immersive :is(.next-action, .victory-replay, .typed-answer-submit) {
+  --control-material: linear-gradient(180deg, #f7d7ff, #d799ef 25%, #ab54c8 62%, #c77de6);
+  color: #240d2e;
+}
+.is-immersive .game-advance-bar .advance-result { font-size: 19px; text-transform: uppercase; }
+.is-immersive .game-advance-bar .advance-result.correct { color: #a8ffda; }
+.is-immersive .victory-report { padding: clamp(22px, 3.2vw, 40px); }
+.is-immersive .victory-heading h1 { font-weight: 950; text-shadow: 0 3px #633416, 0 5px 12px #000c; }
+.is-immersive[data-theme="pop-adventure"] .victory-heading h1 { font-family: Georgia, Cambria, serif; font-weight: 700; }
+.is-immersive .victory-stats > div {
+  background: var(--control-fill);
+  border: 1px solid color-mix(in srgb, var(--metric-ink) 55%, var(--color-border));
+  border-radius: 3px;
+  box-shadow: inset 0 1px 0 #ffffff1c;
+}
+
+/* Match the concept proportions at full size, while keeping geometry fluid
+   for genuinely long questions, medium/long missions and narrow screens. */
+@media (min-width: 760px) {
+  .is-immersive .game-screen {
+    width: min(96vw, 1480px);
+    max-width: 1480px;
+    padding-inline: 18px;
+  }
+  .is-immersive .game-hud { min-height: 66px; margin-bottom: 32px; }
+  .is-immersive .game-question-card { width: min(100%, 1260px); margin-inline: auto; padding: clamp(30px, 3.2vw, 58px); }
+  .is-immersive .game-question-card .options { margin-top: clamp(25px, 3.1vw, 54px); gap: clamp(14px, 1.55vw, 29px); }
+  .app-shell.is-immersive .game-question-card .option {
+    --control-width: 28px;
+    --control-cut: 16px;
+    min-height: clamp(82px, 10vh, 112px);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    gap: clamp(8px, 1.4vw, 23px);
+    padding: 14px 38px;
+    font-size: clamp(25px, 2.65vw, 48px);
+    text-align: center;
+  }
+  .is-immersive .option-indicator { position: absolute; top: 50%; right: 12px; transform: translateY(-50%); font-size: 26px; }
+  .is-immersive .game-question-card h1 { margin-block: clamp(20px, 2vw, 34px) 0; }
+  .is-immersive .game-question-card .context {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+  }
+  .is-immersive[data-theme="pop-adventure"] .game-question-card .context::before,
+  .is-immersive[data-theme="pop-adventure"] .game-question-card .context::after {
+    content: '';
+    height: 2px;
+    width: clamp(22px, 7vw, 118px);
+    margin-inline: 12px;
+    background: linear-gradient(90deg, transparent, #d6a05e, #fff0ab);
+  }
+  .is-immersive[data-theme="pop-adventure"] .game-question-card .context::after { transform: scaleX(-1); }
+  .is-immersive .treasure-board { width: min(100%, 1260px); margin-inline: auto; }
+}
+@media (min-width: 1100px) {
+  .app-shell.is-immersive > .topbar {
+    min-height: 94px;
+    padding-inline: clamp(24px, 3vw, 58px);
+  }
+  .is-immersive .brand { font-size: clamp(28px, 2.3vw, 43px); gap: 12px; }
+  .is-immersive .brand-logo { width: 66px; height: 66px; flex-basis: 66px; }
+  .is-immersive :is(.sound-toggle, .theme-trigger) { font-size: clamp(16px, 1.3vw, 23px); min-height: 48px; padding-inline: 24px; }
+  .is-immersive .topbar-controls { gap: 12px; }
+  .is-immersive .game-screen {
+    width: min(73vw, 1480px);
+    padding-top: clamp(24px, 5.2vh, 56px);
+  }
+  .is-immersive .game-hud { min-height: 68px; margin-bottom: clamp(28px, 4.2vh, 42px); }
+  .is-immersive .game-question-card { width: min(100%, 62vw, 1260px); }
+  .is-immersive .app-footer { font-size: 15px; padding-block: 8px; }
+  .is-immersive .game-screen:has(.treasure-board) { padding-top: clamp(10px, 2vh, 30px); }
+  .is-immersive .game-screen:has(.treasure-board) .game-hud { margin-bottom: 26px; }
+}
+@media (min-width: 760px) and (max-height: 700px) {
+  .app-shell.is-immersive > .topbar { min-height: 72px; padding-block: 4px; }
+  .is-immersive .brand-logo { width: 48px; height: 48px; flex-basis: 48px; }
+  .is-immersive .game-screen { padding-top: 12px; }
+  .is-immersive .game-hud { margin-bottom: 22px; }
+  .is-immersive .game-question-card { padding: 26px 35px; }
+  .is-immersive .game-question-card .options { margin-top: 24px; gap: 13px; }
+  .app-shell.is-immersive .game-question-card .option { min-height: 72px; font-size: clamp(24px, 2.3vw, 36px); }
+}
+@media (max-width: 759px) {
+  .is-immersive .epic-backdrop--game::after { background: linear-gradient(180deg, #081020a0 0, #08102030 26%, transparent 65%, #08102055 100%); }
+  .is-immersive .brand { font-size: clamp(19px, 5vw, 25px); }
+  .is-immersive .brand-logo { width: 38px; height: 38px; flex-basis: 38px; }
+  .app-shell.is-immersive :is(.sound-toggle, .theme-trigger) { padding-inline: 12px; }
+  .app-shell.is-immersive .game-hud {
+    grid-template-columns: minmax(0, 1fr) auto;
+    gap: 4px 8px;
+    margin-bottom: 23px;
+    padding: 8px 12px 13px;
+    --control-width: 20px;
+    --control-cut: 11px;
+  }
+  .is-immersive .game-hud .game-stage-label { font-size: 14px; gap: 3px; }
+  .is-immersive .game-stage-label > span:first-child, .is-immersive .game-hud .metric > span:first-child { font-size: 12px; }
+  .is-immersive .game-stage-label strong, .is-immersive .game-stage-label > span:nth-child(3), .is-immersive .game-hud .metric strong { font-size: 22px; }
+  .is-immersive .game-hud .metric { justify-content: space-between; gap: 7px; padding-inline: 6px; border-left: 0; }
+  .app-shell.is-immersive .game-exit-button { padding-inline: 12px; font-size: 14px; gap: 5px; }
+  .is-immersive .game-progress-steps { gap: 6px; justify-content: center; }
+  .is-immersive .progress-step { flex-basis: 21px; max-width: 21px; height: auto; font-size: 10px; }
+  .is-immersive .progress-step:not(:last-child)::after { width: 6px; }
+  .is-immersive .progress-long .progress-step { flex-basis: 10px; }
+  .is-immersive .score-gain, .is-immersive .streak-banner { top: -13px; }
+  .app-shell.is-immersive .game-question-card, .app-shell.is-immersive .victory-report {
+    --panel-width: 33px;
+    --panel-cut: 20px;
+    padding: 22px 14px 24px;
+  }
+  .is-immersive .game-question-card h1 { font-size: clamp(24px, 6.3vw, 35px); line-height: 1.16; margin-top: 12px; }
+  .is-immersive .game-question-card .context { font-size: 15px; line-height: 1.3; }
+  .is-immersive .game-question-card .options { margin-top: 20px; gap: 10px; }
+  .app-shell.is-immersive .game-question-card .option {
+    --control-width: 22px;
+    --control-cut: 13px;
+    min-height: 66px;
+    grid-template-columns: 28px minmax(0,1fr) 22px;
+    font-size: 20px;
+    padding: 11px 15px;
+  }
+  .is-immersive .game-question-card .option-key { font-size: 22px; height: auto; }
+  .is-immersive .game-advance-bar .advance-inner { padding: 10px 14px; }
+  .is-immersive .game-advance-bar .advance-result { font-size: 15px; }
+  .is-immersive .game-advance-bar .next-action { min-height: 52px; }
+  .app-shell.is-immersive .victory-replay { position: fixed; }
+  .is-immersive .victory-report { padding-block: 24px; }
+  .is-immersive .victory-links { gap: 6px; }
+  .app-shell.is-immersive .victory-links :is(a, button) { padding-inline: 15px; }
+}
+@media (max-width: 360px) {
+  .is-immersive .brand { font-size: 18px; gap: 5px; }
+  .is-immersive .brand-logo { width: 34px; height: 34px; flex-basis: 34px; }
+  .app-shell.is-immersive :is(.sound-toggle, .theme-trigger) { padding-inline: 8px; }
+  .app-shell.is-immersive .game-question-card .option { padding-inline: 12px; }
+}

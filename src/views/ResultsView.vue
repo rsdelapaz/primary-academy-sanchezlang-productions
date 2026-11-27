@@ -1,27 +1,32 @@
 <script setup lang="ts">
-import { computed, onUnmounted, ref, watch } from 'vue'
+import { computed, onMounted, onUnmounted, ref, watch } from 'vue'
 import { RouterLink, useRoute, useRouter } from 'vue-router'
 import MissionTrophy from '../components/MissionTrophy.vue'
 import TreasureBoard from '../components/TreasureBoard.vue'
-import UniverseArtwork from '../components/UniverseArtwork.vue'
+import CollectionDialog from '../components/CollectionDialog.vue'
 import { getGameStats } from '../domain/game'
 import { isGameExercise } from '../domain/content'
 import type { TreasureId } from '../domain/treasure'
 import { contentService } from '../content/service'
 import { gameSession, openActiveTreasure, restartActiveGame } from '../presentation/game-session'
 import { announceTreasureOpened, treasureRewardScene } from '../presentation/game-feel'
+import { useThemePreference } from '../presentation/theme-preference'
+import { getVictoryTier, VICTORY_TITLES } from '../presentation/victory-presentation'
 import { localGameRecordsStore, type GameAchievement } from '../presentation/local-game-records'
 
 const route = useRoute()
 const router = useRouter()
+const { focusMode } = useThemePreference()
+const collection = ref<{ show: () => void } | null>(null)
+const missionName = ref('')
 const loading = ref(false)
 const error = ref('')
 const treasureError = ref('')
 const result = computed(() => gameSession.value?.result ?? null)
 const stats = computed(() => gameSession.value ? getGameStats(gameSession.value) : null)
-const perfect = computed(() => Boolean(result.value &&
-  result.value.totalQuestions > 0 &&
-  result.value.correctCount === result.value.totalQuestions))
+const tier = computed(() => getVictoryTier(result.value?.correctCount ?? 0, result.value?.totalQuestions ?? 0))
+const perfect = computed(() => tier.value === 'perfect')
+const resultTitle = computed(() => VICTORY_TITLES[tier.value])
 const achievement = ref<GameAchievement | null>(null)
 const animatedScore = ref(0)
 const treasureState = computed(() => gameSession.value?.modeState.modeId === 'treasure'
@@ -36,13 +41,13 @@ watch(result, (value) => {
 }, { immediate: true })
 
 let scoreFrame = 0
-watch(result, (value) => {
+watch([result, focusMode], ([value]) => {
   if (scoreFrame) globalThis.cancelAnimationFrame(scoreFrame)
   if (!value) {
     animatedScore.value = 0
     return
   }
-  if (globalThis.matchMedia('(prefers-reduced-motion: reduce)').matches) {
+  if (focusMode.value || globalThis.matchMedia('(prefers-reduced-motion: reduce)').matches) {
     animatedScore.value = value.score
     return
   }
@@ -56,6 +61,17 @@ watch(result, (value) => {
   }
   scoreFrame = globalThis.requestAnimationFrame(animateScore)
 }, { immediate: true })
+
+onMounted(async () => {
+  try {
+    const catalog = await contentService.loadManifest()
+    const subject = catalog.subjects.find(({ id }) => id === result.value?.subjectId)
+    const topic = subject?.topics.find(({ id }) => id === result.value?.topicId)
+    missionName.value = [subject?.title, topic?.title].filter(Boolean).join(' · ')
+  } catch {
+    // The end-of-game summary works even if the catalog is unavailable.
+  }
+})
 
 onUnmounted(() => {
   if (scoreFrame) globalThis.cancelAnimationFrame(scoreFrame)
@@ -95,59 +111,68 @@ function openChest(treasureId: TreasureId) {
 <template>
   <section
     v-if="result"
-    class="screen results-screen"
-    :class="{ 'results-screen-perfect': perfect }"
+    class="screen results-screen epic-results"
+    :data-tier="tier"
     aria-labelledby="results-title"
   >
-    <div
-      class="card results-card"
-      :class="{ 'results-perfect': perfect }"
-    >
-      <p class="eyebrow results-eyebrow">
-        {{ perfect ? '¡MISIÓN PERFECTA!' : '¡MISIÓN COMPLETADA!' }}
-      </p>
-      <MissionTrophy
-        v-if="perfect"
-        class="mission-trophy"
-      />
-      <UniverseArtwork
-        v-else
-        class="results-art"
-        scene="hero"
-      />
-      <div
-        class="score-ring"
-        :class="{ 'score-ring-perfect': perfect }"
-        :style="{ '--score': `${percentage * 3.6}deg` }"
-      >
-        <strong>{{ percentage }}%</strong>
-      </div>
+    <header class="victory-heading">
       <h1 id="results-title">
-        {{ perfect ? '¡Lo lograste todo!' : `${result.correctCount} de ${result.totalQuestions} correctas` }}
+        {{ resultTitle }}
       </h1>
-      <p
-        v-if="perfect && achievement?.perfectBadgeAwarded"
-        class="badge-earned"
-      >
-        Insignia de misión perfecta conseguida
+      <p v-if="missionName">
+        {{ missionName }}
       </p>
-      <p
-        v-if="achievement?.newPersonalRecord"
-        class="personal-record"
-        role="status"
+    </header>
+    <div class="victory-layout">
+      <div
+        class="victory-art-space"
+        aria-hidden="true"
       >
-        ¡Nuevo récord personal! {{ achievement.personalBest }} puntos
-      </p>
-      <div class="result-stats">
-        <div class="metric metric-score">
-          <span>Puntos</span><strong class="result-score">{{ animatedScore }}</strong>
-        </div>
-        <div class="metric metric-streak">
-          <span>Mejor racha</span><strong>{{ stats?.bestStreak }}</strong>
-        </div>
+        <MissionTrophy
+          v-if="focusMode && perfect"
+          class="mission-trophy"
+        />
       </div>
+      <div class="victory-report">
+        <span class="game-frame-crest game-frame-crest--top" aria-hidden="true"></span>
+        <span class="game-frame-crest game-frame-crest--bottom" aria-hidden="true"></span>
+        <p
+          v-if="achievement?.newPersonalRecord"
+          class="victory-record"
+          role="status"
+        >
+          ★ Nuevo récord personal
+        </p>
+        <div class="victory-score">
+          <strong aria-hidden="true">{{ animatedScore }}</strong>
+          <span class="sr-only">{{ result.score }}</span>
+          <span>Puntos</span>
+        </div>
+        <dl class="victory-stats">
+          <div><dt>Aciertos</dt><dd>{{ result.correctCount }}/{{ result.totalQuestions }}</dd></div>
+          <div><dt>Racha</dt><dd>{{ stats?.bestStreak }}</dd></div>
+          <div><dt>Precisión</dt><dd>{{ percentage }}%</dd></div>
+        </dl>
+        <div
+          v-if="perfect && achievement?.perfectBadgeAwarded"
+          class="victory-achievement"
+        >
+          <MissionTrophy aria-hidden="true" />
+          <span><small>Insignia conseguida</small><strong>Misión perfecta</strong></span>
+        </div>
+        <p
+          v-else
+          class="victory-message"
+        >
+          {{ tier === 'epic' ? '¡Estuviste muy cerca de una misión perfecta!' : 'Cada respuesta te ayuda a aprender. Puedes repasar tus errores.' }}
+        </p>
+      </div>
+    </div>
+    <div
+      v-if="treasureState"
+      class="victory-treasures"
+    >
       <TreasureBoard
-        v-if="treasureState"
         :state="treasureState"
         :question-count="result.totalQuestions"
         :can-open="true"
@@ -160,7 +185,8 @@ function openChest(treasureId: TreasureId) {
       >
         {{ treasureError }}
       </p>
-      <p>{{ percentage >= 70 ? '¡Gran trabajo, explorador/a!' : 'Cada error te acerca a la respuesta. ¡Pruébalo otra vez!' }}</p>
+    </div>
+    <div class="victory-actions">
       <p
         v-if="error"
         class="error"
@@ -168,40 +194,33 @@ function openChest(treasureId: TreasureId) {
       >
         {{ error }}
       </p>
-      <p class="results-encouragement">
-        {{ perfect ? '¡Tu precisión ha sido extraordinaria!' : 'Cada reto completado te hace avanzar. ¡Vamos a por el siguiente!' }}
-      </p>
       <button
-        class="button primary replay-button"
+        class="button primary victory-replay"
         type="button"
         :disabled="loading"
         @click="restart"
       >
-        {{ loading ? 'Preparando...' : '¡Volver a jugar!' }}
+        {{ loading ? 'Preparando...' : 'Siguiente misión' }} <span aria-hidden="true">→</span>
       </button>
       <nav
-        class="results-secondary-actions"
+        class="victory-links"
         aria-label="Otras opciones"
       >
         <RouterLink
           v-if="!perfect"
-          class="button secondary"
           :to="{ name: 'review', params: route.params }"
+        >Revisar errores</RouterLink>
+        <button
+          type="button"
+          @click="collection?.show()"
         >
-          Revisar errores
-        </RouterLink>
-        <RouterLink
-          class="button secondary"
-          :to="{ name: 'choose-challenge', params: route.params }"
-        >
-          Elegir otro reto
-        </RouterLink>
-        <RouterLink
-          class="text-link"
-          :to="{ name: 'home' }"
-        >Ir al inicio</RouterLink>
+          Mi colección
+        </button>
+        <RouterLink :to="{ name: 'choose-challenge', params: route.params }">Otro reto</RouterLink>
+        <RouterLink :to="{ name: 'home' }">Inicio</RouterLink>
       </nav>
     </div>
+    <CollectionDialog ref="collection" />
   </section>
   <section
     v-else

@@ -1,23 +1,39 @@
 <svg xmlns="http://www.w3.org/2000/svg" width="96" height="96" viewBox="0 0 96 96" role="img" aria-labelledby="pop-title">
-  <title id="pop-title">Pop Adventure — varita mágica y estrellas</title>
+  <title id="pop-title">Pop Adventure — cristal de la aventura</title>
   <defs>
-    <linearGradient id="bg" x1="0" y1="0" x2="96" y2="96" gradientUnits="userSpaceOnUse">
-      <stop stop-color="#49217A"/>
-      <stop offset=".62" stop-color="#963D9F"/>
-      <stop offset="1" stop-color="#267D94"/>
+    <linearGradient id="gold" x1="8" y1="8" x2="87" y2="90" gradientUnits="userSpaceOnUse">
+      <stop stop-color="#fff7c5"/>
+      <stop offset=".33" stop-color="#e2a54c"/>
+      <stop offset=".52" stop-color="#91602b"/>
+      <stop offset=".74" stop-color="#ffdf86"/>
+      <stop offset="1" stop-color="#e4a443"/>
     </linearGradient>
-    <linearGradient id="magic" x1="43" y1="12" x2="75" y2="50" gradientUnits="userSpaceOnUse">
-      <stop stop-color="#FFF4AB"/>
-      <stop offset="1" stop-color="#FFB65C"/>
+    <linearGradient id="violet" x1="48" y1="4" x2="48" y2="92" gradientUnits="userSpaceOnUse">
+      <stop stop-color="#6c4293"/>
+      <stop offset="1" stop-color="#251332"/>
+    </linearGradient>
+    <linearGradient id="light" x1="22" y1="12" x2="65" y2="80" gradientUnits="userSpaceOnUse">
+      <stop stop-color="#ecffff"/>
+      <stop offset=".35" stop-color="#62fff0"/>
+      <stop offset="1" stop-color="#0c94ba"/>
+    </linearGradient>
+    <linearGradient id="shade" x1="48" y1="16" x2="82" y2="80" gradientUnits="userSpaceOnUse">
+      <stop stop-color="#2fe7f0"/>
+      <stop offset=".52" stop-color="#167ba7"/>
+      <stop offset="1" stop-color="#133865"/>
     </linearGradient>
   </defs>
-  <rect x="2" y="2" width="92" height="92" rx="22" fill="url(#bg)" stroke="#EDC8FF" stroke-width="3"/>
-  <path d="M19 64L48 35" stroke="#351A5D" stroke-width="14" stroke-linecap="round"/>
-  <path d="M19 64L48 35" stroke="#D8AEFF" stroke-width="10" stroke-linecap="round"/>
-  <path d="M21 62L29 54" stroke="#74F5E0" stroke-width="10" stroke-linecap="round"/>
-  <path d="M59 12L65 27 82 29 69 40 72 57 57 48 42 56 45 39 33 27 50 26Z" fill="url(#magic)" stroke="#4A226E" stroke-width="4" stroke-linejoin="round"/>
-  <path d="M59 22L62 32 72 33 64 39 66 45 57 40 50 44 52 36 45 31 55 31Z" fill="#FFF7D7"/>
-  <path d="M22 16L25 24 33 27 25 30 22 38 19 30 11 27 19 24Z" fill="#9CFFED" stroke="#542787" stroke-width="2" stroke-linejoin="round"/>
-  <path d="M76 61L79 69 87 72 79 75 76 83 73 75 65 72 73 69Z" fill="#FAC6FF" stroke="#55226D" stroke-width="2" stroke-linejoin="round"/>
-  <circle cx="43" cy="74" r="3" fill="#FDF1C8"/>
+  <path d="M48 2 77 17 93 48 77 79 48 94 19 79 3 48 19 17Z" fill="#160d24" stroke="#1c1226" stroke-width="3" stroke-linejoin="round"/>
+  <path d="M48 4 76 19 90 48 76 77 48 92 20 77 6 48 20 19Z" fill="url(#gold)"/>
+  <path d="M48 10 71 23 84 48 71 73 48 86 25 73 12 48 25 23Z" fill="url(#violet)" stroke="#fbe1a1" stroke-width="1.3"/>
+  <path d="M48 11 81 47 48 85 15 47Z" fill="#100b24" stroke="#422442" stroke-width="4" stroke-linejoin="round"/>
+  <path d="M48 15 77 47 48 81 19 47Z" fill="url(#gold)" stroke="#fff2bf" stroke-width="2" stroke-linejoin="round"/>
+  <path d="M48 20 72 47 48 75 24 47Z" fill="url(#light)"/>
+  <path d="M48 20 72 47 48 75 56 47Z" fill="url(#shade)"/>
+  <path d="M48 20 40 47 48 75 56 47Z" fill="#b0fff4" opacity=".63"/>
+  <path d="M24 47 40 47 48 75Z" fill="#0790b6" opacity=".75"/>
+  <path d="M24 47 48 20 72 47M48 20 40 47 48 75" fill="none" stroke="#f1ffff" stroke-width="1.6" stroke-linejoin="round"/>
+  <path d="M48 20 56 47 48 75M56 47H72" fill="none" stroke="#3bb5dc" stroke-width="1.4" stroke-linejoin="round"/>
+  <path d="M11 48 24 41 19 48 24 55ZM85 48 72 41 77 48 72 55Z" fill="#f5a4ff"/>
+  <path d="M48 5 71 18M8 48 19 23" stroke="#fff7ce" stroke-width="2" stroke-linecap="round" opacity=".9"/>
 </svg>

@@ -1,4 +1,5 @@
 import { getRankingKey, type GameResult } from '../domain/game'
+import { TREASURE_CHESTS, type TreasureId } from '../domain/treasure'
 import { type KeyValueStorage } from './question-history-storage'
 
 const STORAGE_KEY = 'retonautas.game-records.v1'
@@ -22,16 +23,25 @@ interface StoredProgress {
   bestScores: Record<string, StoredGameRecord>
   perfectBadges: string[]
   processed: Record<string, GameAchievement>
+  treasures: TreasureId[]
+}
+
+export interface GameCollection {
+  perfect: boolean
+  treasures: readonly TreasureId[]
 }
 
 export interface LocalGameRecordsStore {
   record(result: GameResult): GameAchievement
+  recordTreasure(treasureId: TreasureId): void
+  getCollection(): GameCollection
 }
 
 export function createLocalGameRecordsStore(
   getStorage: () => KeyValueStorage | undefined = getBrowserStorage,
 ): LocalGameRecordsStore {
   let memoryProgress = emptyProgress()
+  let storageWriteFailed = false
 
   function record(result: GameResult): GameAchievement {
     const progress = readProgress()
@@ -70,16 +80,37 @@ export function createLocalGameRecordsStore(
       }),
     }
 
-    memoryProgress = next
-    try {
-      getStorage()?.setItem(STORAGE_KEY, JSON.stringify(next))
-    } catch {
-      return outcome
-    }
+    saveProgress(next)
     return outcome
   }
 
+  function saveProgress(next: StoredProgress): void {
+    memoryProgress = next
+    try {
+      getStorage()?.setItem(STORAGE_KEY, JSON.stringify(next))
+      storageWriteFailed = false
+    } catch {
+      storageWriteFailed = true
+      // Sigue disponible durante esta sesión si no hay almacenamiento local.
+    }
+  }
+
+  function recordTreasure(treasureId: TreasureId): void {
+    const progress = readProgress()
+    if (!TREASURE_CHESTS.some(({ id }) => id === treasureId) || progress.treasures.includes(treasureId)) return
+    saveProgress({ ...progress, treasures: [...progress.treasures, treasureId] })
+  }
+
+  function getCollection(): GameCollection {
+    const progress = readProgress()
+    return {
+      perfect: progress.perfectBadges.length > 0,
+      treasures: [...progress.treasures],
+    }
+  }
+
   function readProgress(): StoredProgress {
+    if (storageWriteFailed) return memoryProgress
     try {
       const raw = getStorage()?.getItem(STORAGE_KEY)
       if (raw === null || raw === undefined) return memoryProgress
@@ -90,7 +121,7 @@ export function createLocalGameRecordsStore(
     return memoryProgress
   }
 
-  return { record }
+  return { record, recordTreasure, getCollection }
 }
 
 export const localGameRecordsStore = createLocalGameRecordsStore()
@@ -126,11 +157,14 @@ function parseProgress(raw: string): StoredProgress {
       perfectBadgeAwarded: achievement.perfectBadgeAwarded,
     }
   }
+  const storedTreasures = Array.isArray(value.treasures) ? value.treasures : []
   return {
     version: 1,
     bestScores,
     perfectBadges: value.perfectBadges.filter((id): id is string => typeof id === 'string'),
     processed,
+    treasures: TREASURE_CHESTS.map(({ id }) => id)
+      .filter((id) => storedTreasures.includes(id)),
   }
 }
 
@@ -140,7 +174,7 @@ function keepRecent(entries: Record<string, GameAchievement>): Record<string, Ga
 }
 
 function emptyProgress(): StoredProgress {
-  return { version: 1, bestScores: {}, perfectBadges: [], processed: {} }
+  return { version: 1, bestScores: {}, perfectBadges: [], processed: {}, treasures: [] }
 }
 
 function isRecord(value: unknown): value is Record<string, unknown> {

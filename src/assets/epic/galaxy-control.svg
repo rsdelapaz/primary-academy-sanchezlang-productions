@@ -1,0 +1,9 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="240" height="110" viewBox="0 0 240 110">
+<defs><linearGradient id="metal" x1="0" y1="0" x2="1" y2="1"><stop stop-color="#a1ebf5"/><stop offset=".3" stop-color="#345c70"/><stop offset=".5" stop-color="#0c2637"/><stop offset=".72" stop-color="#57ddec"/><stop offset="1" stop-color="#0d415d"/></linearGradient>
+<linearGradient id="light" x1="0" y1="0" x2="1" y2="1"><stop stop-color="#e4ffff"/><stop offset=".55" stop-color="#20c9ed"/><stop offset="1" stop-color="#63ecff"/></linearGradient></defs>
+<path d="M22 2H218L238 22V88L218 108H22L2 88V22Z" fill="none" stroke="#0a1822" stroke-width="4"/>
+ <path d="M22 2H218L238 22V88L218 108H22L2 88V22Z" fill="none" stroke="url(#light)" stroke-width="2.8"/>
+ <path d="M25 6H215L234 25V85L215 104H25L6 85V25Z" fill="none" stroke="#176681" stroke-width="1"/>
+ <path d="M2 33V22L22 2H40M200 2H218L238 22V33M2 77V88L22 108H40M200 108H218L238 88V77" stroke="#ffd177" stroke-width="2" fill="none"/>
+ <path d="M33 2H207M33 108H207" stroke="#f5ffff" stroke-width="1.05" opacity=".75"/>
+</svg>

@@ -4,7 +4,7 @@ export interface AutoAdvanceInput {
   feedbackKey: string | null
   enabled: boolean
   blocked: boolean
-  delayMs: 3000 | 8000
+  delayMs: 3000 | 5000 | 8000
 }
 
 export interface AutoAdvanceState {

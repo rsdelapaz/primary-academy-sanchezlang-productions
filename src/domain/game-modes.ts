@@ -24,7 +24,6 @@ export interface GameModeDefinition<Id extends GameModeId = GameModeId> {
   id: Id
   title: string
   description: string
-  illustration: 'lightning' | 'treasure'
   quickPlayDefault: boolean
   compatibleExerciseTypes: readonly ExerciseType[]
 }
@@ -41,7 +40,6 @@ const strategies: { [Id in GameModeId]: GameModeStrategy<GameModeStates[Id]> } =
       id: 'classic',
       title: 'Reto Relámpago',
       description: 'Responde, suma puntos y aprende con cada reto.',
-      illustration: 'lightning',
       quickPlayDefault: true,
       compatibleExerciseTypes: ['single_choice', 'typed_answer'],
     },
@@ -53,7 +51,6 @@ const strategies: { [Id in GameModeId]: GameModeStrategy<GameModeStates[Id]> } =
       id: 'treasure',
       title: 'Misión del Tesoro',
       description: 'Gana llaves con tus aciertos y elige qué cofres abrir.',
-      illustration: 'treasure',
       quickPlayDefault: false,
       compatibleExerciseTypes: ['single_choice', 'typed_answer'],
     },
