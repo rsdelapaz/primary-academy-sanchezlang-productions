@@ -6,6 +6,7 @@ const props = defineProps<{
   seconds: number
   paused: boolean
   blockedByTreasure: boolean
+  hasTreasureAvailable: boolean
   finalQuestion: boolean
   disabled: boolean
   correct: boolean
@@ -30,7 +31,7 @@ let lastHeight = -1
 
 const nextLabel = computed(() => props.finalQuestion ? 'Ver resultados' : 'Siguiente')
 const advanceStatus = computed(() => {
-  if (props.blockedByTreasure) return 'Tienes un cofre disponible'
+  if (props.blockedByTreasure) return 'Abre un cofre o guarda tus llaves.'
   if (!props.automatic) return ''
   if (props.paused) return 'Avance automático pausado'
   return 'Avance automático en marcha'
@@ -127,13 +128,13 @@ defineExpose({
           {{ paused ? 'Reanudar' : 'Pausar' }}
         </button>
         <button
-          v-if="blockedByTreasure"
+          v-if="hasTreasureAvailable"
           class="button secondary treasure-action"
           type="button"
           :disabled="disabled"
           @click="emit('showTreasures')"
         >
-          Ver cofres
+          Abrir cofres
         </button>
         <button
           ref="nextButton"

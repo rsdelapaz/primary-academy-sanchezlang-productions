@@ -2,7 +2,7 @@ import { describe, expect, it } from 'vitest'
 import type { SingleChoiceExercise } from './content'
 import { advanceQuestion, answerQuestion, createGameSession, getCurrentQuestion, restartGame } from './game'
 import { isGameModeCompatible } from './game-modes'
-import { getTreasureCost, openTreasure } from './treasure'
+import { getAvailableTreasureIds, getTreasureCost, openTreasure } from './treasure'
 
 const exercises: SingleChoiceExercise[] = Array.from({ length: 20 }, (_, index) => ({
   id: `exercise-${index + 1}`,
@@ -77,6 +77,19 @@ describe('Misión del Tesoro', () => {
       getTreasureCost('golden-compass', count),
       getTreasureCost('moon-crown', count),
     ].reduce((total, cost) => total + cost, 0))).toEqual([3, 5, 10, 20])
+  })
+
+  it('lists only affordable unopened chests, including shortened missions', () => {
+    let game = createTreasureGame(5)
+    expect(getAvailableTreasureIds(treasureState(game), 5)).toEqual([])
+    game = answerCorrectly(game)
+    expect(getAvailableTreasureIds(treasureState(game), 5)).toEqual(['star-crystal'])
+    game = openTreasure(game, 'star-crystal')
+    expect(getAvailableTreasureIds(treasureState(game), 5)).toEqual([])
+    game = answerCorrectly(advanceQuestion(game))
+    game = answerCorrectly(advanceQuestion(game))
+    expect(getAvailableTreasureIds(treasureState(game), 5)).toEqual(['golden-compass', 'moon-crown'])
+    expect(getAvailableTreasureIds(treasureState(game), 2)).toEqual(['golden-compass'])
   })
 
   it('offers one-key chests for short sessions and rejects unavailable ones', () => {

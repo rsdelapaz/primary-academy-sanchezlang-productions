@@ -1,0 +1,176 @@
+/* PA-020: one presentation for both worlds, semantic HTML controls, original
+   isolated WebP objects. Focus uses existing vector alternatives. */
+.treasure-raster { object-fit: contain; display: block; }
+.app-shell .treasure-route { padding: 14px 18px; margin-block: 14px; }
+.treasure-route-header { display: flex; justify-content: space-between; align-items: center; gap: 10px; }
+.treasure-route-header .eyebrow { margin: 0; font-size: 11px; }
+.treasure-route-header h2 { font-size: 20px; margin: 3px 0 0; }
+.key-balance .treasure-art { width: 25px; height: 20px; flex: 0 0 25px; }
+.key-balance strong { font-size: 20px; font-variant-numeric: tabular-nums; }
+.relic-route-nodes { position: relative; display: grid; grid-template-columns: repeat(3,minmax(0,1fr)); gap: 10px; margin: 12px 0 0; padding: 0; list-style: none; }
+.relic-route-nodes::before { content: ''; position: absolute; top: 40px; left: 16.66%; right: 16.66%; border-top: 2px dashed var(--color-border); }
+.relic-route-node { position: relative; display: grid; justify-items: center; text-align: center; gap: 4px; min-width: 0; overflow-wrap: anywhere; }
+.relic-route-icon { position: relative; display: grid; place-items: center; width: 80px; height: 80px; border: 1px solid var(--color-border); border-radius: 50%; background: var(--color-surface); }
+.relic-route-icon > .treasure-art { width: 66px; height: 66px; object-fit: contain; }
+.relic-route-node:not(.opened,.ready) .relic-route-icon > .treasure-art { filter: saturate(.45); opacity: .72; }
+.relic-route-node.ready .relic-route-icon { border-color: var(--color-reward); box-shadow: 0 0 15px #efc66a42; }
+.relic-route-node.opened .relic-route-icon { border-color: var(--color-success-text); background: var(--color-success-surface); }
+.relic-node-check { position: absolute; bottom: 0; right: 0; border: 1px solid var(--color-success-text); border-radius: 50%; width: 24px; height: 24px; display: grid; place-items: center; color: var(--color-success-text); background: var(--color-success-surface); font-weight: 900; font-size: 14px; }
+.relic-route-node strong { font-size: 15px; }
+.relic-route-node small { color: var(--color-text-muted); font-size: 12px; line-height: 1.25; }
+.relic-route-node.ready small { color: var(--color-secondary-text); font-weight: 850; }
+.relic-route-node.opened small { color: var(--color-success-text); font-weight: 750; }
+.treasure-route-footer { display: flex; justify-content: space-between; align-items: center; gap: 12px; padding-top: 10px; }
+.treasure-route-footer p { margin: 0; font-size: 12px; line-height: 1.4; color: var(--color-text-muted); }
+.treasure-route-footer .button { min-height: 44px; padding: 7px 14px; font-size: 13px; white-space: nowrap; }
+.app-shell.is-immersive .treasure-route {
+  background: var(--panel-fill);
+  border: 1px solid color-mix(in srgb,var(--epic-line) 65%,var(--epic-gold));
+  box-shadow: inset 0 1px 0 #ffffff22, 0 5px 18px #0005;
+}
+.app-shell.is-immersive .relic-route-node.ready .relic-route-icon {
+  border-color: var(--epic-gold); box-shadow: 0 0 18px #ffcb5555, inset 0 0 14px #ffce5522;
+}
+.app-shell.is-immersive .relic-route-node.ready small { color: var(--epic-gold); }
+.app-shell .treasure-vault-dialog, .app-shell .relic-reveal-dialog {
+  width: min(1100px, calc(100vw - 28px)); max-width: calc(100vw - 28px);
+  max-height: min(92dvh, 960px); padding: 0;
+  color: var(--color-text); background: var(--color-surface); border: 1px solid var(--color-border);
+  border-radius: 18px; overflow: auto; text-align: left; box-shadow: 0 18px 58px #0008;
+  overscroll-behavior: contain;
+}
+.app-shell .treasure-vault-dialog::backdrop, .app-shell .relic-reveal-dialog::backdrop { background: #050817b8; }
+.vault-shell { padding: clamp(16px, 3vw, 32px); display: grid; gap: 20px; }
+.vault-heading { display: flex; justify-content: space-between; gap: 12px; align-items: center; }
+.vault-heading .eyebrow { margin: 0 0 6px; }
+.app-shell .vault-heading h2 { margin: 0; font-size: clamp(26px, 4vw, 42px); line-height: 1.06; letter-spacing: -.035em; }
+.vault-heading p:not(.eyebrow) { color: var(--color-text-muted); font-size: 14px; margin: 8px 0 0; }
+.vault-heading .key-balance { flex-shrink: 0; }
+.vault-chests { display: grid; grid-template-columns: repeat(3,minmax(0,1fr)); gap: 15px; }
+.vault-chest, .relic-display {
+  position: relative; min-width: 0; display: grid; align-content: start; text-align: center;
+  border: 1px solid var(--color-border); border-radius: 12px; background: var(--color-surface-raised);
+  overflow: hidden; padding: 15px; gap: 10px;
+}
+.vault-chest-art { display: grid; place-items: center; border-radius: 10px; min-height: 120px; background: radial-gradient(ellipse, color-mix(in srgb,var(--color-primary) 18%,transparent), transparent 70%); }
+.vault-chest-art .treasure-art { display: block; width: min(100%, 210px); height: auto; aspect-ratio: 1; object-fit: contain; }
+.vault-chest h3 { margin: 0 0 5px; font-size: 20px; line-height: 1.1; }
+.vault-chest p { color: var(--color-text-muted); font-size: 13px; margin: 0 0 12px; line-height: 1.4; }
+.vault-chest-copy { display: flex; flex-direction: column; align-items: center; min-width: 0; }
+.vault-chest .button { width: 100%; min-height: 48px; font-size: 15px; }
+.vault-status { display: grid; place-items: center; min-height: 48px; color: var(--color-text-muted); font-weight: 700; }
+.vault-chest.ready { border-color: var(--color-reward); box-shadow: inset 0 0 22px #eac05928; }
+.vault-chest.opened .vault-status { color: var(--color-success-text); }
+.vault-chest:not(.ready,.opened) .vault-chest-art { opacity: .65; }
+.vault-footer { display: flex; justify-content: center; padding: 6px 0 0; }
+.vault-footer .button { min-height: 48px; width: min(100%, 500px); }
+.app-shell.is-immersive .treasure-vault-dialog, .app-shell.is-immersive .relic-reveal-dialog {
+  background: var(--panel-fill); border: 1px solid transparent;
+  border-image: var(--panel-frame) 68 / 36px stretch;
+  border-radius: 0; color: var(--color-text);
+  --relic-cut: 18px;
+  box-shadow: none;
+}
+.app-shell.is-immersive :is(.vault-heading h2, .relic-reveal-report h2) {
+  color: #fff0c4; text-shadow: 0 3px 3px #000a;
+}
+.app-shell[data-theme="pop-adventure"].is-immersive :is(.vault-heading h2,.relic-reveal-report h2,.vault-chest h3,.relic-display strong) { font-family: Georgia, Cambria, serif; }
+.app-shell.is-immersive :is(.vault-chest,.relic-display,.relic-reveal-report) {
+  border: 1px solid transparent; border-radius: 0;
+  border-image: var(--panel-frame) 68 / 25px stretch;
+  background: var(--panel-fill);
+  --relic-cut: 11px;
+}
+.app-shell.is-immersive .vault-chest.ready { border-image: var(--panel-frame) 68 / 28px stretch; box-shadow: inset 0 0 30px #ffc94b22, 0 0 14px #ffca552f; }
+.app-shell.is-immersive :is(.treasure-vault-button,.vault-footer .button,.vault-chest .button,.reward-continue) {
+  color: #f9fcff; background: var(--control-fill); border: 1px solid transparent;
+  border-radius: 0; border-image: var(--control-frame) 40 / 18px stretch;
+  box-shadow: none;
+  --relic-cut: 9px;
+}
+.app-shell.is-immersive :is(.vault-chest.ready .button,.relic-reveal .reward-continue) {
+  background: linear-gradient(180deg,#ffe9a2,#da9e33 72%,#c48927);
+  color: #151827; font-weight: 900;
+}
+/* Match the existing bevel frames without painted rectangular corners. */
+.app-shell.is-immersive :is(.treasure-vault-dialog, .relic-reveal-dialog, .vault-chest, .relic-display, .relic-reveal-report, .treasure-vault-button, .vault-footer .button, .vault-chest .button, .reward-continue) {
+  clip-path: polygon(var(--relic-cut) 0, calc(100% - var(--relic-cut)) 0, 100% var(--relic-cut), 100% calc(100% - var(--relic-cut)), calc(100% - var(--relic-cut)) 100%, var(--relic-cut) 100%, 0 calc(100% - var(--relic-cut)), 0 var(--relic-cut));
+}
+.app-shell.is-immersive :is(.vault-chest .button, .vault-footer .button, .reward-continue, .treasure-vault-button):focus-visible { outline-offset: -6px; }
+.relic-reveal { display: grid; grid-template-columns: minmax(0,1.12fr) minmax(0,1fr); align-items: center; gap: 24px; padding: clamp(18px,3vw,36px); }
+.relic-reveal-art { display: grid; position: relative; align-items: center; isolation: isolate; min-width: 0; height: clamp(320px, 45vw, 510px); }
+.relic-halo { position: absolute; inset: 0; z-index: -1; background: radial-gradient(ellipse, color-mix(in srgb,var(--color-primary) 37%,transparent), transparent 67%); }
+.relic-open-chest { position: absolute; bottom: 0; left: 4%; width: 92%; height: 68%; object-fit: contain; }
+.relic-hero-item { position: absolute; top: 1%; left: 16%; width: 68%; height: 64%; object-fit: contain; filter: drop-shadow(0 0 17px #ffd66566); animation: relic-arrive 550ms ease-out both; }
+@keyframes relic-arrive { from { opacity: .55; transform: translateY(15px) scale(.94); } to { opacity: 1; transform: none; } }
+.relic-reveal-report { display: grid; gap: 12px; padding: clamp(20px,3.5vw,40px); border: 1px solid var(--color-border); background: var(--color-surface-raised); text-align: center; border-radius: 16px; }
+.relic-reveal-report .eyebrow { margin: 0; }
+.relic-recovered { color: var(--color-secondary-text); font-size: 13px; font-weight: 850; letter-spacing: .065em; text-transform: uppercase; }
+.app-shell.is-immersive .relic-recovered { color: var(--epic-gold); }
+.relic-reveal-report h2 { font-size: clamp(34px,4.7vw,60px); margin: 0; line-height: 1.04; letter-spacing: -.045em; }
+.relic-reveal-description { color: var(--color-text-muted); margin: 0; }
+.relic-acquired { margin: 6px 0 0; font-weight: 800; font-size: 17px; color: var(--color-success-text); }
+.relic-count { justify-self: center; display: block; font-size: 14px; font-weight: 700; border: 1px solid var(--color-border); padding: 6px 15px; border-radius: 8px; }
+.relic-reveal .reward-continue { min-height: 56px; width: 100%; margin-top: 8px; }
+.relic-collection-link { color: var(--color-secondary-text); background: transparent; border: 0; min-height: 44px; text-decoration: underline; font-weight: 750; }
+.relic-gallery .collection-count { font-weight: 850; color: var(--color-text); margin: 0 0 7px; }
+.collection-track { height: 9px; overflow: hidden; border-radius: 10px; background: var(--color-progress-track); }
+.collection-track span { display: block; height: 100%; background: var(--color-primary); border-radius: inherit; }
+.relic-gallery-grid { display: grid; grid-template-columns: repeat(4,minmax(0,1fr)); gap: 12px; margin-top: 18px; }
+.relic-display-art { display: grid; place-items: center; height: clamp(100px,14vw,200px); min-height: 0; grid-template: minmax(0, 1fr) / minmax(0, 1fr); background: radial-gradient(ellipse,color-mix(in srgb,var(--color-primary) 22%,transparent),transparent 70%); }
+.relic-display-art :is(img,svg) { width: 100%; height: 100%; min-height: 0; min-width: 0; max-height: 100%; object-fit: contain; }
+.relic-display strong { font-size: 18px; }
+.relic-display small { font-size: 13px; color: var(--color-text-muted); }
+.relic-display:not(.collection-locked) { color: var(--color-text); }
+.relic-display.collection-locked .relic-display-art { filter: grayscale(1); opacity: .62; }
+.app-shell[data-focus="true"] :is(.relic-hero-item,.relic-route-icon,.vault-chest) { animation: none; filter: none; box-shadow: none; }
+.app-shell[data-focus="true"] .relic-halo, .app-shell[data-focus="true"] .relic-route-nodes::before { display: none; }
+.app-shell[data-focus="true"] :is(.vault-chest-art,.relic-display-art) { background: none; }
+@media (max-width: 760px) {
+  .app-shell .treasure-route { padding: 10px; }
+  .relic-route-nodes { gap: 4px; margin-top: 8px; }
+  .relic-route-nodes::before { top: 26px; }
+  .relic-route-icon { width: 52px; height: 52px; }
+  .relic-route-icon > .treasure-art { width: 44px; height: 44px; }
+  .relic-node-check { width: 18px; height: 18px; font-size: 12px; }
+  .relic-route-node strong { font-size: 11px; }
+  .relic-route-node small { font-size: 10px; }
+  .treasure-route-footer { flex-wrap: wrap; gap: 5px; }
+  .treasure-route-footer .button { width: 100%; }
+  .vault-shell { gap: 12px; padding: 14px; }
+  .vault-heading { flex-wrap: wrap; align-items: start; gap: 8px; }
+  .vault-heading .eyebrow { font-size: 10px; }
+  .vault-heading p:not(.eyebrow) { font-size: 13px; margin-top: 4px; }
+  .vault-chests { grid-template-columns: 1fr; gap: 8px; }
+  .vault-chest { grid-template-columns: 78px minmax(0,1fr); align-items: center; gap: 8px; padding: 8px; text-align: left; min-height: 90px; }
+  .vault-chest-art { min-height: unset; }
+  .vault-chest-art .treasure-art { width: 76px; }
+  .vault-chest h3 { font-size: 16px; margin: 0; }
+  .vault-chest p { display: none; }
+  .vault-chest-copy { align-items: start; gap: 4px; }
+  .vault-chest .button { padding: 5px 8px; min-height: 44px; font-size: 13px; }
+  .vault-status { min-height: 30px; font-size: 12px; justify-items: start; }
+  .vault-footer .button { font-size: 13px; padding-inline: 8px; }
+  .vault-footer { position: sticky; bottom: 0; background: var(--color-surface); z-index: 2; padding: 8px 0 2px; }
+  .relic-gallery-grid { grid-template-columns: repeat(2,minmax(0,1fr)); gap: 8px; }
+  .relic-display { padding: 10px; gap: 5px; }
+  .relic-display-art { height: 110px; }
+  .relic-display strong { font-size: 15px; }
+  .relic-display small { font-size: 11px; }
+  .relic-reveal { grid-template-columns: 1fr; gap: 7px; padding: 10px; }
+  .relic-reveal-art { height: clamp(132px,43vw,255px); }
+  .relic-reveal-report { padding: 15px; gap: 7px; }
+  .relic-reveal-report .eyebrow { display: none; }
+  .relic-reveal-report h2 { font-size: clamp(28px,8vw,44px); }
+  .relic-recovered { font-size: 11px; }
+  .relic-reveal-description, .relic-acquired { font-size: 13px; }
+  .relic-acquired { margin: 0; }
+  .relic-count { font-size: 12px; padding: 4px 10px; }
+  .relic-reveal .reward-continue { min-height: 48px; margin-top: 4px; }
+}
+@media (max-height: 540px) and (min-width: 600px) {
+  .relic-reveal-art { height: 240px; }
+  .relic-reveal-report { gap: 6px; padding: 15px; }
+  .relic-reveal-report h2 { font-size: 30px; }
+}
+@media (prefers-reduced-motion: reduce) { .relic-hero-item { animation: none; } }

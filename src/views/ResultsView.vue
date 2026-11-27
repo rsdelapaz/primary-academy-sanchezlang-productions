@@ -100,8 +100,9 @@ function openChest(treasureId: TreasureId) {
   if (treasureRewardScene.value) return
   treasureError.value = ''
   try {
+    const isNew = !localGameRecordsStore.getCollection().treasures.includes(treasureId)
     openActiveTreasure(treasureId)
-    announceTreasureOpened(treasureId)
+    announceTreasureOpened(treasureId, isNew)
   } catch (caught) {
     treasureError.value = caught instanceof Error ? caught.message : 'No se pudo abrir el cofre.'
   }
@@ -134,8 +135,14 @@ function openChest(treasureId: TreasureId) {
         />
       </div>
       <div class="victory-report">
-        <span class="game-frame-crest game-frame-crest--top" aria-hidden="true"></span>
-        <span class="game-frame-crest game-frame-crest--bottom" aria-hidden="true"></span>
+        <span
+          class="game-frame-crest game-frame-crest--top"
+          aria-hidden="true"
+        ></span>
+        <span
+          class="game-frame-crest game-frame-crest--bottom"
+          aria-hidden="true"
+        ></span>
         <p
           v-if="achievement?.newPersonalRecord"
           class="victory-record"

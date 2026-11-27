@@ -10,7 +10,7 @@ import {
   type GameAnswerResponse,
   type SessionAnswer,
 } from '../domain/game'
-import { getTreasureCost, TREASURE_CHESTS, type TreasureId } from '../domain/treasure'
+import { getAvailableTreasureIds, type TreasureId } from '../domain/treasure'
 import { abandonActiveGame, advanceActiveQuestion, answerActiveQuestion, gameAutoAdvanceEnabled, gameSession, openActiveTreasure } from '../presentation/game-session'
 import {
   announceGameAnswer,
@@ -19,6 +19,7 @@ import {
   treasureRewardScene,
 } from '../presentation/game-feel'
 import { getQuestionHistoryKey } from '../application/question-selection'
+import { localGameRecordsStore } from '../presentation/local-game-records'
 import { questionHistoryStore } from '../presentation/question-history-storage'
 import { createAutoAdvance, type AutoAdvanceState } from '../presentation/auto-advance'
 
@@ -37,7 +38,10 @@ const barHeight = ref(152)
 const advanceBar = ref<{ focusNext: () => void } | null>(null)
 const questionTitle = ref<InstanceType<typeof globalThis.HTMLHeadingElement> | null>(null)
 const feedbackPanel = ref<InstanceType<typeof globalThis.HTMLElement> | null>(null)
-const treasurePanel = ref<InstanceType<typeof globalThis.HTMLElement> | null>(null)
+const treasureBoard = ref<{ show: () => void } | null>(null)
+const vaultOpen = ref(false)
+const offeredChests = new Set<TreasureId>()
+const offerKey = ref<string | null>(null)
 const current = computed(() => gameSession.value ? getCurrentQuestion(gameSession.value) : undefined)
 const questionSegments = computed(() => promptSegments(current.value?.exercise.prompt ?? ''))
 const answered = computed(() => gameSession.value?.status === 'active' && gameSession.value.phase === 'feedback')
@@ -88,15 +92,11 @@ const displayKey = computed(() => {
     : ''
 })
 const feedbackKey = computed(() => answered.value ? displayKey.value : null)
-const blockedByTreasure = computed(() => {
-  const session = gameSession.value
-  const treasure = treasureState.value
-  if (!answered.value || !session || !treasure) return false
-  return TREASURE_CHESTS.slice(0, Math.min(TREASURE_CHESTS.length, session.questions.length))
-    .some(({ id }) => !treasure.openedTreasures.includes(id) &&
-      treasure.keysAvailable >= getTreasureCost(id, session.questions.length))
-})
-const blockedByDialog = computed(() => abandonDialogOpen.value || Boolean(treasureRewardScene.value))
+const availableTreasures = computed(() => answered.value && gameSession.value && treasureState.value
+  ? getAvailableTreasureIds(treasureState.value, gameSession.value.questions.length)
+  : [])
+const blockedByTreasure = computed(() => Boolean(feedbackKey.value && offerKey.value === feedbackKey.value && availableTreasures.value.length))
+const blockedByDialog = computed(() => abandonDialogOpen.value || vaultOpen.value || Boolean(treasureRewardScene.value))
 const timerBlocked = computed(() =>
   pausedByPlayer.value || pageHidden.value || blockedByDialog.value || blockedByTreasure.value || advancing.value,
 )
@@ -191,6 +191,11 @@ function submitAnswer(response: GameAnswerResponse) {
     if (!answer) throw new Error('No se pudo leer el resultado de la respuesta.')
     const previousKeys = previous?.modeState.modeId === 'treasure' ? previous.modeState.keysAvailable : 0
     const currentKeys = updated.modeState.modeId === 'treasure' ? updated.modeState.keysAvailable : 0
+    const newlyOffered = availableTreasures.value.filter((id) => !offeredChests.has(id))
+    if (newlyOffered.length) {
+      newlyOffered.forEach((id) => offeredChests.add(id))
+      offerKey.value = feedbackKey.value
+    }
     announceGameAnswer({
       correct: answer.correct,
       points: answer.points,
@@ -253,12 +258,25 @@ function requestAbandon() {
   abandonDialog.value.showModal()
 }
 
+function onVaultVisibility(visible: boolean) {
+  vaultOpen.value = visible
+  if (!visible) {
+    offerKey.value = null
+    void nextTick(() => { if (!blockedByDialog.value) advanceBar.value?.focusNext() })
+  }
+}
+
+watch(treasureRewardScene, (scene, previous) => {
+  if (!scene && previous) void nextTick(() => advanceBar.value?.focusNext())
+})
+
 function openChest(treasureId: TreasureId) {
   if (treasureRewardScene.value) return
   treasureError.value = ''
   try {
+    const isNew = !localGameRecordsStore.getCollection().treasures.includes(treasureId)
     openActiveTreasure(treasureId)
-    announceTreasureOpened(treasureId)
+    announceTreasureOpened(treasureId, isNew)
   } catch (caught) {
     treasureError.value = caught instanceof Error ? caught.message : 'No se pudo abrir el cofre.'
   }
@@ -286,7 +304,19 @@ function openChest(treasureId: TreasureId) {
           type="button"
           @click="requestAbandon"
         >
-          <svg class="exit-icon" viewBox="0 0 24 24" aria-hidden="true" focusable="false"><path d="M10 4H4v16h6m-1-8h12m-5-5 5 5-5 5" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg>
+          <svg
+            class="exit-icon"
+            viewBox="0 0 24 24"
+            aria-hidden="true"
+            focusable="false"
+          ><path
+            d="M10 4H4v16h6m-1-8h12m-5-5 5 5-5 5"
+            fill="none"
+            stroke="currentColor"
+            stroke-width="2"
+            stroke-linecap="round"
+            stroke-linejoin="round"
+          /></svg>
           Salir
         </button>
       </div>
@@ -336,8 +366,14 @@ function openChest(treasureId: TreasureId) {
       class="card question-card game-question-card"
       :class="{ 'question-correct': answered && currentAnswer?.correct, 'question-answered': answered }"
     >
-      <span class="game-frame-crest game-frame-crest--top" aria-hidden="true"></span>
-      <span class="game-frame-crest game-frame-crest--bottom" aria-hidden="true"></span>
+      <span
+        class="game-frame-crest game-frame-crest--top"
+        aria-hidden="true"
+      ></span>
+      <span
+        class="game-frame-crest game-frame-crest--bottom"
+        aria-hidden="true"
+      ></span>
       <p
         v-if="current.exercise.context"
         class="context"
@@ -432,16 +468,17 @@ function openChest(treasureId: TreasureId) {
     </article>
     <div
       v-if="treasureState"
-      ref="treasurePanel"
       class="game-treasure-panel"
       tabindex="-1"
     >
       <TreasureBoard
+        ref="treasureBoard"
         :state="treasureState"
         :question-count="gameSession.questions.length"
         :can-open="answered"
         compact
         @open="openChest"
+        @dialog="onVaultVisibility"
       />
     </div>
     <p
@@ -469,6 +506,7 @@ function openChest(treasureId: TreasureId) {
     :seconds="autoAdvanceState.remainingSeconds"
     :paused="pausedByPlayer || pageHidden || blockedByDialog"
     :blocked-by-treasure="blockedByTreasure"
+    :has-treasure-available="availableTreasures.length > 0"
     :final-question="gameSession.currentQuestionIndex + 1 === gameSession.questions.length"
     :disabled="advancing || blockedByDialog"
     :correct="currentAnswer?.correct ?? false"
@@ -479,7 +517,7 @@ function openChest(treasureId: TreasureId) {
     @next="nextQuestion()"
     @toggle-pause="toggleAdvancePause"
     @height="barHeight = $event"
-    @show-treasures="scrollToPanel(treasurePanel)"
+    @show-treasures="treasureBoard?.show()"
     @show-explanation="showExplanation"
   />
   <dialog

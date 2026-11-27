@@ -1,5 +1,7 @@
 <script setup lang="ts">
 import { computed, nextTick, onUnmounted, ref, watch } from 'vue'
+import CollectionGallery from './CollectionGallery.vue'
+import { localGameRecordsStore, type GameCollection } from '../presentation/local-game-records'
 import TreasureArt from './TreasureArt.vue'
 import {
   dismissTreasureReward,
@@ -7,14 +9,14 @@ import {
   treasureRewardScene,
   type GameFeelEvent,
 } from '../presentation/game-feel'
-import { useThemePreference } from '../presentation/theme-preference'
 import { TREASURE_REWARDS } from '../presentation/treasure-rewards'
 
-const { focusMode } = useThemePreference()
 const activeEvent = ref<GameFeelEvent | null>(null)
 const rewardDialog = ref<{ open: boolean; showModal: () => void; close: () => void } | null>(null)
 const continueButton = ref<{ focus: () => void } | null>(null)
-const rewardRevealed = ref(false)
+const galleryVisible = ref(false)
+const collection = ref<GameCollection>({ perfect: false, treasures: [] })
+const galleryBack = ref<{ focus: () => void } | null>(null)
 const eventTitle = computed(() => {
   const event = activeEvent.value
   if (!event) return ''
@@ -35,7 +37,6 @@ const reward = computed(() => {
 })
 
 let eventTimer: ReturnType<typeof globalThis.setTimeout> | undefined
-let revealTimer: ReturnType<typeof globalThis.setTimeout> | undefined
 
 watch(gameFeelEvent, (event) => {
   if (!event) return
@@ -47,30 +48,33 @@ watch(gameFeelEvent, (event) => {
 })
 
 watch(treasureRewardScene, async (scene) => {
-  if (revealTimer !== undefined) globalThis.clearTimeout(revealTimer)
-  revealTimer = undefined
-  rewardRevealed.value = false
+  galleryVisible.value = false
   if (!scene) {
     if (rewardDialog.value?.open) rewardDialog.value.close()
     return
   }
-
+  collection.value = localGameRecordsStore.getCollection()
   await nextTick()
   if (treasureRewardScene.value?.id !== scene.id || !rewardDialog.value) return
   if (!rewardDialog.value.open) rewardDialog.value.showModal()
-  if (focusMode.value || globalThis.matchMedia('(prefers-reduced-motion: reduce)').matches) {
-    revealReward()
-    return
-  }
-  revealTimer = globalThis.setTimeout(revealReward, 1050)
+  continueButton.value?.focus()
 })
 
-function revealReward(): void {
-  if (!treasureRewardScene.value) return
-  if (revealTimer !== undefined) globalThis.clearTimeout(revealTimer)
-  revealTimer = undefined
-  rewardRevealed.value = true
-  void nextTick(() => continueButton.value?.focus())
+async function showGallery() {
+  galleryVisible.value = true
+  await nextTick()
+  galleryBack.value?.focus()
+}
+
+async function closeGallery() {
+  galleryVisible.value = false
+  await nextTick()
+  continueButton.value?.focus()
+}
+
+function cancelReward() {
+  if (galleryVisible.value) void closeGallery()
+  else continueAdventure()
 }
 
 function continueAdventure(): void {
@@ -80,7 +84,6 @@ function continueAdventure(): void {
 
 onUnmounted(() => {
   if (eventTimer !== undefined) globalThis.clearTimeout(eventTimer)
-  if (revealTimer !== undefined) globalThis.clearTimeout(revealTimer)
   if (rewardDialog.value?.open) rewardDialog.value.close()
 })
 </script>
@@ -126,57 +129,86 @@ onUnmounted(() => {
 
   <dialog
     ref="rewardDialog"
-    class="treasure-reward-scene"
-    aria-labelledby="treasure-reward-title"
-    @cancel.prevent="revealReward"
+    class="treasure-reward-scene relic-reveal-dialog"
+    :aria-labelledby="galleryVisible ? 'reward-gallery-title' : 'treasure-reward-title'"
+    @cancel.prevent="cancelReward"
   >
     <div
-      v-if="reward"
-      class="treasure-reward-content"
+      v-if="reward && !galleryVisible"
+      :key="reward.id"
+      class="relic-reveal"
     >
-      <p class="eyebrow">
-        ¡Cofre abierto!
-      </p>
       <div
-        class="reward-stage"
-        :class="{ revealed: rewardRevealed }"
+        class="relic-reveal-art"
         aria-hidden="true"
       >
+        <span class="relic-halo"></span>
         <TreasureArt
-          class="reward-chest-closed"
-          kind="closed-chest"
-        />
-        <TreasureArt
-          class="reward-chest-open"
+          class="relic-open-chest"
           kind="open-chest"
         />
         <TreasureArt
-          class="reward-item-art"
+          class="relic-hero-item"
           :kind="reward.treasureId"
         />
       </div>
-      <h2 id="treasure-reward-title">
-        {{ rewardRevealed ? reward.title : '¿Qué habrá dentro?' }}
-      </h2>
-      <p>{{ rewardRevealed ? reward.description : '¡Tu aventura te ha traído una sorpresa!' }}</p>
-      <button
-        v-if="!rewardRevealed"
-        class="button secondary reward-skip"
-        type="button"
-        autofocus
-        @click="revealReward"
-      >
-        Saltar animación
-      </button>
-      <button
-        v-else
-        ref="continueButton"
-        class="button primary reward-continue"
-        type="button"
-        @click="continueAdventure"
-      >
-        ¡Continuar mi aventura!
-      </button>
+      <div class="relic-reveal-report">
+        <p class="eyebrow">
+          Cámara de reliquias
+        </p>
+        <span class="relic-recovered">✦ Reliquia recuperada</span>
+        <h2 id="treasure-reward-title">
+          {{ reward.title }}
+        </h2>
+        <p class="relic-reveal-description">
+          {{ reward.description }}
+        </p>
+        <p class="relic-acquired">
+          {{ reward.isNew ? 'Añadido a tu colección' : 'Ya forma parte de tu colección' }}
+        </p>
+        <span class="relic-count">{{ collection.treasures.length }} de {{ Object.keys(TREASURE_REWARDS).length }} reliquias</span>
+        <button
+          ref="continueButton"
+          class="button primary reward-continue"
+          type="button"
+          @click="continueAdventure"
+        >
+          Continuar aventura →
+        </button>
+        <button
+          class="relic-collection-link"
+          type="button"
+          @click="showGallery"
+        >
+          Ver colección
+        </button>
+      </div>
+    </div>
+    <div
+      v-else-if="reward && galleryVisible"
+      class="vault-shell reward-gallery"
+    >
+      <header class="vault-heading">
+        <div>
+          <p class="eyebrow">
+            Sala de descubrimientos
+          </p>
+          <h2 id="reward-gallery-title">
+            Mi colección
+          </h2>
+        </div>
+      </header>
+      <CollectionGallery :collection="collection" />
+      <footer class="vault-footer">
+        <button
+          ref="galleryBack"
+          class="button primary"
+          type="button"
+          @click="closeGallery"
+        >
+          Volver a mi reliquia
+        </button>
+      </footer>
     </div>
   </dialog>
 </template>
