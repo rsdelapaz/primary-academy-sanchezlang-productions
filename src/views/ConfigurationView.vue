@@ -121,8 +121,8 @@ const quickDifficultyOptions: {
   level: number
 }[] = [
   { id: 'easy', title: 'Fácil', description: 'Para empezar.', level: 1 },
-  { id: 'medium', title: 'Media', description: 'Reto medio.', level: 2 },
-  { id: 'hard', title: 'Difícil', description: 'Para expertos.', level: 3 },
+  { id: 'medium', title: 'Media', description: 'Un reto mayor.', level: 2 },
+  { id: 'hard', title: 'Difícil', description: 'Un gran desafío.', level: 3 },
 ]
 
 const selectedSubject = computed(() => manifest.value?.subjects.find(({ id }) => id === subjectId.value) ?? null)
