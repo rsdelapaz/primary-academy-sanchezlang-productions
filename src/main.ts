@@ -5,6 +5,7 @@ import { initializeTheme } from './presentation/theme-preference'
 import './styles.css'
 import './epic-experience.css'
 import './epic-chrome.css'
+import './wizard.css'
 
 await initializeTheme()
 

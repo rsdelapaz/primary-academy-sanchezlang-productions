@@ -2,14 +2,15 @@
 import { computed } from 'vue'
 import type { ThemeId } from '../presentation/theme-preference'
 
-const props = defineProps<{ scene: 'game' | 'victory'; theme: ThemeId }>()
-const url = computed(() => `${import.meta.env.BASE_URL}art/${props.theme}-${props.scene}`)
+const props = defineProps<{ scene: 'game' | 'victory' | 'setup'; theme: ThemeId }>()
+const artworkScene = computed(() => props.scene === 'setup' ? 'game' : props.scene)
+const url = computed(() => `${import.meta.env.BASE_URL}art/${props.theme}-${artworkScene.value}`)
 </script>
 
 <template>
   <div
     class="epic-backdrop"
-    :class="`epic-backdrop--${scene}`"
+    :class="[`epic-backdrop--${artworkScene}`, { 'epic-backdrop--setup': scene === 'setup' }]"
     aria-hidden="true"
   >
     <picture :key="url">

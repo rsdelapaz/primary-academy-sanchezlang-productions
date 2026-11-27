@@ -20,7 +20,9 @@
 - Skills locales: `.agents/skills/`; carga solo lo necesario y conserva atribución.
 - Antes de modificar vistas infantiles, consulta `.agents/skills/child-game-ux/SKILL.md` y valida visualmente en móvil y escritorio.
 - RetoNautas es un videojuego educativo para edades 8–12, no un formulario decorado; conserva calidad visual y jugable durante toda la experiencia, no solo en portada.
-- Configuración recreativa: wizard modalidad > duración > dificultad; avanzar tras las dos primeras selecciones, permitir volver conservando elecciones y mostrar JUGAR en dificultad.
+- Configuración recreativa: wizard modalidad > duración > dificultad; avanzar tras las dos primeras selecciones, permitir volver conservando elecciones compatibles y mostrar JUGAR en dificultad. Solo una selección explícita de dificultad válida arma el inicio automático de 5 s; JUGAR permite inicio inmediato y Detener lo cancela. Cancelar también al volver, salir, ocultar la página, cambiar ajustes o tema, pulsar Escape o navegar por teclado con Tab; no iniciar doble sesión.
+- El selector de modalidad se deriva del catálogo del motor; una tarjeta reusable y metadatos por ID (con una presentación genérica de reserva) permiten añadir modalidades sin editar la vista ni depender de que haya exactamente dos. No añadir modalidades ficticias.
+- Dirección evalúa cada propuesta del usuario: aprobar, modificar o rechazar con justificación de valor, impacto en usabilidad, seguridad, rendimiento y esfuerzo; no implementar por complacencia. PA-017 aprobado es el estándar artístico y los bocetos aprobados son criterio de aceptación.
 - Mapeo único: Corta/Media/Larga = 5/10/20; Fácil = beginner + selection, Media = intermediate + mixed, Difícil = advanced + written. No mostrar selectores de formato, cantidad, dificultad variada, opciones avanzadas ni personalización; autoestudio no cambia.
 - Deshabilita combinaciones de juego sin ejercicios suficientes y explica alternativas sin revelar conteos del banco.
 - Portada: integrar header e ilustración, corregir `object-position` según viewport y evitar hueco antes del footer; mantener WebP existentes.

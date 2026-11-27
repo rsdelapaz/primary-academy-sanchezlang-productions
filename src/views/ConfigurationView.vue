@@ -1,8 +1,11 @@
 <script setup lang="ts">
-import { computed, onMounted, ref, shallowRef } from 'vue'
-import { RouterLink, useRoute, useRouter } from 'vue-router'
-import TreasureArt from '../components/TreasureArt.vue'
-import UniverseArtwork from '../components/UniverseArtwork.vue'
+import { computed, nextTick, onBeforeUnmount, onMounted, ref, shallowRef, watch } from 'vue'
+import { onBeforeRouteLeave, RouterLink, useRoute, useRouter } from 'vue-router'
+import WizardChoiceCard from '../components/WizardChoiceCard.vue'
+import WizardGlyph from '../components/WizardGlyph.vue'
+import { getModeCardPresentation } from '../presentation/mode-card'
+import { createAutoAdvance, type AutoAdvanceState } from '../presentation/auto-advance'
+import { useThemePreference } from '../presentation/theme-preference'
 import {
   isFlashcardExercise,
   isGameExercise,
@@ -36,6 +39,8 @@ type Experience = 'play' | 'study'
 
 const route = useRoute()
 const router = useRouter()
+const { activeTheme, focusMode } = useThemePreference()
+const baseUrl = import.meta.env.BASE_URL
 const manifest = shallowRef<ContentManifest | null>(null)
 const content = shallowRef<ContentPackage | null>(null)
 const loadingCatalog = ref(true)
@@ -54,6 +59,49 @@ const setupDuration = ref<DurationPreset | null>(null)
 const setupDifficulty = ref<QuickSetupDifficulty | null>(null)
 const autoAdvance = ref(false)
 let bankRequest = 0
+let startSequence = 0
+const starting = ref(false)
+const startButton = ref<InstanceType<typeof globalThis.HTMLButtonElement> | null>(null)
+const stepHeading = ref<InstanceType<typeof globalThis.HTMLHeadingElement> | null>(null)
+const startCountdown = shallowRef<AutoAdvanceState>({
+  status: 'idle', feedbackKey: null, remainingMs: 0, remainingSeconds: 0,
+})
+const countdownRunning = computed(() => startCountdown.value.status === 'running')
+const startController = createAutoAdvance({
+  onTick: (state) => { startCountdown.value = state },
+  onAdvance: () => {
+    if (globalThis.document.visibilityState === 'visible' && route.name === 'choose-challenge' && canStart.value) void begin()
+  },
+})
+const setupSteps = ['Modalidad', 'Duración', 'Dificultad'] as const
+const modeCards = computed(() => GAME_MODES.map((mode) => ({
+  id: mode.id,
+  ...getModeCardPresentation(mode, activeTheme.value),
+})))
+
+function cancelAutoStart() {
+  startController.cancel()
+}
+
+function cancelAndFocusPlay() {
+  cancelAutoStart()
+  void nextTick(() => startButton.value?.focus({ preventScroll: true }))
+}
+
+function handleVisibility() {
+  if (globalThis.document.visibilityState !== 'visible') cancelAutoStart()
+}
+
+function handleSetupKey(event: InstanceType<typeof globalThis.KeyboardEvent>) {
+  if (countdownRunning.value && (event.key === 'Escape' || event.key === 'Tab')) {
+    if (event.key === 'Escape') cancelAndFocusPlay()
+    else cancelAutoStart()
+  }
+}
+
+function handleChromeInteraction(event: InstanceType<typeof globalThis.PointerEvent>) {
+  if (countdownRunning.value && event.target instanceof globalThis.Element && event.target.closest('.topbar')) cancelAutoStart()
+}
 
 const difficultyOptions: { id: DifficultyFilter; title: string; description: string }[] = [
   { id: 'beginner', title: 'Fácil', description: 'Para entrar en ritmo.' },
@@ -61,19 +109,20 @@ const difficultyOptions: { id: DifficultyFilter; title: string; description: str
   { id: 'advanced', title: 'Difícil', description: 'Para poner a prueba tus ideas.' },
   { id: 'all', title: 'Variada', description: 'Preguntas de varios niveles.' },
 ]
-const quickDurationOptions: { id: DurationPreset; title: string }[] = [
-  { id: 'short', title: 'Corta' },
-  { id: 'medium', title: 'Media' },
-  { id: 'long', title: 'Larga' },
+const quickDurationOptions: { id: DurationPreset; title: string; description: string; level: number }[] = [
+  { id: 'short', title: 'Corta', description: 'Una partida rápida.', level: 1 },
+  { id: 'medium', title: 'Media', description: 'Una buena aventura.', level: 2 },
+  { id: 'long', title: 'Larga', description: 'Una misión completa.', level: 3 },
 ]
 const quickDifficultyOptions: {
   id: QuickSetupDifficulty
   title: string
   description: string
+  level: number
 }[] = [
-  { id: 'easy', title: 'Fácil', description: 'Un comienzo tranquilo.' },
-  { id: 'medium', title: 'Media', description: 'Un reto equilibrado.' },
-  { id: 'hard', title: 'Difícil', description: 'Responde sin opciones.' },
+  { id: 'easy', title: 'Fácil', description: 'Para empezar.', level: 1 },
+  { id: 'medium', title: 'Media', description: 'Reto medio.', level: 2 },
+  { id: 'hard', title: 'Difícil', description: 'Para expertos.', level: 3 },
 ]
 
 const selectedSubject = computed(() => manifest.value?.subjects.find(({ id }) => id === subjectId.value) ?? null)
@@ -102,7 +151,7 @@ const wizardMessage = computed(() => {
       isGameSetupDurationAvailable(mode, id),
     )
     if (!availableDurations.length) {
-      return 'No hay suficientes preguntas para esta modalidad. Vuelve atrás y prueba la otra.'
+      return 'No hay suficientes preguntas para esta modalidad. Vuelve atrás y elige otra modalidad.'
     }
     if (availableDurations.length < quickDurationOptions.length) {
       return 'Las duraciones deshabilitadas no tienen suficientes preguntas para esta modalidad.'
@@ -263,7 +312,15 @@ async function selectTopic(topic: ContentTopicReference) {
 
 async function selectMode(value: GameModeId) {
   if (!isModeAvailable(value)) return
+  cancelAutoStart()
   modeId.value = value
+  if (setupDuration.value && !isGameSetupDurationAvailable(value, setupDuration.value)) {
+    setupDuration.value = null
+    setupDifficulty.value = null
+  } else if (setupDuration.value && setupDifficulty.value &&
+    !isGameSetupAvailable(value, setupDuration.value, setupDifficulty.value)) {
+    setupDifficulty.value = null
+  }
   setupStep.value = 2
   await syncRoute()
 }
@@ -271,7 +328,9 @@ async function selectMode(value: GameModeId) {
 function selectGameDuration(value: DurationPreset) {
   const mode = modeId.value
   if (!mode || !isGameSetupDurationAvailable(mode, value)) return
+  cancelAutoStart()
   setupDuration.value = value
+  if (setupDifficulty.value && !isGameSetupAvailable(mode, value, setupDifficulty.value)) setupDifficulty.value = null
   setupStep.value = 3
 }
 
@@ -280,9 +339,20 @@ function selectGameDifficulty(value: QuickSetupDifficulty) {
   const preset = setupDuration.value
   if (!mode || !preset || !isGameSetupAvailable(mode, preset, value)) return
   setupDifficulty.value = value
+  if (!starting.value && canStart.value && globalThis.document.visibilityState === 'visible') {
+    // Only an explicit difficulty selection arms the timer. Going back,
+    // restoring choices or changing theme must never start a session.
+    startController.update({
+      feedbackKey: `setup:${++startSequence}`,
+      enabled: true,
+      blocked: false,
+      delayMs: 5000,
+    })
+  }
 }
 
 function goToPreviousSetupStep() {
+  cancelAutoStart()
   if (setupStep.value === 3) setupStep.value = 2
   else if (setupStep.value === 2) setupStep.value = 1
 }
@@ -330,7 +400,9 @@ async function begin() {
   const topic = selectedTopic.value
   const bank = content.value
   const mode = selectedMode.value
-  if (!canStart.value || !subject || !topic || !bank) return
+  if (starting.value || !canStart.value || !subject || !topic || !bank) return
+  cancelAutoStart()
+  starting.value = true
   startError.value = ''
   try {
     if (experience.value === 'study') {
@@ -360,15 +432,39 @@ async function begin() {
     startError.value = caught instanceof Error
       ? caught.message
       : experience.value === 'study' ? 'No se pudo iniciar el estudio.' : 'No se pudo iniciar el reto.'
+  } finally {
+    starting.value = false
   }
 }
 
-onMounted(() => { void initialize() })
+watch(setupStep, () => {
+  cancelAutoStart()
+  void nextTick(() => {
+    globalThis.scrollTo({ top: 0, behavior: 'auto' })
+    stepHeading.value?.focus({ preventScroll: true })
+  })
+})
+watch([activeTheme, focusMode, autoAdvance, () => route.fullPath], cancelAutoStart)
+watch(canStart, (available) => { if (!available) cancelAutoStart() })
+onBeforeRouteLeave(() => { cancelAutoStart() })
+onMounted(() => {
+  globalThis.document.addEventListener('visibilitychange', handleVisibility)
+  globalThis.document.addEventListener('keydown', handleSetupKey)
+  globalThis.document.addEventListener('pointerdown', handleChromeInteraction)
+  void initialize()
+})
+onBeforeUnmount(() => {
+  startController.dispose()
+  globalThis.document.removeEventListener('visibilitychange', handleVisibility)
+  globalThis.document.removeEventListener('keydown', handleSetupKey)
+  globalThis.document.removeEventListener('pointerdown', handleChromeInteraction)
+})
 </script>
 
 <template>
   <section
     class="screen configuration-screen"
+    :class="{ 'wizard-screen': experience === 'play', 'wizard-final-step': experience === 'play' && setupStep === 3 }"
     aria-labelledby="configuration-title"
   >
     <RouterLink
@@ -401,14 +497,17 @@ onMounted(() => { void initialize() })
     </p>
     <template v-else-if="selectedSubject && selectedTopic && content">
       <header class="configuration-heading">
-        <p class="eyebrow">
-          {{ experience === 'study' ? 'Autoestudio' : selectedSubject.title }}
+        <p
+          v-if="experience === 'study'"
+          class="eyebrow"
+        >
+          Autoestudio
         </p>
         <h1 id="configuration-title">
           {{ experience === 'study' ? '¿Qué vas a estudiar?' : '¿Cómo jugamos?' }}
         </h1>
         <p class="configuration-topic">
-          {{ selectedTopic.title }}
+          {{ experience === 'play' ? selectedSubject.title + ' · ' : '' }}{{ selectedTopic.title }}
         </p>
       </header>
 
@@ -466,129 +565,144 @@ onMounted(() => { void initialize() })
 
         <template v-if="experience === 'play'">
           <section class="quick-setup-step">
-            <div class="quick-setup-progress">
-              <span>Paso {{ setupStep }} de 3</span>
-              <div
-                class="quick-setup-progress-track"
-                role="progressbar"
-                aria-label="Progreso de configuración"
-                aria-valuemin="1"
-                aria-valuemax="3"
-                :aria-valuenow="setupStep"
+            <ol
+              class="wizard-stepper"
+              aria-label="Progreso de configuración"
+            >
+              <li
+                v-for="(label, index) in setupSteps"
+                :key="label"
+                :class="{ current: setupStep === index + 1, completed: setupStep > index + 1 }"
+                :aria-current="setupStep === index + 1 ? 'step' : undefined"
               >
-                <span :style="{ width: `${setupStep / 3 * 100}%` }"></span>
-              </div>
-            </div>
+                <span class="wizard-step-number">{{ setupStep > index + 1 ? '✓' : index + 1 }}</span>
+                <span>{{ label }}</span>
+              </li>
+            </ol>
 
             <section
-              v-if="setupStep === 1"
-              class="configuration-section"
-              aria-labelledby="mode-title"
+              class="wizard-panel"
+              :aria-labelledby="`wizard-step-title-${setupStep}`"
             >
-              <h2 id="mode-title">
-                Elige una modalidad
+              <span
+                class="game-frame-crest game-frame-crest--top"
+                aria-hidden="true"
+              ></span>
+              <span
+                class="game-frame-crest game-frame-crest--bottom"
+                aria-hidden="true"
+              ></span>
+              <h2
+                :id="`wizard-step-title-${setupStep}`"
+                ref="stepHeading"
+                tabindex="-1"
+              >
+                {{ setupStep === 1 ? 'Elige una modalidad' : setupStep === 2 ? 'Elige la duración' : 'Elige la dificultad' }}
               </h2>
-              <div class="quick-setup-choices quick-setup-choices--modes">
-                <button
-                  v-for="mode in GAME_MODES"
+
+              <div
+                v-if="setupStep === 1"
+                class="quick-setup-choices wizard-mode-grid"
+              >
+                <WizardChoiceCard
+                  v-for="mode in modeCards"
                   :key="mode.id"
-                  class="configuration-card quick-setup-choice quick-setup-mode"
-                  :class="{ active: modeId === mode.id }"
-                  type="button"
-                  :aria-pressed="modeId === mode.id"
+                  class="wizard-mode-card"
+                  :title="mode.title"
+                  :description="mode.description"
+                  :selected="modeId === mode.id"
                   :disabled="loadingBank || !isModeAvailable(mode.id)"
-                  @click="selectMode(mode.id)"
+                  @select="selectMode(mode.id)"
                 >
-                  <UniverseArtwork
-                    v-if="mode.illustration === 'lightning'"
-                    class="mode-art"
-                    scene="lightning"
-                  />
-                  <TreasureArt
-                    v-else
-                    class="mode-art"
-                    kind="closed-chest"
-                  />
-                  <strong>{{ mode.id === 'treasure' ? 'Tesoro' : 'Relámpago' }}</strong>
-                  <small>{{ mode.id === 'treasure' ? 'Gana llaves y abre cofres.' : 'Suma puntos con tus aciertos.' }}</small>
-                </button>
+                  <template #art>
+                    <img
+                      v-if="!focusMode && mode.artwork"
+                      :src="baseUrl + mode.artwork"
+                      class="wizard-mode-art"
+                      alt=""
+                      width="500"
+                      height="277"
+                      decoding="async"
+                      loading="lazy"
+                    >
+                    <WizardGlyph
+                      v-else-if="!focusMode"
+                      kind="mode"
+                    />
+                  </template>
+                </WizardChoiceCard>
               </div>
-            </section>
 
-            <section
-              v-else-if="setupStep === 2"
-              class="configuration-section"
-              aria-labelledby="duration-title"
-            >
-              <h2 id="duration-title">
-                Elige la duración
-              </h2>
-              <div class="quick-setup-choices quick-setup-choices--durations">
-                <button
+              <div
+                v-else-if="setupStep === 2"
+                class="quick-setup-choices wizard-level-grid"
+              >
+                <WizardChoiceCard
                   v-for="preset in quickDurationOptions"
                   :key="preset.id"
-                  class="configuration-card quick-setup-choice"
-                  :class="{ active: setupDuration === preset.id }"
-                  type="button"
-                  :aria-pressed="setupDuration === preset.id"
+                  :title="preset.title"
+                  :description="preset.description"
+                  :selected="setupDuration === preset.id"
                   :disabled="loadingBank || !modeId || !isGameSetupDurationAvailable(modeId, preset.id)"
-                  @click="selectGameDuration(preset.id)"
+                  @select="selectGameDuration(preset.id)"
                 >
-                  <strong>{{ preset.title }}</strong>
-                </button>
+                  <template #art>
+                    <WizardGlyph
+                      v-if="!focusMode"
+                      kind="duration"
+                      :level="preset.level"
+                    />
+                  </template>
+                </WizardChoiceCard>
               </div>
-            </section>
 
-            <section
-              v-else
-              class="configuration-section"
-              aria-labelledby="difficulty-title"
-            >
-              <h2 id="difficulty-title">
-                Elige la dificultad
-              </h2>
-              <div class="quick-setup-choices quick-setup-choices--difficulties">
-                <button
-                  v-for="level in quickDifficultyOptions"
-                  :key="level.id"
-                  class="configuration-card quick-setup-choice quick-setup-difficulty"
-                  :class="{ active: setupDifficulty === level.id }"
-                  type="button"
-                  :aria-pressed="setupDifficulty === level.id"
-                  :disabled="loadingBank || !modeId || !setupDuration || !isGameSetupAvailable(modeId, setupDuration, level.id)"
-                  @click="selectGameDifficulty(level.id)"
-                >
-                  <strong>{{ level.title }}</strong>
-                  <small>{{ level.description }}</small>
-                </button>
-              </div>
-              <label class="auto-advance-setting">
-                <span class="auto-advance-setting-copy">
-                  <strong>Avance automático</strong>
-                  <small>La partida avanza sola.</small>
-                </span>
-                <input
-                  v-model="autoAdvance"
-                  type="checkbox"
-                  role="switch"
-                  aria-label="Avanzar automáticamente"
-                />
-                <span
-                  class="auto-advance-switch"
-                  aria-hidden="true"
-                ></span>
-              </label>
+              <template v-else>
+                <div class="quick-setup-choices wizard-level-grid">
+                  <WizardChoiceCard
+                    v-for="level in quickDifficultyOptions"
+                    :key="level.id"
+                    :title="level.title"
+                    :description="level.description"
+                    :selected="setupDifficulty === level.id"
+                    :disabled="starting || loadingBank || !modeId || !setupDuration || !isGameSetupAvailable(modeId, setupDuration, level.id)"
+                    @select="selectGameDifficulty(level.id)"
+                  >
+                    <template #art>
+                      <WizardGlyph
+                        v-if="!focusMode"
+                        kind="difficulty"
+                        :level="level.level"
+                      />
+                    </template>
+                  </WizardChoiceCard>
+                </div>
+                <label class="auto-advance-setting">
+                  <span class="auto-advance-setting-copy">
+                    <strong>Avance automático</strong>
+                    <small>Pasa a la siguiente pregunta automáticamente.</small>
+                  </span>
+                  <input
+                    v-model="autoAdvance"
+                    type="checkbox"
+                    role="switch"
+                    aria-label="Avanzar automáticamente"
+                  />
+                  <span
+                    class="auto-advance-switch"
+                    aria-hidden="true"
+                  ></span>
+                </label>
+              </template>
+              <button
+                v-if="setupStep > 1"
+                class="button secondary quick-setup-back"
+                type="button"
+                @click="goToPreviousSetupStep"
+              >
+                ← {{ setupStep === 2 ? 'Cambiar modalidad' : 'Cambiar duración' }}
+              </button>
             </section>
           </section>
-
-          <button
-            v-if="setupStep > 1"
-            class="button secondary quick-setup-back"
-            type="button"
-            @click="goToPreviousSetupStep"
-          >
-            ← {{ setupStep === 2 ? 'Cambiar modalidad' : 'Cambiar duración' }}
-          </button>
 
           <p
             v-if="wizardMessage"
@@ -602,13 +716,29 @@ onMounted(() => { void initialize() })
             v-if="setupStep === 3"
             class="configuration-action-bar"
           >
-            <button
-              class="button primary start-game"
-              type="submit"
-              :disabled="!canStart"
-            >
-              ¡JUGAR!
-            </button>
+            <div class="wizard-start-controls">
+              <div
+                v-if="countdownRunning"
+                class="wizard-countdown"
+              >
+                <span role="status">Comienza en <strong>{{ startCountdown.remainingSeconds }} s</strong></span>
+                <button
+                  class="button secondary wizard-cancel-start"
+                  type="button"
+                  @click="cancelAndFocusPlay"
+                >
+                  Detener
+                </button>
+              </div>
+              <button
+                ref="startButton"
+                class="button primary start-game"
+                type="submit"
+                :disabled="!canStart || starting"
+              >
+                {{ starting ? 'Preparando...' : '¡JUGAR!' }}
+              </button>
+            </div>
           </div>
         </template>
 

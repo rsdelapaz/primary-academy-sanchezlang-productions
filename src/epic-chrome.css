@@ -60,7 +60,8 @@
 /* Frame composition: inner decoration lives on pseudo-elements; the native
    control stays rectangular for safe focus, touch and dynamic content. */
 .app-shell.is-immersive .game-question-card,
-.app-shell.is-immersive .victory-report {
+.app-shell.is-immersive .victory-report,
+.app-shell.is-immersive .wizard-panel {
   --panel-slice: 68;
   --panel-width: 54px;
   --panel-cut: var(--chrome-panel-cut);
@@ -72,7 +73,8 @@
   box-shadow: none;
 }
 .app-shell.is-immersive .game-question-card::before,
-.app-shell.is-immersive .victory-report::before {
+.app-shell.is-immersive .victory-report::before,
+.app-shell.is-immersive .wizard-panel::before {
   content: '';
   position: absolute;
   z-index: -1;
@@ -84,7 +86,8 @@
   pointer-events: none;
 }
 .app-shell.is-immersive .game-question-card::after,
-.app-shell.is-immersive .victory-report::after {
+.app-shell.is-immersive .victory-report::after,
+.app-shell.is-immersive .wizard-panel::after {
   content: '';
   position: absolute;
   inset: 0;
@@ -128,7 +131,8 @@
 .app-shell.is-immersive .game-advance-bar .advance-inner,
 .app-shell.is-immersive .game-advance-bar .next-action,
 .app-shell.is-immersive .typed-answer-submit,
-.app-shell.is-immersive .victory-links :is(a, button) {
+.app-shell.is-immersive .victory-links :is(a, button),
+.app-shell.is-immersive .wizard-screen :is(.wizard-choice, .back-link, .quick-setup-back, .start-game, .wizard-cancel-start) {
   --control-cut: var(--chrome-button-cut);
   --control-width: 25px;
   --control-material: var(--control-fill);
@@ -139,20 +143,20 @@
   background: none;
   box-shadow: none;
 }
-.app-shell.is-immersive :is(.game-hud, .sound-toggle, .theme-trigger, .game-exit-button, .victory-replay, .game-question-card .option, .game-advance-bar .advance-inner, .game-advance-bar .next-action, .typed-answer-submit, .victory-links a, .victory-links button)::before,
-.app-shell.is-immersive :is(.game-hud, .sound-toggle, .theme-trigger, .game-exit-button, .victory-replay, .game-question-card .option, .game-advance-bar .advance-inner, .game-advance-bar .next-action, .typed-answer-submit, .victory-links a, .victory-links button)::after {
+.app-shell.is-immersive :is(.game-hud, .sound-toggle, .theme-trigger, .game-exit-button, .victory-replay, .game-question-card .option, .game-advance-bar .advance-inner, .game-advance-bar .next-action, .typed-answer-submit, .victory-links a, .victory-links button, .wizard-choice, .wizard-screen .back-link, .quick-setup-back, .wizard-screen .start-game, .wizard-cancel-start)::before,
+.app-shell.is-immersive :is(.game-hud, .sound-toggle, .theme-trigger, .game-exit-button, .victory-replay, .game-question-card .option, .game-advance-bar .advance-inner, .game-advance-bar .next-action, .typed-answer-submit, .victory-links a, .victory-links button, .wizard-choice, .wizard-screen .back-link, .quick-setup-back, .wizard-screen .start-game, .wizard-cancel-start)::after {
   content: '';
   position: absolute;
   inset: 0;
   pointer-events: none;
 }
-.app-shell.is-immersive :is(.game-hud, .sound-toggle, .theme-trigger, .game-exit-button, .victory-replay, .game-question-card .option, .game-advance-bar .advance-inner, .game-advance-bar .next-action, .typed-answer-submit, .victory-links a, .victory-links button)::before {
+.app-shell.is-immersive :is(.game-hud, .sound-toggle, .theme-trigger, .game-exit-button, .victory-replay, .game-question-card .option, .game-advance-bar .advance-inner, .game-advance-bar .next-action, .typed-answer-submit, .victory-links a, .victory-links button, .wizard-choice, .wizard-screen .back-link, .quick-setup-back, .wizard-screen .start-game, .wizard-cancel-start)::before {
   z-index: -1;
   inset: 1px;
   background: var(--control-material);
   clip-path: polygon(var(--control-cut) 0, calc(100% - var(--control-cut)) 0, 100% var(--control-cut), 100% calc(100% - var(--control-cut)), calc(100% - var(--control-cut)) 100%, var(--control-cut) 100%, 0 calc(100% - var(--control-cut)), 0 var(--control-cut));
 }
-.app-shell.is-immersive :is(.game-hud, .sound-toggle, .theme-trigger, .game-exit-button, .victory-replay, .game-question-card .option, .game-advance-bar .advance-inner, .game-advance-bar .next-action, .typed-answer-submit, .victory-links a, .victory-links button)::after {
+.app-shell.is-immersive :is(.game-hud, .sound-toggle, .theme-trigger, .game-exit-button, .victory-replay, .game-question-card .option, .game-advance-bar .advance-inner, .game-advance-bar .next-action, .typed-answer-submit, .victory-links a, .victory-links button, .wizard-choice, .wizard-screen .back-link, .quick-setup-back, .wizard-screen .start-game, .wizard-cancel-start)::after {
   z-index: 0;
   border: 1px solid transparent;
   border-image-source: var(--control-frame);
