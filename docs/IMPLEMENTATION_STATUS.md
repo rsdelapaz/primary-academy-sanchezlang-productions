@@ -50,3 +50,10 @@ Estado: implementación técnica y smoke tests completados; pendiente aceptació
 - HUD con indicadores circulares, métricas doradas, jerarquía tipográfica y palabra entre comillas destacada sin alterar la pregunta. Se conserva el árbol semántico de controles, áreas táctiles y foco de teclado; las capas ornamentales no capturan eventos.
 - Conserva el arte WebP existente y el modo Focus sin escenas o marcos ornamentales. No introduce dependencias ni recursos raster adicionales.
 - Validación: 103 pruebas y 1384 ejercicios válidos; transferencia inicial estimada 301,2 KiB (límite 350 KiB). Partidas completas, resultado y repetición verificados en Chromium con viewports 320, 390, 1672 y 2048 px. Pendiente prueba en dispositivos físicos y aceptación visual.
+
+### Aceptación de dirección y siguiente diseño (27/11/2026)
+
+- Dirección aprueba explícitamente el acabado visual de PA-017 en el commit `f1a2e80` («Es una pasada. Este es el camino»). Se adopta como referencia de calidad visual para todas las pantallas, no únicamente portada, partida y victoria. La aprobación artística no equivale a una aceptación funcional en todos los dispositivos.
+- Los bocetos validados por dirección serán criterios de aceptación visual. Reutilizar escenarios WebP, marcos SVG y materiales temáticos originales; no convertir interfaces en imágenes ni añadir motores de renderizado o dependencias por motivos puramente decorativos. Mantener contraste, legibilidad, navegación y rendimiento móvil.
+- Próxima propuesta: extender el acabado artístico al wizard de partida. En modalidad, dos tarjetas ilustradas de igual protagonismo, Relámpago (puntos por acierto) y Tesoro (llaves y cofres). Progreso inequívoco: 1 Modalidad, 2 Duración, 3 Dificultad. Seleccionar modalidad avanza directamente; volver conserva la selección. No añadir opciones de respuesta, cantidades de preguntas, pasos ni CTA redundantes. Focus permanece minimalista e independiente del mundo.
+- Estado: bocetos de Galaxy y Pop Adventure presentados a dirección. Pendiente aprobación antes de implementar cambios de UI. Conservar las reglas, contenidos, autoavance y áreas táctiles de PA-017.
